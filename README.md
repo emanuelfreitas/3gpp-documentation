@@ -9,6 +9,7 @@
   * [NWDAF (Network Data Analytics Function)](#NDAF)
   * [BSF (Binding Support Function)](#BSF)
   * [SMF (Session Management Function)](#SMF)
+  * [AUSF (Authentication Server Function)](#AUSF)
 * [Policy and Charging Control](#PCC)
    * [PCRF (Policy and Charging Rule Function)](#PCRF)
    * [OCS (Online Charging System)](#OCS)
@@ -73,6 +74,15 @@
 ###### APIs
 * [PDU Session](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29502_Nsmf_PDUSession.yaml)
 * [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29508_Nsmf_EventExposure.yaml)
+
+#### AUSF (Authentication Server Function)
+* [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services)
+###### APIs
+* [UE Authentication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29509_Nausf_UEAuthentication.yaml)
+* [SoR Protection](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29509_Nausf_SoRProtection.yaml)
+
+
+
 
 ## Policy and Charging Control <a name="PCC"></a>
 * [TS 29.212 - Policy and Charging Control (PCC); Reference points](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.212%20-%20Policy%20and%20Charging%20Control%20(PCC)%3B%20Reference%20points)
