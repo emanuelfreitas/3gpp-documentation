@@ -89,6 +89,7 @@
 * [TS 32.260 - IP Multimedia Subsystem (IMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.260%20-%20IP%20Multimedia%20Subsystem%20(IMS)%20charging)
 * [TS 32.270 - Multimedia Messaging Service (MMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.270%20-%20Multimedia%20Messaging%20Service%20(MMS)%20charging)
 * [TS 32.274 - Short Message Service (SMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.274%20-%20Short%20Message%20Service%20(SMS)%20charging)
+* [TS 32.276 - Voice Call Service (VCS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.276%20-%20Voice%20Call%20Service%20(VCS)%20charging)
 * [TS 32.299 - Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.299%20-%20Diameter%20charging%20applications)
 
 #### PCRF (Policy and Charging Rule Function) <a name="PCRF"></a>
