@@ -8,6 +8,7 @@
   * [NRF (NF Repository Function)](#NRF)
   * [NWDAF (Network Data Analytics Function)](#NDAF)
   * [BSF (Binding Support Function)](#BSF)
+  * [SMF (Session Management Function)](#SMF)
 * [Policy and Charging Control](#PCC)
    * [PCRF (Policy and Charging Rule Function)](#PCRF)
    * [OCS (Online Charging System)](#OCS)
@@ -67,6 +68,11 @@
 ###### APIs
 * [Management](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29521_Nbsf_Management.yaml)
 
+#### SMF (Session Management Function)<a name="SMF"></a>
+* [TS 29.508 - Session Management Event Exposure Service](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.508%20-%20Session%20Management%20Event%20Exposure%20Service)
+###### APIs
+* [PDU Session](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29502_Nsmf_PDUSession.yaml)
+* [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29508_Nsmf_EventExposure.yaml)
 
 ## Policy and Charging Control <a name="PCC"></a>
 * [TS 29.212 - Policy and Charging Control (PCC); Reference points](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.212%20-%20Policy%20and%20Charging%20Control%20(PCC)%3B%20Reference%20points)
