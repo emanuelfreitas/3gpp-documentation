@@ -10,6 +10,7 @@
   * [BSF (Binding Support Function)](#BSF)
 * [Policy and Charging Control](#PCC)
    * [PCRF (Policy and Charging Rule Function)](#PCRF)
+   * [OCS (Online Charging System)](#OCS)
 
 ## 5G Core Network <a name="5GCoreNetwork"></a>
 * [TS 29.501 - System Architecture for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.501%20-%20System%20Architecture%20for%20the%205G%20System)
@@ -73,3 +74,8 @@
 #### PCRF (Policy and Charging Rule Function) <a name="PCRF"></a>
 * [TS 29.213 - Policy and charging control signalling flows and Quality of Service (QoS) parameter mapping](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.213%20-%20Policy%20and%20charging%20control%20signalling%20flows%20and%20Quality%20of%20Service%20(QoS)%20parameter%20mapping)
 * [TS 29.214 - Policy and charging control over Rx reference point](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.214%20-%20Policy%20and%20charging%20control%20over%20Rx%20reference%20point)
+* [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point)
+
+#### OCS (Online Charging System) <a name="OCS"></a>
+* [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point)
+* [TS 32.299 - Telecommunication management; Charging management; Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.299%20-%20Telecommunication%20management;%20Charging%20management;%20Diameter%20charging%20applications)
