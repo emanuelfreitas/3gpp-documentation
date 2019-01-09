@@ -86,6 +86,7 @@
 
 #### OCS (Online Charging System) <a name="OCS"></a>
 * [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point)
+* [TS 32.270 - Multimedia Messaging Service (MMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.270%20-%20Multimedia%20Messaging%20Service%20(MMS)%20charging)
 * [TS 32.274 - Short Message Service (SMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.274%20-%20Short%20Message%20Service%20(SMS)%20charging)
 * [TS 32.299 - Telecommunication management; Charging management; Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2032.299%20-%20Telecommunication%20management;%20Charging%20management;%20Diameter%20charging%20applications)
 
