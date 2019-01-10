@@ -18,6 +18,7 @@
 * [TS 29.501 - System Architecture for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.501%20-%20System%20Architecture%20for%20the%205G%20System)
 * [TS 29.502 - Procedures for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.502%20-%20Procedures%20for%20the%205G%20System)
 * [TS 29.503 - Policy and Charging Control Framework for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.503%20-%20Policy%20and%20Charging%20Control%20Framework%20for%20the%205G%20System)
+* [TS 29.571 - Common Data Types for Service Based Interfaces](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.571%20-%20Common%20Data%20Types%20for%20Service%20Based%20Interfaces)
 
 #### AUSF (Authentication Server Function)
 * [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services)
