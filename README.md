@@ -85,6 +85,8 @@
   * [Application Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29519_Application_Data.yaml)
 
 ## Policy and Charging Control <a name="PCC"></a>
+* [TS 23.203 - Policy and charging control architecture](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2023.203%20-%20Policy%20and%20charging%20control%20architecture)
+
 * [TS 29.212 - Policy and Charging Control (PCC); Reference points](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.212%20-%20Policy%20and%20Charging%20Control%20(PCC)%3B%20Reference%20points)
 
 #### OCS (Online Charging System) <a name="OCS"></a>
