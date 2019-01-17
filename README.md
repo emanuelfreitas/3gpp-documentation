@@ -16,7 +16,6 @@
    
 ## 5G Core Network <a name="5GCoreNetwork"></a>
 * [TS 29.501 - System Architecture for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.501%20-%20System%20Architecture%20for%20the%205G%20System)
-* [TS 29.502 - Procedures for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.502%20-%20Procedures%20for%20the%205G%20System)
 * [TS 29.503 - Policy and Charging Control Framework for the 5G System](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.503%20-%20Policy%20and%20Charging%20Control%20Framework%20for%20the%205G%20System)
 * [TS 29.571 - Common Data Types for Service Based Interfaces](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.571%20-%20Common%20Data%20Types%20for%20Service%20Based%20Interfaces)
 
@@ -67,6 +66,7 @@
 * [Background Data Transfer (BDT) Policy Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29554_Npcf_BDTPolicyControl.yaml)
 
 #### SMF (Session Management Function)<a name="SMF"></a>
+* [TS 29.502 - Session Management Services](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.502%20-%20Session%20Management%20Services)
 * [TS 29.508 - Session Management Event Exposure Service](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.508%20-%20Session%20Management%20Event%20Exposure%20Service)
 ###### APIs
 * [PDU Session](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29502_Nsmf_PDUSession.yaml)
