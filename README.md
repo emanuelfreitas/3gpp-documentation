@@ -21,6 +21,9 @@
 * [TS 29.501 - Principles and Guidelines for Services Definition](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.501%20-%20Principles%20and%20Guidelines%20for%20Services%20Definition)
 * [TS 29.571 - Common Data Types for Service Based Interfaces](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.571%20-%20Common%20Data%20Types%20for%20Service%20Based%20Interfaces)
 
+###### Common APIs
+* [Common Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
+
 #### AUSF (Authentication Server Function)
 * [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services)
 ###### APIs
