@@ -2,6 +2,7 @@
 
 ## Table of contents
 * [5G Core Network](#5GCoreNetwork)
+  * [AMF (Access and Mobility Management Function)](#AMF)
   * [AUSF (Authentication Server Function)](#AUSF)
   * [BSF (Binding Support Function)](#BSF)
   * [CHF (Charging Function)](#CHF)
@@ -25,7 +26,15 @@
 * [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29571_CommonData.yaml)
 * [TS 29.122 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
 
-#### AUSF (Authentication Server Function)
+#### AMF (Access and Mobility Management Function)<a name="AMF"></a>
+
+###### APIs
+* [Communication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_Communication.yaml)
+* [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_EventExposure.yaml)
+* [Location](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_Location.yaml)
+* [MT](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_MT.yaml)
+
+#### AUSF (Authentication Server Function)<a name="AUSF"></a>
 * [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/tree/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services)
 ###### APIs
 * [UE Authentication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29509_Nausf_UEAuthentication.yaml)
