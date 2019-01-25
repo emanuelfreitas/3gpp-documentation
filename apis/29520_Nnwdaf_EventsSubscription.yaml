@@ -1,0 +1,305 @@
+openapi: 3.0.0
+info:
+  description: Nnwdaf_EventsSubscription Service API
+  version: "1.0.0"
+  title: Nnwdaf_EventsSubscription
+externalDocs:
+  description: 3GPP TS 29.520 V15.2.0; 5G System; Network Data Analytics Services.
+  url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.520/'
+security:
+  - {}
+  - oAuth2ClientCredentials:
+    - nnwdaf-eventssubscription
+servers:
+  - url: '{apiRoot}/nnwdaf-eventssubscription/v1'
+    variables:
+      apiRoot:
+        default: https://example.com
+        description: apiRoot as defined in subclause 4.4 of 3GPP TS 29.501.
+paths:
+  /subscriptions:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NnwdafEventsSubscription'
+          headers:
+            Location:
+              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nnwdaf-eventssubscription/v1/subscriptions/{subscriptionId}
+              required: true
+              schema:
+                type: string
+      responses:
+        '201':
+          description: Create a new Individual NWDAF Event Subscription resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NnwdafEventsSubscription'
+        '400':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+      callbacks:
+        myNotification:
+          '{$request.body#/notificationURI}': 
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/NnwdafEventsSubscriptionNotification'
+                      minItems: 1
+              responses:
+                '204':
+                  description: The receipt of the Notification is acknowledged.
+                '400':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+                '411':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '503':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+                default:
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+  /subscriptions/{subscriptionId}:
+    delete:
+      parameters:
+        - name: subscriptionId
+          in: path
+          description: String identifying a subscription to the Nnwdaf_EventsSubscription Service
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content. The Individual NWDAF Event Subscription resource matching the subscriptionId was deleted.
+        '400':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          description: The Individual NWDAF Event Subscription resource does not exist.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '429':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '501':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+        '503':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+    put:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NnwdafEventsSubscription'
+      parameters:
+        - name: subscriptionId
+          in: path
+          description: String identifying a subscription to the Nnwdaf_EventsSubscription Service
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The Individual NWDAF Event Subscription resource was modified successfully and a representation of that resource is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NnwdafEventsSubscription'
+        '204':
+          description: The Individual NWDAF Event Subscription resource was modified successfully.
+        '400':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          description: The Individual NWDAF Event Subscription resource does not exist.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '411':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '501':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+        '503':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: '{nrfApiRoot}/oauth2/token'
+          scopes:
+            nnwdaf-eventssubscription: Access to the Nnwdaf_EventsSubscription API
+  schemas:
+    NnwdafEventsSubscription:
+      type: object
+      properties:
+        eventSubscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSubscription'
+          minItems: 1
+          description: Subscribed events
+        notificationURI:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        supportedFeatures:
+          $ref: 'TS29571_CommonData.yaml#/components/schema/SupportedFeature'
+      required:
+        - eventSubscriptions
+    EventSubscription:
+      type: object
+      properties:
+        anySlice:
+          $ref: '#/components/schemas/AnySlice'
+        event:
+          $ref: '#/components/schemas/NwdafEvent'
+        loadLevelThreshold:
+          type: integer
+          description: Shall be supplied for notification method "THRESHOLD". Indicates that the NWDAF shall report the corresponding network slice load level to the NF service consumer where the load level of the network slice instance identified by snssai is reached.
+        notificationMethod:
+          $ref: '#/components/schemas/NotificationMethod'
+        repetitionPeriod:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        snssaia:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+          description: Identification(s) of network slice to which the subscription applies. When subscribed event is "SLICE_LOAD_LEVEL", either information about slice(s) identified by snssai, or anySlice set to "TRUE" shall be included.
+      required:
+        - event
+    NnwdafEventsSubscriptionNotification:
+      type: object
+      properties:
+        eventNotifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventNotification'
+          minItems: 1
+          description: Notifications about Individual Events
+        subscriptionId:
+          type: string
+          description: String identifying a subscription to the Nnwdaf_EventsSubscription Service
+      required:
+        - eventNotifications
+        - subscriptionId
+    EventNotification:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/NwdafEvent'
+        sliceLoadLevelInfo:
+          $ref: '#/components/schemas/SliceLoadLevelInformation'
+      required:
+        - event
+        - sliceLoadLevelInfo
+    SliceLoadLevelInformation:
+      type: object
+      properties:
+        loadLevelInformation:
+          $ref: '#/components/schemas/LoadLevelInformation'
+        snssais:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+          description: Identification(s) of network slice to which the subscription.
+      required:
+        - loadLevelInformation
+        - snssais
+    AnySlice:
+      type: boolean
+      description: FALSE represents not applicable for all slices. TRUE represents applicable for all slices.
+    LoadLevelInformation:
+      type: integer
+      description: Load level information of the network slice instance.
+    NotificationMethod:
+      anyOf:
+      - type: string
+        enum:
+          - PERIODIC
+          - THRESHOLD
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: >
+        Possible values are
+        - PERIODIC: The subscribe of NWDAF Event is peridodicly. The periodic of the notification is identified by repetitionPeriod defined in subclause 5.1.6.2.3.
+        - THRESHOLD: The subscribe of NWDAF Event is upon threshold exceeded. The threshold of the notification is identified by loadLevelThreshold defined in subclause 5.1.6.2.3.
+    NwdafEvent:
+      anyOf:
+      - type: string
+        enum:
+          - SLICE_LOAD_LEVEL
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: >
+        Possible values are
+        - SLICE_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network Slice instance
