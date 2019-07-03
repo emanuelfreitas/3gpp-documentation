@@ -1,14 +1,17 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
+  version: 1.0.2
   title: Namf_Communication
-  description: AMF Communication Service
+  description: |
+    AMF Communication Service
+    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    All rights reserved.
 security:
   - {}
-  - oAuth2Clientcredentials:
+  - oAuth2ClientCredentials:
       - namf-comm
 externalDocs:
-  description: 3GPP TS 29.518 V15.2.0; 5G System; Access and Mobility Management Services
+  description: 3GPP TS 29.518 V15.3.0; 5G System; Access and Mobility Management Services
   url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.518/'
 servers:
   - url: '{apiRoot}/namf-comm/v1'
@@ -39,24 +42,60 @@ paths:
               properties: # Request parts
                 jsonData:
                   $ref: '#/components/schemas/UeContextCreateData'
-                binaryDataN1Message:
-                  type: string
-                  format: binary
                 binaryDataN2Information:
                   type: string
                   format: binary
                 binaryDataN2InformationExt1:
                   type: string
                   format: binary
+                binaryDataN2InformationExt2:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt3:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt4:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt5:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt6:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt7:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt8:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt9:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt10:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt11:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt12:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt13:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt14:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt15:
+                  type: string
+                  format: binary
+                binaryDataN2InformationExt16:
+                  type: string
+                  format: binary
             encoding:
               jsonData:
                 contentType:  application/json
-              binaryDataN1Message:
-                contentType:  application/vnd.3gpp.5gnas
-                headers:
-                  Content-Id:
-                    schema:
-                      type: string  
               binaryDataN2Information:
                 contentType:  application/vnd.3gpp.ngap
                 headers:
@@ -69,13 +108,160 @@ paths:
                   Content-Id:
                     schema:
                       type: string  
+              binaryDataN2InformationExt2:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt3:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt4:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt5:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt6:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt7:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt8:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt9:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt10:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt11:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt12:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt13:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt14:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt15:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string  
+              binaryDataN2InformationExt16:
+                contentType:  application/vnd.3gpp.ngap
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string
         required: true
+      callbacks:
+        onN2MessageNotify:
+          '{$request.body#/n2NotifyUri}':
+            post:
+              summary: Namf_Communication N2 Info Notify (UE Specific) service Operation
+              tags:
+                - N2 Info Notify
+              operationId: N2InfoNotify
+              requestBody:
+                description: UE Specific N2 Information Notification
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/N2InformationNotification'
+              responses:
+                '200':
+                  description: N2 Information Notification Response.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/N2InfoNotificationRspData'
+                    multipart/related:  # message with binary body part(s)
+                      schema:
+                        type: object
+                        properties: # Request parts
+                          jsonData:
+                            $ref: '#/components/schemas/N2InfoNotificationRspData'
+                          binaryDataN2Information:
+                            type: string
+                            format: binary
+                      encoding:
+                        jsonData:
+                          contentType:  application/json
+                        binaryDataN2Information:
+                          contentType:  application/vnd.3gpp.ngap
+                          headers:
+                            Content-Id:
+                              schema:
+                                type: string  
+                '204':
+                  description: Expected response to a successful callback processing
+                '400':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '411':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '503':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/503'
       responses:
         '201':
           description: UE context successfully created.
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/v1/ue-contexts/{ueContextId}'
+              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/<apiVersion>/ue-contexts/{ueContextId}'
               required: true
               schema:
                 type: string
@@ -89,27 +275,153 @@ paths:
                 properties: # Request parts
                   jsonData:
                     $ref: '#/components/schemas/UeContextCreatedData'
-                  binaryDataN1Message:
+                  binaryDataN2Information:
                     type: string
                     format: binary
-                  binaryDataN2Information:
+                  binaryDataN2InformationExt1:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt2:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt3:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt4:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt5:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt6:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt7:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt8:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt9:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt10:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt11:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt12:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt13:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt14:
+                    type: string
+                    format: binary
+                  binaryDataN2InformationExt15:
                     type: string
                     format: binary
               encoding:
                 jsonData:
                   contentType:  application/json
-                binaryDataN1Message:
-                  contentType:  application/vnd.3gpp.5gnas
-                  headers:
-                    Content-Id:
-                      schema:
-                        type: string  
                 binaryDataN2Information:
                   contentType:  application/vnd.3gpp.ngap
                   headers:
                     Content-Id:
                       schema:
                         type: string  
+                binaryDataN2InformationExt1:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt2:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt3:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt4:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt5:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt6:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt7:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt8:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt9:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt10:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt11:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt12:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt13:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt14:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string  
+                binaryDataN2InformationExt15:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string
         '400':
           description: Bad Request
           content:
@@ -434,6 +746,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+          headers:
+            Location:
+              description: 'The URI of the resource located on the target NF Service Consumer (e.g. AMF) to which the request is redirected'
+              required: true
+              schema:
+                type: string
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
         '403':
@@ -522,7 +840,7 @@ paths:
           description: N1N2 Message Subscription successfully created.
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/v1/{ueContextId}/n1-n2-messages/subscriptions/{subscriptionId}'
+              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/<apiVersion>/{ueContextId}/n1-n2-messages/subscriptions/{subscriptionId}'
               required: true
               schema:
                 type: string
@@ -778,7 +1096,7 @@ paths:
           description: Non UE N2 Info Subscription successfully created.
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/v1/non-ue-n2-messages/subscriptions/{n2NotifySubscriptionId}'
+              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/<apiVersion>/non-ue-n2-messages/subscriptions/{n2NotifySubscriptionId}'
               required: true
               schema:
                 type: string
@@ -894,7 +1212,7 @@ paths:
           description: N1N2 Message Subscription successfully created.
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/v1/subscriptions/{subscriptionId}'
+              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/<apiVersion>/subscriptions/{subscriptionId}'
               required: true
               schema:
                 type: string
@@ -1091,7 +1409,7 @@ components:
             $ref: '#/components/schemas/AmfStatusInfo'
           minItems: 1
       required:
-        - amfStatusInfo
+        - amfStatusInfoList
     AmfStatusInfo:
       type: object
       properties:
@@ -1107,7 +1425,7 @@ components:
         targetAmfFailure:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfName'
       required:
-        - guamis
+        - guamiList
         - statusChange
     AssignEbiData:
       type: object
@@ -1148,7 +1466,7 @@ components:
           minItems: 1
       required:
         - pduSessionId
-        - assignedEbis
+        - assignedEbiList
     AssignEbiFailed:
       type: object
       properties:
@@ -1316,6 +1634,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
         nfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        serviceInstanceId:
+          type: string
       required:
         - n1MessageClass
         - n1MessageContent
@@ -1419,7 +1739,7 @@ components:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 0
       required:
-        - taList
+        - taiList
     UeContextTransferReqData:
       type: object
       properties:
@@ -1495,7 +1815,14 @@ components:
         amPolicyReqTriggerList:
           type: array
           items:
-            $ref: '#/components/schemas/AMPolicyReqTrigger'
+            $ref: '#/components/schemas/PolicyReqTrigger'
+          minItems: 1
+        pcfUePolicyUri:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        uePolicyReqTriggerList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyReqTrigger'
           minItems: 1
         hpcfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
@@ -1557,7 +1884,6 @@ components:
         ngapData:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
       required:
-        - ngapIeType
         - ngapData
     NrppaInformation:
       type: object
@@ -1566,6 +1892,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         nrppaPdu:
           $ref: '#/components/schemas/N2InfoContent'
+        serviceInstanceId:
+          type: string
       required:
         - nfId
         - nrppaPdu
@@ -1713,13 +2041,14 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         nsInstance:
           $ref: 'TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId'
+        smfServiceInstanceId:
+          type: string
       required:
         - pduSessionId
         - smContextRef
         - sNssai
         - dnn
         - accessType
-        - allocatedEbiList
     NssaiMapping:
       type: object
       properties:
@@ -1787,7 +2116,7 @@ components:
         - ueContext
         - targetId
         - sourceToTargetData
-        - pduSessions
+        - pduSessionList
     UeContextCreatedData:
       type: object
       properties:
@@ -1800,8 +2129,6 @@ components:
           items:
             $ref: '#/components/schemas/N2SmInformation'
           minItems: 1
-        ngapCause:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NgApCause'
         failedSessionList:
           type: array
           items:
@@ -1814,7 +2141,7 @@ components:
       required:
         - ueContext
         - targetToSourceData
-        - pduSessions
+        - pduSessionList
     UeContextCreateError:
       type: object
       properties:
@@ -1910,7 +2237,11 @@ components:
           $ref: '#/components/schemas/N2InfoContent'
       required:
         - n2InfoContent
-
+    N2InfoNotificationRspData:
+      type: object
+      properties:
+        n2InfoContent:
+          $ref: '#/components/schemas/N2InfoContent'
 #
 # SIMPLE DATA TYPES 
 #
@@ -2039,7 +2370,7 @@ components:
           - MOBI_REG
           - MOBI_REG_UE_VALIDATED
       - type: string
-    AMPolicyReqTrigger:
+    PolicyReqTrigger:
       anyOf:
       - type: string
         enum:
@@ -2047,6 +2378,7 @@ components:
           - PRA_CHANGE
           - SARI_CHANGE
           - RFSP_INDEX_CHANGE
+          - ALLOWED_NSSAI_CHANGE
       - type: string
     RatSelector:
       anyOf:

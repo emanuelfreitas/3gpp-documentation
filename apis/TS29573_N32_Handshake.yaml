@@ -1,10 +1,12 @@
 openapi: 3.0.0
 
 info:
-  version: '1.0.0'
+  version: '1.0.1'
   title: 'N32 Handshake API'
-  description: 'N32-c Handshake'
-
+  description: |
+   N32-c Handshake Service.
+    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    All rights reserved.
 servers:
   - url: '{apiRoot}/n32c-handshake/v1'
     variables:
@@ -163,7 +165,7 @@ components:
         - type: string
           enum:
             - TLS
-            - ALS
+            - PRINS
         - type: string
     ApiSignature:
       oneOf:
