@@ -128,7 +128,9 @@
 
 Gx
 * [TS 29.212 - Policy and Charging Control (PCC); Reference points](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.212%20-%20Policy%20and%20Charging%20Control%20(PCC);%20Reference%20points/Rel-15/ts_129212v150800p.pdf)
+
 Rx
 * [TS 29.214 - Policy and charging control over Rx reference point](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.214%20-%20Policy%20and%20charging%20control%20over%20Rx%20reference%20point/Rel-15/ts_129214v150700p.pdf)
+
 Sy
 * [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point/Rel-15/ts_129219v150300p.pdf)
