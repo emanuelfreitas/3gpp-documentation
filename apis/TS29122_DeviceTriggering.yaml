@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: 3gpp-device-triggering
   version: 1.0.1
-  description: | 
+  description: |
     API for device trigger.
     © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.

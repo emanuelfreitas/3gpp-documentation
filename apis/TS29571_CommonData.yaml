@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: '1.0.2'
+  version: '1.2.0.alpha-1'
   title: 'Common Data Types'
   description: |
     Common Data Types for Service Based Interfaces.
@@ -373,6 +373,114 @@ components:
         value: {}
         negative:
           type: boolean
+    NFDiscFactors:
+      type: object
+      properties:
+        targetNfType:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+        requesterNfType:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+        serviceNames:
+          type: array
+          items:
+            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName'
+          minItems: 1
+          uniqueItems: true
+        requesterNfInstanceFqdn:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+        targetPlmnList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlmnId'
+          minItems: 1
+        requesterPlmnList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlmnId'
+          minItems: 1
+        targetNfInstanceId:
+          $ref: '#/components/schemas/NfInstanceId'
+        targetNfFqdn:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+        hnrfUri:
+          $ref: '#/components/schemas/Uri'
+        snssais:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snssai'
+          minItems: 1
+        plmnSpecificSnssaiList:
+          type: array
+          items:
+            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/PlmnSnssai'
+          minItems: 1
+        dnn:
+          $ref: '#/components/schemas/Dnn'
+        nsiList:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        tai:
+          $ref: '#/components/schemas/Tai'
+        amfRegionId:
+          $ref: '#/components/schemas/AmfRegionId'
+        amfSetId:
+          $ref: '#/components/schemas/AmfSetId'
+        guami:
+          $ref: '#/components/schemas/Guami'
+        supi:
+          $ref: '#/components/schemas/Supi'
+        ueIpv4Address:
+          $ref: '#/components/schemas/Ipv4Addr'
+        ipDomain:
+          type: string
+        ueIpv6Prefix:
+          $ref: '#/components/schemas/Ipv6Prefix'
+        pgwInd:
+          type: boolean
+        pgw:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+        gpsi:
+          $ref: '#/components/schemas/Gpsi'
+        externalGroupIdentity:
+          type: string
+        dataSet:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/DataSetId'
+        routingIndicator:
+          type: string
+          pattern: '^[0-9]{1,4}$'
+        groupIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/NfGroupId'
+          minItems: 1
+        dnaiList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dnai'
+          minItems: 1
+        pduSessionTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PduSessionType'
+          minItems: 1
+        upfIwkEpsInd:
+          type: boolean
+        chfSupportedPlmn:
+          $ref: '#/components/schemas/PlmnId'
+        preferredLocality:
+          type: string
+        accessType:
+          $ref: '#/components/schemas/AccessType'
+        requiredFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedFeatures'
+          minItems: 1
+        complexQuery:
+          $ref: '#/components/schemas/ComplexQuery'
+
 
 
 
@@ -438,6 +546,8 @@ components:
       maximum: 256
       nullable: true
     NfGroupId:
+      type: string
+    MtcProviderInformation:
       type: string
 
 #
@@ -568,6 +678,7 @@ components:
             - EUTRA
             - WLAN
             - VIRTUAL
+            - NBIOT
         - type: string
     RatTypeRm:
       anyOf:
@@ -577,6 +688,7 @@ components:
             - EUTRA
             - WLAN
             - VIRTUAL
+            - NBIOT
         - type: string
       nullable: true
     PduSessionType:
@@ -1185,6 +1297,24 @@ components:
       required:
         - bitLength
         - gNBValue
+    MaPduCapability:
+      type: object
+      properties:
+        atsssLL:
+          type: boolean
+          default: false
+        mptcp:
+          type: boolean
+          default: boolean
+    AtsssCapability:
+      type: object
+      properties:
+        atsssLL:
+          type: boolean
+          default: false
+        mptcp:
+          type: boolean
+          default: false
 
 
 #
@@ -1282,6 +1412,15 @@ components:
       type: integer
       minimum: 1
       maximum: 4095
+      nullable: true
+    SampleRatio:
+      type: integer
+      minimum: 1
+      maximum: 100
+    SampleRatioRm:
+      type: integer
+      minimum: 1
+      maximum: 100
       nullable: true
 
 #

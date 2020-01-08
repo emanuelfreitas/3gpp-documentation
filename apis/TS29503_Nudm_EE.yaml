@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: '1.0.2'
+  version: '1.1.0.alpha-1'
   title: 'Nudm_EE'
   description: |
     Nudm Event Exposure Service.
@@ -276,6 +276,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ChangeOfSupiPeiAssociationReport'
         - $ref: '#/components/schemas/RoamingStatusReport'
+        - $ref: '#/components/schemas/CnTypeChangeReport'
 
     ChangeOfSupiPeiAssociationReport:
       type: object
@@ -296,6 +297,16 @@ components:
             boolean
         newServingPlmn:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+
+    CnTypeChangeReport:
+      type: object
+      required:
+        - newCnType
+      properties:
+        newCnType:
+          $ref: '#/components/schemas/CnType'
+        oldCnType:
+          $ref: '#/components/schemas/CnType'
 
 # SIMPLE TYPES:
 
@@ -320,6 +331,7 @@ components:
           - ROAMING_STATUS
           - COMMUNICATION_FAILURE
           - AVAILABILITY_AFTER_DNN_FAILURE
+          - CN_TYPE_CHANGE
         - type: string
 
     LocationAccuracy:
@@ -328,5 +340,14 @@ components:
           enum:
           - CELL_LEVEL
           - TA_LEVEL
+        - type: string
+
+    CnType:
+      anyOf:
+        - type: string
+          enum:
+          - SINGLE_4G
+          - SINGLE_5G
+          - DUAL_4G5G
         - type: string
 

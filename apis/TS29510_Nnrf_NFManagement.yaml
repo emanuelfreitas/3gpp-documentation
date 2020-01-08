@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: '1.0.2'
+  version: '1.1.0.alpha-1'
   title: 'NRF NFManagement Service'
   description: |
     NRF NFManagement Service.
@@ -519,6 +519,8 @@ components:
       properties:
         nfInstanceId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        nfInstanceName:
+          type: string
         nfType:
           $ref: '#/components/schemas/NFType'
         nfStatus:
@@ -595,24 +597,71 @@ components:
           type: string
         udrInfo:
           $ref: '#/components/schemas/UdrInfo'
+        udrInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/UdrInfo'
+          minItems: 1
         udmInfo:
           $ref: '#/components/schemas/UdmInfo'
+        udmInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/UdmInfo'
+          minItems: 1
         ausfInfo:
           $ref: '#/components/schemas/AusfInfo'
+        ausfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/AusfInfo'
+          minItems: 1
         amfInfo:
           $ref: '#/components/schemas/AmfInfo'
+        amfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmfInfo'
+          minItems: 1
         smfInfo:
           $ref: '#/components/schemas/SmfInfo'
+        smfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/SmfInfo'
+          minItems: 1
         upfInfo:
           $ref: '#/components/schemas/UpfInfo'
+        upfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpfInfo'
+          minItems: 1
         pcfInfo:
           $ref: '#/components/schemas/PcfInfo'
+        pcfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/PcfInfo'
+          minItems: 1
         bsfInfo:
           $ref: '#/components/schemas/BsfInfo'
+        bsfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/BsfInfo'
+          minItems: 1
         chfInfo:
           $ref: '#/components/schemas/ChfInfo'
+        chfInfoExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChfInfo'
+          minItems: 1
         nrfInfo:
           $ref: '#/components/schemas/NrfInfo'
+        nwdafInfo:
+          $ref: '#/components/schemas/NwdafInfo'
         customInfo:
           type: object
         recoveryTime:
@@ -762,6 +811,8 @@ components:
       properties:
         nfStatusNotificationUri:
           type: string
+        reqNfInstanceId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         subscrCond:
           oneOf:
             - $ref: '#/components/schemas/NfInstanceIdCond'
@@ -862,6 +913,7 @@ components:
             - UDM
             - AUSF
             - UDR
+            - PCF
         nfGroupId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
     NotifCondition:
@@ -1090,6 +1142,11 @@ components:
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/PduSessionType'
           minItems: 1
+        atsssCapability:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AtsssCapability'
+        ueIpAddrInd:
+          type: boolean
+          default: false
     SnssaiUpfInfoItem:
       type: object
       required:
@@ -1152,6 +1209,8 @@ components:
     PcfInfo:
       type: object
       properties:
+        groupId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         dnnList:
           type: array
           items:
@@ -1161,6 +1220,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
           minItems: 1
         rxDiamHost:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
@@ -1361,6 +1425,7 @@ components:
             - nudm-ueau
             - nudm-ee
             - nudm-pp
+            - nudm-niddau
             - namf-comm
             - namf-evts
             - namf-mt
@@ -1504,6 +1569,11 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/ChfInfo'
           minProperties: 1
+        servedNwdafInfo:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/NwdafInfo'
+          minProperties: 1
     PlmnSnssai:
       type: object
       required:
@@ -1516,6 +1586,29 @@ components:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+    NwdafInfo:
+      type: object
+      properties:
+        eventIds:
+          type: array
+          items:
+            $ref: 'TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId'
+          minItems: 1
+        nwdafEvents:
+          type: array
+          items:
+            $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          minItems: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
           minItems: 1
 
 externalDocs:

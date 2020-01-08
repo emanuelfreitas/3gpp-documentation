@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.2
+  version: 1.1.0.alpha-1
   title: AUSF API
   description: |
     AUSF UE Authentication Service.
@@ -164,6 +164,11 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Pei'
         traceData:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
+        udmGroupId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        routingIndicator:
+          type: string
+          pattern: '^[0-9]{1,4}$'
       required:
         - supiOrSuci
         - servingNetworkName

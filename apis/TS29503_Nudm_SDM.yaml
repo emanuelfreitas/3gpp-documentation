@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: '2.0.1'
+  version: '2.1.0.alpha-1'
   title: 'Nudm_SDM'
   description: |
     Nudm Subscriber Data Management Service.
@@ -1279,6 +1279,10 @@ components:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+        serviceGapTime:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        traceData:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
 
     SmfSelectionSubscriptionData:
       type: object
@@ -1416,6 +1420,10 @@ components:
           $ref: '#/components/schemas/SharedDataId'
         odbPacketServices:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/OdbPacketServices'
+        traceData:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
+        sharedTraceDataId:
+          $ref: '#/components/schemas/SharedDataId'
 
     DnnConfiguration:
       type: object
@@ -1443,6 +1451,24 @@ components:
           maxItems: 2
         upSecurity:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/UpSecurity'
+        pduSessionContinuityInd:
+          $ref: '#/components/schemas/PduSessionContinuityInd'
+        invokeNefSelection:
+          type: boolean
+        niddNefId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        niddInfo:
+          $ref: '#/components/schemas/NiddInformation'
+
+    NiddInformation:
+      type: object
+      required:
+        - afInstanceId
+      properties:
+        afInstanceId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        gpsi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
 
     IpAddress:
       type: object
@@ -1518,6 +1544,8 @@ components:
           items:
             $ref: '#/components/schemas/SharedDataId'
           minItems: 1
+        traceData:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
 
     SdmSubscription:
       type: object
@@ -1761,3 +1789,11 @@ components:
           - SMS_MNG
         - type: string
 
+    PduSessionContinuityInd:
+      anyOf:
+        - type: string
+          enum:
+          - MAINTAIN_PDUSESSION
+          - RECONNECT_PDUSESSION
+          - RELEASE_PDUSESSION
+        - type: string

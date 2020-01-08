@@ -7,7 +7,7 @@ info:
     © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 29.519 V15.4.0; 5G System; Usage of the Unified Data Repository Service for Policy Data, Application Data and Structured Data for Exposure.
+  description: 3GPP TS 29.519 V16.0.0; 5G System; Usage of the Unified Data Repository Service for Policy Data, Application Data and Structured Data for Exposure.
   url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.519/'
 
 paths:
@@ -35,7 +35,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+                  $ref: '#/components/schemas/PfdDataForAppExt'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -75,7 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+                $ref: '#/components/schemas/PfdDataForAppExt'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -135,7 +135,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+              $ref: '#/components/schemas/PfdDataForAppExt'
       parameters:
         - name: appId
           in: path
@@ -149,7 +149,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+                $ref: '#/components/schemas/PfdDataForAppExt'
           headers:
             Location:
               description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nudr-dr/{apiVersion}/application-data/pfds/{appId}'
@@ -161,7 +161,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+                $ref: '#/components/schemas/PfdDataForAppExt'
         '204':
           description: No content
         '400':
@@ -737,6 +737,10 @@ components:
           minItems: 1
         dnaiChgType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DnaiChangeType'
+        afAckInd:
+          type: boolean
+        addrPreserInd:
+          type: boolean
       allOf:
         - oneOf:
           - required: [afAppId]
@@ -789,6 +793,10 @@ components:
           $ref: 'TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo'
         upPathChgNotifUri:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        afAckInd:
+          type: boolean
+        addrPreserInd:
+          type: boolean
     TrafficInfluSub:
       type: object
       properties:
@@ -829,3 +837,10 @@ components:
         - required: [snssais]
         - required: [internalGroupIds]
         - required: [supis]
+    PfdDataForAppExt:
+      allOf:
+        - $ref: 'TS29551_Nnef_PFDmanagement.yaml#/components/schemas/PfdDataForApp'
+        - type: object
+          properties:
+            suppFeat:
+              $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'

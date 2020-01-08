@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.2
+  version: 1.1.0.alpha-1
   title: Namf_Communication
   description: |
     AMF Communication Service
@@ -606,6 +606,9 @@ paths:
                   binaryDataN2Information:
                     type: string
                     format: binary
+                  binaryDataN2InformationExt1:
+                    type: string
+                    format: binary
               encoding:
                 jsonData:
                   contentType:  application/json
@@ -615,6 +618,12 @@ paths:
                     Content-Id:
                       schema:
                         type: string  
+                binaryDataN2InformationExt1:
+                  contentType:  application/vnd.3gpp.ngap
+                  headers:
+                    Content-Id:
+                      schema:
+                        type: string
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
         '403':
@@ -1595,6 +1604,8 @@ components:
           $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/CorrelationID'
         notifyReason:
           $ref: '#/components/schemas/N2InfoNotifyReason'
+        smfChangeInd:
+          $ref: '#/components/schemas/SmfChangeIndication'
       required:
         - n2NotifySubscriptionId
     N2InfoContainer:
@@ -1763,6 +1774,8 @@ components:
           $ref: '#/components/schemas/UeContext'
         ueRadioCapability:
           $ref: '#/components/schemas/N2InfoContent'
+        ueNbiotRadioCapability:
+          $ref: '#/components/schemas/N2InfoContent'
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
@@ -1861,6 +1874,8 @@ components:
           minItems: 1
         traceData:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
+        remainingServiceGapTimer:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
     N2SmInformation:
       type: object
       properties:
@@ -1869,6 +1884,8 @@ components:
         n2InfoContent:
           $ref: '#/components/schemas/N2InfoContent'
         sNssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+        homePlmnSnssai:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
         subjectToHo:
           type: boolean
@@ -2104,6 +2121,8 @@ components:
           items:
             $ref: '#/components/schemas/N2SmInformation'
           minItems: 1
+        mmeControlFteid:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'
         n2NotifyUri:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
         ueRadioCapability:
@@ -2409,4 +2428,12 @@ components:
       - type: string
         enum:
           - HANDOVER_COMPLETED
+      - type: string
+    SmfChangeIndication:
+      anyOf:
+      - type: string
+        enum:
+          - INSERTED
+          - CHANGED
+          - REMOVED
       - type: string

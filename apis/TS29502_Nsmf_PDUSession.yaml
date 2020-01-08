@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: '1.0.2'
+  version: '1.1.0.alpha-1'
   title: 'Nsmf_PDUSession'
   description: |
     SMF PDU Session Service.
@@ -35,7 +35,7 @@ paths:
         description: representation of the SM context to be created in the SMF
         required: true
         content:
-          multipart/related:
+          multipart/related:  # message with binary body part(s)
             schema:
               type: object
               properties: # Request parts
@@ -44,11 +44,20 @@ paths:
                 binaryDataN1SmMessage:
                   type: string
                   format: binary
+                binaryDataN2SmInformation:
+                  type: string
+                  format: binary
             encoding:
               jsonData:
                 contentType:  application/json
               binaryDataN1SmMessage:
                 contentType:  application/vnd.3gpp.5gnas
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string
+              binaryDataN2SmInformation:
+                contentType:  application/vnd.3gpp.ngap
                 headers:
                   Content-Id:
                     schema:
@@ -1105,6 +1114,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
         anType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+        secondAnType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         ratType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
         presenceInLadn:
@@ -1162,6 +1173,19 @@ components:
           $ref: 'TS29518_Namf_Communication.yaml#/components/schemas/NgRanTargetId'
         epsBearerCtxStatus:
           $ref: '#/components/schemas/EpsBearerContextStatus'
+        cpCiotEnabled:
+          type: boolean
+          default: false
+        invokeNef:
+          type: boolean
+          default: false
+        maPduIndication:
+          type: boolean
+          default: false
+        n2SmInfo:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
+        smContextRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
       required:
         - servingNfId
         - servingNetwork
@@ -1217,6 +1241,8 @@ components:
           minItems: 1
           nullable: true
         anType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+        secondAnType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         ratType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
@@ -1284,6 +1310,10 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
         n2SmInfoTypeExt1:
           $ref: '#/components/schemas/N2SmInfoType'
+        maReleaseInd:
+          $ref: '#/components/schemas/MaReleaseIndication'
+        exemptionInd:
+          $ref: '#/components/schemas/ExemptionInd'
 
     SmContextUpdatedData:
       type: object
@@ -1345,6 +1375,9 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
         n2SmInfoType:
           $ref: '#/components/schemas/N2SmInfoType'
+        ismfReleaseOnly:
+          type: boolean
+          default: false
       
     SmContextStatusNotification:
       type: object
@@ -1388,6 +1421,8 @@ components:
         vcnTunnelInfo:
           $ref: '#/components/schemas/TunnelInfo'
         anType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+        secondAnType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         ratType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
@@ -1436,12 +1471,20 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         guami:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+        cpCiotEnabled:
+          type: boolean
+          default: false
+        invokeNef:
+          type: boolean
+          default: false        
+        maPduIndication:
+          type: boolean
+          default: false
       required:
         - dnn
         - vsmfId
         - servingNetwork
         - vsmfPduSessionUri
-        - vcnTunnelInfo
         - anType
 
     PduSessionCreatedData:
@@ -1503,9 +1546,6 @@ components:
       required:
         - pduSessionType
         - sscMode
-        - hcnTunnelInfo
-        - sessionAmbr
-        - qosFlowsSetupList
         - hSmfInstanceId
 
     HsmfUpdateData:
@@ -1520,6 +1560,8 @@ components:
         servingNetwork:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
         anType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+        secondAnType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         ratType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
@@ -1588,6 +1630,8 @@ components:
         anTypeCanBeChanged:
           type: boolean
           default: false
+        maReleaseInd:
+          $ref: '#/components/schemas/MaReleaseIndication'
       required:
         - requestIndication
 
@@ -1678,6 +1722,8 @@ components:
           type: string
         backOffTimer:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        maReleaseInd:
+          $ref: '#/components/schemas/MaReleaseIndication'
       required:
         - requestIndication
 
@@ -1863,12 +1909,16 @@ components:
       properties:
         targetMmeCap:
           $ref: '#/components/schemas/MmeCapabilities'
+        smContextType:
+          $ref: '#/components/schemas/SmContextType'
 
     SmContextRetrievedData:
       type: object
       properties:
         ueEpsPdnConnection:
           $ref: '#/components/schemas/EpsPdnCnxContainer'
+        smContext:
+          $ref: '#/components/schemas/SmContext'
       required:
         - ueEpsPdnConnection
     
@@ -2039,6 +2089,118 @@ components:
       required:
         - error
 
+    SmContext:
+      type: object
+      properties:
+        supi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+        unauthenticatedSupi:
+          type: boolean
+          default:  false
+        pei:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Pei'
+        gpsi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
+        pduSessionId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PduSessionId'
+        dnn:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+        sNssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+        hplmnSnssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+        servingNfId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        guami:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+        serviceName:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/ServiceName'
+        servingNetwork:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+        anType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+        ratType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
+        smContextStatusUri:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        hSmfUri:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        pcfId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        selMode:
+          $ref: '#/components/schemas/DnnSelectionMode'
+        traceData:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
+        udmGroupId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        routingIndicator:
+          type: string
+        epsInterworkingInd:
+          $ref: '#/components/schemas/EpsInterworkingIndication'
+        pduSessionType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+        sscMode:
+          type: string
+          pattern: '^[0-7]$'
+        sessionAmbr:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ambr'
+        qosFlowsSetupList:
+          type: array
+          items:
+            $ref: '#/components/schemas/QosFlowSetupItem'
+          minItems: 1
+        hSmfInstanceId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        enablePauseCharging:
+          type: boolean
+          default: false
+        ueIpv4Address:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+        ueIpv6Prefix:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+        epsPdnCnxInfo:
+          $ref: '#/components/schemas/EpsPdnCnxInfo'
+        epsBearerInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/EpsBearerInfo'
+          minItems: 1
+        maxIntegrityProtectedDataRate:
+          $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
+        alwaysOnGranted:
+          type: boolean
+          default: false
+        upSecurity:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/UpSecurity'
+        hSmfServiceInstanceId:
+          type: string
+        recoveryTime:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+      required:
+        - pduSessionId
+        - dnn
+        - sNssai
+        - servingNfId
+        - servingNetwork
+        - anType
+        - smContextStatusUri
+        - pduSessionType
+        - sscMode
+        - sessionAmbr
+        - qosFlowsSetupList
+
+    ExemptionInd:
+      type: object
+      properties:
+        dnnCongestion:
+          type: boolean
+          default: false
+        snssaiOnlyCongestion:
+          type: boolean
+          default: false
+        snssaiDnnCongestion:
+          type: boolean
+          default: false
 
 #
 # SIMPLE DATA TYPES 
@@ -2252,6 +2414,7 @@ components:
           - NONE
           - WITH_N26
           - WITHOUT_N26
+          - IWK_NON_3GPP
       - type: string
         description: >
           This string provides forward-compatibility with future
@@ -2262,6 +2425,7 @@ components:
         - NONE
         - WITH_N26
         - WITHOUT_N26
+        - IWK_NON_3GPP
 
     N2SmInfoType:
       anyOf:
@@ -2335,6 +2499,37 @@ components:
           - 64_KBPS
           - MAX_UE_RATE
 
+    MaReleaseIndication:
+      anyOf:
+      - type: string
+        enum:
+          - REL_MAPDU_OVER_3GPP
+          - REL_MAPDU_OVER_N3GPP
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: >
+        Possible values are
+          - REL_MAPDU_OVER_3GPP
+          - REL_MAPDU_OVER_N3GPP
+
+    SmContextType:
+      anyOf:
+      - type: string
+        enum:
+          - EPS_PDN_CONNECTION
+          - SM_CONTEXT
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: >
+        Possible values are
+          - EPS_PDN_CONNECTION
+          - SM_CONTEXT
 
 #
 # HTTP responses
