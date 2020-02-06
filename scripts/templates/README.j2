@@ -1,0 +1,139 @@
+# 3GPP Documentation
+
+## Table of contents
+* [5G Core Network](#5GCoreNetwork)
+  * [AMF (Access and Mobility Management Function)](#AMF)
+  * [AUSF (Authentication Server Function)](#AUSF)
+  * [BSF (Binding Support Function)](#BSF)
+  * [CHF (Charging Function)](#CHF)
+  * [NEF (Network Exposure Function)](#NEF)
+  * [NRF (NF Repository Function)](#NRF)
+  * [NWDAF (Network Data Analytics Function)](#NDAF)
+  * [PCF (Policy Control Function)](#PCF)
+  * [SMF (Session Management Function)](#SMF)
+  * [UDR (Unified Data Repository)](#UDR)
+* [Policy and Charging Control](#PCC)
+   * [OCS (Online Charging System)](#OCS)
+   * [PCRF (Policy and Charging Rule Function)](#PCRF)
+   
+## 5G Core Network <a name="5GCoreNetwork"></a>
+* [TS 23.501 - System Architecture for the 5G System]({{ release_documents['TS 23.501'] }})
+* [TS 23.502 - Procedures for the 5G System (5GS)]({{ release_documents['TS 23.502'] }})
+* [TS 23.503 - Policy and Charging Control Framework for the 5G System]({{ release_documents['TS 23.503'] }})
+* [TS 29.501 - Principles and Guidelines for Services Definition]({{ release_documents['TS 29.501'] }})
+* [TS 29.571 - Common Data Types for Service Based Interfaces]({{ release_documents['TS 29.571'] }})
+* [TS 33.501 - Security architecture and procedures for 5G System]({{ release_documents['TS 33.501'] }})
+
+
+###### Common APIs
+* [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29571_CommonData.yaml)
+* [TS 29.122 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
+
+#### AMF (Access and Mobility Management Function)<a name="AMF"></a>
+
+###### APIs
+* [Communication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_Communication.yaml)
+* [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_EventExposure.yaml)
+* [Location](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_Location.yaml)
+* [MT](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29518_Namf_MT.yaml)
+
+#### AUSF (Authentication Server Function)<a name="AUSF"></a>
+* [TS 29.509 - Authentication Server Services]({{ release_documents['TS 29.509'] }})
+###### APIs
+* [UE Authentication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29509_Nausf_UEAuthentication.yaml)
+* [SoR Protection](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29509_Nausf_SoRProtection.yaml)
+
+#### BSF (Binding Support Function)<a name="BSF"></a>
+* [TS 29.521 - Binding Support Management Service]({{ release_documents['TS 29.521'] }})
+###### APIs
+* [Management](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29521_Nbsf_Management.yaml)
+
+#### CHF (Charging Function) <a name="CHF"></a>
+* [TS 29.594 - Spending Limit Control Service]({{ release_documents['TS 29.594'] }})
+###### APIs
+* [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29594_Nchf_SpendingLimitControl.yaml)
+* [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS32291_Nchf_ConvergedCharging.yaml)
+
+#### NEF (Network Exposure Function) <a name="NEF"></a>
+* [TS 29.551 - 5G System; Packet Flow Description Management Service; Stage 3]({{ release_documents['TS 29.551'] }})
+
+###### APIs
+* [Packet Flow Description (PFD) Management](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29551_Nnef_PFDmanagement.yaml)
+
+#### NRF (NF Repository Function) <a name="NRF"></a>
+* [TS 29.510 - Network Function Repository Services]({{ release_documents['TS 29.510'] }})
+
+###### APIs
+* [NF Management](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29510_Nnrf_NFManagement.yaml)
+* [NF Discovery](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29510_Nnrf_NFDiscovery.yaml)
+* [Access Token (OAuth2)](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29510_Nnrf_AccessToken.yaml)
+
+#### NWDAF (Network Data Analytics Function) <a name="NDAF"></a>
+* [TS 29.520 - Network Data Analytics Services]({{ release_documents['TS 29.520'] }})
+###### APIs
+* [Events Subscription](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29520_Nnwdaf_EventsSubscription.yaml)
+* [Analytics Info](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29520_Nnwdaf_AnalyticsInfo.yaml)
+
+#### PCF (Policy Control Function) <a name="PCF"></a>
+* [TS 29.244 - Interface between the Control Plane and the User Plane nodes]({{ release_documents['TS 29.244'] }})
+* [TS 29.507 - Access and Mobility Policy Control Service]({{ release_documents['TS 29.507'] }})
+* [TS 29.512 - Session Management Policy Control Service]({{ release_documents['TS 29.512'] }})
+* [TS 29.513 - Policy and Charging Control signalling flows and QoS parameter mapping]({{ release_documents['TS 29.513'] }})
+* [TS 29.514 - Policy Authorization Service]({{ release_documents['TS 29.514'] }})
+* [TS 29.523 - Policy Control Event Exposure Service]({{ release_documents['TS 29.523'] }})
+* [TS 29.525 - UE Policy Control Service]({{ release_documents['TS 29.525'] }})
+* [TS 29.554 - Background Data Transfer Policy Control Service]({{ release_documents['TS 29.554'] }})
+* [TS 29.594 - Spending Limit Control Service]({{ release_documents['TS 29.594'] }})
+###### APIs
+* [Policy Authorization](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29514_Npcf_PolicyAuthorization.yaml)
+* [Access and Mobility (AM) Policy Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29507_Npcf_AMPolicyControl.yaml)
+* [Session Management (SM) Policy Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29512_Npcf_SMPolicyControl.yaml)
+* [Background Data Transfer (BDT) Policy Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29554_Npcf_BDTPolicyControl.yaml)
+* [Policy Control Event Exposure Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29523_Npcf_EventExposure.yaml)
+
+
+#### SMF (Session Management Function)<a name="SMF"></a>
+* [TS 29.502 - Session Management Services]({{ release_documents['TS 29.502'] }})
+* [TS 29.508 - Session Management Event Exposure Service]({{ release_documents['TS 29.508'] }})
+###### APIs
+* [PDU Session](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29502_Nsmf_PDUSession.yaml)
+* [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29508_Nsmf_EventExposure.yaml)
+
+#### UDR (Unified Data Repository) <a name="UDR"></a>
+* [TS 29.504 - Unified Data Repository Services]({{ release_documents['TS 29.504'] }})
+* [TS 29.519 - Usage of the Unified Data Repository service for Policy Data, Application Data and Structured Data for Exposure]({{ release_documents['TS 29.519'] }})
+###### APIs
+* [Data Repository](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29504_Nudr_DataRepository.yaml)
+  * [Subscription Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29505_Subscription_Data.yaml)
+  * [Policy Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29519_Policy_Data.yaml)
+  * [Exposure Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29519_Exposure_Data.yaml)
+  * [Application Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29519_Application_Data.yaml)
+
+## Policy and Charging Control <a name="PCC"></a>
+* [RFC 6733 - Diameter Base Protocol](https://tools.ietf.org/pdf/rfc6733.pdf)
+* [RFC 8506 - Diameter Credit-Control Application](https://tools.ietf.org/pdf/rfc8506.pdf)
+* [TS 23.167 - IP Multimedia Subsystem (IMS) emergency sessions]({{ release_documents['TS 23.167'] }})
+* [TS 23.179 - Functional architecture and information flows to support mission critical communication services]({{ release_documents['TS 23.179'] }})
+* [TS 23.203 - Policy and charging control architecture]({{ release_documents['TS 23.203'] }})
+* [TS 23.228 - IP Multimedia Subsystem (IMS) - Stage 2]({{ release_documents['TS 23.228'] }})
+* [TS 23.401 - General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access]({{ release_documents['TS 23.401'] }})
+
+* [VoLTE Service Description and Implementation Guidelines](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/GSMA/VoLTE%20Service%20Description%20and%20Implementation%20Guidelines.pdf)
+
+#### OCS (Online Charging System) <a name="OCS"></a>
+* [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point]({{ release_documents['TS 29.219'] }})
+* [TS 32.260 - IP Multimedia Subsystem (IMS) charging]({{ release_documents['TS 32.260'] }})
+* [TS 32.270 - Multimedia Messaging Service (MMS) charging]({{ release_documents['TS 32.270'] }})
+* [TS 32.274 - Short Message Service (SMS) charging]({{ release_documents['TS 32.274'] }})
+* [TS 32.276 - Voice Call Service (VCS) charging]({{ release_documents['TS 32.276'] }})
+* [TS 32.299 - Diameter charging applications]({{ release_documents['TS 32.299'] }})
+
+#### PCRF (Policy and Charging Rule Function) <a name="PCRF"></a>
+* [TS 29.211 - Rx Interface and Rx-Gx signalling flows]({{ release_documents['TS 29.211'] }})
+* [TS 29.213 - Policy and charging control signalling flows and Quality of Service (QoS) parameter mapping]({{ release_documents['TS 29.213'] }})
+
+| Interface  | Standard |
+|------------|----------|
+| Gx         | [TS 29.212 - Policy and Charging Control (PCC); Reference points]({{ release_documents['TS 29.212'] }}) |
+| Rx         | [TS 29.214 - Policy and charging control over Rx reference point]({{ release_documents['TS 29.214'] }}) |
+| Sy         | [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point]({{ release_documents['TS 29.219'] }}) |
