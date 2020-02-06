@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.2
+  version: 1.1.0.alpha-1
   title: Npcf_EventExposure
   description: |
     PCF Event Exposure Service.
@@ -8,7 +8,7 @@ info:
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.523 V15.2.0; 5G System; Policy Control Event Exposure Service; Stage 3.
+  description: 3GPP TS 29.523 V16.0.0; 5G System; Policy Control Event Exposure Service; Stage 3.
   url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.523/
 
 servers:
@@ -303,6 +303,10 @@ components:
         monDur:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         repPeriod:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        sampRatio:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SamplingRatio'
+        grpRepTime:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
           
     ServiceIdentification:

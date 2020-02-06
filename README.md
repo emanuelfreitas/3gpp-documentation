@@ -2,16 +2,18 @@
 
 ## Table of contents
 * [5G Core Network](#5GCoreNetwork)
-  * [AMF (Access and Mobility Management Function)](#AMF)
-  * [AUSF (Authentication Server Function)](#AUSF)
-  * [BSF (Binding Support Function)](#BSF)
-  * [CHF (Charging Function)](#CHF)
-  * [NEF (Network Exposure Function)](#NEF)
-  * [NRF (NF Repository Function)](#NRF)
-  * [NWDAF (Network Data Analytics Function)](#NDAF)
-  * [PCF (Policy Control Function)](#PCF)
-  * [SMF (Session Management Function)](#SMF)
-  * [UDR (Unified Data Repository)](#UDR)
+  * [Interfaces](#5GInterfaces)
+  * [Components](#5GComponents)
+    * [AMF (Access and Mobility Management Function)](#AMF)
+    * [AUSF (Authentication Server Function)](#AUSF)
+    * [BSF (Binding Support Function)](#BSF)
+    * [CHF (Charging Function)](#CHF)
+    * [NEF (Network Exposure Function)](#NEF)
+    * [NRF (NF Repository Function)](#NRF)
+    * [NWDAF (Network Data Analytics Function)](#NDAF)
+    * [PCF (Policy Control Function)](#PCF)
+    * [SMF (Session Management Function)](#SMF)
+    * [UDR (Unified Data Repository)](#UDR)
 * [Policy and Charging Control](#PCC)
    * [OCS (Online Charging System)](#OCS)
    * [PCRF (Policy and Charging Rule Function)](#PCRF)
@@ -28,6 +30,15 @@
 ###### Common APIs
 * [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29571_CommonData.yaml)
 * [TS 29.122 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
+
+### Interfaces <a name="5GInterfaces"></a>
+### Interfaces <a name="5GInterfaces"></a>
+| Interface | Producer | Consumer | Service | Standard | API |
+|-----------|----------|----------|---------|----------|-----|
+| N28 | CHF | PCF | Nchf_SpendingLimitControl | [TS 29.594](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf) | [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29594_Nchf_SpendingLimitControl.yaml) |
+| N40 | CHF | SMF, SMSF  | Nchf_ConvergedCharging | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf) | [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_ConvergedCharging.yaml) |
+
+### Compoents <a name="5GCompoents"></a>
 
 #### AMF (Access and Mobility Management Function)<a name="AMF"></a>
 
@@ -50,9 +61,10 @@
 
 #### CHF (Charging Function) <a name="CHF"></a>
 * [TS 29.594 - Spending Limit Control Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf)
+* [TS 32.291 - 5G system, charging service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf)
 ###### APIs
-* [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29594_Nchf_SpendingLimitControl.yaml)
-* [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS32291_Nchf_ConvergedCharging.yaml)
+* [Spending Limit Control](https://editor.swagger.io/?url=https://github.com/emanuelfreitas/3gpp-documentation/raw/master/apis/TS29594_Nchf_SpendingLimitControl.yaml)
+* [Converged Charging](https://editor.swagger.io/?url=https://github.com/emanuelfreitas/3gpp-documentation/raw/master/apis/TS32291_Nchf_ConvergedCharging.yaml)
 
 #### NEF (Network Exposure Function) <a name="NEF"></a>
 * [TS 29.551 - 5G System; Packet Flow Description Management Service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.551%20-%205G%20System;%20Packet%20Flow%20Description%20Management%20Service;%20Stage%203/Rel-15/ts_129551v150500p.pdf)
@@ -113,7 +125,7 @@
 * [RFC 6733 - Diameter Base Protocol](https://tools.ietf.org/pdf/rfc6733.pdf)
 * [RFC 8506 - Diameter Credit-Control Application](https://tools.ietf.org/pdf/rfc8506.pdf)
 * [TS 23.167 - IP Multimedia Subsystem (IMS) emergency sessions](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2023.167%20-%20IP%20Multimedia%20Subsystem%20(IMS)%20emergency%20sessions/Rel-15/ts_123167v150600p.pdf)
-* [TS 23.179 - Functional architecture and information flows to support mission critical communication services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2023.179%20-%20LTE%20-%20Functional%20architecture%20and%20information%20flows%20to%20support%20mission%20critical%20communication%20services%20-%20Stage%202/Rel-13/ts_123179v130500p.pdf)
+* [TS 23.179 - Functional architecture and information flows to support mission critical communication services]()
 * [TS 23.203 - Policy and charging control architecture](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2023.203%20-%20Policy%20and%20charging%20control%20architecture/Rel-15/ts_123203v150500p.pdf)
 * [TS 23.228 - IP Multimedia Subsystem (IMS) - Stage 2](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2023.228%20-%20IP%20Multimedia%20Subsystem%20(IMS)%20-%20Stage%202/Rel-15/ts_123228v150400p.pdf)
 * [TS 23.401 - General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2023.401%20-%20General%20Packet%20Radio%20Service%20(GPRS)%20enhancements%20for%20Evolved%20Universal%20Terrestrial%20Radio%20Access%20Network%20(E-UTRAN)%20access/Rel-15/ts_123401v151000p.pdf)
