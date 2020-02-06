@@ -42,7 +42,13 @@
 ### Interfaces <a name="5GInterfaces"></a>
 | Interface | Producer | Consumer | Service | Standard | API |
 |-----------|----------|----------|---------|----------|-----|
+| N5 | PCF | AF | | | |
+| N7 | PCF | SMF | | | |
+| N15 | PCF | AMF | Npcf_AMPolicyControl | [TS 29.507](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.507%20-%20Access%20and%20Mobility%20Policy%20Control%20Service/Rel-15/ts_129507v150600p.pdf) | [Access and Mobility Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29507_Npcf_AMPolicyControl.yaml) |
+| N23 | hPCF | vPCF | | | |
+| N24 | | | | | |
 | N28 | CHF | PCF | Nchf_SpendingLimitControl | [TS 29.594](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf) | [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29594_Nchf_SpendingLimitControl.yaml) |
+| N30 | | | | | |
 | N40 | CHF | SMF, SMSF  | Nchf_ConvergedCharging | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf) | [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_ConvergedCharging.yaml) |
 
 ### Compoents <a name="5GCompoents"></a>
