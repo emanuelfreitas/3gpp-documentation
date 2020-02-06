@@ -19,10 +19,14 @@ proxyDict = {
     #"https" : "<proxy>"
 }
 
+def getAPIURL(api):
+    return "https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/" + api +".yaml"
+
 def getDigit(val):
     if val.isdigit(): return int(val)
     else: return (ord(val) - 87) 
 
+api_urls =  {}
 release_documents = {}
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
@@ -77,15 +81,17 @@ for doc in configuration:
     if lastRelease != 0:
         release_documents[doc["id"]] = baseGitURL + releaseDoc.replace(" ", "%20")
 
-readme_template = env.get_template('README.j2')
-output = readme_template.render(release_documents=release_documents)
-
-f = open("../README.md", "w")
-f.write(output)
-f.close
-
 shutil.rmtree("../apis")
 os.makedirs("../apis")
+
+getOpenAPI = "https://www.3gpp.org/ftp/Specs/archive/OpenAPI/Rel-15/"
+r = requests.get(getOpenAPI, proxies=proxyDict)
+urlAPI = re.findall(r"Rel-15\/(\w+).yaml", r.text)
+for url in urlAPI:
+    getOpenAPIFile = getOpenAPI + url + ".yaml"
+    r = requests.get(getOpenAPIFile, proxies=proxyDict)
+    open("../apis/" + url + ".yaml", 'wb').write(r.content)
+    api_urls[url] = getAPIURL(url)
 
 getOpenAPI = "http://www.3gpp.org/ftp/Specs/latest/Rel-15/OpenAPI/"
 r = requests.get(getOpenAPI, proxies=proxyDict)
@@ -94,6 +100,16 @@ for url in urlAPI:
     getOpenAPIFile = getOpenAPI + url + ".yaml"
     r = requests.get(getOpenAPIFile, proxies=proxyDict)
     open("../apis/" + url + ".yaml", 'wb').write(r.content)
+    api_urls[url] = getAPIURL(url)
+  
+getOpenAPI = "https://www.3gpp.org/ftp/Specs/archive/OpenAPI/Rel-16/"
+r = requests.get(getOpenAPI, proxies=proxyDict)
+urlAPI = re.findall(r"Rel-16\/(\w+).yaml", r.text)
+for url in urlAPI:
+    getOpenAPIFile = getOpenAPI + url + ".yaml"
+    r = requests.get(getOpenAPIFile, proxies=proxyDict)
+    open("../apis/" + url + ".yaml", 'wb').write(r.content)
+    api_urls[url] = getAPIURL(url)
 
 getOpenAPI = "http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/"
 r = requests.get(getOpenAPI, proxies=proxyDict)
@@ -102,3 +118,11 @@ for url in urlAPI:
     getOpenAPIFile = getOpenAPI + url + ".yaml"
     r = requests.get(getOpenAPIFile, proxies=proxyDict)
     open("../apis/" + url + ".yaml", 'wb').write(r.content)
+    api_urls[url] = getAPIURL(url)
+
+readme_template = env.get_template('README.j2')
+output = readme_template.render(release_documents=release_documents,api_urls=api_urls)
+
+f = open("../README.md", "w")
+f.write(output)
+f.close

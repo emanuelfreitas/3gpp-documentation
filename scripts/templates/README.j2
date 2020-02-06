@@ -2,16 +2,18 @@
 
 ## Table of contents
 * [5G Core Network](#5GCoreNetwork)
-  * [AMF (Access and Mobility Management Function)](#AMF)
-  * [AUSF (Authentication Server Function)](#AUSF)
-  * [BSF (Binding Support Function)](#BSF)
-  * [CHF (Charging Function)](#CHF)
-  * [NEF (Network Exposure Function)](#NEF)
-  * [NRF (NF Repository Function)](#NRF)
-  * [NWDAF (Network Data Analytics Function)](#NDAF)
-  * [PCF (Policy Control Function)](#PCF)
-  * [SMF (Session Management Function)](#SMF)
-  * [UDR (Unified Data Repository)](#UDR)
+  * [Interfaces](#5GInterfaces)
+  * [Components](#5GComponents)
+    * [AMF (Access and Mobility Management Function)](#AMF)
+    * [AUSF (Authentication Server Function)](#AUSF)
+    * [BSF (Binding Support Function)](#BSF)
+    * [CHF (Charging Function)](#CHF)
+    * [NEF (Network Exposure Function)](#NEF)
+    * [NRF (NF Repository Function)](#NRF)
+    * [NWDAF (Network Data Analytics Function)](#NDAF)
+    * [PCF (Policy Control Function)](#PCF)
+    * [SMF (Session Management Function)](#SMF)
+    * [UDR (Unified Data Repository)](#UDR)
 * [Policy and Charging Control](#PCC)
    * [OCS (Online Charging System)](#OCS)
    * [PCRF (Policy and Charging Rule Function)](#PCRF)
@@ -28,6 +30,15 @@
 ###### Common APIs
 * [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29571_CommonData.yaml)
 * [TS 29.122 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
+
+### Interfaces <a name="5GInterfaces"></a>
+### Interfaces <a name="5GInterfaces"></a>
+| Interface | Producer | Consumer | Service | Standard | API |
+|-----------|----------|----------|---------|----------|-----|
+| N28 | CHF | PCF | Nchf_SpendingLimitControl | [TS 29.594]({{ release_documents['TS 29.594'] }}) | [Spending Limit Control]({{ api_urls['TS29594_Nchf_SpendingLimitControl'] }}) |
+| N40 | CHF | SMF, SMSF  | Nchf_ConvergedCharging | [TS 32.291]({{ release_documents['TS 32.291'] }}) | [Converged Charging]({{ api_urls['TS32291_Nchf_ConvergedCharging'] }}) |
+
+### Compoents <a name="5GCompoents"></a>
 
 #### AMF (Access and Mobility Management Function)<a name="AMF"></a>
 
@@ -50,9 +61,10 @@
 
 #### CHF (Charging Function) <a name="CHF"></a>
 * [TS 29.594 - Spending Limit Control Service]({{ release_documents['TS 29.594'] }})
+* [TS 32.291 - 5G system, charging service; Stage 3]({{ release_documents['TS 32.291'] }})
 ###### APIs
-* [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29594_Nchf_SpendingLimitControl.yaml)
-* [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS32291_Nchf_ConvergedCharging.yaml)
+* [Spending Limit Control](https://editor.swagger.io/?url=https://github.com/emanuelfreitas/3gpp-documentation/raw/master/apis/TS29594_Nchf_SpendingLimitControl.yaml)
+* [Converged Charging](https://editor.swagger.io/?url=https://github.com/emanuelfreitas/3gpp-documentation/raw/master/apis/TS32291_Nchf_ConvergedCharging.yaml)
 
 #### NEF (Network Exposure Function) <a name="NEF"></a>
 * [TS 29.551 - 5G System; Packet Flow Description Management Service; Stage 3]({{ release_documents['TS 29.551'] }})
