@@ -2,6 +2,7 @@
 
 ## Table of contents
 * [5G Core Network](#5GCoreNetwork)
+  * [Architecture](#5GArchitecture)
   * [Interfaces](#5GInterfaces)
   * [Components](#5GComponents)
     * [AMF (Access and Mobility Management Function)](#AMF)
@@ -31,7 +32,13 @@
 * [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29571_CommonData.yaml)
 * [TS 29.122 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/jdegre/5GC_APIs/master/TS29122_CommonData.yaml)
 
-### Interfaces <a name="5GInterfaces"></a>
+### Architecture <a name="5GArchitecture"></a>
+#### 5G System architecture
+![5G System architecture](https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/documentation/images/5G%20System%20architecture.png "5G System architecture")
+
+#### PCF Interfaces
+![PCF Interfaces](https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/documentation/images/PCF%20Interfaces.png "PCF Interfaces")
+
 ### Interfaces <a name="5GInterfaces"></a>
 | Interface | Producer | Consumer | Service | Standard | API |
 |-----------|----------|----------|---------|----------|-----|
