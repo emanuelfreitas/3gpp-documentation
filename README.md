@@ -48,35 +48,36 @@
 | N4 | Reference point between the SMF and the UPF |
 | N6 | Reference point between the UPF and a Data Network |
 | N9 | Reference point between two UPFs |
-| N5 | Reference point between the PCF and an AF |
-| N7 | Reference point between the SMF and the PCF |
+| **N5** | Reference point between the PCF and an AF |
+| **N7** | Reference point between the SMF and the PCF |
 | N8 | Reference point between the UDM and the AMF |
 | N10 | Reference point between the UDM and the SMF |
 | N11 | Reference point between the AMF and the SMF |
 | N12 | Reference point between AMF and AUSF |
 | N13 | Reference point between the UDM and Authentication Server function the AUSF |
 | N14 | Reference point between two AMFs |
-| N15 | Reference point between the PCF and the AMF in the case of non-roaming scenario, PCF in the visited network and AMF in the case of roaming scenario |
+| **N15** | Reference point between the PCF and the AMF in the case of non-roaming scenario, PCF in the visited network and AMF in the case of roaming scenario |
 | N16 | Reference point between two SMFs (in roaming case between SMF in the visited network and the SMF in the home network) |
 | N17 | Reference point between AMF and 5G-EIR |
 | N18 | Reference point between any NF and UDSF |
 | N22 | Reference point between AMF and NSSF |
-| N23 | Reference point between PCF and NWDAF | 
-| N24 | Reference point between the PCF in the visited network and the PCF in the home network |
+| **N23** | Reference point between PCF and NWDAF |
+| **N24** | Reference point between the PCF in the visited network and the PCF in the home network |
 | N27 | Reference point between NRF in the visited network and the NRF in the home network |
+| **N28** | Reference point between PCF and OCS |
 | N31 | Reference point between the NSSF in the visited network and the NSSF in the home network |
 | N32 | Reference point between SEPP in the visited network and the SEPP in the home network |
 | N33 | Reference point between NEF and AF |
 | N34 | Reference point between NSSF and NWDAF |
 | N35 | Reference point between UDM and UDR |
-| N36 | Reference point between PCF and UDR |
+| **N36** | Reference point between PCF and UDR |
 | N37 | Reference point between NEF and UDR |
-| N40 | Reference point between SMF and the CHF |
+| **N40** | Reference point between SMF and the CHF |
 | N50 | Reference point between AMF and the CBCF | 
 
 ### Services <a name="5GServices"></a>
 | Producer | Consumer | Service | Standard | API |
-|:---------:|:--------:|:--------:|--------:|:--------:|:----|
+|:--------:|:--------:|--------:|:--------:|:----|
 | PCF(#PCF)     | AF           | Npcf_PolicyAuthorization  | [TS 29.514](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.514%20-%20Policy%20Authorization%20Service/Rel-15/ts_129514v150600p.pdf) | [PCF Policy Authorization Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml) |
 |               | SMF          | Npcf_SMPolicyControl      | [TS 29.512](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.512%20-%20Session%20Management%20Policy%20Control%20Service/Rel-15/ts_129512v150600p.pdf) | [Session Management Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29512_Npcf_SMPolicyControl.yaml) |
 |               | AMF          | Npcf_AMPolicyControl      | [TS 29.507](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.507%20-%20Access%20and%20Mobility%20Policy%20Control%20Service/Rel-15/ts_129507v150600p.pdf) | [Access and Mobility Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29507_Npcf_AMPolicyControl.yaml) |
