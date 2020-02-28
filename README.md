@@ -46,11 +46,11 @@
 | N2 | Reference point between the (R)AN and the AMF |
 | N3 | Reference point between the (R)AN and the UPF |
 | N4 | Reference point between the SMF and the UPF |
-| N6 | Reference point between the UPF and a Data Network |
-| N9 | Reference point between two UPFs |
 | **N5** | Reference point between the PCF and an AF |
+| N6 | Reference point between the UPF and a Data Network |
 | **N7** | Reference point between the SMF and the PCF |
 | N8 | Reference point between the UDM and the AMF |
+| N9 | Reference point between two UPFs |
 | N10 | Reference point between the UDM and the SMF |
 | N11 | Reference point between the AMF and the SMF |
 | N12 | Reference point between AMF and AUSF |
