@@ -101,6 +101,7 @@ for doc in configuration:
 shutil.rmtree("../apis")
 os.makedirs("../apis")
 
+getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-17/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("https://www.3gpp.org/ftp/Specs/archive/OpenAPI/Rel-16/", r"Rel-16\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-15/OpenAPI/", r"OpenAPI\/(\w+).yaml")

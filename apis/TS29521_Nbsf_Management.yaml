@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  version: 1.1.0.alpha-1
+  version: 1.1.0.alpha-4
   title: Nbsf_Management
   description: |
     Binding Support Management Service API.
-    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 29.521 V16.0.0; 5G System; Binding Support Management Service.
+  description: 3GPP TS 29.521 V16.3.0; 5G System; Binding Support Management Service.
   url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.521/'
 servers:
   - url: '{apiRoot}/nbsf-management/v1'
@@ -22,6 +22,10 @@ security:
 paths:
   /pcfBindings:
     post:
+      summary: Create a new Individual PCF binding information
+      operationId: CreatePCFBinding
+      tags:
+        - PCF Bindings (Collection)
       requestBody:
         required: true
         content:
@@ -46,7 +50,11 @@ paths:
         '401':
           $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          description: The existing PCF binding information stored in the BSF for the indicated combination is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtProblemDetails'
         '404':
           $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
@@ -64,6 +72,10 @@ paths:
         default:
           $ref: 'TS29571_CommonData.yaml#/components/responses/default'
     get:
+      summary: Read PCF Bindings information
+      operationId: GetPCFBindings
+      tags:
+        - PCF Bindings (Collection)
       parameters:
         - name: ipv4Addr
           in: query
@@ -73,7 +85,7 @@ paths:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         - name: ipv6Prefix
           in: query
-          description: The IPv6 Address Prefix of the served UE.
+          description: The IPv6 Address of the served UE. The NF service consumer shall append '/128' to the IPv6 address in the attribute value. E.g. '2001:db8:85a3::8a2e:370:7334/128'.
           required: false
           schema:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
@@ -151,6 +163,10 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/default'
   /pcfBindings/{bindingId}:
     delete:
+      summary: Delete an existing Individual PCF Binding information
+      operationId: DeleteIndPCFBinding
+      tags:
+        - Individual PCF Binding (Document)
       parameters:
         - name: bindingId
           in: path
@@ -178,6 +194,10 @@ paths:
         default:
           $ref: 'TS29571_CommonData.yaml#/components/responses/default'
     patch:
+      summary: Update an existing Individual PCF Binding information
+      operationId: UpdateIndPCFBinding
+      tags:
+        - Individual PCF Binding (Document)
       parameters:
         - name: bindingId
           in: path
@@ -242,22 +262,22 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         ipv6Prefix:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
-        ipv6Prefixes:
+        addIpv6Prefixes:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
           minItems: 1
-          description: The IPv6 Address Prefixes of the served UE.
+          description: The additional IPv6 Address Prefixes of the served UE.
         ipDomain:
           type: string
         macAddr48:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48'
-        macAddrs:
+        addMacAddrs:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48'
           minItems: 1
-          description: The MAC Addresses of the served UE.
+          description: The additional MAC Addresses of the served UE.
         dnn:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
         pcfFqdn:
@@ -272,22 +292,37 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
         pcfDiamRealm:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        pcfSmFqdn:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+        pcfSmIpEndPoints:
+          type: array
+          items:
+            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint'
+          minItems: 1
+          description: IP end points of the PCF hosting the Npcf_SMPolicyControl service.
         snssai:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
         suppFeat:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         pcfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        pcfSetId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
         recoveryTime:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+        paraCom:
+          $ref: '#/components/schemas/ParameterCombination'
       required:
         - dnn
         - snssai
       oneOf:
         - anyOf:
           - required: [ipv4Addr]
-          - required: [ipv6Prefix]
-        - required: [macAddr48]
+          - required: [ipv6Prefix] 
+          - required: [addIpv6Prefixes]
+        - anyOf:
+          - required: [macAddr48] 
+          - required: [addMacAddrs]
       anyOf:
         - anyOf:
           - required: [pcfFqdn]
@@ -301,17 +336,47 @@ components:
         ipDomain:
           type: string
           nullable: true
-        ipv6Prefixes:
+        ipv6Prefix:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6PrefixRm'
+        addIpv6Prefixes:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
           minItems: 1
-          description: The IPv6 Address Prefixes of the served UE.
+          description: The additional IPv6 Address Prefixes of the served UE.
           nullable: true
-        macAddresses:
+        macAddr48:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48Rm'
+        addMacAddrs:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48'
           minItems: 1
-          description: The MAC Addresses of the served UE.
+          description: The additional MAC Addresses of the served UE.
           nullable: true
+        pcfId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+    ParameterCombination:
+      type: object
+      properties:
+        supi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+        dnn:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+        snssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+    ExtProblemDetails:
+      allOf:
+        - $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        - $ref: '#/components/schemas/BindingResp'
+    BindingResp:
+      type: object
+      properties:
+        pcfSmFqdn:
+          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+        pcfSmIpEndPoints:
+          type: array
+          items:
+            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/IpEndPoint'
+          minItems: 1
+          description: IP end points of the PCF hosting the Npcf_SMPolicyControl service.
