@@ -3,6 +3,7 @@
     { "id": "TS 23.179", "name": "LTE - Functional architecture and information flows to support mission critical communication services - Stage 2", "releases": [15] },
     { "id": "TS 23.203", "name": "Policy and charging control architecture", "releases": [15] },
     { "id": "TS 23.228", "name": "IP Multimedia Subsystem (IMS) - Stage 2", "releases": [15] },
+    { "id": "TS 23.380", "name": "IMS Restoration Procedures", "releases": [15] },
     { "id": "TS 23.401", "name": "General Packet Radio Service (GPRS) enhancements for Evolved Universal Terrestrial Radio Access Network (E-UTRAN) access", "releases": [15] },
     { "id": "TS 23.501", "name": "System Architecture for the 5G System", "releases": [15] },
     { "id": "TS 23.502", "name": "Procedures for the 5G System (5GS)", "releases": [15] },
