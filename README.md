@@ -114,6 +114,7 @@
 
 #### CHF (Charging Function) <a name="CHF"></a>
 * [TS 29.594 - Spending Limit Control Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf)
+* [TS 32.240 - Telecommunication management; Charging management; Charging architecture and principles](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.240%20-%20Charging%20architecture%20and%20principles/Rel-15/ts_132240v150500p.pdf)
 * [TS 32.290 - Telecommunication management; Charging management; 5G system; Services, operations and procedures of charging using Service Based Interface (SBI)](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.290%20-%20Services,%20operations%20and%20procedures%20of%20charging%20using%20Service%20Based%20Interface%20(SBI)/Rel-15/ts_132290v150600p.pdf)
 * [TS 32.291 - 5G system, charging service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf)
 
