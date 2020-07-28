@@ -115,8 +115,8 @@
 #### CHF (Charging Function) <a name="CHF"></a>
 * [TS 29.594 - Spending Limit Control Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf)
 * [TS 32.240 - Telecommunication management; Charging management; Charging architecture and principles](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.240%20-%20Charging%20architecture%20and%20principles/Rel-15/ts_132240v150500p.pdf)
+* [TS 32.255 - Telecommunication management; Charging management; 5G data connectivity domain charging; Stage 2](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.255%20-%20Telecommunication%20management;%20Charging%20management;%205G%20data%20connectivity%20domain%20charging;%20Stage%202/Rel-15/ts_132255v150500p.pdf)
 * [TS 32.290 - Telecommunication management; Charging management; 5G system; Services, operations and procedures of charging using Service Based Interface (SBI)](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.290%20-%20Services,%20operations%20and%20procedures%20of%20charging%20using%20Service%20Based%20Interface%20(SBI)/Rel-15/ts_132290v150600p.pdf)
-* [TS 32.296 - Telecommunication management; Charging management; Online Charging System (OCS): Applications and interfaces](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.296%20-%20Online%20Charging%20System%20(OCS)%20-%20Applications%20and%20interfaces/Rel-15/ts_132296v150000p.pdf)
 * [TS 32.291 - 5G system, charging service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf)
 
 #### NEF (Network Exposure Function) <a name="NEF"></a>
@@ -172,6 +172,7 @@
 
 #### OCS (Online Charging System) <a name="OCS"></a>
 * [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point/Rel-15/ts_129219v150300p.pdf)
+* [TS 32.240 - Telecommunication management; Charging management; Charging architecture and principles](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.240%20-%20Charging%20architecture%20and%20principles/Rel-15/ts_132240v150500p.pdf)
 * [TS 32.260 - IP Multimedia Subsystem (IMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.260%20-%20IP%20Multimedia%20Subsystem%20(IMS)%20charging/Rel-12/ts_132260v121300p.pdf)
 * [TS 32.270 - Multimedia Messaging Service (MMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.270%20-%20Multimedia%20Messaging%20Service%20(MMS)%20charging/Rel-12/ts_132270v120100p.pdf)
 * [TS 32.274 - Short Message Service (SMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.274%20-%20Short%20Message%20Service%20(SMS)%20charging/Rel-12/ts_132274v120600p.pdf)

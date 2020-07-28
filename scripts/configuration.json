@@ -38,6 +38,7 @@
     { "id": "TS 29.594", "name": "Spending Limit Control Service", "releases": [15] },
 
     { "id": "TS 32.240", "name": "Charging architecture and principles", "releases": [15] },
+    { "id": "TS 32.255", "name": "Telecommunication management; Charging management; 5G data connectivity domain charging; Stage 2", "releases": [15] },
     { "id": "TS 32.260", "name": "IP Multimedia Subsystem (IMS) charging", "releases": [12] },
     { "id": "TS 32.270", "name": "Multimedia Messaging Service (MMS) charging", "releases": [12] },
     { "id": "TS 32.274", "name": "Short Message Service (SMS) charging", "releases": [12] },
