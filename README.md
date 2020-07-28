@@ -116,6 +116,7 @@
 * [TS 29.594 - Spending Limit Control Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-15/ts_129594v150500p.pdf)
 * [TS 32.240 - Telecommunication management; Charging management; Charging architecture and principles](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.240%20-%20Charging%20architecture%20and%20principles/Rel-15/ts_132240v150500p.pdf)
 * [TS 32.290 - Telecommunication management; Charging management; 5G system; Services, operations and procedures of charging using Service Based Interface (SBI)](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.290%20-%20Services,%20operations%20and%20procedures%20of%20charging%20using%20Service%20Based%20Interface%20(SBI)/Rel-15/ts_132290v150600p.pdf)
+* [TS 32.296 - Telecommunication management; Charging management; Online Charging System (OCS): Applications and interfaces](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.296%20-%20Online%20Charging%20System%20(OCS)%20-%20Applications%20and%20interfaces/Rel-15/ts_132296v150000p.pdf)
 * [TS 32.291 - 5G system, charging service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-15/ts_132291v150500p.pdf)
 
 #### NEF (Network Exposure Function) <a name="NEF"></a>
@@ -175,6 +176,7 @@
 * [TS 32.270 - Multimedia Messaging Service (MMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.270%20-%20Multimedia%20Messaging%20Service%20(MMS)%20charging/Rel-12/ts_132270v120100p.pdf)
 * [TS 32.274 - Short Message Service (SMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.274%20-%20Short%20Message%20Service%20(SMS)%20charging/Rel-12/ts_132274v120600p.pdf)
 * [TS 32.276 - Voice Call Service (VCS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.276%20-%20Voice%20Call%20Service%20(VCS)%20charging/Rel-15/ts_132276v150000p.pdf)
+* [TS 32.296 - Telecommunication management; Charging management; Online Charging System (OCS): Applications and interfaces](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.296%20-%20Online%20Charging%20System%20(OCS)%20-%20Applications%20and%20interfaces/Rel-15/ts_132296v150000p.pdf)
 * [TS 32.299 - Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.299%20-%20Diameter%20charging%20applications/Rel-12/ts_132299v121400p.pdf)
 
 #### PCRF (Policy and Charging Rule Function) <a name="PCRF"></a>

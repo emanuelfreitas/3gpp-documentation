@@ -44,6 +44,7 @@
     { "id": "TS 32.276", "name": "Voice Call Service (VCS) charging", "releases": [15] },
     { "id": "TS 32.290", "name": "Services, operations and procedures of charging using Service Based Interface (SBI)", "releases": [15] },
     { "id": "TS 32.291", "name": "5G system, charging service; Stage 3", "releases": [15] },
+    { "id": "TS 32.296", "name": "Online Charging System (OCS) - Applications and interfaces", "releases": [15] },
     { "id": "TS 32.299", "name": "Diameter charging applications", "releases": [12] },
     { "id": "TS 33.501", "name": "Security architecture and procedures for 5G System", "releases": [15] }
 
