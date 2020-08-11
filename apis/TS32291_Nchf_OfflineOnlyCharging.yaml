@@ -1,9 +1,10 @@
-openapi: 3.0.0
+openapi: 3.0.0 
 info:
-  title: Nchf_ConvergedCharging
-  version: 3.0.0.alpha-4
+  title: Nchf_OfflineOnlyCharging
+  version: 1.0.0.alpha-4
   description: |
-    ConvergedCharging Service    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    OfflineOnlyCharging Service
+    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: >
@@ -11,13 +12,13 @@ externalDocs:
     5G system, charging service; Stage 3.
   url: 'http://www.3gpp.org/ftp/Specs/archive/32_series/32.291/'
 servers:
-  - url: '{apiRoot}/nchf-convergedcharging/v3'
+  - url: '{apiRoot}/nchf-offlineonlycharging/v1' 
     variables:
       apiRoot:
         default: https://example.com
         description: apiRoot as defined in subclause 4.4 of 3GPP TS 29.501.
 paths:
-  /chargingdata:
+  /offlinechargingdata:
     post:
       requestBody:
         required: true
@@ -35,19 +36,19 @@ paths:
         '400':
           description: Bad request
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '403':
           description: Forbidden
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '404':
           description: Not Found
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '401':
@@ -64,29 +65,7 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'TS29571_CommonData.yaml#/components/responses/default'
-      callbacks:
-        chargingNotification:
-          '{$request.body#/notifyUri}':
-            post:
-              requestBody:
-                required: true
-                content:
-                  application/json:
-                    schema:
-                      $ref: '#/components/schemas/ChargingNotifyRequest'
-              responses:
-                '204':
-                  description: 'No Content, Notification was succesfull'
-                '400':
-                  description: Bad request
-                  content:
-                    application/problem+json:
-                      schema:
-                        $ref: >-
-                          TS29571_CommonData.yaml#/components/schemas/ProblemDetails
-                default:
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/default'
-  '/chargingdata/{ChargingDataRef}/update':
+  '/offlinechargingdata/{OfflineChargingDataRef}/update':
     post:
       requestBody:
         required: true
@@ -95,7 +74,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ChargingDataRequest'
       parameters:
-        - name: ChargingDataRef
+        - name: OfflineChargingDataRef
           in: path
           description: a unique identifier for a charging data resource in a PLMN
           required: true
@@ -111,19 +90,19 @@ paths:
         '400':
           description: Bad request
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '403':
           description: Forbidden
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '404':
           description: Not Found
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '401':
@@ -140,7 +119,7 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'TS29571_CommonData.yaml#/components/responses/default'
-  '/chargingdata/{ChargingDataRef}/release':
+  '/offlinechargingdata/{OfflineChargingDataRef}/release':
     post:
       requestBody:
         required: true
@@ -149,7 +128,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ChargingDataRequest'
       parameters:
-        - name: ChargingDataRef
+        - name: OfflineChargingDataRef
           in: path
           description: a unique identifier for a charging data resource in a PLMN
           required: true
@@ -161,7 +140,7 @@ paths:
         '404':
           description: Not Found
           content:
-            application/problem+json:
+            application/json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '401':
@@ -193,14 +172,7 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
         retransmissionIndicator:
           type: boolean
-        oneTimeEvent:
-          type: boolean
-        oneTimeEventType:
-          $ref: '#/components/schemas/oneTimeEventType'
-        notifyUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
-        supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+
         serviceSpecificationInfo:
           type: string
         multipleUnitUsage:
@@ -217,18 +189,8 @@ components:
           $ref: '#/components/schemas/PDUSessionChargingInformation'
         roamingQBCInformation:
           $ref: '#/components/schemas/RoamingQBCInformation'
-        sMSChargingInformation:
-          $ref: '#/components/schemas/SMSChargingInformation'
-        nEFChargingInformation:
-          $ref: '#/components/schemas/NEFChargingInformation'
-        registrationChargingInformation:
-          $ref: '#/components/schemas/RegistrationChargingInformation'
-        n2ConnectionChargingInformation:
-          $ref: '#/components/schemas/N2ConnectionChargingInformation'
-        locationReportingChargingInformation:
-          $ref: '#/components/schemas/LocationReportingChargingInformation'
       required:
-        - nfConsumerIdentification 
+        - nfConsumerIdentificatio
         - invocationTimeStamp
         - invocationSequenceNumber
     ChargingDataResponse:
@@ -242,13 +204,6 @@ components:
           $ref: '#/components/schemas/InvocationResult'
         sessionFailover:
           $ref: '#/components/schemas/SessionFailover'
-        supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
-        multipleUnitInformation:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultipleUnitInformation'
-          minItems: 0
         triggers:
           type: array
           items:
@@ -261,23 +216,6 @@ components:
       required:
         - invocationTimeStamp
         - invocationSequenceNumber
-    ChargingNotifyRequest:
-      type: object
-      properties:
-        notificationType:
-          $ref: '#/components/schemas/NotificationType'
-        reauthorizationDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReauthorizationDetails'
-          minItems: 0
-      required:
-        - notificationType
-    ChargingNotifyResponse:
-      type: object
-      properties:
-        invocationResult:
-          $ref: '#/components/schemas/InvocationResult'
     NFIdentification:
       type: object
       properties:
@@ -300,8 +238,6 @@ components:
       properties:
         ratingGroup:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatingGroup'
-        requestedUnit:
-          $ref: '#/components/schemas/RequestedUnit'
         usedUnitContainer:
           type: array
           items:
@@ -336,56 +272,11 @@ components:
       required:
         - triggerType
         - triggerCategory
-    MultipleUnitInformation:
-      type: object
-      properties:
-        resultCode:
-          $ref: '#/components/schemas/ResultCode'
-        ratingGroup:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatingGroup'
-        grantedUnit:
-          $ref: '#/components/schemas/GrantedUnit'
-        triggers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Trigger'
-          minItems: 0
-        validityTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
-        quotaHoldingTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
-        finalUnitIndication:
-          $ref: '#/components/schemas/FinalUnitIndication'
-        timeQuotaThreshold:
-          type: integer
-        volumeQuotaThreshold:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        unitQuotaThreshold:
-          type: integer
-        uPFID:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
-      required:
-        - ratingGroup
-    RequestedUnit:
-      type: object
-      properties:
-        time:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        totalVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        uplinkVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        downlinkVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        serviceSpecificUnits:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
     UsedUnitContainer:
       type: object
       properties:
         serviceId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/ServiceId'
-        quotaManagementIndicator:
-          $ref: '#/components/schemas/QuotaManagementIndicator'
         triggers:
           type: array
           items:
@@ -401,8 +292,6 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
         downlinkVolume:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        serviceSpecificUnits:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
         eventTimeStamps:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         localSequenceNumber:
@@ -411,64 +300,17 @@ components:
           $ref: '#/components/schemas/PDUContainerInformation'
       required:
         - localSequenceNumber
-    GrantedUnit:
-      type: object
-      properties:
-        tariffTimeChange:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
-        time:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        totalVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        uplinkVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        downlinkVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        serviceSpecificUnits:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-    FinalUnitIndication:
-      type: object
-      properties:
-        finalUnitAction:
-          $ref: '#/components/schemas/FinalUnitAction'
-        restrictionFilterRule:
-          $ref: '#/components/schemas/IPFilterRule'
-        filterId:
-          type: string
-        redirectServer:
-          $ref: '#/components/schemas/RedirectServer'
-      required:
-        - finalUnitAction
-    RedirectServer:
-      type: object
-      properties:
-        redirectAddressType:
-          $ref: '#/components/schemas/RedirectAddressType'
-        redirectServerAddress:
-          type: string
-      required:
-        - redirectAddressType
-        - redirectServerAddress
-    ReauthorizationDetails:
-      type: object
-      properties:
-        serviceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ServiceId'
-        ratingGroup:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatingGroup'
-        quotaManagementIndicator:
-          $ref: '#/components/schemas/QuotaManagementIndicator'
     PDUSessionChargingInformation:
       type: object
       properties:
         chargingId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/ChargingId'
-        homeProvidedChargingId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ChargingId'
         userInformation:
           $ref: '#/components/schemas/UserInformation'
         userLocationinfo:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
+        userLocationTime:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         presenceReportingAreaInformation:
           type: object
           additionalProperties:
@@ -482,6 +324,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
         rANSecondaryRATUsageReport:
           $ref: '#/components/schemas/RANSecondaryRATUsageReport'
+      required:
+        - pduSessionInformation
     UserInformation:
       type: object
       properties:
@@ -512,8 +356,6 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
         dnnId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-        dnnSelectionMode:
-          $ref: '#/components/schemas/dnnSelectionMode'
         chargingCharacteristics:
           type: string
         chargingCharacteristicsSelectionMode:
@@ -554,8 +396,8 @@ components:
           $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosData'
         qoSCharacteristics:
           $ref: 'TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/QosCharacteristics'
-        afChargingIdentifier:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ChargingId'
+        aFCorrelationInformation:
+          type: string
         userLocationInformation:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
         uetimeZone:
@@ -602,8 +444,7 @@ components:
           type: boolean
     ServingNetworkFunctionID:
       type: object
-      properties:
-          
+      properties:          
         servingNetworkFunctionInformation:
           $ref: '#/components/schemas/NFIdentification'
         aMFId:
@@ -638,8 +479,6 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
         uplinkVolume:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-        downlinkVolume:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
         localSequenceNumber:
           type: integer
         qFIContainerInformation:
@@ -651,8 +490,6 @@ components:
       properties:
         qFI:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Qfi'
-        reportTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         timeofFirstUsage:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         timeofLastUsage:
@@ -679,16 +516,6 @@ components:
           minItems: 0
         3gppPSDataOffStatus:
           $ref: '#/components/schemas/3GPPPSDataOffStatus'
-        3gppChargingId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ChargingId'
-        diagnostics:
-          $ref: '#/components/schemas/Diagnostics'
-        enhancedDiagnostics:
-          type: array
-          items:
-            type: string
-      required:
-        - reportTime
     RoamingChargingProfile:
       type: object
       properties:
@@ -699,133 +526,6 @@ components:
           minItems: 0
         partialRecordMethod:
           $ref: '#/components/schemas/PartialRecordMethod'
-    SMSChargingInformation:
-      type: object
-      properties:
-        originatorInfo:
-          $ref: '#/components/schemas/OriginatorInfo'
-        recipientInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientInfo'
-          minItems: 0
-        userEquipmentInfo:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Pei'
-        userLocationinfo:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
-        uetimeZone:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TimeZone'
-        rATType:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
-        sMSCAddress:
-          type: string
-        sMDataCodingScheme:
-          type: integer
-        sMMessageType:
-          $ref: '#/components/schemas/SMMessageType'
-        sMReplyPathRequested:
-          $ref: '#/components/schemas/ReplyPathRequested'
-        sMUserDataHeader:
-          type: string
-        sMStatus:
-          type: string
-        sMDischargeTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
-        numberofMessagesSent:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        sMServiceType:
-          $ref: '#/components/schemas/SMServiceType'
-        sMSequenceNumber:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        sMSresult:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        submissionTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
-        sMPriority:
-          $ref: '#/components/schemas/SMPriority'
-        messageReference:
-          type: string
-        messageSize:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        messageClass:
-          $ref: '#/components/schemas/MessageClass'
-        deliveryReportRequested:
-          $ref: '#/components/schemas/DeliveryReportRequested'
-    OriginatorInfo:
-      type: object
-      properties:
-        originatorSUPI:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
-        originatorGPSI:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
-        originatorOtherAddress:
-          $ref: '#/components/schemas/SMAddressInfo'
-        originatorReceivedAddress:
-          $ref: '#/components/schemas/SMAddressInfo'
-        originatorSCCPAddress:
-          type: string
-        sMOriginatorInterface:
-          $ref: '#/components/schemas/SMInterface'
-        sMOriginatorProtocolId:
-          type: string
-    RecipientInfo:
-      type: object
-      properties:
-        recipientSUPI:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
-        recipientGPSI:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
-        recipientOtherAddress:
-          $ref: '#/components/schemas/SMAddressInfo'
-        recipientReceivedAddress:
-          $ref: '#/components/schemas/SMAddressInfo'
-        recipientSCCPAddress:
-          type: string
-        sMDestinationInterface:
-          $ref: '#/components/schemas/SMInterface'
-        sMrecipientProtocolId:
-          type: string
-    SMAddressInfo:
-      type: object
-      properties:
-        sMaddressType:
-          $ref: '#/components/schemas/SMAddressType'
-        sMaddressData:
-          type: string
-        sMaddressDomain:
-          $ref: '#/components/schemas/SMAddressDomain'
-    RecipientAddress:
-      type: object
-      properties:
-        recipientAddressInfo:
-          $ref: '#/components/schemas/SMAddressInfo'
-        sMaddresseeType:
-          $ref: '#/components/schemas/SMAddresseeType'
-    MessageClass:
-      type: object
-      properties:
-        classIdentifier:
-          $ref: '#/components/schemas/ClassIdentifier'
-        tokenText:
-          type: string
-    SMAddressDomain:
-      type: object
-      properties:
-        domainName:
-          type: string
-        3GPPIMSIMCCMNC:
-          type: string
-    SMInterface:
-      type: object
-      properties:
-        interfaceId:
-          type: string
-        interfaceText:
-          type: string
-        interfacePort:
-          type: string
-        interfaceType:
-          $ref: '#/components/schemas/InterfaceType'
     RANSecondaryRATUsageReport:
       type: object
       properties:
@@ -852,160 +552,12 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
         downlinkVolume:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint64'
-    NEFChargingInformation:
-      type: object
-      properties:
-        groupIdentifier:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/GroupId'
-        aPIDirection:
-          $ref: '#/components/schemas/APIDirection'
-        aPITargetNetworkFunction:
-          $ref: '#/components/schemas/NFIdentification'
-        aPIResultCode:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uint32'
-        aPIName:
-          type: string
-        aPIReference:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
-        aPIContent:
-          type: string
-      required:
-        - aPIName
-    RegistrationChargingInformation:
-      type: object
-      properties:
-        registrationMessagetype:
-          $ref: '#/components/schemas/RegistrationMessageType'
-        userInformation:
-          $ref: '#/components/schemas/UserInformation'
-        userLocationinfo:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
-        uetimeZone:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TimeZone'
-        rATType:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
-        5GMMCapability:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'
-        mICOModeIndication:
-          $ref: '#/components/schemas/MICOModeIndication'
-        smsIndication:
-          $ref: '#/components/schemas/SmsIndication'
-        taiList:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
-          minItems: 0
-        serviceAreaRestriction:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ServiceAreaRestriction'
-          minItems: 0
-        requestedNSSAI:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
-          minItems: 0
-        allowedNSSAI:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
-          minItems: 0
-        rejectedNSSAI:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
-          minItems: 0
-      required:
-        - registrationMessagetype
-    N2ConnectionChargingInformation:
-      type: object
-      properties:
-        n2ConnectionMessageType:
-          $ref: '#/components/schemas/N2ConnectionMessageType'
-        userInformation:
-          $ref: '#/components/schemas/UserInformation'
-        userLocationinfo:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
-        uetimeZone:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TimeZone'
-        rATType:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
-        amfUeNgapId:
-          type: integer
-        ranUeNgapId:
-          type: integer
-        ranNodeId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId'
-        restrictedRatList:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
-          minItems: 0
-        forbiddenAreaList:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Area'
-          minItems: 0
-        serviceAreaRestriction:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ServiceAreaRestriction'
-          minItems: 0
-        restrictedCnList:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/CoreNetworkType'
-          minItems: 0
-        allowedNSSAI:
-          type: array
-          items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
-          minItems: 0
-        rrcEstCause:
-          type: string
-          pattern: '^[0-9a-fA-F]+$'
-      required:
-        - n2ConnectionMessageType
-    LocationReportingChargingInformation:
-      type: object
-      properties:
-        locationReportingMessageType:
-          $ref: '#/components/schemas/LocationReportingMessageType'
-        userInformation:
-          $ref: '#/components/schemas/UserInformation'
-        userLocationinfo:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
-        uetimeZone:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TimeZone'
-        rATType:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
-        presenceReportingAreaInformation:
-          type: object
-          additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PresenceInfo'
-          minProperties: 0
-      required:
-        - locationReportingMessageType
-    N2ConnectionMessageType:
-      type: integer
-    LocationReportingMessageType:
-      type: integer
-    NotificationType:
-      anyOf:
-        - type: string
-          enum:
-            - REAUTHORIZATION
-            - ABORT_CHARGING
-        - type: string
     NodeFunctionality:
       anyOf:
         - type: string
           enum:
-            - AMF
             - SMF
             - SMSF
-            - SGW
-            - I_SMF
         - type: string
     ChargingCharacteristicsSelectionMode:
       anyOf:
@@ -1019,15 +571,7 @@ components:
       anyOf:
         - type: string
           enum:
-            - QUOTA_THRESHOLD
-            - QHT
             - FINAL
-            - QUOTA_EXHAUSTED
-            - VALIDITY_TIME
-            - OTHER_QUOTA_TYPE
-            - FORCED_REAUTHORISATION
-            - UNUSED_QUOTA_TIMER # Included for backwards compatibility, shall not be used
-            - UNIT_COUNT_INACTIVITY_TIMER
             - ABNORMAL_RELEASE
             - QOS_CHANGE
             - VOLUME_LIMIT
@@ -1050,28 +594,7 @@ components:
             - REMOVAL_OF_ISMF
             - CHANGE_OF_ISMF
             - START_OF_SERVICE_DATA_FLOW
-            - ECGI_CHANGE
-            - TAI_CHANGE
-            - HANDOVER_CANCEL
-            - HANDOVER_START
-            - HANDOVER_COMPLETE
             - GFBR_GUARANTEED_STATUS_CHANGE
-        - type: string
-    FinalUnitAction:
-      anyOf:
-        - type: string
-          enum:
-            - TERMINATE
-            - REDIRECT
-            - RESTRICT_ACCESS
-        - type: string
-    RedirectAddressType:
-      anyOf:
-        - type: string
-          enum:
-            - IPV4
-            - IPV6
-            - URL
         - type: string
     TriggerCategory:
       anyOf:
@@ -1079,13 +602,6 @@ components:
           enum:
             - IMMEDIATE_REPORT
             - DEFERRED_REPORT
-        - type: string
-    QuotaManagementIndicator:
-      anyOf:
-        - type: string
-          enum:
-            - ONLINE_CHARGING
-            - OFFLINE_CHARGING
         - type: string
     FailureHandling:
       anyOf:
@@ -1115,11 +631,6 @@ components:
           enum: 
             - SUCCESS
             - END_USER_SERVICE_DENIED
-            - QUOTA_MANAGEMENT_NOT_APPLICABLE
-            - QUOTA_LIMIT_REACHED
-            - END_USER_SERVICE_REJECTED
-            - USER_UNKNOWN
-            - RATING_FAILED
         - type: string
     PartialRecordMethod:
       anyOf:
@@ -1134,136 +645,4 @@ components:
           enum:
             - IN_BOUND
             - OUT_BOUND
-        - type: string
-    SMMessageType:
-      anyOf:
-        - type: string
-          enum:
-            - SUBMISSION
-            - DELIVERY_REPORT
-            - SM_SERVICE_REQUEST
-        - type: string
-    SMPriority:
-      anyOf:
-        - type: string
-          enum:
-            - LOW
-            - NORMAL
-            - HIGH
-        - type: string
-    DeliveryReportRequested:
-      anyOf:
-        - type: string
-          enum:
-            - YES
-            - NO
-        - type: string
-    InterfaceType:
-      anyOf:
-        - type: string
-          enum:
-            - UNKNOWN
-            - MOBILE_ORIGINATING
-            - MOBILE_TERMINATING
-            - APPLICATION_ORIGINATING
-            - APPLICATION_TERMINATING
-        - type: string
-    ClassIdentifier:
-      anyOf:
-        - type: string
-          enum:
-            - PERSONAL
-            - ADVERTISEMENT
-            - INFORMATIONAL
-            - AUTO
-        - type: string
-    SMAddressType:
-      anyOf:
-        - type: string
-          enum:
-            - EMAIL_ADDRESS
-            - MSISDN
-            - IPV4_ADDRESS
-            - IPV6_ADDRESS
-            - NUMERIC_SHORTCODE
-            - ALPHANUMERIC_SHORTCODE
-            - OTHER
-            - IMSI
-        - type: string
-    SMAddresseeType:
-      anyOf:
-        - type: string
-          enum:
-            - TO
-            - CC
-            - BCC
-        - type: string
-    SMServiceType:
-      anyOf:
-        - type: string
-          enum:
-            - VAS4SMS_SHORT_MESSAGE_CONTENT_PROCESSING
-            - VAS4SMS_SHORT_MESSAGE_FORWARDING
-            - VAS4SMS_SHORT_MESSAGE_FORWARDING_MULTIPLE_SUBSCRIPTIONS
-            - VAS4SMS_SHORT_MESSAGE_FILTERING
-            - VAS4SMS_SHORT_MESSAGE_RECEIPT
-            - VAS4SMS_SHORT_MESSAGE_NETWORK_STORAGE
-            - VAS4SMS_SHORT_MESSAGE_TO_MULTIPLE_DESTINATIONS
-            - VAS4SMS_SHORT_MESSAGE_VIRTUAL_PRIVATE_NETWORK(VPN)
-            - VAS4SMS_SHORT_MESSAGE_AUTO_REPLY
-            - VAS4SMS_SHORT_MESSAGE_PERSONAL_SIGNATURE
-            - VAS4SMS_SHORT_MESSAGE_DEFERRED_DELIVERY
-        - type: string
-    ReplyPathRequested:
-      anyOf:
-        - type: string
-          enum:
-            - NO_REPLY_PATH_SET
-            - REPLY_PATH_SET
-        - type: string
-    oneTimeEventType:
-      anyOf:
-        - type: string
-          enum:
-            - IEC
-            - PEC
-        - type: string
-    dnnSelectionMode:
-      anyOf:
-        - type: string
-          enum:
-            - VERIFIED
-            - UE_DNN_NOT_VERIFIED
-            - NW_DNN_NOT_VERIFIED
-        - type: string
-    APIDirection:
-      anyOf:
-        - type: string
-          enum:
-            - INVOCATION
-            - NOTIFICATION
-        - type: string
-    RegistrationMessageType:
-      anyOf:
-        - type: string
-          enum:
-            - INITIAL
-            - MOBILITY
-            - PERIODIC
-            - EMERGENCY
-            - DEREGISTRATION
-        - type: string
-    MICOModeIndication:
-      anyOf:
-        - type: string
-          enum:
-            - MICO_MODE
-            - NO_MICO_MODE
-        - type: string
-    SmsIndication:
-      anyOf:
-        - type: string
-          enum:
-            - SMS_SUPPORTED
-            - SMS_NOT_SUPPORTED
         - type: string

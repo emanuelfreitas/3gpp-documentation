@@ -7,6 +7,7 @@ import re
 import requests
 import zipfile, io
 from jinja2 import Environment, FileSystemLoader
+import svn.remote
 
 templates = FileSystemLoader('./templates')
 env = Environment(loader=templates)
@@ -38,6 +39,15 @@ def getAPI(getOpenAPI, regrularExpression):
         r = requests.get(getOpenAPIFile, proxies=proxyDict)
         open("../apis/" + url + ".yaml", 'wb').write(r.content)
         api_urls[url] = getAPIURL(url)
+
+def getAPIFromGithub():
+    r = svn.remote.RemoteClient('https://github.com/jdegre/5GC_APIs.git/trunk')
+    entries = r.list()
+    for filename in entries:
+        if not filename.endswith(".yaml"): continue
+        urlfile = 'https://raw.githubusercontent.com/jdegre/5GC_APIs/master/' + filename
+        res = requests.get(urlfile, proxies=proxyDict)
+        open("../apis/" + filename, 'wb').write(res.content)
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
 
@@ -106,6 +116,8 @@ getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/", r"OpenAPI\/(\w+).
 getAPI("https://www.3gpp.org/ftp/Specs/archive/OpenAPI/Rel-16/", r"Rel-16\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-15/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("https://www.3gpp.org/ftp/Specs/archive/OpenAPI/Rel-15/", r"Rel-15\/(\w+).yaml")
+
+getAPIFromGithub()
 
 readme_template = env.get_template('README.j2')
 output = readme_template.render(release_documents=release_documents,api_urls=api_urls)

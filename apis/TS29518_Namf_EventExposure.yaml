@@ -1,23 +1,24 @@
 openapi: 3.0.0
 info:
-  version: 1.0.2
+  version: 1.1.0
   title: Namf_EventExposure
   description: |
     AMF Event Exposure Service
-    © 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
-    All rights reserved.security:
+    © 2020, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    All rights reserved.
+security:
   - {}
   - oAuth2ClientCredentials:
       - namf-evts
 externalDocs:
-  description: 3GPP TS 29.518 V15.4.0; 5G System; Access and Mobility Management Services
+  description: 3GPP TS 29.518 V16.4.0; 5G System; Access and Mobility Management Services
   url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.518/'
 servers:
   - url: '{apiRoot}/namf-evts/v1'
     variables:
       apiRoot:
         default: https://example.com
-        description: apiRoot as defined in subclause subclause 4.4 of 3GPP TS 29.501
+        description: apiRoot as defined in clause clause 4.4 of 3GPP TS 29.501
 paths:
   /subscriptions:
     post:
@@ -206,8 +207,8 @@ components:
   securitySchemes:
     oAuth2ClientCredentials:
       type: oauth2
-      flows: 
-        clientCredentials: 
+      flows:
+        clientCredentials:
           tokenUrl: '{nrfApiRoot}/oauth2/token'
           scopes:
             namf-evts: Access to the Namf_EventExposure API
@@ -254,6 +255,7 @@ components:
           $ref: '#/components/schemas/AmfEventType'
         immediateFlag:
           type: boolean
+          default: false
         areaList:
           type: array
           items:
@@ -266,6 +268,18 @@ components:
           minItems: 1
         refId:
           $ref: 'TS29503_Nudm_EE.yaml#/components/schemas/ReferenceId'
+        trafficDescriptorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrafficDescriptor'
+          minItems: 1
+        reportUeReachable:
+          type: boolean
+          default: false
+        reachabilityFilter:
+          $ref: '#/components/schemas/ReachabilityFilter'
+        maxReports:
+          type: integer
       required:
         - type
     AmfEventNotification:
@@ -329,8 +343,27 @@ components:
           $ref: '#/components/schemas/UeReachability'
         commFailure:
           $ref: '#/components/schemas/CommunicationFailure'
+        lossOfConnectReason:
+          $ref: '#/components/schemas/LossOfConnectivityReason'
         numberOfUes:
           type: integer
+        5gsUserStateList:
+          type: array
+          items:
+            $ref: '#/components/schemas/5GsUserStateInfo'
+          minItems: 1
+        typeCode:
+          type: string
+          pattern: '^imeitac-[0-9]{8}$'
+        registrationNumber:
+          type: integer
+        maxAvailabilityTime:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+        ueIdExt:
+          type: array
+          items:
+            $ref: '#/components/schemas/UEIdExt'
+          minItems: 1
       required:
         - type
         - state
@@ -344,6 +377,10 @@ components:
           type: integer
         expiry:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+        repPeriod:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        sampRatio:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SamplingRatio'
       required:
         - trigger
     AmfEventState:
@@ -391,6 +428,8 @@ components:
           $ref: '#/components/schemas/AmfEventSubscription'
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        oldGuami:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
       required:
         - subscription
     AmfCreatedEventSubscription:
@@ -460,6 +499,10 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/PresenceInfo'
         ladnInfo:
           $ref: '#/components/schemas/LadnInfo'
+        sNssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+        nsiId:
+          $ref: 'TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId'
     LadnInfo:
       type: object
       properties:
@@ -469,6 +512,35 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/PresenceState'
       required:
         - ladn
+    5GsUserStateInfo:
+      type: object
+      properties:
+        5gsUserState:
+          $ref: '#/components/schemas/5GsUserState'
+        accessType:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+      required:
+        - 5gsUserState
+        - accessType
+    TrafficDescriptor:
+      type: object
+      properties:
+        dnn:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+        sNssai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+        dddTrafficDescriptorList:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/DddTrafficDescriptor'
+          minItems: 1
+    UEIdExt:
+      type: object
+      properties:
+        supi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+        gpsi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
     5gGuti:
       type: string
     AmfEventType:
@@ -487,6 +559,10 @@ components:
           - SUBSCRIPTION_ID_CHANGE
           - SUBSCRIPTION_ID_ADDITION
           - LOSS_OF_CONNECTIVITY
+          - 5GS_USER_STATE_REPORT
+          - AVAILABILITY_AFTER_DDN_FAILURE
+          - TYPE_ALLOCATION_CODE_REPORT
+          - FREQUENT_MOBILITY_REGISTRATION_REPORT
       - type: string
     AmfEventTrigger:
       anyOf:
@@ -494,6 +570,7 @@ components:
         enum:
           - ONE_TIME
           - CONTINUOUS
+          - PERIODIC
       - type: string
     LocationFilter :
       anyOf:
@@ -504,6 +581,9 @@ components:
           - N3IWF
           - UE_IP
           - UDP_PORT
+          - TNAP_ID
+          - GLI
+          - TWAP_ID
       - type: string
     UeReachability:
       anyOf:
@@ -526,4 +606,31 @@ components:
         enum:
           - IDLE
           - CONNECTED
+      - type: string
+    5GsUserState:
+      anyOf:
+      - type: string
+        enum:
+          - DEREGISTERED
+          - REGISTERED_NOT_REACHABLE_FOR_PAGING
+          - REGISTERED_REACHABLE_FOR_PAGING
+          - CONNECTED_NOT_REACHABLE_FOR_PAGING
+          - CONNECTED_REACHABLE_FOR_PAGING
+          - NOT_PROVIDED_FROM_AMF
+      - type: string
+    LossOfConnectivityReason:
+      anyOf:
+      - type: string
+        enum:
+          - DEREGISTERED
+          - MAX_DETECTION_TIME_EXPIRED
+          - PURGED
+      - type: string
+
+    ReachabilityFilter:
+      anyOf:
+      - type: string
+        enum:
+          - UE_REACHABILITY_STATUS_CHANGE
+          - UE_REACHABLE_DL_TRAFFIC
       - type: string

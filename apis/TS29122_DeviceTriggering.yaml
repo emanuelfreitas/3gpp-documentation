@@ -324,7 +324,7 @@ components:
           $ref: 'TS29122_CommonData.yaml#/components/schemas/Link'
         requestTestNotification:
           type: boolean
-          description: Set to true by the SCS/AS to request the SCEF to send a test notification as defined in subclause 5.2.5.3. Set to false or omitted otherwise.
+          description: Set to true by the SCS/AS to request the SCEF to send a test notification as defined in subclause 5.2.5.3. Set to false or omitted otherwise.
         websockNotifConfig:
           $ref: 'TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig'
         deliveryResult:
