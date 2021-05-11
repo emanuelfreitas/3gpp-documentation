@@ -48,6 +48,7 @@ def getAPIFromGithub():
         urlfile = 'https://raw.githubusercontent.com/jdegre/5GC_APIs/master/' + filename
         res = requests.get(urlfile, proxies=proxyDict)
         open("../apis/" + filename, 'wb').write(res.content)
+        api_urls[filename.replace(".yaml", "")] = getAPIURL(filename.replace(".yaml", ""))
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
 
