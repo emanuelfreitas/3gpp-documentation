@@ -1,23 +1,29 @@
 openapi: 3.0.0
 
 info:
-  version: '1.2.0-alpha.2'
+  version: '1.2.0-alpha.5'
   title: 'Nsmf_PDUSession'
   description: |
-    SMF PDU Session Service.
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    SMF PDU Session Service.  
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.502 V17.1.0; 5G System; Session Management Services; Stage 3
-  url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.502/
+  description: 3GPP TS 29.502 V17.4.0; 5G System; Session Management Services; Stage 3
+  url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.502/
 
 servers:
   - url: '{apiRoot}/nsmf-pdusession/v1'
     variables:
       apiRoot:
         default: https://example.com
-        description:  apiRoot as defined in clause 4.4 of 3GPP TS 29.501. The sm-contexts and pdu-sessions resources can be distributed on different processing instances or hosts. Thus the authority and/or deployment-specific string of the apiRoot of the created individual sm context and pdu-session resources' URIs may differ from the authority and/or deployment-specific string of the apiRoot of the sm-contexts and pdu-sessions collections' URIs.
+        description: >
+          apiRoot as defined in clause 4.4 of 3GPP TS 29.501. The sm-contexts and pdu-sessions
+          resources can be distributed on different processing instances or hosts. Thus the
+          authority and/or deployment-specific string of the apiRoot of the created individual
+          sm context and pdu-session resources' URIs may differ from the authority and/or
+          deployment-specific string of the apiRoot of the sm-contexts and pdu-sessions
+          collections' URIs.
 
 security:
   - {}
@@ -134,7 +140,9 @@ paths:
                         type: string
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nsmf-pdusession/<apiVersion>/sm-contexts/{smContextRef}'
+              description: >
+                Contains the URI of the newly created resource, according to the structure:
+                {apiRoot}/nsmf-pdusession/<apiVersion>/sm-contexts/{smContextRef}
               required: true
               schema:
                 type: string
@@ -149,7 +157,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextCreateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -185,7 +193,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextCreateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -263,7 +271,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextCreateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -299,7 +307,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextCreateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -336,7 +344,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextCreateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -526,7 +534,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextUpdateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -562,7 +570,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextUpdateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -639,7 +647,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextUpdateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -675,7 +683,7 @@ paths:
             application/json: # message without binary body part
               schema:
                 $ref: '#/components/schemas/SmContextUpdateError'
-            application/problem+json: 
+            application/problem+json:
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
             multipart/related:  # message with binary body part(s)
@@ -1028,6 +1036,8 @@ paths:
                   $ref: '#/components/responses/VsmfUpdateError'
                 '404':
                   $ref: '#/components/responses/VsmfUpdateError'
+                '409':
+                  $ref: '#/components/responses/VsmfUpdateError'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1202,7 +1212,9 @@ paths:
                         type: string
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nsmf-pdusession/<apiVersion>/pdu-sessions/{pduSessionRef}'
+              description: >
+                Contains the URI of the newly created resource, according to the structure:
+                {apiRoot}/nsmf-pdusession/<apiVersion>/pdu-sessions/{pduSessionRef}
               required: true
               schema:
                 type: string
@@ -1794,6 +1806,8 @@ components:
           $ref: '#/components/schemas/N2SmInfoType'
         smContextRef:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        smContextSmfPlmnId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         smContextSmfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         smContextSmfSetId:
@@ -1831,7 +1845,7 @@ components:
           $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/TwifInfo'
         ranUnchangedInd:
           type: boolean
-        samePcfSelectionIndication:
+        samePcfSelectionInd:
           type: boolean
           default: false
         targetDnai:
@@ -1842,9 +1856,36 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
         nrfAccessTokenUri:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
-        ivSmfRestoration:
+        nrfOauth2Required:
+          type: object
+          description: 'Map indicating whether the NRF requires Oauth2-based authorization for accessing its services. The key of the map shall be the name of an NRF service, e.g. "nnrf-nfm" or "nnrf-disc"'
+          additionalProperties:
+            type: boolean
+          minProperties: 1
+        smfBindingInfo:
+          type: string
+        pvsInfo:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'
+          minItems: 1
+        onboardingInd:
           type: boolean
-          default:  false
+          default: false
+        oldPduSessionRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        smPolicyNotifyInd:
+          type: boolean
+          default: false
+        pcfUeCallbackInfo:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PcfUeCallbackInfo'
+        satelliteBackhaulCat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
+        upipSupported:
+          type: boolean
+          default: false
+        uavAuthenticated:
+          type: boolean
       required:
         - servingNfId
         - servingNetwork
@@ -1888,6 +1929,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         selectedOldSmfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
 
     SmContextUpdateData:
       description: Data within Update SM Context Request
@@ -2016,6 +2059,22 @@ components:
           minItems: 1
         ddnFailureSubs:
           $ref: '#/components/schemas/DdnFailureSubs'
+        skipN2PduSessionResRelInd:
+          type: boolean
+          default: false
+        secondaryRatUsageDataReportContainer:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecondaryRatUsageDataReportContainer'
+          minItems: 1
+        smPolicyNotifyInd:
+          type: boolean
+          enum:
+           - true
+        pcfUeCallbackInfo:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PcfUeCallbackInfo'
+        satelliteBackhaulCat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
 
     SmContextUpdatedData:
       description: Data within Update SM Context Response
@@ -2081,6 +2140,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         selectedOldSmfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
 
     SmContextReleaseData:
       description: Data within Release SM Context Request
@@ -2136,6 +2197,8 @@ components:
           items:
             type: string
           minItems: 1
+        newIntermediateSmfId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         newSmfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         newSmfSetId:
@@ -2150,6 +2213,10 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         targetDnaiInfo:
           $ref: '#/components/schemas/TargetDnaiInfo'
+        oldPduSessionRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
       required:
         - statusInfo
 
@@ -2302,9 +2369,22 @@ components:
           $ref: '#/components/schemas/UpSecurityInfo'
         vplmnQos:
           $ref: '#/components/schemas/VplmnQos'
-        ivSmfRestoration:
+        oldSmContextRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        redundantPduSessionInfo:
+          $ref: '#/components/schemas/RedundantPduSessionInformation'
+        oldPduSessionRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        smPolicyNotifyInd:
           type: boolean
-          default:  false
+          default: false
+        pcfUeCallbackInfo:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PcfUeCallbackInfo'
+        satelliteBackhaulCat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
+        upipSupported:
+          type: boolean
+          default: false
       required:
         - dnn
         - servingNetwork
@@ -2410,6 +2490,10 @@ components:
           $ref: '#/components/schemas/RedundantPduSessionInformation'
         nspuSupportInd:
           type: boolean
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        intraPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
       required:
         - pduSessionType
         - sscMode
@@ -2468,6 +2552,7 @@ components:
           items:
             $ref: '#/components/schemas/PduSessionNotifyItem'
           minItems: 1
+# The attribute name does not follow the naming conventions specified in 3GPP TS 29.501. The attribute name is kept though as defined in the current specification for backward compatibility reason.
         epsBearerId:
           type: array
           items:
@@ -2566,6 +2651,23 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         guami:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+        secondaryRatUsageDataReportContainer:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecondaryRatUsageDataReportContainer'
+          minItems: 1
+        smPolicyNotifyInd:
+          type: boolean
+          enum:
+           - true
+        pcfUeCallbackInfo:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PcfUeCallbackInfo'
+        satelliteBackhaulCat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
+        maxIntegrityProtectedDataRateUl:
+          $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
+        maxIntegrityProtectedDataRateDl:
+          $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
       required:
         - requestIndication
 
@@ -2615,6 +2717,10 @@ components:
           minItems: 1
         pti:
           $ref: '#/components/schemas/ProcedureTransactionId'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        intraPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
 
     ReleaseData:
       description: Data within Release Request
@@ -2827,6 +2933,14 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/ApnRateStatus'
         targetDnaiInfo:
           $ref: '#/components/schemas/TargetDnaiInfo'
+        oldPduSessionRef:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        newSmfId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        intraPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
       required:
         - statusInfo
 
@@ -2844,6 +2958,8 @@ components:
           maximum: 8
         nullQoSProfileIndex:
           type: boolean
+        ngApCause:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NgApCause'
       required:
         - qfi
 
@@ -2863,6 +2979,8 @@ components:
           $ref: '#/components/schemas/QosFlowProfile'
         associatedAnType:
           $ref: '#/components/schemas/QosFlowAccessType'
+        defaultQosRuleInd:
+          type: boolean
       required:
         - qfi
         - qosRules
@@ -3005,6 +3123,8 @@ components:
         dlDataWaitingInd:
           type: boolean
           default: false
+        afCoordinationInfo:
+          $ref: '#/components/schemas/AfCoordinationInfo'
       required:
         - ueEpsPdnConnection
 
@@ -3016,6 +3136,9 @@ components:
           type: boolean
           default: false
         ethernetSupported:
+          type: boolean
+          default: false
+        upipSupported:
           type: boolean
           default: false
 
@@ -3178,7 +3301,7 @@ components:
       type: object
       properties:
         error:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+          $ref: '#/components/schemas/ExtProblemDetails'
         pti:
           $ref: '#/components/schemas/ProcedureTransactionId'
         n1smCause:
@@ -3234,6 +3357,10 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
         pduSessionRef:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        interPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        intraPlmnApiRoot:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
         pcfId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         pcfGroupId:
@@ -3280,6 +3407,8 @@ components:
             $ref: '#/components/schemas/EpsBearerInfo'
           minItems: 1
         maxIntegrityProtectedDataRate:
+          $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
+        maxIntegrityProtectedDataRateDl:
           $ref: '#/components/schemas/MaxIntegrityProtectedDataRate'
         alwaysOnGranted:
           type: boolean
@@ -3328,6 +3457,13 @@ components:
           minItems: 1
         nspuSupportInd:
           type: boolean
+        smfBindingInfo:
+          type: string
+        satelliteBackhaulCat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
+        sscMode:
+          type: string
+          pattern: '^[0-7]$'
       required:
         - pduSessionId
         - dnn
@@ -3478,7 +3614,7 @@ components:
     TransferMtDataError:
       description: Transfer MT Data Error Response
       allOf:
-      - $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+      - $ref: '#/components/schemas/ExtProblemDetails'
       - $ref: '#/components/schemas/TransferMtDataAddInfo'
 
     TransferMtDataAddInfo:
@@ -3541,6 +3677,8 @@ components:
         smallDataRateStatusReq:
           type: boolean
           default: false
+        pduSessionContextType:
+          $ref: '#/components/schemas/PduSessionContextType'
 
     RetrievedData:
       description: Data within Retrieve Response
@@ -3548,6 +3686,8 @@ components:
       properties:
         smallDataRateStatus:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SmallDataRateStatus'
+        afCoordinationInfo:
+          $ref: '#/components/schemas/AfCoordinationInfo'
 
     SecurityResult:
       description: Security Result
@@ -3637,6 +3777,10 @@ components:
       properties:
         rsn:
           $ref: '#/components/schemas/Rsn'
+        pduSessionPairId:
+          type: integer
+          minimum: 0
+          maximum: 255
       required:
         - rsn
 
@@ -3664,8 +3808,39 @@ components:
         smfSelectionType:
           $ref: '#/components/schemas/SmfSelectionType'
       required:
-        - targetDnai
         - smfSelectionType
+
+    AfCoordinationInfo:
+      description: AF Coordination Information
+      type: object
+      properties:
+        sourceDnai:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+        sourceUeIpv4Addr:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+        sourceUeIpv6Prefix:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+        notificationInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationInfo'
+          minItems: 1
+
+    NotificationInfo:
+      description: >
+        Notification Correlation ID and Notification URI provided by the NF service consumer
+      type: object
+      properties:
+        notifId:
+          type: string
+        notifUri:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        upBufferInd:
+          type: boolean
+          default: false
+      required:
+        - notifId
+        - notifUri
 
 #
 # SIMPLE DATA TYPES
@@ -3716,6 +3891,11 @@ components:
       description: Forwarding Bearer Container
       type: string
 
+    SecondaryRatUsageDataReportContainer:
+      description: Secondary Rat Usage Data Report Container
+      type: string
+      format: byte
+
 #
 # ENUMERATIONS
 #
@@ -3732,7 +3912,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         User Plane Connection State. Possible values are
         - ACTIVATED
         - DEACTIVATED
@@ -3753,7 +3933,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Handover state. Possible values are
         - NONE
         - PREPARING
@@ -3774,7 +3954,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Request Type in Create (SM context) service operation. Possible values are
         - INITIAL_REQUEST
         - EXISTING_PDU_SESSION
@@ -3798,7 +3978,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Request Indication in Update (SM context) service operation. Possible values are
         - UE_REQ_PDU_SES_MOD
         - UE_REQ_PDU_SES_REL
@@ -3822,7 +4002,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Cause for generating a notification. Possible values are
         - QOS_FULFILLED
         - QOS_NOT_FULFILLED
@@ -3861,12 +4041,13 @@ components:
           - CHANGED_ANCHOR_SMF
           - CHANGED_INTERMEDIATE_SMF
           - TARGET_DNAI_NOTIFICATION
+          - REL_DUE_TO_VPLMN_QOS_FAILURE
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Cause information. Possible values are
         - REL_DUE_TO_HO
         - EPS_FALLBACK
@@ -3896,6 +4077,7 @@ components:
         - CHANGED_ANCHOR_SMF
         - CHANGED_INTERMEDIATE_SMF
         - TARGET_DNAI_NOTIFICATION
+        - REL_DUE_TO_VPLMN_QOS_FAILURE
 
     ResourceStatus:
       anyOf:
@@ -3911,7 +4093,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Status of SM context or PDU session resource. Possible values are
         - RELEASED
         - UNCHANGED
@@ -3931,7 +4113,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         DNN Selection Mode. Possible values are
         - VERIFIED
         - UE_DNN_NOT_VERIFIED
@@ -3950,7 +4132,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         EPS Interworking Indication. Possible values are
         - NONE
         - WITH_N26
@@ -3989,7 +4171,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         N2 SM Information Type. Possible values are
         - PDU_RES_SETUP_REQ
         - PDU_RES_SETUP_RSP
@@ -4026,7 +4208,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Maximum Integrity Protected Data Rate. Possible values are
           - 64_KBPS
           - MAX_UE_RATE
@@ -4042,7 +4224,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Multi-Access PDU session release Indication. Possible values are
           - REL_MAPDU_OVER_3GPP
           - REL_MAPDU_OVER_N3GPP
@@ -4053,15 +4235,17 @@ components:
         enum:
           - EPS_PDN_CONNECTION
           - SM_CONTEXT
+          - AF_COORDINATION_INFO
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Type of SM Context information. Possible values are
           - EPS_PDN_CONNECTION
           - SM_CONTEXT
+          - AF_COORDINATION_INFO
 
     PsaIndication:
       anyOf:
@@ -4069,15 +4253,19 @@ components:
         enum:
           - PSA_INSERTED
           - PSA_REMOVED
+          - PSA_INSERTED_ONLY
+          - PSA_REMOVED_ONLY
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Indication of whether a PSA is inserted or removed. Possible values are
           - PSA_INSERTED
           - PSA_REMOVED
+          - PSA_INSERTED_ONLY
+          - PSA_REMOVED_ONLY
 
     N4MessageType:
       anyOf:
@@ -4096,7 +4284,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         N4 Message Type. Possible values are
           - PFCP_SES_EST_REQ
           - PFCP_SES_EST_RSP
@@ -4119,7 +4307,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Access type associated with a QoS Flow. Possible values are
           - 3GPP
           - NON_3GPP
@@ -4136,7 +4324,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Indicates the access type of a MA PDU session that is unavailable. Possible values are
           - 3GA_UNAVAILABLE
           - N3GA_UNAVAILABLE
@@ -4152,7 +4340,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Protection Result of the security policy indicated as "preferred". Possible values are
           - PERFORMED
           - NOT_PERFORMED
@@ -4170,7 +4358,7 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         QoS monitoring request. Possible values are
           - UL
           - DL
@@ -4183,15 +4371,17 @@ components:
         enum:
           - V1
           - V2
+          - NONE
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Redundancy Sequence Number. Possible values are
           - V1
           - V2
+          - NONE
 
     SmfSelectionType:
       anyOf:
@@ -4204,11 +4394,24 @@ components:
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
-      description: >
+      description: |
         Smf Selection Type. Possible values are
           - CURRENT_PDU_SESSION
           - NEXT_PDU_SESSION
 
+    PduSessionContextType:
+      anyOf:
+      - type: string
+        enum:
+          - AF_COORDINATION_INFO
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: |
+        Type of PDU Session information. Possible values are
+          - AF_COORDINATION_INFO
 #
 # HTTP request bodies
 #
@@ -4217,13 +4420,13 @@ components:
       description: representation of updates to apply to the PDU session
       required: true
       content:
-        application/+json: # message without binary body part
+        application/json:   # message without binary body part
           schema:
             $ref: '#/components/schemas/VsmfUpdateData'
         multipart/related:  # message with binary body part(s)
           schema:
             type: object
-            properties: # Request parts
+            properties:     # Request parts
               jsonData:
                 $ref: '#/components/schemas/VsmfUpdateData'
               binaryDataN1SmInfoToUe:
@@ -4363,7 +4566,7 @@ components:
         application/json: # message without binary body part
           schema:
             $ref: '#/components/schemas/PduSessionCreateError'
-        application/problem+json: 
+        application/problem+json:
           schema:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         multipart/related:  # message with binary body part(s)
@@ -4391,7 +4594,7 @@ components:
         application/json: # message without binary body part
           schema:
             $ref: '#/components/schemas/HsmfUpdateError'
-        application/problem+json: 
+        application/problem+json:
           schema:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         multipart/related:  # message with binary body part(s)
@@ -4419,7 +4622,7 @@ components:
         application/json: # message without binary body part
           schema:
             $ref: '#/components/schemas/VsmfUpdateError'
-        application/problem+json: 
+        application/problem+json:
           schema:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         multipart/related:  # message with binary body part(s)

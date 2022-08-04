@@ -1,16 +1,16 @@
 openapi: 3.0.0
 
 info:
-  version: '1.2.0-alpha.3'
+  version: '1.2.0-alpha.6'
   title: 'Nudm_PP'
   description: |
-    Nudm Parameter Provision Service.
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    Nudm Parameter Provision Service.  
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.503 Unified Data Management Services, version 17.3.0
-  url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.503/'
+  description: 3GPP TS 29.503 Unified Data Management Services, version 17.6.0
+  url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/'
 
 servers:
   - url: '{apiRoot}/nudm-pp/v1'
@@ -36,7 +36,7 @@ paths:
           in: path
           description: Identifier of the UE
           required: true
-          schema: 
+          schema:
             anyOf:
               - $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
               - $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId'
@@ -230,8 +230,12 @@ paths:
           in: path
           description: Identifier of the UE
           required: true
-          schema: 
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+          schema:
+            anyOf:
+              - $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+              - $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId'
+              - type: string
+                pattern: '^anyUE$'
         - name: afInstanceId
           in: path
           description: Application Function Instance Identifier
@@ -275,8 +279,12 @@ paths:
           in: path
           description: Identifier of the UE
           required: true
-          schema: 
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+          schema:
+            anyOf:
+              - $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+              - $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId'
+              - type: string
+                pattern: '^anyUE$'
         - name: afInstanceId
           in: path
           description: Application Function Instance Identifier
@@ -308,8 +316,12 @@ paths:
           in: path
           description: Identifier of the UE
           required: true
-          schema: 
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+          schema:
+            anyOf:
+              - $ref: 'TS29571_CommonData.yaml#/components/schemas/VarUeId'
+              - $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/ExtGroupId'
+              - type: string
+                pattern: '^anyUE$'
         - name: afInstanceId
           in: path
           description: Application Function Instance Identifier
@@ -376,8 +388,8 @@ components:
           $ref: '#/components/schemas/LcsPrivacy'
         sorInfo:
           $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/SorInfo'
-        ecsServerAddr:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/EcsServerAddr'
+        5mbsAuthorizationInfo:
+          $ref: '#/components/schemas/5MbsAuthorizationInfo'
       nullable: true
 
     CommunicationCharacteristics:
@@ -484,7 +496,7 @@ components:
             $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress'
           minItems: 1
         dnAaaFqdn:
-          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/Fqdn'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
 
     ExpectedUeBehaviour:
       type: object
@@ -696,6 +708,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation'
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        ecsAddrConfigInfo:
+          $ref: '#/components/schemas/EcsAddrConfigInfo'
       nullable: true
 
     CommunicationCharacteristicsAF:
@@ -709,6 +723,24 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
       nullable: true
 
+    EcsAddrConfigInfo:
+      type: object
+      properties:
+        ecsServerAddr:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/EcsServerAddr'
+        spatialValidityCond:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SpatialValidityCond'
+      nullable: true
+
+    5MbsAuthorizationInfo:
+      type: object
+      properties:
+        5mbsSessionIds:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSessionId'
+          minItems: 1
+      nullable: true
 
 # SIMPLE TYPES:
 

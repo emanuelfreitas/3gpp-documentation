@@ -1,14 +1,15 @@
 openapi: 3.0.0
 info:
   title: Nnef_EventExposure
-  version: 1.1.0-alpha.2
+  version: 1.1.0-alpha.5
   description: |
-    NEF Event Exposure Service.
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    NEF Event Exposure Service.  
+    © 2022 , 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 29.591 V17.2.0; 5G System; Network Exposure Function Southbound Services; Stage 3.
-  url: http://www.3gpp.org/ftp/Specs/archive/29_series/29.591/
+  description: >
+    3GPP TS 29.591 V17.5.0; 5G System; Network Exposure Function Southbound Services; Stage 3.
+  url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.591/
 servers:
   - url: '{apiRoot}/nnef-eventexposure/v1'
     variables:
@@ -42,7 +43,9 @@ paths:
                 $ref: '#/components/schemas/NefEventExposureSubsc'
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/nnef-eventexposure/<apiVersion>/subscriptions/{subscriptionId}'
+              description: >
+                Contains the URI of the newly created resource, according to the structure
+                {apiRoot}/nnef-eventexposure/<apiVersion>/subscriptions/{subscriptionId}
               required: true
               schema:
                 type: string
@@ -280,7 +283,9 @@ components:
         - notifId
         - notifUri
     NefEventExposureNotif:
-      description: Represents notifications on network exposure event(s) that occurred for an Individual Network Exposure Event Subscription resource.
+      description: >
+        Represents notifications on network exposure event(s) that occurred for an Individual Network
+        Exposure Event Subscription resource.
       type: object
       properties:
         notifId:
@@ -326,6 +331,21 @@ components:
           items:
             $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/UserDataCongestionCollection'
           minItems: 1
+        perfDataInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerformanceDataInfo'
+          minItems: 1
+        dispersionInfos:
+          type: array
+          items:
+            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/DispersionCollection'
+          minItems: 1
+        collBhvrInfs:
+          type: array
+          items:
+            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/CollectiveBehaviourInfo'
+          minItems: 1
       required:
         - event
         - timeStamp
@@ -352,6 +372,11 @@ components:
           minItems: 1
         locArea:
           $ref: 'TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo'
+        collAttrs:
+          type: array
+          items:
+            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/CollectiveBehaviourFilter'
+          minItems: 1
       required:
         - tgtUe
     TargetUeIdentification:
@@ -432,7 +457,32 @@ components:
       required:
         - ts
         - location
-
+    PerformanceDataInfo:
+      description: Contains Performance Data Analytics related information collection.
+      type: object
+      properties:
+        appId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/ApplicationId'
+        ueIpAddr:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'
+        ipTrafficFilter:
+          $ref: 'TS29122_CommonData.yaml#/components/schemas/FlowInfo'
+        userLoc:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/UserLocation'
+        appLocs:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        asAddr:
+          $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/AddrFqdn'
+        perfData:
+          $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/PerformanceData'
+        timeStamp:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+      required:
+        - perfData
+        - timeStamp
 # Simple data types and Enumerations
 
     NefEvent:
@@ -445,4 +495,7 @@ components:
           - UE_COMM
           - EXCEPTIONS
           - USER_DATA_CONGESTION
+          - PERF_DATA
+          - DISPERSION
+          - COLLECTIVE_BEHAVIOUR
       - type: string

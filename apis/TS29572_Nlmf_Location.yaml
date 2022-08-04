@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: '1.2.0-alpha.1'
+  version: '1.2.0-alpha.4'
   title: 'LMF Location'
   description: |
     LMF Location Service.
-    © 2021, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.572 V17.1.0; 5G System; Location Management Services; Stage 3
+  description: 3GPP TS 29.572 V17.4.0; 5G System; Location Management Services; Stage 3
   url: 'http://www.3gpp.org/ftp/Specs/archive/29_series/29.572/'
 
 servers:
@@ -49,6 +49,18 @@ paths:
               jsonData:
                 contentType:  application/json
               binaryDataLppMessage:
+                contentType:  application/vnd.3gpp.lpp
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string
+              binaryDataLppMessageExt1:
+                contentType:  application/vnd.3gpp.lpp
+                headers:
+                  Content-Id:
+                    schema:
+                      type: string
+              binaryDataLppMessageExt2:
                 contentType:  application/vnd.3gpp.lpp
                 headers:
                   Content-Id:
@@ -289,7 +301,10 @@ components:
         motionEventInfo:
           $ref: '#/components/schemas/MotionEventInfo'
         reportingAccessTypes:
-          $ref: '#/components/schemas/ReportingAccessTypes'
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportingAccessType'
+          minItems: 1
         ueConnectivityStates:
           $ref: '#/components/schemas/UeConnectivityState'
         ueLocationServiceInd:
@@ -298,8 +313,22 @@ components:
           $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/LcsBroadcastAssistanceTypesData'
         lppMessage:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
+        lppMessageExt:
+          description: Indicates the lpp message extension.
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/RefToBinaryData'
+          minItems: 1
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        uePositioningCap:
+          $ref: '#/components/schemas/UePositioningCapabilities'
+        tnapId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TnapId'
+        twapId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/TwapId'
+        ueCountryDetInd:
+          type: boolean
 
     LocationData:
       description: Information within Determine Location Response.
@@ -313,6 +342,8 @@ components:
           $ref: '#/components/schemas/AccuracyFulfilmentIndicator'
         ageOfLocationEstimate:
           $ref: '#/components/schemas/AgeOfLocationEstimate'
+        timestampOfLocationEstimate:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         velocityEstimate:
           $ref: '#/components/schemas/VelocityEstimate'
         civicAddress:
@@ -339,6 +370,14 @@ components:
           $ref: '#/components/schemas/BarometricPressure'
         servingLMFIdentification:
           $ref: '#/components/schemas/LMFIdentification'
+        uePositioningCap:
+          $ref: '#/components/schemas/UePositioningCapabilities'
+        ueAreaInd:
+          $ref: '#/components/schemas/UeAreaIndication'
+        supportedFeatures:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        achievedQos:
+          $ref: '#/components/schemas/MinorLocationQoS'
 
     GeographicArea:
       description: Geographic area specified by different shape.
@@ -518,6 +557,22 @@ components:
         - $ref: '#/components/schemas/Local2dPointUncertaintyEllipse'
         - $ref: '#/components/schemas/Local3dPointUncertaintyEllipsoid'
 
+    UeAreaIndication:
+      description: Indicates area (country or international area) where UE is located
+      type: object
+      oneOf:
+        - required:
+          - country
+        - required:
+          - internationalAreaInd
+      properties:
+        country:
+          description: Indicates country where UE is located
+          type: string
+        internationalAreaInd:
+          description: Indicates international area indication if UE is located in international area
+          type: boolean
+          default: false
 
     Local2dPointUncertaintyEllipse:
       description: Local 2D point with uncertainty ellipse
@@ -630,6 +685,12 @@ components:
           type: boolean
         responseTime:
           $ref: '#/components/schemas/ResponseTime'
+        minorLocQoses:
+          type: array
+          items:
+            $ref: '#/components/schemas/MinorLocationQoS'
+          minItems: 1
+          maxItems: 2
         lcsQosClass:
           $ref: '#/components/schemas/LcsQosClass'
 
@@ -903,13 +964,6 @@ components:
           type: boolean
           default: true
 
-    ReportingAccessTypes:
-      description: Indicates access types of event reporting.
-      type: array
-      items:
-        $ref: '#/components/schemas/ReportingAccessType'
-      minItems: 1
-
     CancelLocData:
       description: Information within Cancel Location Request.
       type: object
@@ -976,6 +1030,8 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        uePositioningCap:
+          $ref: '#/components/schemas/UePositioningCapabilities'
 
     EventReportMessage:
       description: Indicates an event report message.
@@ -1006,10 +1062,14 @@ components:
           $ref: '#/components/schemas/GeographicArea'
         ageOfLocationEstimate:
           $ref: '#/components/schemas/AgeOfLocationEstimate'
+        timestampOfLocationEstimate:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         velocityEstimate:
           $ref: '#/components/schemas/VelocityEstimate'
         ageOfVelocityEstimate:
           $ref: '#/components/schemas/AgeOfLocationEstimate'
+        timestampOfVelocityEstimate:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
 
     EventNotifyData:
       description: Information within Event Notify Request.
@@ -1032,6 +1092,8 @@ components:
           $ref: '#/components/schemas/GeographicArea'
         ageOfLocationEstimate:
           $ref: '#/components/schemas/AgeOfLocationEstimate'
+        timestampOfLocationEstimate:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
         civicAddress:
           $ref: '#/components/schemas/CivicAddress'
         localLocationEstimate:
@@ -1054,6 +1116,8 @@ components:
           $ref: '#/components/schemas/VelocityEstimate'
         altitude:
           $ref: '#/components/schemas/Altitude'
+        achievedQos:
+          $ref: '#/components/schemas/MinorLocationQoS'
         supportedFeatures:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
@@ -1067,6 +1131,16 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         connectivitystate:
           $ref: 'TS29518_Namf_EventExposure.yaml#/components/schemas/CmState'
+
+    MinorLocationQoS:
+      description: Contain Minor Location QoS.
+      type: object
+      properties:
+        hAccuracy:
+          $ref: '#/components/schemas/Accuracy'
+        vAccuracy:
+          $ref: '#/components/schemas/Accuracy'
+
 #
 #
 # SIMPLE TYPES
@@ -1223,6 +1297,12 @@ components:
       type: integer
       minimum: 1
       maximum: 8640000
+
+    UePositioningCapabilities:
+      description: Positioning capabilities supported by the UE. A string encoding the "ProvideCapabilities-r9-IEs" IE as specified in clause 6.3 of 3GPP TS 37.355 (start from octet 1).
+      type: string
+      format: byte
+
 #
 # ENUMS
 #
@@ -1401,6 +1481,10 @@ components:
             - NR
             - EUTRA_CONNECTED_TO_5GC
             - NON_3GPP_CONNECTED_TO_5GC
+            - NR_LEO
+            - NR_MEO
+            - NR_GEO
+            - NR_OTHER_SAT
         - type: string
 
     EventClass:
@@ -1442,6 +1526,7 @@ components:
           enum:
             - BEST_EFFORT
             - ASSURED
+            - MULTIPLE_QOS
         - type: string
 
     UeLocationServiceInd:
