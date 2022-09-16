@@ -174,12 +174,19 @@
 #### OCS (Online Charging System) <a name="OCS"></a>
 * [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point/Rel-16/ts_129219v160000p.pdf)
 * [TS 32.240 - Telecommunication management; Charging management; Charging architecture and principles](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.240%20-%20Charging%20architecture%20and%20principles/Rel-16/ts_132240v160500p.pdf)
+* [TS 32.251 - Telecommunication management;Charging management;Packet Switched (PS) domain charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.251%20-%20Telecommunication%20management;Charging%20management;Packet%20Switched%20(PS)%20domain%20charging/Rel-16/ts_132251v160000p.pdf)
 * [TS 32.260 - IP Multimedia Subsystem (IMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.260%20-%20IP%20Multimedia%20Subsystem%20(IMS)%20charging/Rel-12/ts_132260v121300p.pdf)
 * [TS 32.270 - Multimedia Messaging Service (MMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.270%20-%20Multimedia%20Messaging%20Service%20(MMS)%20charging/Rel-12/ts_132270v120100p.pdf)
 * [TS 32.274 - Short Message Service (SMS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.274%20-%20Short%20Message%20Service%20(SMS)%20charging/Rel-12/ts_132274v120600p.pdf)
 * [TS 32.276 - Voice Call Service (VCS) charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.276%20-%20Voice%20Call%20Service%20(VCS)%20charging/Rel-16/ts_132276v160000p.pdf)
 * [TS 32.296 - Telecommunication management; Charging management; Online Charging System (OCS): Applications and interfaces](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.296%20-%20Online%20Charging%20System%20(OCS)%20-%20Applications%20and%20interfaces/Rel-16/ts_132296v160000p.pdf)
 * [TS 32.299 - Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.299%20-%20Diameter%20charging%20applications/Rel-12/ts_132299v121400p.pdf)
+
+| Interface  | Standard |
+|------------|----------|
+| Sy         | [TS 29.219 - Policy and charging control: Spending limit reporting over Sy reference point](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.219%20-%20Policy%20and%20charging%20control%20-%20Spending%20limit%20reporting%20over%20Sy%20reference%20point/Rel-16/ts_129219v160000p.pdf) |
+| Ro - Gy    | [TS 32.251 - Telecommunication management;Charging management;Packet Switched (PS) domain charging](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.251%20-%20Telecommunication%20management;Charging%20management;Packet%20Switched%20(PS)%20domain%20charging/Rel-16/ts_132251v160000p.pdf) |
+| Rf         | [TS 32.299 - Diameter charging applications](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.299%20-%20Diameter%20charging%20applications/Rel-12/ts_132299v121400p.pdf) |
 
 #### PCRF (Policy and Charging Rule Function) <a name="PCRF"></a>
 * [TS 29.211 - Rx Interface and Rx-Gx signalling flows](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.211%20-%20Rx%20Interface%20and%20Rx-Gx%20signalling%20flows/Rel-6/ts_129211v060400p.pdf)
