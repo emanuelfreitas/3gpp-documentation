@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: 1.2.0
+  version: 1.3.0-alpha.1
   title: Namf_Communication
   description: |
     AMF Communication Service.  
@@ -14,7 +14,7 @@ security:
       - namf-comm
 
 externalDocs:
-  description: 3GPP TS 29.518 V17.6.0; 5G System; Access and Mobility Management Services
+  description: 3GPP TS 29.518 V18.0.0; 5G System; Access and Mobility Management Services
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.518/'
 
 servers:
@@ -395,6 +395,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
                 '403':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/403'
                 '404':
@@ -409,6 +411,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
       responses:
@@ -416,8 +420,17 @@ paths:
           description: UE context successfully created.
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource, according to the structure: {apiRoot}/namf-comm/<apiVersion>/ue-contexts/{ueContextId}'
+              description: > 
+                Contains the URI of the newly created resource, according to the structure: 
+                {apiRoot}/namf-comm/<apiVersion>/ue-contexts/{ueContextId}
               required: true
+              schema:
+                type: string
+            3gpp-Sbi-Producer-Id:
+              description: >
+                Indicating the AMF serving the UE Context. This header shall be included when the 
+                UE Context is created in a target AMF other than the initial AMF sending the 
+                response.
               schema:
                 type: string
           content:
@@ -590,6 +603,8 @@ paths:
             application/problem+json: # error originated by an SCP or SEPP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           description: Forbidden
           content:
@@ -617,6 +632,8 @@ paths:
                     Content-Id:
                       schema:
                         type: string
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -631,6 +648,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UeContextCreateError'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -664,6 +683,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
@@ -678,6 +699,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -722,6 +745,8 @@ paths:
             application/problem+json: # error originated by an SCP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           description: Forbidden
           content:
@@ -731,6 +756,8 @@ paths:
             application/problem+json: # error originated by an SCP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '409':
           description: Conflict
           content:
@@ -754,6 +781,8 @@ paths:
             application/problem+json: # error originated by an SCP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -845,6 +874,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
@@ -859,6 +890,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -896,6 +929,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
@@ -910,6 +945,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1121,8 +1158,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1133,6 +1174,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1181,6 +1224,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
@@ -1195,6 +1240,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1280,6 +1327,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
@@ -1300,6 +1349,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         '504':
@@ -1336,6 +1387,12 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1346,6 +1403,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /ue-contexts/{ueContextId}/n1-n2-messages/subscriptions:
@@ -1387,6 +1446,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1397,6 +1462,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1439,8 +1506,12 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
                 '403':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1451,6 +1522,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
           '{$request.body#/n2NotifyCallbackUri}':
@@ -1498,6 +1571,12 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1508,6 +1587,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /ue-contexts/{ueContextId}/n1-n2-messages/subscriptions/{subscriptionId}:
@@ -1539,6 +1620,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1549,6 +1636,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /non-ue-n2-messages/transfer:
@@ -1601,6 +1690,8 @@ paths:
             application/problem+json: # error originated by an SCP or SEPP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           description: Forbidden
           content:
@@ -1633,6 +1724,8 @@ paths:
             application/problem+json: # error originated by an SCP or SEPP
               schema:
                 $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           description: Service Unavailable
           content:
@@ -1675,8 +1768,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1687,6 +1784,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1732,6 +1831,12 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1742,6 +1847,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /non-ue-n2-messages/subscriptions/{n2NotifySubscriptionId}:
@@ -1766,12 +1873,18 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '429':
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /subscriptions:
@@ -1805,8 +1918,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1817,6 +1934,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1844,6 +1963,10 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
                 '404':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
@@ -1856,6 +1979,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
   /subscriptions/{subscriptionId}:
@@ -1880,12 +2005,18 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '429':
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1923,8 +2054,12 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
           $ref: 'TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -1935,6 +2070,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -1962,8 +2099,12 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
                 '403':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
                 '411':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/411'
                 '413':
@@ -1974,6 +2115,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
 components:
@@ -2376,7 +2519,7 @@ components:
           pattern: '^[0-9a-fA-F]+$'
         ueContextRequest:
           type: boolean
-          default:  false
+          default: false
         initialAmfN2ApId:
           type: integer
         anN2IPv4Addr:
@@ -2404,14 +2547,14 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
         iabNodeInd:
           type: boolean
-          default:  false
+          default: false
         ceModeBInd:
           $ref: '#/components/schemas/CeModeBInd'
         lteMInd:
           $ref: '#/components/schemas/LteMInd'
         authenticatedInd:
           type: boolean
-          default:  false
+          default: false
         npnAccessInfo:
           $ref: '#/components/schemas/NpnAccessInfo'
       required:
@@ -2441,7 +2584,7 @@ components:
         accessType:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         regRequest:
           $ref: '#/components/schemas/N1MessageContainer'
         supportedFeatures:
@@ -2576,6 +2719,8 @@ components:
           items:
             $ref: '#/components/schemas/PduSessionContext'
           minItems: 1
+        epsInterworkingInfo:
+          $ref: 'TS29503_Nudm_UECM.yaml#/components/schemas/EpsInterworkingInfo'
         traceData:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
         serviceGapExpiryTime:
@@ -2682,6 +2827,17 @@ components:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/SliceMbr'
           minProperties: 1
           description: A map(list of key-value pairs) where Snssai serves as key.
+        smsfSetId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+        smsfServiceSetId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
+        smsfBindingInfo:
+          type: string
+        disasterRoamingInd:
+          type: boolean
+          default: false
+        disasterPlmn:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
 
 
     N2SmInformation:
@@ -2761,6 +2917,9 @@ components:
           $ref: '#/components/schemas/N1N2MessageTransferCause'
         n1n2MsgDataUri:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        retryAfter:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'
+
       required:
         - cause
         - n1n2MsgDataUri
@@ -2971,6 +3130,16 @@ components:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
         interPlmnApiRoot:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+        pgwFqdn:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+        pgwIpAddr:
+          $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/IpAddress'
+        plmnId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+        anchorSmfSupportedFeatures:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        anchorSmfOauth2Required:
+          type: boolean
       required:
         - pduSessionId
         - smContextRef
@@ -3146,6 +3315,9 @@ components:
       properties:
         ueContext:
           $ref: '#/components/schemas/UeContext'
+      required:
+        - ueContext
+
     UeContextCancelRelocateData:
       description: Data structure used for cancellation of UE Context Relocation
       type: object
@@ -3438,6 +3610,13 @@ components:
           items:
             type: string
           minItems: 1
+        aoiStateList:
+          description: >
+            Map of subscribed Area of Interest (AoI) Event State in the old AMF. The JSON pointer to
+            an AmfEventArea element in the areaList IE (or a PresenceInfo element in 
+            presenceInfoList IE) of the AmfEvent data type shall be the key of the map.
+          additionalProperties:
+            $ref: '#/components/schemas/AreaOfInterestEventState'
 
     UeDifferentiationInfo:
       description: Represents the UE Differentiation Information and its validity time
@@ -3563,6 +3742,21 @@ components:
       required:
         - releaseSessionList
         - releaseCause
+
+    AreaOfInterestEventState:
+      description: Event State of AoI event in old AMF
+      type: object
+      required:
+        - presence
+      properties:
+        presence:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/PresenceState'
+        individualPraIdList:
+          type: array
+          items:
+            type: string
+          minItems: 1
+
 #
 # SIMPLE DATA TYPES
 #

@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: Ntsctsf_QoSandTSCAssistance Service API
-  version: 1.0.0
+  version: 1.1.0-alpha.1
   description: |
     TSCTSF QoS and TSC Assistance Service.  
     © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
@@ -10,7 +10,7 @@ info:
 
 externalDocs:
   description: >
-    3GPP TS 29.565 V17.0.0; 5G System; Time Sensitive Communication and Time Synchronization function 
+    3GPP TS 29.565 V18.0.0; 5G System; Time Sensitive Communication and Time Synchronization function 
     Services; Stage 3.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.565/'
 
@@ -76,6 +76,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -117,6 +119,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -156,6 +160,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -198,6 +204,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -254,6 +262,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -294,6 +304,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -350,6 +362,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -426,6 +440,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -467,6 +483,8 @@ paths:
                   $ref: 'TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -504,6 +522,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -553,6 +573,14 @@ components:
           items:
             $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription'
           minItems: 1
+        enEthFlowInfo:
+          type: array
+          items:
+            $ref: 'TS29122_CommonData.yaml#/components/schemas/EthFlowInfo'
+          minItems: 1
+          description: >
+            Identifies the Ethernet flows which require QoS. Each Ethernet flow consists of a flow
+            identifer and the corresponding UL and/or DL flows.
         flowInfo:
           type: array
           items:
@@ -581,6 +609,12 @@ components:
             Identifies an ordered list of alternative service requirements that include individual
             QoS parameter sets. The lower the index of the array for a given entry, the higher the
             priority.
+        aspId:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId'
+        sponId:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId'
+        sponStatus:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus'
         evSubsc:
           $ref: '#/components/schemas/EventsSubscReqData'
         suppFeat:
@@ -601,6 +635,14 @@ components:
           items:
             $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/EthFlowDescription'
           minItems: 1
+        enEthFlowInfo:
+          type: array
+          items:
+            $ref: 'TS29122_CommonData.yaml#/components/schemas/EthFlowInfo'
+          minItems: 1
+          description: >
+            Identifies the Ethernet flows which require QoS. Each Ethernet flow consists of a flow
+            identifer and the corresponding UL and/or DL flows.
         flowInfo:
           type: array
           items:
@@ -626,6 +668,12 @@ components:
             Identifies an ordered list of alternative service requirements that include individual
             QoS parameter sets. The lower the index of the array for a given entry, the higher the
             priority.
+        aspId:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId'
+        sponId:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponId'
+        sponStatus:
+          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus'
         evSubsc:
           $ref: '#/components/schemas/EventsSubscReqDataRm'
 
@@ -729,4 +777,8 @@ components:
           - QOS_GUARANTEED
           - QOS_NOT_GUARANTEED
           - SUCCESSFUL_RESOURCES_ALLOCATION
+          - USAGE_REPORT
       - type: string
+        description: >
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.

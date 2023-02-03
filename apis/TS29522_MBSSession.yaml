@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: 3gpp-mbs-session
-  version: 1.0.0
+  version: 1.1.1
   description: |
     API for MBS Session Management.  
     © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
@@ -10,7 +10,7 @@ info:
 
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.6.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V17.8.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
 
 servers:
@@ -27,9 +27,9 @@ security:
 paths:
   /mbs-sessions:
     post:
-      summary: Create an Individual MBS Session resource.
+      summary: Request the creation of a new MBS Session.
       tags:
-        - MBS sessions collection
+        - MBS Sessions collection
       operationId: CreateMBSSession
       requestBody:
         description: Representation of the new MBS session to be created at the NEF.
@@ -50,7 +50,7 @@ paths:
             Location:
               description: >
                 Contains the URI of the newly created resource, according to the structure
-                {apiRoot}/3gpp-mbs-session/v1/mbssessions/{mbsSessionRef}
+                {apiRoot}/3gpp-mbs-session/v1/mbs-sessions/{mbsSessionRef}
               required: true
               schema:
                 type: string
@@ -88,6 +88,7 @@ paths:
 
     patch:
       summary: Request the modification of an existing Individual MBS Session resource.
+      operationId: ModifyIndMBSSession
       tags:
         - Individual MBS Session
       requestBody:
@@ -131,7 +132,8 @@ paths:
           $ref: 'TS29122_CommonData.yaml#/components/responses/default'
 
     delete:
-      summary: Deletes an existing Individual MBS Session resource.
+      summary: Request the Deletion of an existing Individual MBS Session resource.
+      operationId: DeleteIndMBSSession
       tags:
         - Individual MBS Session
       responses:
@@ -162,13 +164,14 @@ paths:
 
   /mbs-sessions/subscriptions:
     get:
-      summary: Retrieve all of the active MBS Sessions subscriptions.
+      summary: Retrieve all the active MBS Sessions subscriptions.
+      operationId: ReadMBSSessionsSubscs
       tags:
         - MBS Session Subscriptions
       responses:
         '200':
           description: >
-            OK. All the MBS Session Subscriptions resources managed by the NEF are returned.
+            OK. All the active MBS Session Subscriptions resources managed by the NEF are returned.
           content:
             application/json:
               schema:
@@ -199,9 +202,10 @@ paths:
           $ref: 'TS29122_CommonData.yaml#/components/responses/default'
 
     post:
-      summary: Creates a new Individual MBS Session subscription resource.
+      summary: Request the creation of a new Individual MBS Session subscription resource.
+      operationId: CreateMBSSessionsSubsc
       tags:
-        - MBS Session subscriptions
+        - MBS Session Subscriptions
       requestBody:
         description: Request the creation of a new MBS Session subscription resource.
         required: true
@@ -219,7 +223,9 @@ paths:
                 $ref: '#/components/schemas/MbsSessionSubsc'
           headers:
             Location:
-              description: Contains the URI of the newly created resource.
+              description: Contains the URI of the newly created resource, according to the
+               structure
+               {apiRoot}/3gpp-mbs-session/v1/mbs-sessions/subscriptions/{subscriptionId}
               required: true
               schema:
                 type: string
@@ -246,7 +252,7 @@ paths:
         default:
           $ref: 'TS29122_CommonData.yaml#/components/responses/default'
       callbacks:
-        notificationUri:
+        MBSSessionStatusNotification:
           '{request.body#/notificationUri}':
             post:
               requestBody:
@@ -289,12 +295,14 @@ paths:
     parameters:
       - name: subscriptionId
         in: path
-        description: Identifier of the MBS Session subscription resource.
+        description: Identifier of the Individual MBS Session Subscription resource.
         required: true
         schema:
           type: string
+
     get:
-      summary: Retrieve an Individual MBS Session subscription resource identified by the subscription Id.
+      summary: Retrieve an existing Individual MBS Session Subscription resource.
+      operationId: ReadIndMBSSessionsSubsc
       tags:
         - Individual MBS Session subscription
       responses:
@@ -329,13 +337,291 @@ paths:
           $ref: 'TS29122_CommonData.yaml#/components/responses/default'
 
     delete:
-      summary: Deletes an existing Individual MBS Session subscription resource.
+      summary: Request the deletion of an existing Individual MBS Session subscription resource.
+      operationId: DeleteIndMBSSessionsSubsc
       tags:
         - Individual MBS Session Subscription
       responses:
         '204':
           description: >
-            No Content. Successful deletion of the existing Individual MBS Session subscription resource.
+            No Content. Successful deletion of the existing Individual MBS Session subscription
+            resource.
+        '307':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+  /mbs-pp:
+    get:
+      summary: Request to retrieve all the active MBS Parameters Provisioning resources at the NEF.
+      operationId: GetMBSParamsProvisionings
+      tags:
+        - MBS Parameters Provisionings
+      responses:
+        '200':
+          description: >
+            OK. All the active MBS Parameters Provisioning resources managed by the NEF are
+            returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MbsPpData'
+                minItems: 1
+        '307':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '406':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/406'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+    post:
+      summary: Request the creation of a new MBS Parameters Provisioning.
+      tags:
+        - MBS Parameters Provisioning
+      operationId: CreateMBSParamsProvisioning
+      requestBody:
+        description: Representation of the new MBS Parameters Provisioning to be created at the NEF.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MbsPpData'
+      responses:
+        '201':
+          description: >
+            Created. Successful creation of a new Individual MBS Parameters Provisioning resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MbsPpData'
+          headers:
+            Location:
+              description: >
+                Contains the URI of the newly created resource, according to the structure
+                {apiRoot}/3gpp-mbs-session/v1/mbs-pp/{mbsPpId}
+              required: true
+              schema:
+                type: string
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+  /mbs-pp/{mbsPpId}:
+    parameters:
+      - name: mbsPpId
+        in: path
+        description: >
+          Represents the identifier of the Individual MBS Parameters Provisioning resource.
+        required: true
+        schema:
+          type: string
+
+    get:
+      summary: Request to retrieve an existing Individual MBS Parameters Provisioning resource.
+      operationId: GetIndMBSParamsProvisioning
+      tags:
+        - Individual MBS Parameters Provisioning
+      responses:
+        '200':
+          description: >
+            OK. Successful retrieval of the requested Individual MBS Parameters Provisioning.
+            resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MbsPpData'
+        '307':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '406':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/406'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+    put:
+      summary: Request the update of an existing Individual MBS Parameters Provisioning resource.
+      tags:
+        - Individual MBS Parameters Provisioning
+      operationId: UpdateIndMBSParamsProvisioning
+      requestBody:
+        description: >
+          Represents the updated Individual MBS Parameters Provisioning resource representation.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MbsPpData'
+      responses:
+        '200':
+          description: >
+            OK. The Individual MBS Parameters Provisioning resource is successfully updated and a
+            representation of the updated resource is returned in the response body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MbsPpData'
+        '204':
+          description: >
+            No Content. The Individual MBS Parameters Provisioning resource is successfully updated.
+        '307':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+    patch:
+      summary: Request the modification of an existing Individual MBS Parameters Provisioning resource.
+      tags:
+        - Individual MBS Parameters Provisioning
+      operationId: ModifyIndMBSParamsProvisioning
+      requestBody:
+        description: >
+          Contains the parameters to request the modification of the Individual Parameters
+          Provisioning resource.
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/MbsPpDataPatch'
+      responses:
+        '200':
+          description: >
+            OK. The Individual MBS Parameters Provisioning resource is successfully modified and a
+            representation of the updated resource is returned in the response body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MbsPpData'
+        '204':
+          description: >
+            No Content. The Individual MBS Parameters Provisioning resource is successfully
+            modified.
+        '307':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'TS29122_CommonData.yaml#/components/responses/default'
+
+    delete:
+      summary: Request the deletion of an existing Individual MBS Parameters Provisioning resource.
+      tags:
+        - Individual MBS Parameters Provisioning
+      operationId: DeleteIndMBSParamsProvisioning
+      responses:
+        '204':
+          description: >
+            No Content. The Individual MBS Parameters Provisioning resource is successfully
+            deleted.
         '307':
           $ref: 'TS29122_CommonData.yaml#/components/responses/307'
         '308':
@@ -371,23 +657,32 @@ components:
 # STRUCTURED DATA TYPES
 #
     MbsSessionCreateReq:
-      description: Data within the MBS Session Create Request.
+      description: Represents the parameters to request MBS Session creation.
       type: object
       properties:
         afId:
           type: string
         mbsSession:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSession'
+        suppFeat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
+        - afId
         - mbsSession
+
     MbsSessionCreateRsp:
-      description: Data within the MBS Session Create Response.
+      description: Represents the parameters to be returned in an MBS Session creation response..
       type: object
       properties:
         mbsSession:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSession'
+        eventList:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSessionEventReportList'
+        suppFeat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - mbsSession
+
     MbsSessionSubsc:
       description: Represents an MBS Session Subscription.
       type: object
@@ -396,14 +691,64 @@ components:
           type: string
         subscription:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSessionSubscription'
+        subscriptionId:
+          type: string
       required:
+        - afId
         - subscription
+
     MbsSessionStatusNotif:
       description: Represents an MBS Session Status notification.
       type: object
       properties:
         eventList:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSessionEventReportList'
+      required:
+        - eventList
+
+    MbsPpData:
+      description: Represents MBS Parameters Provisioning data.
+      type: object
+      properties:
+        afId:
+          type: string
+        mbsSessAuthData:
+          $ref: '#/components/schemas/MbsSessAuthData'
+        suppFeat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+      required:
+        - afId
+
+    MbsSessAuthData:
+      description: Represents the MBS Session Authorization data.
+      type: object
+      properties:
+        extGroupId:
+          $ref: 'TS29122_CommonData.yaml#/components/schemas/ExternalGroupId'
+        gpsisList:
+          type: object
+          additionalProperties:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
+          minProperties: 1
+          description: >
+            Represents the list of the GPSI(s) of the member UE(s) constituting the multicast MBS
+            group. Any
+            value of type can be used as a key of the map.
+        mbsSessionIdList:
+          $ref: 'TS29503_Nudm_PP.yaml#/components/schemas/5MbsAuthorizationInfo'
+      required:
+        - extGroupId
+        - mbsSessionIdList
+
+    MbsPpDataPatch:
+      description: >
+        Represents the requested modification to existing MBS Parameters Provisioning data.
+      type: object
+      properties:
+        mbsSessAuthData:
+          $ref: '#/components/schemas/MbsSessAuthData'
+        suppFeat:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
 #
 # SIMPLE DATA TYPES

@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: Ntsctsf_ASTI Service API
-  version: 1.0.0
+  version: 1.1.0-alpha.1
   description: |
     TSCTSF  Access Stratum time distribution configuration Service.  
     © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
@@ -10,7 +10,7 @@ info:
 
 externalDocs:
   description: >
-    3GPP TS 29.565 V17.0.0; 5G System; Time Sensitive Communication and
+    3GPP TS 29.565 V18.0.0; 5G System; Time Sensitive Communication and
     Time Synchronization Function Services; Stage 3.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.565/'
 
@@ -61,7 +61,7 @@ paths:
         '401':
           $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
@@ -74,6 +74,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -106,7 +108,7 @@ paths:
         '401':
           $ref: 'TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'TS29571_CommonData.yaml#/components/responses/404'
         '411':
@@ -119,6 +121,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -174,6 +178,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -209,6 +215,8 @@ paths:
           $ref: 'TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -237,8 +245,15 @@ components:
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
           minItems: 1
+        gpsis:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
+          minItems: 1
         interGrpId:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/GroupId'
+        exterGrpId:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExternalGroupId'
         asTimeDisParam:
           $ref: '#/components/schemas/AsTimeDistributionParam'
         suppFeat:
@@ -248,6 +263,8 @@ components:
       oneOf:
         - required: [supis]
         - required: [interGrpId]
+        - required: [gpsis]
+        - required: [exterGrpId]
 
     AsTimeDistributionParam:
       description: Contains the 5G access stratum time distribution parameters.
@@ -274,8 +291,14 @@ components:
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
           minItems: 1
-      required:
-        - supis
+        gpsis:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
+          minItems: 1
+      oneOf:
+        - required: [supis]
+        - required: [gpsis]
 
     StatusResponseData:
       description: >
@@ -287,6 +310,11 @@ components:
           type: array
           items:
             $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+          minItems: 1
+        inactiveGpsis:
+          type: array
+          items:
+            $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
           minItems: 1
         activeUes:
           type: array
@@ -302,5 +330,10 @@ components:
       properties:
         supi:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+        gpsi:
+          $ref: 'TS29571_CommonData.yaml#/components/schemas/Gpsi'
         timeSyncErrBdgt:
           $ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'
+      oneOf:
+        - required: [supi]
+        - required: [gpsi]
