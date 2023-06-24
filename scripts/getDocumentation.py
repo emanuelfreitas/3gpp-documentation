@@ -87,6 +87,9 @@ def getAPIFromGithub():
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
 
+shutil.rmtree("../apis")
+os.makedirs("../apis")
+
 for doc in configuration:
     directoryName = doc["id"] + " - " + doc["name"]
     print(directoryName)
@@ -113,7 +116,8 @@ for doc in configuration:
 
         filesInDir = os.listdir(directory)
 
-        getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/"        
+        getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/"
+        print(getSeriesURL)
         idArray = re.findall(r"etsi_ts\/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99\/1" +str(serie) + str(docId) + "\/"+ str(relase).zfill(2) + "\.([\w+|\.]+)\/", str(getURLAsString(getSeriesURL)))
         
         if(len(idArray) == 0): 
@@ -123,12 +127,23 @@ for doc in configuration:
         id = idArray[len(idArray)-1]
 
         getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/" + str(relase).zfill(2) + "." + str(id) + "/"
+        print(getSeriesURL)
         pdfFile = re.findall(r"\/(\w+).pdf", getURLAsString(getSeriesURL))
-        
+        zipFile = re.findall(r"\/(\w+).zip", getURLAsString(getSeriesURL))
         if(len(pdfFile) == 0):
             os.rmdir(directory)
             continue
         pdf = pdfFile[0]
+        print("zipFile:" + str(zipFile))
+        if(len(zipFile) > 0):
+            zipF = zipFile[0]
+            zipURL = getSeriesURL + "/" + str(zipF) + ".zip"
+            resp = urllib.request.urlopen(zipURL)
+            myzip = zipfile.ZipFile(io.BytesIO(resp.read()))
+            for line in myzip.namelist():
+                if line.startswith('TS') and line.endswith('yaml'):
+                    myzip.extract(line, '../apis')
+
         if str(pdf)+".pdf" in filesInDir:
             filesInDir.remove(str(pdf)+".pdf")
         else:
@@ -148,8 +163,7 @@ for doc in configuration:
     if lastRelease != 0:
         release_documents[doc["id"]] = baseGitURL + releaseDoc.replace(" ", "%20")
 
-shutil.rmtree("../apis")
-os.makedirs("../apis")
+
 
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-18/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-17/OpenAPI/", r"OpenAPI\/(\w+).yaml")
