@@ -60,7 +60,7 @@ def getDigit(val):
     else: return (ord(val) - 87) 
 
 def getAPI(getOpenAPI, regrularExpression):
-    
+    print("getAPI:" + str(getOpenAPI))
     urlAPI = re.findall(regrularExpression, str(getURLAsString(getOpenAPI)))
     for url in urlAPI:
         getOpenAPIFile = getOpenAPI + url + ".yaml"
@@ -69,8 +69,10 @@ def getAPI(getOpenAPI, regrularExpression):
         open("../apis/" + url + ".yaml", 'wb').write(getURLAsString(getOpenAPIFile))
 
         api_urls[url] = getAPIURL(url)
+    print("getAPI Done")
 
 def getAPIFromGithub():
+    print("getAPIFromGithub starting")
     fileList = getURLAsJSON("https://api.github.com/repos/jdegre/5GC_APIs/git/trees/Rel-17?recursive=1")
 
     for entry in fileList["tree"]:
@@ -81,6 +83,7 @@ def getAPIFromGithub():
         open("../apis/" + filename, 'wb').write(getURL(urlfile))
 
         api_urls[filename.replace(".yaml", "")] = getAPIURL(filename.replace(".yaml", ""))
+    print("getAPIFromGithub end")
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
 
@@ -152,7 +155,7 @@ getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-18/OpenAPI/", r"OpenAPI\/(\w+).
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-17/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 
-getAPIFromGithub()
+##getAPIFromGithub()
 
 readme_template = env.get_template('README.j2')
 output = readme_template.render(release_documents=release_documents,api_urls=api_urls)
