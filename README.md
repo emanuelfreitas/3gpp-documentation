@@ -30,7 +30,7 @@
 
 ###### Common APIs
 * [TS 29.571 Common Data Types](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml)
-* [TS 29.122 Common Data Types]()
+* [TS 29.122 Common Data Types](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml)
 
 ### Architecture <a name="5GArchitecture"></a>
 #### 5G System architecture
@@ -88,8 +88,8 @@
 | [CHF](#CHF)     | PCF          | Nchf_SpendingLimitControl | [TS 29.594](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-17/ts_129594v170500p.pdf) | [Spending Limit Control](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29594_Nchf_SpendingLimitControl.yaml) |
 |                 | NF           | Nchf_ConvergedCharging    | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Converged Charging](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_ConvergedCharging.yaml) |
 |                 | NF           | Nchf_OfflineOnlyCharging  | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Offline Only Charging](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_OfflineOnlyCharging.yaml) |
-| [UDR](#UDR)     | PCF          | Nudr_DataRepository       | [TS 29.504](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.504%20-%20Unified%20Data%20Repository%20Services/Rel-17/ts_129504v171000p.pdf) | [Unified Data Repository Service]() |
-| [BSF](#BSF)     | PCF, NEF, AF | Nbsf_Management           | [TS 32.521]() | [Binding Support Management Service API](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29521_Nbsf_Management.yaml) |
+| [UDR](#UDR)     | PCF          | Nudr_DataRepository       | [TS 29.504](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.504%20-%20Unified%20Data%20Repository%20Services/Rel-17/ts_129504v171000p.pdf) | [Unified Data Repository Service](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29504_Nudr_DR.yaml) |
+| [BSF](#BSF)     | PCF, NEF, AF | Nbsf_Management           | [TS 29.521](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.521%20-%20Binding%20Support%20Management%20Service/Rel-17/ts_129521v170800p.pdf) | [Binding Support Management Service API](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29521_Nbsf_Management.yaml) |
 | [NRF](#NRF)     | ALL NF       | Nnrf_NFManagement         | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFManagement Service](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml) |
 |                 |              | Nnrf_NFDiscovery          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFDiscovery Service](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFDiscovery.yaml) |
 |                 |              | Nnrf_AccessToken          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF OAuth2 Authorization](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_AccessToken.yaml) |
@@ -99,10 +99,10 @@
 #### AMF (Access and Mobility Management Function)<a name="AMF"></a>
 
 ###### APIs
-* [Communication]()
-* [Event Exposure]()
-* [Location]()
-* [MT]()
+* [Communication](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_Communication.yaml)
+* [Event Exposure](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_EventExposure.yaml)
+* [Location](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_Location.yaml)
+* [MT](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_MT.yaml)
 
 #### AUSF (Authentication Server Function)<a name="AUSF"></a>
 * [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services/Rel-17/ts_129509v170800p.pdf)
@@ -155,7 +155,7 @@
 * [TS 29.519 - Usage of the Unified Data Repository service for Policy Data, Application Data and Structured Data for Exposure](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.519%20-%20Usage%20of%20the%20Unified%20Data%20Repository%20service%20for%20Policy%20Data,%20Application%20Data%20and%20Structured%20Data%20for%20Exposure/Rel-17/ts_129519v171000p.pdf)
 ###### APIs
 * Data Repository
-  * [Subscription Data]()
+  * [Subscription Data](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml)
   * [Policy Data](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml)
   * [Exposure Data](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml)
   * [Application Data](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml)

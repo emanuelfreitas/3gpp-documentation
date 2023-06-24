@@ -35,7 +35,10 @@
     "id": "TS 23.503",
     "name": "Policy and Charging Control Framework for the 5G System"
   },
-
+  {
+    "id": "TS 29.122",
+    "name": "T8 reference point for Northbound APIs"
+  },
   {
     "id": "TS 29.211",
     "name": "Rx Interface and Rx-Gx signalling flows"
@@ -74,6 +77,10 @@
     "name": "Unified Data Management Services"
   },
   {
+    "id": "TS 29.505",
+    "name": "5G System; Usage of the Unified Data Repository services for Subscription Data; Stage 3"
+  },
+  {
     "id": "TS 29.504",
     "name": "Unified Data Repository Services"
   },
@@ -104,6 +111,10 @@
   {
     "id": "TS 29.514",
     "name": "Policy Authorization Service"
+  },
+  {
+    "id": "TS 29.518",
+    "name": "5G System; Access and Mobility Management Services; Stage 3"
   },
   {
     "id": "TS 29.519",
