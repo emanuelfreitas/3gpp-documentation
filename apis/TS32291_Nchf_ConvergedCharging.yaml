@@ -2367,7 +2367,6 @@ components:
             - PNM
             - CRS
             - ECT
-        - type: string
     SupplementaryServiceMode:
       anyOf:
         - type: string

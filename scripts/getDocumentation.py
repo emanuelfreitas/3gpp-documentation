@@ -170,11 +170,6 @@ for doc in configuration:
         release_documents[doc["id"]] = baseGitURL + releaseDoc.replace(" ", "%20")
 
 
-
-getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-18/OpenAPI/", r"OpenAPI\/(\w+).yaml")
-getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-17/OpenAPI/", r"OpenAPI\/(\w+).yaml")
-getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/", r"OpenAPI\/(\w+).yaml")
-
 ##getAPIFromGithub()
 
 readme_template = env.get_template('README.j2')
