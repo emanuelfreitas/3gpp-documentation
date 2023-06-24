@@ -82,7 +82,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -102,31 +102,31 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '406':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/406'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/406'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     options:
       summary: Discover communication options supported by NRF for NF Instances
       operationId: OptionsNFInstances
@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -168,7 +168,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -176,25 +176,25 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '405':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/405'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/405'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
   /nf-instances/{nfInstanceID}:
     get:
@@ -215,12 +215,12 @@ paths:
           description: Unique ID of the NF Instance
           required: true
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         - name: requester-features
           in: query
           description: Features supported by the NF Service Consumer
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       responses:
         '200':
           description: Expected response to a valid request
@@ -238,7 +238,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -250,7 +250,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -258,31 +258,31 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '406':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/406'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/406'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     put:
       summary: Register a new NF Instance
       operationId: RegisterNFInstance
@@ -294,7 +294,7 @@ paths:
           required: true
           description: Unique ID of the NF Instance to register
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         - name: Content-Encoding
           in: header
           description: Content-Encoding, described in IETF RFC 7231
@@ -362,7 +362,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -374,7 +374,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -382,29 +382,29 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     patch:
       summary: Update NF Instance profile
       operationId: UpdateNFInstance
@@ -416,7 +416,7 @@ paths:
           required: true
           description: Unique ID of the NF Instance to update
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         - name: Content-Encoding
           in: header
           description: Content-Encoding, described in IETF RFC 7231
@@ -438,7 +438,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PatchItem'
               minItems: 1
         required: true
       responses:
@@ -473,7 +473,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -485,7 +485,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -493,31 +493,31 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '409':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/409'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/409'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '412':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/412'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/412'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     delete:
       summary: Deregisters a given NF Instance
       operationId: DeregisterNFInstance
@@ -529,7 +529,7 @@ paths:
           required: true
           description: Unique ID of the NF Instance to deregister
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
       responses:
         '204':
           description: Expected response to a successful deregistration
@@ -538,7 +538,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -550,7 +550,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -558,25 +558,25 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
   /subscriptions:
     post:
@@ -629,7 +629,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -641,7 +641,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -649,29 +649,29 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
       callbacks:
         onNFStatusEvent:
           '{$request.body#/nfStatusNotificationUri}':
@@ -701,7 +701,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
                   headers:
                     Location:
                       description: >
@@ -715,7 +715,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
                   headers:
                     Location:
                       description: >
@@ -725,29 +725,29 @@ paths:
                       schema:
                         type: string
                 '400':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
                 '401':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
                 '403':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
                 '404':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
                 '411':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
                 '413':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
                 '415':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
                 '429':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
                 '501':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
                 '503':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
   /subscriptions/{subscriptionID}:
     patch:
@@ -779,7 +779,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/PatchItem'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PatchItem'
         required: true
       responses:
         '200':
@@ -809,7 +809,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -821,7 +821,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -829,27 +829,27 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     delete:
       summary: Deletes a subscription
       operationId: RemoveSubscription
@@ -871,7 +871,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -883,7 +883,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -891,29 +891,29 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
 components:
 
@@ -943,7 +943,7 @@ components:
         - required: [ ipv6Addresses ]
       properties:
         nfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         nfInstanceName:
           type: string
         nfType:
@@ -961,17 +961,17 @@ components:
         plmnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         snpnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         sNssais:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         perPlmnSnssaiList:
           type: array
@@ -984,28 +984,28 @@ components:
             type: string
           minItems: 1
         fqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         ipv4Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         allowedPlmns:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         allowedSnpns:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         allowedNfTypes:
           type: array
@@ -1020,7 +1020,7 @@ components:
         allowedNssais:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         priority:
           type: integer
@@ -1035,7 +1035,7 @@ components:
           minimum: 0
           maximum: 100
         loadTimeStamp:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         locality:
           type: string
         udrInfo:
@@ -1171,7 +1171,7 @@ components:
         customInfo:
           type: object
         recoveryTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         nfServicePersistence:
           type: boolean
           default: false
@@ -1207,7 +1207,7 @@ components:
         nfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         servingScope:
           type: array
@@ -1224,14 +1224,14 @@ components:
           description: A map (list of key-value pairs) where NfSetId serves as key of DateTime
           type: object
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
           minProperties: 1
         serviceSetRecoveryTimeList:
           description: >
             A map (list of key-value pairs) where NfServiceSetId serves as key of DateTime
           type: object
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
           minProperties: 1
         scpDomains:
           type: array
@@ -1315,7 +1315,7 @@ components:
         hniList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
           minItems: 1
         iwmscInfo:
           $ref: '#/components/schemas/IwmscInfo'
@@ -1343,13 +1343,13 @@ components:
             $ref: '#/components/schemas/NFServiceVersion'
           minItems: 1
         scheme:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/UriScheme'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/UriScheme'
         nfServiceStatus:
           $ref: '#/components/schemas/NFServiceStatus'
         fqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         interPlmnFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         ipEndPoints:
           type: array
           items:
@@ -1365,12 +1365,12 @@ components:
         allowedPlmns:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         allowedSnpns:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         allowedNfTypes:
           type: array
@@ -1385,7 +1385,7 @@ components:
         allowedNssais:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         allowedOperationsPerNfType:
           description: A map (list of key-value pairs) where NF Type serves as key
@@ -1418,20 +1418,20 @@ components:
           minimum: 0
           maximum: 100
         loadTimeStamp:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         recoveryTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         nfServiceSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
           minItems: 1
         sNssais:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         perPlmnSnssaiList:
           type: array
@@ -1530,9 +1530,9 @@ components:
       type: object
       properties:
         ipv4Address:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         ipv6Address:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
         transport:
           $ref: '#/components/schemas/TransportProtocol'
         port:
@@ -1552,7 +1552,7 @@ components:
         nfStatusNotificationUri:
           type: string
         reqNfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         subscrCond:
           $ref: '#/components/schemas/SubscrCond'
         subscriptionId:
@@ -1560,26 +1560,26 @@ components:
           pattern: '^([0-9]{5,6}-)?[^-]+$'
           readOnly: true
         validityTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         reqNotifEvents:
           type: array
           items:
             $ref: '#/components/schemas/NotificationEventType'
           minItems: 1
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         nid:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Nid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Nid'
         notifCondition:
            $ref: '#/components/schemas/NotifCondition'
         reqNfType:
           $ref: '#/components/schemas/NFType'
         reqNfFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         reqSnssais:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         reqPerPlmnSnssais:
           type: array
@@ -1589,12 +1589,12 @@ components:
         reqPlmnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         reqSnpnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         servingScope:
           type: array
@@ -1604,18 +1604,18 @@ components:
         requesterFeatures:
           writeOnly: true
           allOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         nrfSupportedFeatures:
           readOnly: true
           allOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         hnrfUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         onboardingCapability:
           type: boolean
           default: false
         targetHni:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         preferredLocality:
           type: string
 
@@ -1648,7 +1648,7 @@ components:
         - nfInstanceId
       properties:
         nfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
 
     NfInstanceIdListCond:
       description: Subscription to a list of NF Instances
@@ -1659,7 +1659,7 @@ components:
         nfInstanceIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
           minItems: 1
 
     NfTypeCond:
@@ -1708,9 +1708,9 @@ components:
         - required: [ amfRegionId ]
       properties:
         amfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfSetId'
         amfRegionId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfRegionId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfRegionId'
 
     GuamiListCond:
       description: Subscription to a set of AMFs, based on their GUAMIs
@@ -1721,7 +1721,7 @@ components:
         guamiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
 
     NetworkSliceCond:
       description: Subscription to a set of NFs, based on the slices (S-NSSAI and NSI) they support
@@ -1732,7 +1732,7 @@ components:
         snssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
         nsiList:
           type: array
           items:
@@ -1755,7 +1755,7 @@ components:
             - CHF
             - HSS
         nfGroupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
 
     NfGroupListCond:
       description: Subscription to a set of NFs based on their Group Ids
@@ -1780,7 +1780,7 @@ components:
         nfGroupIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
           minItems: 1
 
     NotifCondition:
@@ -1807,7 +1807,7 @@ components:
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         supiRanges:
           type: array
           items:
@@ -1878,9 +1878,9 @@ components:
       type: object
       properties:
         start:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/GroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/GroupId'
         end:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/GroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/GroupId'
         pattern:
           type: string
 
@@ -1912,7 +1912,7 @@ components:
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         supiRanges:
           type: array
           items:
@@ -1950,7 +1950,7 @@ components:
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         supiRanges:
           type: array
           items:
@@ -1977,18 +1977,18 @@ components:
         - guamiList
       properties:
         amfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfSetId'
         amfRegionId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfRegionId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfRegionId'
         guamiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -1998,12 +1998,12 @@ components:
         backupInfoAmfFailure:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
           minItems: 1
         backupInfoAmfRemoval:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Guami'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
           minItems: 1
         n2InterfaceAmfInfo:
           $ref: '#/components/schemas/N2InterfaceAmfInfo'
@@ -2027,7 +2027,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -2035,16 +2035,16 @@ components:
             $ref: '#/components/schemas/TaiRange'
           minItems: 1
         pgwFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         pgwIpAddrList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/IpAddr'
           minItems: 1
         accessType:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
           minItems: 1
         priority:
           type: integer
@@ -2055,7 +2055,7 @@ components:
         pgwFqdnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
           minItems: 1
         smfOnboardingCapability:
           type: boolean
@@ -2075,7 +2075,7 @@ components:
         - dnnSmfInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnSmfInfoList:
           type: array
           items:
@@ -2090,13 +2090,13 @@ components:
       properties:
         dnn:
           anyOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
         dnaiList:
           type: array
           items:
             anyOf:
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
               - $ref: '#/components/schemas/WildcardDnai'
           minItems: 1
 
@@ -2127,17 +2127,17 @@ components:
         pduSessionTypes:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionType'
           minItems: 1
         atsssCapability:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/AtsssCapability'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AtsssCapability'
         ueIpAddrInd:
           type: boolean
           default: false
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -2174,7 +2174,7 @@ components:
         - dnnUpfInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnUpfInfoList:
           type: array
           items:
@@ -2191,16 +2191,16 @@ components:
         - dnn
       properties:
         dnn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
         dnaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
           minItems: 1
         pduSessionTypes:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionType'
           minItems: 1
         ipv4AddressRanges:
           type: array
@@ -2215,12 +2215,12 @@ components:
         ipv4IndexList:
           type: array
           items:
-            $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/IpIndex'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_SDM.yaml#/components/schemas/IpIndex'
           minItems: 1
         ipv6IndexList:
           type: array
           items:
-            $ref: 'TS29503_Nudm_SDM.yaml#/components/schemas/IpIndex'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_SDM.yaml#/components/schemas/IpIndex'
           minItems: 1
         dnaiNwInstanceList:
           description: >
@@ -2243,15 +2243,15 @@ components:
         ipv4EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         endpointFqdn:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         networkInstance:
           type: string
 
@@ -2277,15 +2277,15 @@ components:
         ipv4EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         endpointFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
 
     TngfInfo:
       description: Infomation of the TNGF endpoints
@@ -2294,26 +2294,26 @@ components:
         ipv4EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         endpointFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
 
     PcfInfo:
       description: Information of a PCF NF Instance
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         dnnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
           minItems: 1
         supiRanges:
           type: array
@@ -2326,9 +2326,9 @@ components:
             $ref: '#/components/schemas/IdentityRange'
           minItems: 1
         rxDiamHost:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
         rxDiamRealm:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
         v2xSupportInd:
           type: boolean
           default: false
@@ -2347,7 +2347,7 @@ components:
         dnnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
           minItems: 1
         ipDomainList:
           type: array
@@ -2365,11 +2365,11 @@ components:
             $ref: '#/components/schemas/Ipv6PrefixRange'
           minItems: 1
         rxDiamHost:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
         rxDiamRealm:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         supiRanges:
           type: array
           items:
@@ -2403,29 +2403,29 @@ components:
             $ref: '#/components/schemas/PlmnRange'
           minItems: 1
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         primaryChfInstance:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         secondaryChfInstance:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
 
     Ipv4AddressRange:
       description: Range of IPv4 addresses
       type: object
       properties:
         start:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         end:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
 
     Ipv6PrefixRange:
       description: Range of IPv6 prefixes
       type: object
       properties:
         start:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
         end:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
 
     DefaultNotificationSubscription:
       description: >
@@ -2439,11 +2439,11 @@ components:
         notificationType:
           $ref: '#/components/schemas/NotificationType'
         callbackUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         n1MessageClass:
-          $ref: 'TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_Communication.yaml#/components/schemas/N1MessageClass'
         n2InformationClass:
-          $ref: 'TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_Communication.yaml#/components/schemas/N2InformationClass'
         versions:
           type: array
           items:
@@ -2454,7 +2454,7 @@ components:
         acceptedEncoding:
           type: string
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         serviceInfoList:
           description: >
             A map of service specific information. The name of the corresponding service (as
@@ -2471,7 +2471,7 @@ components:
         - nfSetId
       properties:
         nfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
 
     NfServiceSetCond:
       description: Subscription to a set of NFs based on their Service Set Id
@@ -2480,9 +2480,9 @@ components:
         - nfServiceSetId
       properties:
         nfServiceSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
         nfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
 
     UpfCond:
       description: >
@@ -2503,7 +2503,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
 
     NwdafCond:
@@ -2526,12 +2526,12 @@ components:
         snssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -2546,7 +2546,7 @@ components:
         servingNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         mlAnalyticsList:
           type: array
@@ -2569,12 +2569,12 @@ components:
         afEvents:
           type: array
           items:
-            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
           minItems: 1
         snssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         pfdData:
           $ref: '#/components/schemas/PfdData'
@@ -2669,7 +2669,7 @@ components:
         event:
           $ref: '#/components/schemas/NotificationEventType'
         nfInstanceUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         nfProfile:
           allOf:
             - $ref: '#/components/schemas/NFProfile'
@@ -2706,7 +2706,7 @@ components:
         profileChanges:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ChangeItem'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ChangeItem'
           minItems: 1
         conditionEvent:
           $ref: '#/components/schemas/ConditionEventType'
@@ -2735,7 +2735,7 @@ components:
         apiFullVersion:
           type: string
         expiry:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
 
     ServiceName:
       description: Service names known to NRF
@@ -2871,15 +2871,15 @@ components:
         ipv4EndpointAddress:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6EndpointAddress:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         amfName:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/AmfName'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfName'
 
     NFServiceStatus:
       description: Status of a given NF Service Instance of an NF Instance stored in NRF
@@ -2899,14 +2899,14 @@ components:
         - tacRangeList
       properties:
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         tacRangeList:
           type: array
           items:
             $ref: '#/components/schemas/TacRange'
           minItems: 1
         nid:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Nid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Nid'
 
     TacRange:
       description: Range of TACs (Tracking Area Codes)
@@ -2944,7 +2944,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/UdrInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedUdrInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -2955,7 +2955,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/UdrInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedUdmInfo:
@@ -2964,7 +2964,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/UdmInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedUdmInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -2975,7 +2975,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/UdmInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedAusfInfo:
@@ -2984,7 +2984,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/AusfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedAusfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -2995,7 +2995,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/AusfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedAmfInfo:
@@ -3004,7 +3004,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/AmfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedAmfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3015,7 +3015,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/AmfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedSmfInfo:
@@ -3024,7 +3024,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/SmfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedSmfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3035,7 +3035,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/SmfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedUpfInfo:
@@ -3044,7 +3044,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/UpfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedUpfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3055,7 +3055,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/UpfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedPcfInfo:
@@ -3064,7 +3064,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/PcfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedPcfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3075,7 +3075,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/PcfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedBsfInfo:
@@ -3084,7 +3084,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/BsfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedBsfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3095,7 +3095,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/BsfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedChfInfo:
@@ -3104,7 +3104,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/ChfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedChfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3115,7 +3115,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/ChfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedNefInfo:
@@ -3124,7 +3124,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/NefInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedNwdafInfo:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3132,7 +3132,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/NwdafInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedNwdafInfoList:
           type: object
@@ -3153,7 +3153,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/PcscfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedGmlcInfo:
@@ -3162,7 +3162,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/GmlcInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedLmfInfo:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3170,7 +3170,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/LmfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedNfInfo:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3187,7 +3187,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/HssInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedUdsfInfo:
@@ -3196,7 +3196,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/UdsfInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedUdsfInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3207,7 +3207,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/UdsfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedScpInfoList:
@@ -3216,7 +3216,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/ScpInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedSeppInfoList:
           description: A map (list of key-value pairs) where nfInstanceId serves as key
@@ -3224,7 +3224,7 @@ components:
           additionalProperties:
             anyOf:
               - $ref: '#/components/schemas/SeppInfo'
-              - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
           minProperties: 1
         servedAanfInfoList:
           description: A map (list of key-value pairs) where NF Instance Id serves as key
@@ -3235,7 +3235,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/AanfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
         served5gDdnmfInfo:
           type: object
@@ -3272,7 +3272,7 @@ components:
             additionalProperties:
               anyOf:
                 - $ref: '#/components/schemas/MbSmfInfo'
-                - $ref: 'TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
             minProperties: 1
           minProperties: 1
         servedTsctsfInfoList:
@@ -3316,14 +3316,14 @@ components:
         - sNssaiList
       properties:
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         sNssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
           minItems: 1
         nid:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Nid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Nid'
 
     NefInfo:
       description: Information of an NEF NF Instance
@@ -3353,7 +3353,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -3363,7 +3363,7 @@ components:
         dnaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
           minItems: 1
         unTrustAfInfoList:
           type: array
@@ -3396,17 +3396,17 @@ components:
         eventIds:
           type: array
           items:
-            $ref: 'TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId'
           minItems: 1
         nwdafEvents:
           type: array
           items:
-            $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -3416,11 +3416,11 @@ components:
         nwdafCapability:
           $ref: '#/components/schemas/NwdafCapability'
         analyticsDelay:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DurationSec'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
         servingNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         servingNfTypeList:
           type: array
@@ -3440,14 +3440,14 @@ components:
         servingClientTypes:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType'
           minItems: 1
         lmfId:
-          $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/LMFIdentification'
         servingAccessTypes:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
           minItems: 1
         servingAnNodeTypes:
           type: array
@@ -3457,12 +3457,12 @@ components:
         servingRatTypes:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RatType'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -3472,7 +3472,7 @@ components:
         supportedGADShapes:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/SupportedGADShapes'
           minItems: 1
 
     GmlcInfo:
@@ -3482,7 +3482,7 @@ components:
         servingClientTypes:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/ExternalClientType'
           minItems: 1
         gmlcNumbers:
           type: array
@@ -3500,7 +3500,7 @@ components:
         afEvents:
           type: array
           items:
-            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
           minItems: 1
         afIds:
           type: array
@@ -3520,36 +3520,36 @@ components:
         accessType:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/AccessType'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
           minItems: 1
         dnnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
           minItems: 1
         gmFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         gmIpv4Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         gmIpv6Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         mwFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         mwIpv4Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         mwIpv6Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         servedIpv4AddressRanges:
           type: array
@@ -3574,7 +3574,7 @@ components:
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         imsiRanges:
           type: array
           items:
@@ -3601,7 +3601,7 @@ components:
             $ref: '#/components/schemas/IdentityRange'
           minItems: 1
         hssDiameterAddress:
-          $ref: 'TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UECM.yaml#/components/schemas/NetworkNodeDiameterAddress'
 
     ImsiRange:
       description: >
@@ -3625,15 +3625,15 @@ components:
         ipv4EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6EndpointAddresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
           minItems: 1
         endpointFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
 
     VendorId:
       description: Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
@@ -3666,7 +3666,7 @@ components:
       type: object
       properties:
         groupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         supiRanges:
           type: array
           items:
@@ -3715,12 +3715,12 @@ components:
         ipv4Addresses:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
           minItems: 1
         ipv6Prefixes:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
           minItems: 1
         ipv4AddrRanges:
           type: array
@@ -3735,17 +3735,17 @@ components:
         servedNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         remotePlmnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         remoteSnpnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         ipReachability:
           $ref: '#/components/schemas/IpReachability'
@@ -3759,7 +3759,7 @@ components:
       type: object
       properties:
         scpFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         scpIpEndPoints:
           type: array
           items:
@@ -3800,7 +3800,7 @@ components:
       type: object
       properties:
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
     ConditionEventType:
       description: >
@@ -3847,12 +3847,12 @@ components:
         remotePlmnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         remoteSnpnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
 
     IpReachability:
@@ -3877,7 +3877,7 @@ components:
             List of the URI of NF instances. It has two members whose names are item and self.
             The item attribute contains an array of URIs.
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
           minProperties: 1
         totalItemCount:
           type: integer
@@ -3900,7 +3900,7 @@ components:
         - plmnId
       properties:
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
 
     WildcardDnai:
       description: Wildcard DNAI
@@ -3919,12 +3919,12 @@ components:
         servingNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -3955,12 +3955,12 @@ components:
         easdfN6IpAddressList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/IpAddr'
           minItems: 1
         upfN6IpAddressList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/IpAddr'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/IpAddr'
           minItems: 1
 
     SnssaiEasdfInfoItem:
@@ -3971,7 +3971,7 @@ components:
         - dnnEasdfInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnEasdfInfoList:
           type: array
           items:
@@ -3986,12 +3986,12 @@ components:
       properties:
         dnn:
           anyOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
         dnaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
           minItems: 1
 
     DccfInfo:
@@ -4006,12 +4006,12 @@ components:
         servingNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -4038,7 +4038,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -4083,7 +4083,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -4098,7 +4098,7 @@ components:
         servingNfSetIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
           minItems: 1
 
     MlAnalyticsInfo:
@@ -4108,17 +4108,17 @@ components:
         mlAnalyticsIds:
           type: array
           items:
-            $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
           minItems: 1
         snssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         trackingAreaList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
 
     MbSmfInfo:
@@ -4138,7 +4138,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -4166,9 +4166,9 @@ components:
           type: string
           pattern: '^[A-Fa-f0-9]{6}$'
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         nid:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Nid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Nid'
 
     MbsSession:
       description: MBS Session currently served by an MB-SMF
@@ -4177,11 +4177,11 @@ components:
         - mbsSessionId
       properties:
         mbsSessionId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsSessionId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MbsSessionId'
         mbsAreaSessions:
           description: A map (list of key-value pairs) where the key identifies an areaSessionId
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/MbsServiceAreaInfo'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MbsServiceAreaInfo'
           minProperties: 1
 
     SnssaiMbSmfInfoItem:
@@ -4192,7 +4192,7 @@ components:
         - dnnInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnInfoList:
           type: array
           items:
@@ -4207,8 +4207,8 @@ components:
       properties:
         dnn:
           anyOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
 
     TsctsfInfo:
       description: Information of a TSCTSF NF Instance
@@ -4248,7 +4248,7 @@ components:
         - dnnInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnInfoList:
           type: array
           items:
@@ -4263,8 +4263,8 @@ components:
       properties:
         dnn:
           anyOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
 
     MbUpfInfo:
       description: Information of an MB-UPF NF Instance
@@ -4290,7 +4290,7 @@ components:
         taiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
           minItems: 1
         taiRangeList:
           type: array
@@ -4333,7 +4333,7 @@ components:
         afEvents:
           type: array
           items:
-            $ref: 'TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AfEvent'
           minItems: 1
         appIds:
           type: array
@@ -4343,7 +4343,7 @@ components:
         internalGroupId:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/GroupId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/GroupId'
           minItems: 1
         mappingInd:
           type: boolean
@@ -4359,7 +4359,7 @@ components:
         - dnnInfoList
       properties:
         sNssai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
         dnnInfoList:
           type: array
           items:
@@ -4374,8 +4374,8 @@ components:
       properties:
         dnn:
           anyOf:
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
-            - $ref: 'TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
 
     CollocatedNfInstance:
       description: Information of an collocated NF Instance registered in the NRF
@@ -4385,7 +4385,7 @@ components:
         - nfType
       properties:
         nfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         nfType:
           $ref: '#/components/schemas/CollocatedNfType'
 
@@ -4407,12 +4407,12 @@ components:
         oauth2RequiredPlmnIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
         oauth2NotRequiredPlmnIdList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 1
 
     V2xCapability:
@@ -4521,4 +4521,4 @@ components:
             type: string
           minItems: 1
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'

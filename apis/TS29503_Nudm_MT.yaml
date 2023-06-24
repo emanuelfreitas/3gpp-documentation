@@ -36,7 +36,7 @@ paths:
           description: Identifier of the UE
           required: true
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
         - name: fields
           in: query
           description: attributes to be retrieved
@@ -52,7 +52,7 @@ paths:
           in: query
           description: Supported Features
           schema:
-             $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       responses:
         '200':
           description: Expected response to a valid request
@@ -61,15 +61,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/UeInfo'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           description: Unexpected error
   /{supi}/loc-info/provide-loc-info:
@@ -84,7 +84,7 @@ paths:
           description: Identifier of the UE
           required: true
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
       requestBody:
         content:
           application/json:
@@ -99,15 +99,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/LocationInfoResult'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           description: Unexpected error
 
@@ -132,9 +132,9 @@ components:
       type: object
       properties:
         tadsInfo:
-          $ref: 'TS29518_Namf_MT.yaml#/components/schemas/UeContextInfo'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_MT.yaml#/components/schemas/UeContextInfo'
         userState:
-          $ref: 'TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_EventExposure.yaml#/components/schemas/5GsUserState'
         5gSrvccInfo:
           $ref: '#/components/schemas/5GSrvccInfo'
 
@@ -147,9 +147,9 @@ components:
         ue5GSrvccCapability:
           type: boolean
         stnSr:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/StnSr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/StnSr'
         cMsisdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/CMsisdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/CMsisdn'
 
     LocationInfoRequest:
       description: Represents information to be sent in a location information request. It contains the requested information, i.e. current location, local time zone, RAT type, or serving node identity only.
@@ -171,36 +171,36 @@ components:
           type: boolean
           default: false
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
     LocationInfoResult:
       description: Represents the requested location information.
       type: object
       properties:
         vPlmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         amfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         smsfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         ncgi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ncgi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ncgi'
         ecgi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ecgi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
         tai:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Tai'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
         currentLoc:
           type: boolean
         geoInfo:
-          $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
         locationAge:
-          $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/AgeOfLocationEstimate'
         ratType:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RatType'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RatType'
         timezone:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TimeZone'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/TimeZone'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
 # SIMPLE TYPES:
 

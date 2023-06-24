@@ -26,211 +26,211 @@ security:
 
 paths:
   /subscription-data/{ueId}/authentication-data/authentication-subscription:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-subscription'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-subscription'
   /subscription-data/{ueId}/authentication-data/authentication-status:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status'
   /subscription-data/{ueId}/authentication-data/authentication-status/{servingNetworkName}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status~1%7BservingNetworkName%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1authentication-data~1authentication-status~1%7BservingNetworkName%7D'
   /subscription-data/{ueId}/ue-update-confirmation-data/sor-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1sor-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1sor-data'
   /subscription-data/{ueId}/ue-update-confirmation-data/upu-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1upu-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1upu-data'
   /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-cag:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-cag'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-cag'
   /subscription-data/{ueId}/ue-update-confirmation-data/subscribed-snssais:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-snssais'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ue-update-confirmation-data~1subscribed-snssais'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/am-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1am-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1am-data'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/smf-selection-subscription-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1smf-selection-subscription-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1smf-selection-subscription-data'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sm-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sm-data'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/lcs-bca-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1lcs-bca-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1lcs-bca-data'
   /subscription-data/{ueId}/context-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data'
   /subscription-data/{ueId}/context-data/amf-3gpp-access:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-3gpp-access'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-3gpp-access'
   /subscription-data/{ueId}/context-data/amf-non-3gpp-access:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-non-3gpp-access'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1amf-non-3gpp-access'
   /subscription-data/{ueId}/context-data/smf-registrations:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations'
   /subscription-data/{ueId}/context-data/smf-registrations/{pduSessionId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations~1%7BpduSessionId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smf-registrations~1%7BpduSessionId%7D'
   /subscription-data/{ueId}/operator-specific-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-specific-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-specific-data'
   /subscription-data/{ueId}/context-data/smsf-3gpp-access:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-3gpp-access'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-3gpp-access'
   /subscription-data/{ueId}/context-data/smsf-non-3gpp-access:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-non-3gpp-access'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1smsf-non-3gpp-access'
   /subscription-data/{ueId}/context-data/location:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1location'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1location'
   /subscription-data/{ueId}/context-data/ip-sm-gw:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ip-sm-gw'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ip-sm-gw'
   /subscription-data/{ueId}/context-data/mwd:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1mwd'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1mwd'
   /subscription-data/{ueId}/context-data/roaming-information:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1roaming-information'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1roaming-information'
   /subscription-data/{ueId}/context-data/pei-info:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1pei-info'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1pei-info'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-mng-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-mng-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-mng-data'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sms-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1sms-data'
   /subscription-data/{ueId}/lcs-privacy-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-privacy-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-privacy-data'
   /subscription-data/{ueId}/lcs-mo-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-mo-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-mo-data'
   /subscription-data/{ueId}/pp-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data'
   /subscription-data/{ueId}/context-data/ee-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions'
   /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D'
   /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/amf-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'
   /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/smf-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'
   /subscription-data/{ueId}/context-data/ee-subscriptions/{subsId}/hss-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'
   /subscription-data/group-data/{ueGroupId}/ee-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions'
   /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D'
   /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/amf-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1amf-subscriptions'
   /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/smf-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1smf-subscriptions'
   /subscription-data/group-data/{ueGroupId}/ee-subscriptions/{subsId}/hss-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-subscriptions~1%7BsubsId%7D~1hss-subscriptions'
   /subscription-data/group-data/{ueGroupId}/ee-profile-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-profile-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1%7BueGroupId%7D~1ee-profile-data'
   /subscription-data/group-data/5g-vn-groups:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups'
   /subscription-data/group-data/5g-vn-groups/{externalGroupId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1%7BexternalGroupId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1%7BexternalGroupId%7D'
   /subscription-data/group-data/5g-vn-groups/internal:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1internal'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1internal'
   /subscription-data/group-data/5g-vn-groups/pp-profile-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1pp-profile-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~15g-vn-groups~1pp-profile-data'
   /subscription-data/{ueId}/ee-profile-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ee-profile-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ee-profile-data'
   /subscription-data/{ueId}/context-data/sdm-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions'
   /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D'
   /subscription-data/{ueId}/context-data/nidd-authorizations:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1nidd-authorizations'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1nidd-authorizations'
   /subscription-data/{ueId}/context-data/sdm-subscriptions/{subsId}/hss-sdm-subscriptions:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D~1hss-sdm-subscriptions'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1sdm-subscriptions~1%7BsubsId%7D~1hss-sdm-subscriptions'
   /subscription-data/shared-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data'
   /subscription-data/shared-data/{sharedDataId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data~1%7BsharedDataId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1shared-data~1%7BsharedDataId%7D'
   /subscription-data/subs-to-notify:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify'
   /subscription-data/subs-to-notify/{subsId}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1subs-to-notify~1%7BsubsId%7D'
   /subscription-data/{ueId}/{servingPlmnId}/provisioned-data/trace-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1trace-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1%7BservingPlmnId%7D~1provisioned-data~1trace-data'
   /subscription-data/{ueId}/identity-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1identity-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1identity-data'
   /subscription-data/{ueId}/operator-determined-barring-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-determined-barring-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1operator-determined-barring-data'
   /subscription-data/{ueId}/nidd-authorization-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1nidd-authorization-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1nidd-authorization-data'
   /subscription-data/{ueId}/service-specific-authorization-data/{serviceType}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1service-specific-authorization-data~1%7BserviceType%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1service-specific-authorization-data~1%7BserviceType%7D'
   /subscription-data/{ueId}/v2x-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1v2x-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1v2x-data'
   /subscription-data/{ueId}/pp-profile-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-profile-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-profile-data'
   /subscription-data/{ueId}/coverage-restriction-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1coverage-restriction-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1coverage-restriction-data'
   /subscription-data/group-data/group-identifiers:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1group-identifiers'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1group-data~1group-identifiers'
   /subscription-data/{ueId}/prose-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1prose-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1prose-data'
   /subscription-data/{ueId}/pp-data-store:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data-store'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data-store'
   /subscription-data/{ueId}/context-data/service-specific-authorizations/{serviceType}:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1service-specific-authorizations~1%7BserviceType%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1context-data~1service-specific-authorizations~1%7BserviceType%7D'
   /subscription-data/{ueId}/5mbs-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~15mbs-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~15mbs-data'
   /subscription-data/{ueId}/uc-data:
-    $ref: 'TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1uc-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1uc-data'
   /policy-data/ues/{ueId}:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D'
   /policy-data/ues/{ueId}/am-data:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1am-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1am-data'
   /policy-data/ues/{ueId}/ue-policy-set:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1ue-policy-set'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1ue-policy-set'
   /policy-data/ues/{ueId}/sm-data:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data'
   /policy-data/ues/{ueId}/sm-data/{usageMonId}:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data~1%7BusageMonId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1sm-data~1%7BusageMonId%7D'
   /policy-data/sponsor-connectivity-data/{sponsorId}:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1sponsor-connectivity-data~1%7BsponsorId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1sponsor-connectivity-data~1%7BsponsorId%7D'
   /policy-data/bdt-data:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data'
   /policy-data/bdt-data/{bdtReferenceId}:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data~1%7BbdtReferenceId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1bdt-data~1%7BbdtReferenceId%7D'
   /policy-data/subs-to-notify:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify'
   /policy-data/subs-to-notify/{subsId}:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1subs-to-notify~1%7BsubsId%7D'
   /policy-data/ues/{ueId}/operator-specific-data:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1operator-specific-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D~1operator-specific-data'
   /application-data/pfds:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1pfds'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1pfds'
   /application-data/pfds/{appId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1pfds~1%7BappId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1pfds~1%7BappId%7D'
   /application-data/influenceData:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/influenceData/{influenceId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1%7BinfluenceId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1%7BinfluenceId%7D'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /policy-data/plmns/{plmnId}/ue-policy-set:
-    $ref: 'TS29519_Policy_Data.yaml#/paths/~1policy-data~1plmns~1%7BplmnId%7D~1ue-policy-set'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1plmns~1%7BplmnId%7D~1ue-policy-set'
   /application-data/bdtPolicyData:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/bdtPolicyData/{bdtPolicyId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData~1%7BbdtPolicyId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1bdtPolicyData~1%7BbdtPolicyId%7D'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/iptvConfigData:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/iptvConfigData/{configurationId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData~1%7BconfigurationId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1iptvConfigData~1%7BconfigurationId%7D'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/serviceParamData:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/serviceParamData/{serviceParamId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData~1%7BserviceParamId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1serviceParamData~1%7BserviceParamId%7D'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/influenceData/subs-to-notify:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/influenceData/subs-to-notify/{subscriptionId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify~1%7BsubscriptionId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1influenceData~1subs-to-notify~1%7BsubscriptionId%7D'
 # The path segment is left not following the naming convention as defined in 3GPP TS 29.501 due to backward compatibility consideration.
   /application-data/subs-to-notify:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify'
   /application-data/subs-to-notify/{subsId}:
-    $ref: 'TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify~1%7BsubsId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml#/paths/~1application-data~1subs-to-notify~1%7BsubsId%7D'
   /exposure-data/{ueId}/access-and-mobility-data:
-    $ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1access-and-mobility-data'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1access-and-mobility-data'
   /exposure-data/{ueId}/session-management-data/{pduSessionId}:
-    $ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1session-management-data~1%7BpduSessionId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1%7BueId%7D~1session-management-data~1%7BpduSessionId%7D'
   /exposure-data/subs-to-notify:
-    $ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify'
   /exposure-data/subs-to-notify/{subId}:
-    $ref: 'TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify~1%7BsubId%7D'
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml#/paths/~1exposure-data~1subs-to-notify~1%7BsubId%7D'
   /data-restoration-events:
     post:
     # This is a pseudo operation, clients shall NOT invoke this method!
@@ -245,7 +245,7 @@ paths:
             schema: {}
       responses:
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
       callbacks:
         restorationNotification:
           '{dataRestorationCallbackUri}':
@@ -265,7 +265,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
                   headers:
                     Location:
                       description: 'The URI pointing to the resource located on the redirect target NF service consumer'
@@ -277,7 +277,7 @@ paths:
                   content:
                     application/json:
                       schema:
-                        $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
                   headers:
                     Location:
                       description: 'The URI pointing to the resource located on the redirect target NF service consumer'
@@ -285,9 +285,9 @@ paths:
                       schema:
                         type: string
                 '404':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
                 default:
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
 components:
   securitySchemes:
@@ -368,12 +368,12 @@ components:
         supiRanges:
           type: array
           items:
-            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/SupiRange'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/SupiRange'
           minItems: 1
         gpsiRanges:
           type: array
           items:
-            $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/IdentityRange'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/IdentityRange'
           minItems: 1
         resetIds:
           type: array
@@ -383,12 +383,12 @@ components:
         sNssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         dnnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Dnn'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
           minItems: 1
         udrGroupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'

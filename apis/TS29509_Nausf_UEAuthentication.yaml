@@ -46,39 +46,39 @@ paths:
               schema:
                 type: string
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           description: Bad Request from the AMF
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '403':
           description: Forbidden due to serving network not authorized
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '404':
           description: User does not exist in the HPLMN
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '501':
           description: Received protection scheme is not supported by HPLMN
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
 
   /ue-authentications/deregister:
     post:
@@ -92,11 +92,11 @@ paths:
         '204':
           description: Expected response to a successful removal of security context
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
 
   /ue-authentications/{authCtxId}/5g-aka-confirmation:
     put:
@@ -119,21 +119,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConfirmationDataResponse'
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
     delete:
       summary: Deletes the authentication result in the UDM
       operationId: Delete5gAkaAuthenticationResult
@@ -149,19 +149,19 @@ paths:
         '204':
           description: Expected response to a successful authentication result removal
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
   /ue-authentications/{authCtxId}/eap-session:
     post:
@@ -195,27 +195,27 @@ paths:
                     type: object
                     description: 'URI : /{eapSessionUri}, a map(list of key-value pairs) where member serves as key'
                     additionalProperties:
-                      $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
                     minProperties: 1
                 required:
                   - eapPayload
                   - _links
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
 
     delete:
       summary: Deletes the authentication result in the UDM
@@ -232,19 +232,19 @@ paths:
         '204':
           description: Expected response to a successful authentication result removal
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
   /rg-authentications:
     post:
@@ -268,27 +268,27 @@ paths:
               schema:
                 type: string
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '403':
           description: The UE is not allowed to be authenticated
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '400':
           description: Bad Request from the AMF
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '404':
           description: User does not exist in the HPLMN
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
 
   /prose-authentications:
     post:
@@ -318,17 +318,17 @@ paths:
               schema:
                 type: string
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
 
   /prose-authentications/{authCtxId}/prose-auth:
     post:
@@ -361,19 +361,19 @@ paths:
                     type: object
                     description: 'URI : /{eapSessionUri}, a map(list of key-value pairs) where member serves as key'
                     additionalProperties:
-                      $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
                     minProperties: 1
                 required:
                   - eapPayload
                   - _links
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
 
     delete:
       summary: Deletes the authentication result in the UDM
@@ -390,19 +390,19 @@ paths:
         '204':
           description: Expected response to a successful authentication result removal
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
 
 components:
@@ -421,30 +421,30 @@ components:
       type: object
       properties:
         supiOrSuci:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupiOrSuci'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupiOrSuci'
         servingNetworkName:
-          $ref: 'TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName'
         resynchronizationInfo:
-          $ref: 'TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UEAU.yaml#/components/schemas/ResynchronizationInfo'
         pei:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Pei'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Pei'
         traceData:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/TraceData'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/TraceData'
         udmGroupId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
         routingIndicator:
           type: string
           pattern: '^[0-9]{1,4}$'
         cellCagInfo:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/CagId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/CagId'
           minItems: 1
         n5gcInd:
           type: boolean
           default: false
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         nswoInd:
           type: boolean
           default: false
@@ -472,9 +472,9 @@ components:
           type: object
           description: A map(list of key-value pairs) where member serves as key
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         servingNetworkName:
-          $ref: 'TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UEAU.yaml#/components/schemas/ServingNetworkName'
       required:
         - authType
         - 5gAuthData
@@ -489,11 +489,11 @@ components:
         - autn
       properties:
         rand:
-          $ref: 'TS29503_Nudm_UEAU.yaml#/components/schemas/Rand'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UEAU.yaml#/components/schemas/Rand'
         hxresStar:
           $ref: '#/components/schemas/HxresStar'
         autn:
-          $ref: 'TS29503_Nudm_UEAU.yaml#/components/schemas/Autn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_UEAU.yaml#/components/schemas/Autn'
 
     ConfirmationData:
       description: Contains the result of the authentication.
@@ -504,7 +504,7 @@ components:
         resStar:
           $ref: '#/components/schemas/ResStar'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
     ConfirmationDataResponse:
       description: Contains the result of the authentication
@@ -513,13 +513,13 @@ components:
         authResult:
           $ref: '#/components/schemas/AuthResult'
         supi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
         kseaf:
           $ref: '#/components/schemas/Kseaf'
         pvsInfo:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'
           minItems: 1
       required:
         - authResult
@@ -536,17 +536,17 @@ components:
           type: object
           description: A map(list of key-value pairs) where member serves as key
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         authResult:
           $ref: '#/components/schemas/AuthResult'
         supi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         pvsInfo:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ServerAddressingInfo'
           minItems: 1
         msk:
           $ref: '#/components/schemas/Msk'
@@ -558,9 +558,9 @@ components:
       type: object
       properties:
         supi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - supi
 
@@ -574,7 +574,7 @@ components:
           type: boolean
           default: false
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - suci
         - authenticatedInd
@@ -586,7 +586,7 @@ components:
         authResult:
           $ref: '#/components/schemas/AuthResult'
         supi:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
         authInd:
           type: boolean
           default: false
@@ -650,15 +650,15 @@ components:
       type: object
       properties:
         supiOrSuci:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupiOrSuci'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupiOrSuci'
         5gPrukId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/5GPrukId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/5GPrukId'
         relayServiceCode:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/RelayServiceCode'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RelayServiceCode'
         nonce1:
           $ref: '#/components/schemas/Nonce1'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - relayServiceCode
         - nonce1
@@ -673,11 +673,11 @@ components:
           type: object
           description: A map(list of key-value pairs) where member serves as key
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         proSeAuthData:
             $ref: '#/components/schemas/ProSeAuthData'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - authType
         - _links
@@ -695,15 +695,15 @@ components:
           type: object
           description: A map(list of key-value pairs) where member serves as key
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         authResult:
           $ref: '#/components/schemas/AuthResult'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         nonce2:
           $ref: '#/components/schemas/Nonce2'
         5gPrukId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/5GPrukId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/5GPrukId'
       required:
         - eapPayload
 
@@ -720,7 +720,7 @@ components:
         nonce2:
           $ref: '#/components/schemas/Nonce2'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
     KnrProSe:
       description: Contains the KNR_ProSe.

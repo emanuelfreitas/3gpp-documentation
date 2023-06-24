@@ -48,27 +48,27 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
       callbacks:
         myNotification:
           '{$request.body#/notifUri}':
@@ -86,31 +86,31 @@ paths:
                 '204':
                   description: No Content, Notification was succesfull
                 '307':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
                 '308':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
                 '400':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
                 '401':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
                 '403':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
                 '404':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
                 '411':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
                 '413':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
                 '415':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
                 '429':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
                 '503':
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
-                  $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
   /subscriptions/{subscriptionId}:
     put:
       summary: update an existing Individual NWDAF ML Model Provision Subscription
@@ -143,31 +143,31 @@ paths:
           description: >
             The Individual NWDAF ML Model Provision Subscription resource was modified successfully.
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     delete:
       summary: Delete an existing Individual NWDAF ML Model Provision Subscription.
       operationId: DeleteNWDAFMLModelProvisionSubcription
@@ -186,25 +186,25 @@ paths:
             No Content. The Individual NWDAF ML Model Provision Subscription matching the
             subscriptionId was deleted.
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 components:
   securitySchemes:
     oAuth2ClientCredentials:
@@ -226,18 +226,18 @@ components:
           minItems: 1
           description: Subscribed events
         notifUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         mLEventNotifs:
           type: array
           items:
             $ref: '#/components/schemas/MLEventNotif'
           minItems: 1
         suppFeats:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         notifCorreId:
           type: string
         eventReq:
-          $ref: 'TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation'
         failEventReports:
           type: array
           items:
@@ -251,15 +251,15 @@ components:
       type: object
       properties:
         mLEvent:
-          $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
         mLEventFilter:
-          $ref: 'TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventFilter'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventFilter'
         tgtUe:
-          $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/TargetUeInformation'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/TargetUeInformation'
         mLTargetPeriod:
-          $ref: 'TS29122_CommonData.yaml#/components/schemas/TimeWindow'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
         expiryTime:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
       required:
         - mLEvent
         - mLEventFilter
@@ -284,15 +284,15 @@ components:
       type: object
       properties:
         event:
-          $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
         notifCorreId:
           type: string
         mLFileAddr:
           $ref: '#/components/schemas/MLModelAddr'
         validityPeriod:
-          $ref: 'TS29122_CommonData.yaml#/components/schemas/TimeWindow'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
         spatialValidity:
-          $ref: 'TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo'
       required:
         - event
         - mLFileAddr
@@ -303,7 +303,7 @@ components:
       type: object
       properties:
         event:
-          $ref: 'TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
         failureCode:
           $ref: '#/components/schemas/FailureCode'
       required:
@@ -315,7 +315,7 @@ components:
       type: object
       properties:
         mLModelUrl:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         mlFileFqdn:
           type: string
           description: The FQDN of the ML Model file.

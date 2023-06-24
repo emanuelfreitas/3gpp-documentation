@@ -79,7 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -91,7 +91,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -106,34 +106,34 @@ paths:
                 $ref: '#/components/schemas/AccessTokenErr'
             application/problem+json: # error originated by an SCP or SEPP
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
           headers:
             Cache-Control:
               $ref: '#/components/headers/cache-control'
             Pragma:
               $ref: '#/components/headers/pragma'
         '401':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/401'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/403'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/404'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
         '411':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/411'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/413'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
         '415':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/415'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
         '429':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/429'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/501'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
         '503':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/503'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
 components:
   headers:
@@ -164,43 +164,43 @@ components:
           enum:
             - client_credentials
         nfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         nfType:
-          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
         targetNfType:
-          $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
         scope:
           type: string
           pattern: '^([a-zA-Z0-9_:-]+)( [a-zA-Z0-9_:-]+)*$'
         targetNfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         requesterPlmn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         requesterPlmnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
           minItems: 2
         requesterSnssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         requesterFqdn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
         requesterSnpnList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
           minItems: 1
         targetPlmn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         targetSnpn:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         targetSnssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         targetNsiList:
           type: array
@@ -208,13 +208,13 @@ components:
             type: string
           minItems: 1
         targetNfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
         targetNfServiceSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
         hnrfAccessTokenUri:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         sourceNfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
 
     AccessTokenRsp:
       description: Contains information related to the access token response
@@ -248,15 +248,15 @@ components:
         - exp
       properties:
         iss:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         sub:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         aud:
           anyOf:
-            - $ref: 'TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
             - type: array
               items:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
               minItems: 1
         scope:
           type: string
@@ -264,17 +264,17 @@ components:
         exp:
           type: integer
         consumerPlmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         consumerSnpnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         producerPlmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         producerSnpnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         producerSnssaiList:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         producerNsiList:
           type: array
@@ -282,11 +282,11 @@ components:
             type: string
           minItems: 1
         producerNfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
         producerNfServiceSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfServiceSetId'
         sourceNfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
 
     AccessTokenErr:
       description: Error returned in the access token response message

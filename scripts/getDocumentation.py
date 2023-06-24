@@ -140,6 +140,14 @@ for doc in configuration:
             for line in myzip.namelist():
                 if line.startswith('TS') and line.endswith('yaml'):
                     myzip.extract(line, '../apis')
+                    filedata = None
+                    with open('../apis/'+str(line), 'r') as file :
+                        print("going to replace")
+                        filedata = file.read()
+                        filedata = filedata.replace('$ref: \'TS', '$ref: \'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS')
+                    with open('../apis/'+str(line), 'w') as file:
+                        file.write(filedata)
+
                     api_urls[line.replace(".yaml", "")] = getAPIURL(line.replace(".yaml", ""))
 
         if str(pdf)+".pdf" in filesInDir:

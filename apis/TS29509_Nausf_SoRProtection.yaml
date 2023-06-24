@@ -33,7 +33,7 @@ paths:
           description: Identifier of the UE
           required: true
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
       requestBody:
         content:
           application/json:
@@ -48,15 +48,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/SorSecurityInfo'
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '503':
           description: Service Unavailable
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
 
 components:
   securitySchemes:
@@ -86,7 +86,7 @@ components:
         sorTransparentInfo:
           $ref: '#/components/schemas/SorTransparentInfo'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - ackInd
 
@@ -118,7 +118,7 @@ components:
       type: object
       properties:
         plmnId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
         accessTechList:
           type: array
           items:
@@ -151,10 +151,10 @@ components:
       format: byte
 
     SorHeader:
-      $ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'
+      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Bytes'
 
     SorTransparentInfo:
-      $ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'
+      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Bytes'
 
 #
 # ENUMS:

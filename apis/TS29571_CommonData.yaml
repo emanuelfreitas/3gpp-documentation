@@ -518,9 +518,9 @@ components:
         supportedFeatures:
           $ref: '#/components/schemas/SupportedFeatures'
         accessTokenError:
-          $ref: 'TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenErr'
         accessTokenRequest:
-          $ref: 'TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_AccessToken.yaml#/components/schemas/AccessTokenReq'
         nrfId:
           $ref: '#/components/schemas/Fqdn'
 
@@ -3069,13 +3069,13 @@ components:
       type: object
       properties:
         ipv4Addr:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         ipv6Addr:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
         portNumber:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/Uinteger'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         macAddr:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/MacAddr48'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MacAddr48'
 
     MoExpDataCounter:
       description: Contain the MO Exception Data Counter.
@@ -3428,12 +3428,12 @@ components:
         geographicAreaList:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
           minItems: 1
         civicAddressList:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress'
           minItems: 1
 
 #
@@ -5021,12 +5021,12 @@ components:
         geographicAreaList:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea'
           minItems: 1
         civicAddressList:
           type: array
           items:
-            $ref: 'TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress'
           minItems: 1
       oneOf:
         - required: [ geographicAreaList ]
@@ -5100,9 +5100,9 @@ components:
             $ref: '#/components/schemas/MbsMediaCompRm'
           minProperties: 1
         mbsSdfResPrio:
-          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority'
         afAppId:
-          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AfAppId'
         mbsSessionAmbr:
           $ref: '#/components/schemas/BitRate'
       required:
@@ -5117,10 +5117,10 @@ components:
         mbsFlowDescs:
           type: array
           items:
-            $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/FlowDescription'
           minItems: 1
         mbsSdfResPrio:
-          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/ReservPriority'
         mbsMediaInfo:
           $ref: '#/components/schemas/MbsMediaInfo'
         qosRef:
@@ -5160,7 +5160,7 @@ components:
       type: object
       properties:
         mbsMedType:
-          $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType'
         maxReqMbsBwDl:
           $ref: '#/components/schemas/BitRate'
         minReqMbsBwDl:
@@ -5168,7 +5168,7 @@ components:
         codecs:
           type: array
           items:
-            $ref: 'TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/CodecData'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/CodecData'
           minItems: 1
           maxItems: 2
 

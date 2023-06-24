@@ -32,7 +32,7 @@ paths:
           description: Identifier of the UE
           required: true
           schema:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Supi'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
       requestBody:
         content:
           application/json:
@@ -51,11 +51,11 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
         '307':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/307'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/308'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
 
 components:
   securitySchemes:
@@ -87,7 +87,7 @@ components:
         upuAckInd:
           $ref: '#/components/schemas/UpuAckInd'
         supportedFeatures:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         upuTransparentInfo:
           $ref: '#/components/schemas/UpuTransparentInfo'
       required:
@@ -113,14 +113,14 @@ components:
       type: object
       properties:
         secPacket:
-          $ref: 'TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29509_Nausf_SoRProtection.yaml#/components/schemas/SecuredPacket'
         defaultConfNssai:
           type: array
           items:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/Snssai'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
         routingId:
-          $ref: 'TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29544_Nspaf_SecuredPacket.yaml#/components/schemas/RoutingId'
 
 #
 # SIMPLE TYPES:
@@ -146,5 +146,5 @@ components:
       pattern: '^[A-Fa-f0-9]{2}$'
 
     UpuTransparentInfo:
-      $ref: 'TS29571_CommonData.yaml#/components/schemas/Bytes'
+      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Bytes'
 

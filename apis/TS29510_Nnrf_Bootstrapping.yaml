@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -58,7 +58,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: 'TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RedirectResponse'
           headers:
             Location:
               description: The URI pointing to the resource located on the redirect target NRF
@@ -66,11 +66,11 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/400'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '500':
-          $ref: 'TS29571_CommonData.yaml#/components/responses/500'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         default:
-          $ref: 'TS29571_CommonData.yaml#/components/responses/default'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
 
 components:
   schemas:
@@ -88,7 +88,7 @@ components:
             Map of link objects where the keys are the link relations defined in
             3GPP TS 29.510 clause 6.4.6.3.3
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
           minProperties: 1
         nrfFeatures:
           type: object
@@ -96,7 +96,7 @@ components:
             Map of features supported by the NRF, where the keys are the NRF services
             as defined in 3GPP TS 29.510 clause 6.1.6.3.11
           additionalProperties:
-            $ref: 'TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
           minProperties: 1
         oauth2Required:
           type: object
@@ -108,9 +108,9 @@ components:
             type: boolean
           minProperties: 1
         nrfSetId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
         nrfInstanceId:
-          $ref: 'TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
 
     Status:
       description: Overal status of the NRF
