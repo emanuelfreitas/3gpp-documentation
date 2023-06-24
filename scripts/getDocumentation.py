@@ -97,8 +97,12 @@ for doc in configuration:
 
     lastRelease = 0
     releaseDoc = None
+    
+    releasesList = list(range(6, 18))
+    releasesList.sort(reverse=True)
 
-    for relase in doc["releases"]:
+    for relase in releasesList:
+        if lastRelease > 0: continue
 
         directory = "../documentation/" + directoryName + "/Rel-" + str(relase)
         if not os.path.exists(directory):
@@ -109,35 +113,34 @@ for doc in configuration:
         getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/"        
         idArray = re.findall(r"etsi_ts\/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99\/1" +str(serie) + str(docId) + "\/"+ str(relase).zfill(2) + "\.([\w+|\.]+)\/", str(getURLAsString(getSeriesURL)))
         
-        if(len(idArray) == 0): continue
+        if(len(idArray) == 0): 
+            os.rmdir(directory)
+            continue
         idArray.sort()
         id = idArray[len(idArray)-1]
 
         getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/" + str(relase).zfill(2) + "." + str(id) + "/"
-
         pdfFile = re.findall(r"\/(\w+).pdf", getURLAsString(getSeriesURL))
-        if(len(pdfFile) == 0): continue
+        
+        if(len(pdfFile) == 0):
+            os.rmdir(directory)
+            continue
         pdf = pdfFile[0]
-
-        if str(pdf)+".pdf" in filesInDir: 
+        if str(pdf)+".pdf" in filesInDir:
             filesInDir.remove(str(pdf)+".pdf")
         else:
-
             getSeriesURL = getSeriesURL + "/" + str(pdf) + ".pdf"
             the_page = None
             with urllib.request.urlopen(getSeriesURL) as response:
                 the_page = response.read()
-
             with open(directory + '/' + str(pdf) + '.pdf', 'wb') as f:
                 f.write(the_page)
-
         for f in filesInDir:
             print("GOING TO REMOVE: " + directory + "/" + f)
             os.remove(directory + "/" + f)
         
-        if relase > lastRelease: 
-                lastRelease = relase
-                releaseDoc = directoryName + "/Rel-" + str(relase) + '/' + str(pdf) + '.pdf'
+        lastRelease = relase
+        releaseDoc = directoryName + "/Rel-" + str(relase) + '/' + str(pdf) + '.pdf'
 
     if lastRelease != 0:
         release_documents[doc["id"]] = baseGitURL + releaseDoc.replace(" ", "%20")
@@ -145,6 +148,7 @@ for doc in configuration:
 shutil.rmtree("../apis")
 os.makedirs("../apis")
 
+getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-18/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-17/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 getAPI("http://www.3gpp.org/ftp/Specs/latest/Rel-16/OpenAPI/", r"OpenAPI\/(\w+).yaml")
 
