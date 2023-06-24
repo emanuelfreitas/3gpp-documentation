@@ -117,7 +117,6 @@ for doc in configuration:
         filesInDir = os.listdir(directory)
 
         getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/"
-        print(getSeriesURL)
         idArray = re.findall(r"etsi_ts\/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99\/1" +str(serie) + str(docId) + "\/"+ str(relase).zfill(2) + "\.([\w+|\.]+)\/", str(getURLAsString(getSeriesURL)))
         
         if(len(idArray) == 0): 
@@ -127,14 +126,12 @@ for doc in configuration:
         id = idArray[len(idArray)-1]
 
         getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/" + str(relase).zfill(2) + "." + str(id) + "/"
-        print(getSeriesURL)
         pdfFile = re.findall(r"\/(\w+).pdf", getURLAsString(getSeriesURL))
         zipFile = re.findall(r"\/(\w+).zip", getURLAsString(getSeriesURL))
         if(len(pdfFile) == 0):
             os.rmdir(directory)
             continue
         pdf = pdfFile[0]
-        print("zipFile:" + str(zipFile))
         if(len(zipFile) > 0):
             zipF = zipFile[0]
             zipURL = getSeriesURL + "/" + str(zipF) + ".zip"
@@ -143,6 +140,7 @@ for doc in configuration:
             for line in myzip.namelist():
                 if line.startswith('TS') and line.endswith('yaml'):
                     myzip.extract(line, '../apis')
+                    api_urls[line.replace(".yaml", "")] = getAPIURL(line.replace(".yaml", ""))
 
         if str(pdf)+".pdf" in filesInDir:
             filesInDir.remove(str(pdf)+".pdf")

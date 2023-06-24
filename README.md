@@ -29,7 +29,7 @@
 * [TS 33.501 - Security architecture and procedures for 5G System](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2033.501%20-%20Security%20architecture%20and%20procedures%20for%205G%20System/Rel-17/ts_133501v170900p.pdf)
 
 ###### Common APIs
-* [TS 29.571 Common Data Types]()
+* [TS 29.571 Common Data Types](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml)
 * [TS 29.122 Common Data Types]()
 
 ### Architecture <a name="5GArchitecture"></a>
@@ -78,21 +78,21 @@
 ### Services <a name="5GServices"></a>
 | Producer | Consumer | Service | Standard | API |
 |:--------:|:--------:|:--------|:--------:|:----|
-| [PCF](#PCF)     | AF           | Npcf_PolicyAuthorization  | [TS 29.514](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.514%20-%20Policy%20Authorization%20Service/Rel-17/ts_129514v170800p.pdf) | [PCF Policy Authorization Service]() |
-|                 | SMF          | Npcf_SMPolicyControl      | [TS 29.512](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.512%20-%20Session%20Management%20Policy%20Control%20Service/Rel-17/ts_129512v171000p.pdf) | [Session Management Policy Control Service]() |
-|                 | AMF          | Npcf_AMPolicyControl      | [TS 29.507](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.507%20-%20Access%20and%20Mobility%20Policy%20Control%20Service/Rel-17/ts_129507v170900p.pdf) | [Access and Mobility Policy Control Service]() |
-|                 | NEF          | Npcf_EventExposure        | [TS 29.523](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.523%20-%20Policy%20Control%20Event%20Exposure%20Service/Rel-17/ts_129523v170800p.pdf) | [PCF Event Exposure Service]() |
-|                 |              | Npcf_BDTPolicyControl     | [TS 29.554](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.554%20-%20Background%20Data%20Transfer%20Policy%20Control%20Service/Rel-17/ts_129554v170400p.pdf) | [PCF BDT Policy Control Service]() |
-| [NWDAF](#NWDAF) | PCF          | Nnwdaf_EventsSubscription | [TS 29.520](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.520%20-%20Network%20Data%20Analytics%20Services/Rel-17/ts_129520v171000p.pdf) | [Nnwdaf_EventsSubscription Service API]() |
-|                 |              | Nnwdaf_AnalyticsInfo      | [TS 29.520](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.520%20-%20Network%20Data%20Analytics%20Services/Rel-17/ts_129520v171000p.pdf) | [Nnwdaf_AnalyticsInfo Service API]() |
-| [CHF](#CHF)     | PCF          | Nchf_SpendingLimitControl | [TS 29.594](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-17/ts_129594v170500p.pdf) | [Spending Limit Control]() |
-|                 | NF           | Nchf_ConvergedCharging    | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Converged Charging]() |
-|                 | NF           | Nchf_OfflineOnlyCharging  | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Offline Only Charging]() |
+| [PCF](#PCF)     | AF           | Npcf_PolicyAuthorization  | [TS 29.514](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.514%20-%20Policy%20Authorization%20Service/Rel-17/ts_129514v170800p.pdf) | [PCF Policy Authorization Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml) |
+|                 | SMF          | Npcf_SMPolicyControl      | [TS 29.512](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.512%20-%20Session%20Management%20Policy%20Control%20Service/Rel-17/ts_129512v171000p.pdf) | [Session Management Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29512_Npcf_SMPolicyControl.yaml) |
+|                 | AMF          | Npcf_AMPolicyControl      | [TS 29.507](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.507%20-%20Access%20and%20Mobility%20Policy%20Control%20Service/Rel-17/ts_129507v170900p.pdf) | [Access and Mobility Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29507_Npcf_AMPolicyControl.yaml) |
+|                 | NEF          | Npcf_EventExposure        | [TS 29.523](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.523%20-%20Policy%20Control%20Event%20Exposure%20Service/Rel-17/ts_129523v170800p.pdf) | [PCF Event Exposure Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29523_Npcf_EventExposure.yaml) |
+|                 |              | Npcf_BDTPolicyControl     | [TS 29.554](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.554%20-%20Background%20Data%20Transfer%20Policy%20Control%20Service/Rel-17/ts_129554v170400p.pdf) | [PCF BDT Policy Control Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29554_Npcf_BDTPolicyControl.yaml) |
+| [NWDAF](#NWDAF) | PCF          | Nnwdaf_EventsSubscription | [TS 29.520](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.520%20-%20Network%20Data%20Analytics%20Services/Rel-17/ts_129520v171000p.pdf) | [Nnwdaf_EventsSubscription Service API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml) |
+|                 |              | Nnwdaf_AnalyticsInfo      | [TS 29.520](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.520%20-%20Network%20Data%20Analytics%20Services/Rel-17/ts_129520v171000p.pdf) | [Nnwdaf_AnalyticsInfo Service API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_AnalyticsInfo.yaml) |
+| [CHF](#CHF)     | PCF          | Nchf_SpendingLimitControl | [TS 29.594](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.594%20-%20Spending%20Limit%20Control%20Service/Rel-17/ts_129594v170500p.pdf) | [Spending Limit Control](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29594_Nchf_SpendingLimitControl.yaml) |
+|                 | NF           | Nchf_ConvergedCharging    | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Converged Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_ConvergedCharging.yaml) |
+|                 | NF           | Nchf_OfflineOnlyCharging  | [TS 32.291](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2032.291%20-%205G%20system,%20charging%20service;%20Stage%203/Rel-17/ts_132291v170600p.pdf) | [Offline Only Charging](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS32291_Nchf_OfflineOnlyCharging.yaml) |
 | [UDR](#UDR)     | PCF          | Nudr_DataRepository       | [TS 29.504](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.504%20-%20Unified%20Data%20Repository%20Services/Rel-17/ts_129504v171000p.pdf) | [Unified Data Repository Service]() |
-| [BSF](#BSF)     | PCF, NEF, AF | Nbsf_Management           | [TS 32.521]() | [Binding Support Management Service API]() |
-| [NRF](#NRF)     | ALL NF       | Nnrf_NFManagement         | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFManagement Service]() |
-|                 |              | Nnrf_NFDiscovery          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFDiscovery Service]() |
-|                 |              | Nnrf_AccessToken          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF OAuth2 Authorization]() |
+| [BSF](#BSF)     | PCF, NEF, AF | Nbsf_Management           | [TS 32.521]() | [Binding Support Management Service API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29521_Nbsf_Management.yaml) |
+| [NRF](#NRF)     | ALL NF       | Nnrf_NFManagement         | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFManagement Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml) |
+|                 |              | Nnrf_NFDiscovery          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF NFDiscovery Service](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFDiscovery.yaml) |
+|                 |              | Nnrf_AccessToken          | [TS 29.510](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf) | [NRF OAuth2 Authorization](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_AccessToken.yaml) |
 
 ### Network Functions and entities  <a name="5GNetworkFunctions"></a>
 
@@ -107,8 +107,8 @@
 #### AUSF (Authentication Server Function)<a name="AUSF"></a>
 * [TS 29.509 - Authentication Server Services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.509%20-%20Authentication%20Server%20Services/Rel-17/ts_129509v170800p.pdf)
 ###### APIs
-* [UE Authentication]()
-* [SoR Protection]()
+* [UE Authentication](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29509_Nausf_UEAuthentication.yaml)
+* [SoR Protection](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29509_Nausf_SoRProtection.yaml)
 
 #### BSF (Binding Support Function)<a name="BSF"></a>
 * [TS 29.521 - Binding Support Management Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.521%20-%20Binding%20Support%20Management%20Service/Rel-17/ts_129521v170800p.pdf)
@@ -124,7 +124,7 @@
 * [TS 29.551 - 5G System; Packet Flow Description Management Service; Stage 3](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.551%20-%205G%20System;%20Packet%20Flow%20Description%20Management%20Service;%20Stage%203/Rel-17/ts_129551v170800p.pdf)
 
 ###### APIs
-* [Packet Flow Description (PFD) Management]()
+* [Packet Flow Description (PFD) Management](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29551_Nnef_PFDmanagement.yaml)
 
 #### NRF (NF Repository Function) <a name="NRF"></a>
 * [TS 29.510 - Network Function Repository Services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.510%20-%20Network%20Function%20Repository%20Services/Rel-17/ts_129510v170900p.pdf)
@@ -147,8 +147,8 @@
 * [TS 29.502 - Session Management Services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.502%20-%20Session%20Management%20Services/Rel-17/ts_129502v170800p.pdf)
 * [TS 29.508 - Session Management Event Exposure Service](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.508%20-%20Session%20Management%20Event%20Exposure%20Service/Rel-17/ts_129508v171000p.pdf)
 ###### APIs
-* [PDU Session]()
-* [Event Exposure]()
+* [PDU Session](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29502_Nsmf_PDUSession.yaml)
+* [Event Exposure](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29508_Nsmf_EventExposure.yaml)
 
 #### UDR (Unified Data Repository) <a name="UDR"></a>
 * [TS 29.504 - Unified Data Repository Services](https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/TS%2029.504%20-%20Unified%20Data%20Repository%20Services/Rel-17/ts_129504v171000p.pdf)
@@ -156,9 +156,9 @@
 ###### APIs
 * Data Repository
   * [Subscription Data]()
-  * [Policy Data]()
-  * [Exposure Data]()
-  * [Application Data]()
+  * [Policy Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml)
+  * [Exposure Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Exposure_Data.yaml)
+  * [Application Data](https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Application_Data.yaml)
 
 ## Policy and Charging Control <a name="PCC"></a>
 * [RFC 6733 - Diameter Base Protocol](https://tools.ietf.org/pdf/rfc6733.pdf)
