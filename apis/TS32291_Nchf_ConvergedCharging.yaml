@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: Nchf_ConvergedCharging
-  version: 3.1.23
+  version: 3.1.4
   description: |
-    ConvergedCharging Service    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    ConvergedCharging Service    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 externalDocs:
   description: >
-    3GPP TS 32.291 V17.56.0: Telecommunication management; Charging management; 
+    3GPP TS 32.291 V17.7.0: Telecommunication management; Charging management; 
     5G system, charging service; Stage 3.
   url: 'http://www.3gpp.org/ftp/Specs/archive/32_series/32.291/'
 servers:
@@ -1590,9 +1590,10 @@ components:
     EASDeploymentChargingInformation:
       type: object
       properties:
-# To be introduced once the reference to EdgeNrm.yaml is resolved
-#        eEASDeploymentRequirements:
-#          $ref: '#/components/schemas/EASRequirements'
+        eEASDeploymentRequirements:
+          $ref: '#/components/schemas/EASRequirements'
+        lCMEventType:
+          $ref: '#/components/schemas/ManagementOperation'
         lCMStartTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         lCMEndTime:
@@ -2296,6 +2297,9 @@ components:
             - CREATE_MOI
             - MODIFY_MOI_ATTR
             - DELETE_MOI
+            - NOTIFY_MOI_CREATION
+            - NOTIFY_MOI_ATTR_CHANGE
+            - NOTIFY_MOI_DELETION
         - type: string
     ManagementOperationStatus:
       anyOf:
@@ -2367,6 +2371,7 @@ components:
             - PNM
             - CRS
             - ECT
+        - type: string
     SupplementaryServiceMode:
       anyOf:
         - type: string
@@ -2428,7 +2433,7 @@ components:
             - SCEF
             - IWK_SCEF
             - IMS_GWF
-         - type: string
+        - type: string
     RoleOfIMSNode:
       anyOf:
         - type: string

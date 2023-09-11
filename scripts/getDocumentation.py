@@ -53,7 +53,7 @@ def getURL(url):
     return None
 
 def getAPIURL(api):
-    return "https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/" + api +".yaml"
+    return "https://editor.swagger.io/?url=https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/" + api +".yaml"
 
 def getDigit(val):
     if val.isdigit(): return int(val)
