@@ -92,6 +92,7 @@ os.makedirs("../apis")
 
 for doc in configuration:
     directoryName = doc["id"] + " - " + doc["name"]
+    requiredAPI = doc.get("api", False)
     print(directoryName)
 
     m = re.search('TS (\d+)\.(\d+)', doc["id"])
@@ -132,6 +133,7 @@ for doc in configuration:
             os.rmdir(directory)
             continue
         pdf = pdfFile[0]
+        if(len(zipFile) == 0 and requiredAPI): continue
         if(len(zipFile) > 0):
             zipF = zipFile[0]
             zipURL = getSeriesURL + "/" + str(zipF) + ".zip"

@@ -187,7 +187,8 @@
   },
   {
     "id": "TS 32.291",
-    "name": "5G system, charging service; Stage 3"
+    "name": "5G system, charging service; Stage 3",
+    "api": true
   },
   {
     "id": "TS 32.296",
