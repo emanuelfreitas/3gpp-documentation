@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: 1.2.3
+  version: 1.2.4
   title: Nnwdaf_EventsSubscription
   description: |
     Nnwdaf_EventsSubscription Service API.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.520 V17.10.0; 5G System; Network Data Analytics Services.
+  description: 3GPP TS 29.520 V17.15.0; 5G System; Network Data Analytics Services.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.520/'
 
 security:
@@ -858,7 +858,7 @@ components:
           description: >
             Each element indicates the preferred accuracy level per analytics subset. It may be
             present if the "listOfAnaSubsets" attribute is present in the subscription request when
-            the subscription event is NF_LOAD, UE_COMM, DISPERSION, NETWORK_PERFORMANCE,
+            the subscription event is NF_LOAD, UE_COMMUNICATION, DISPERSION, NETWORK_PERFORMANCE,
             WLAN_PERFORMANCE, DN_PERFORMANCE or SERVICE_EXPERIENCE.
         startTs:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
@@ -2404,8 +2404,8 @@ components:
         - RTT: Indicates the RTT in the unit of millisecond. This value is only applicable to WLAN_PERFORMANCE event.
         - TRAFFIC_INFO: Traffic information including UL/DL data rate and/or Traffic volume. This value is only applicable to WLAN_PERFORMANCE event.
         - NUMBER_OF_UES: Number of UEs observed for the SSID. This value is only applicable to WLAN_PERFORMANCE event.
-        - APP_LIST_FOR_UE_COMM: The analytics of the application list used by UE. This value is only applicable to UE_COMM event.
-        - N4_SESS_INACT_TIMER_FOR_UE_COMM: The N4 Session inactivity timer. This value is only applicable to UE_COMM event.
+        - APP_LIST_FOR_UE_COMM: The analytics of the application list used by UE. This value is only applicable to UE_COMMUNICATION event.
+        - N4_SESS_INACT_TIMER_FOR_UE_COMM: The N4 Session inactivity timer. This value is only applicable to UE_COMMUNICATION event.
         - AVG_TRAFFIC_RATE: Indicates average traffic rate. This value is only applicable to DN_PERFORMANCE event.
         - MAX_TRAFFIC_RATE: Indicates maximum traffic rate. This value is only applicable to DN_PERFORMANCE event.
         - AVG_PACKET_DELAY: Indicates average Packet Delay. This value is only applicable to DN_PERFORMANCE event.

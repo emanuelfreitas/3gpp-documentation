@@ -176,4 +176,3 @@ components:
         - CDMA_HRPD
         - GSM_COMPACT
       - type: string
-

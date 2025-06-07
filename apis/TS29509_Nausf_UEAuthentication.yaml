@@ -740,4 +740,3 @@ components:
       format: byte
       description: contains an Nonce2
       nullable: true
-

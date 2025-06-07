@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: 2.2.3
+  version: 2.2.8
   title: 'Nudr_DataRepository API OpenAPI file'
   description: |
     Unified Data Repository Service.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.504 V17.11.0; 5G System; Unified Data Repository Services; Stage 3
+  description: 3GPP TS 29.504 V17.17.0; 5G System; Unified Data Repository Services; Stage 3
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.504/'
 
 servers:
@@ -328,8 +328,10 @@ components:
             nudr-dr:policy-data:ues:operator-specific-data:read: Access to read the UEs operator specific policy data
             nudr-dr:policy-data:ues:operator-specific-data:modify: Access to update the UEs operator specific policy data
             nudr-dr:policy-data:ues:operator-specific-data:create: Access to create the UEs operator specific policy data
+            nudr-dr:policy-data:plmns:ue-policy-set:read: Access to read UE Policy SET
             nudr-dr:policy-data:slice-control-data:read: Access to read Slice specific Policy Control Data
             nudr-dr:policy-data:slice-control-data:modify: Access to update Slice specific Policy Control Data
+            nudr-dr:policy-data:mbs-session-pol-data:read: Access to read MBS Session Policy Data
             nudr-dr:exposure-data: Access to the ExposureData data set
             nudr-dr:exposure-data:access-and-mobility-data:create: Access to create ExposureData
             nudr-dr:exposure-data:access-and-mobility-data:read: Access to read ExposureData

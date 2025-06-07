@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
   title: Nnwdaf_DataManagement
-  version: 1.0.2
+  version: 1.0.3
   description: |
     Nnwdaf_DataManagement API Service.  
-    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 29.520 V17.9.0; 5G System; Network Data Analytics Services.
+  description: 3GPP TS 29.520 V17.14.0; 5G System; Network Data Analytics Services.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.520/'
 servers:
   - url: '{apiRoot}/nnwdaf-datamanagement/v1'
@@ -43,7 +43,7 @@ paths:
             Location:
               description: >
                 Contains the URI of the newly created resource, according to the structure
-                {apiRoot}/nnwdaf-datamanagement/<apiVersion>/subscriptions/{subId}.
+                {apiRoot}/nnwdaf-datamanagement/<apiVersion>/subscriptions/{subscriptionId}.
               required: true
               schema:
                 type: string
@@ -330,4 +330,3 @@ components:
         - required: [dataNotification]
         - required: [dataReports]
         - required: [fetchInstruct]
-

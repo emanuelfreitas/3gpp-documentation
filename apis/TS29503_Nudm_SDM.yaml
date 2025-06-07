@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: '2.2.3'
+  version: '2.2.9'
   title: 'Nudm_SDM'
   description: |
     Nudm Subscriber Data Management Service.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.503 Unified Data Management Services, version 17.10.0
+  description: 3GPP TS 29.503 Unified Data Management Services, version 17.18.0
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/'
 
 servers:
@@ -48,7 +48,7 @@ paths:
              $ref: '#/components/schemas/DatasetNames'
         - name: plmn-id
           in: query
-          description: serving PLMN ID
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
@@ -125,11 +125,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
-          description: serving PLMN ID
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: disaster-roaming-ind
           in: query
           description: Indication whether Disaster Roaming service is applied or not
@@ -240,13 +240,13 @@ paths:
         - name: adjacent-plmns
           in: query
           description: List of PLMNs adjacent to the UE's serving PLMN
-          schema:
-            type: array
-            items:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
-            minItems: 1
-          style: form
-          explode: false
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                minItems: 1
         - name: disaster-roaming-ind
           in: query
           description: Indication whether Disaster Roaming service is applied or not
@@ -372,11 +372,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
-          description: serving PLMN ID
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: disaster-roaming-ind
           in: query
           description: Indication whether Disaster Roaming service is applied or not
@@ -514,11 +514,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
-          description: serving PLMN ID
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: If-None-Match
           in: header
           description: Validator for conditional requests, as described in RFC 7232, 3.2
@@ -589,10 +589,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
         - name: plmn-id
           in: query
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-               $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+               $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: If-None-Match
           in: header
           description: Validator for conditional requests, as described in RFC 7232, 3.2
@@ -653,10 +654,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: If-None-Match
           in: header
           description: Validator for conditional requests, as described in RFC 7232, 3.2
@@ -717,10 +719,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: If-None-Match
           in: header
           description: Validator for conditional requests, as described in RFC 7232, 3.2
@@ -898,10 +901,11 @@ paths:
              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         - name: plmn-id
           in: query
+          description: serving PLMN ID or SNPN ID
           content:
             application/json:
               schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         - name: If-None-Match
           in: header
           description: Validator for conditional requests, as described in RFC 7232, 3.2
@@ -3462,11 +3466,15 @@ components:
           default: false
 
     UeIdentifiers:
-      description: A map(list of key-value pairs) where Gpsi serves as key of arrays of Supi
+      description: Contains a list of UE IDs
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/SupiInfo'
-      minProperties: 1
+      properties:
+        ueIdList:
+          description: A map(list of key-value pairs) where Gpsi serves as key of arrays of Supi
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SupiInfo'
+          minProperties: 1
 
     SupiInfo:
       description: List of Supis.
@@ -3655,6 +3663,7 @@ components:
           - WB_N1
           - NB_N1
           - NR_N1
+          - NR_N1_REDCAP
         - type: string
 
     SorUpdateIndicator:

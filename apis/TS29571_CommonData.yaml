@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: '1.4.2'
+  version: '1.4.4'
   title: 'Common Data Types'
   description: |
     Common Data Types for Service Based Interfaces.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.  
 
 externalDocs:
-  description: 3GPP TS 29.571 Common Data Types for Service Based Interfaces, version 17.9.0
+  description: 3GPP TS 29.571 Common Data Types for Service Based Interfaces, version 17.11.0
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.571/'
 
 paths: {}
@@ -1071,6 +1071,11 @@ components:
       pattern: '^(imsi-[0-9]{5,15}|nai-.+|gli-.+|gci-.+|suci-(0-[0-9]{3}-[0-9]{2,3}|[1-7]-.+)-[0-9]{1,4}-(0-0-.*|[a-fA-F1-9]-([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-[a-fA-F0-9]+)|.+)$'
       description: String identifying a SUPI or a SUCI.
 
+    NsacSai:
+      type: string
+      description: >
+        String identifying the Network Slice Admission Control Service Area Identifier.
+
 #
 # STRUCTURED DATA TYPES
 #
@@ -1474,6 +1479,18 @@ components:
             - NR_GEO
             - NR_OTHER_SAT
             - NR_REDCAP
+            - WB_E_UTRAN_LEO
+            - WB_E_UTRAN_MEO
+            - WB_E_UTRAN_GEO
+            - WB_E_UTRAN_OTHERSAT
+            - NB_IOT_LEO
+            - NB_IOT_MEO
+            - NB_IOT_GEO
+            - NB_IOT_OTHERSAT
+            - LTE_M_LEO
+            - LTE_M_MEO
+            - LTE_M_GEO
+            - LTE_M_OTHERSAT
         - type: string
       description: Indicates the radio access used.
 
@@ -2899,7 +2916,7 @@ components:
         - required:
           - sai
         - required:
-          - rai
+          - lai
       description: Exactly one of cgi, sai or lai shall be present.
       properties:
         cgi:
@@ -2946,8 +2963,6 @@ components:
           - sai
         - required:
           - lai
-        - required:
-          - rai
       description: Exactly one of cgi, sai or lai shall be present.
       properties:
         locationNumber:
@@ -2955,12 +2970,12 @@ components:
           description: Location number within the PLMN. See 3GPP TS 23.003, clause 4.5.
         cgi:
           $ref: '#/components/schemas/CellGlobalId'
-        rai:
-          $ref: '#/components/schemas/RoutingAreaId'
         sai:
           $ref: '#/components/schemas/ServiceAreaId'
         lai:
           $ref: '#/components/schemas/LocationAreaId'
+        rai:
+          $ref: '#/components/schemas/RoutingAreaId'
         vlrNumber:
           type: string
           description: VLR number. See 3GPP TS 23.003 clause 5.1.
@@ -4320,13 +4335,14 @@ components:
           type: string
           pattern: '^[0-9]{3}[0-9]{2,3}-[A-Fa-f0-9]{6}$'
           description: >
-            Trace Reference (see 3GPP TS 32.422).It shall be encoded as the concatenation of MCC,
-            MNC and Trace ID as follows: 'MCC'<MNC'-'Trace ID'The Trace ID shall be encoded as a 3 octet string in hexadecimal
-            representation. Each character in the Trace ID string shall take a value of "0" to "9",
-            "a" to "f" or "A" to "F" and shall represent 4 bits.
-            The most significant character representing the 4 most significant bits of the Trace ID
-            shall appear first  in the string, and the character representing the 4 least significant
-            bit of the Trace ID shall appear last in the string.
+            Trace Reference (see 3GPP TS 32.422).It shall be encoded as the concatenation
+            of MCC, MNC and Trace ID as follows: <MCC><MNC>-<Trace ID>
+            The Trace ID shall be encoded as a 3 octet string in hexadecimal
+            representation. Each character in the Trace ID string shall
+            take a value of "0" to "9", "a" to "f" or "A" to "F" and shall represent 4 bits.
+            The most significant character representing the 4 most significant bits of the
+            Trace ID shall appear first  in the string, and the character representing the
+            4 least significant bit of the Trace ID shall appear last in the string.
 
         traceDepth:
           $ref: '#/components/schemas/TraceDepth'
@@ -4334,13 +4350,12 @@ components:
           type: string
           pattern: '^[A-Fa-f0-9]+$'
           description: >
-            List of NE Types (see 3GPP TS 32.422).It shall be encoded as an octet string in
-            hexadecimal representation.
-            Each character in the string shall take a value of "0" to "9", "a" to "f" or "A" to "F"
-            and shall represent 4 bits.
-            The most significant character representing the 4 most significant bits shall appear
-            first in the string, and the character representing the
-            4 least significant bit shall appear last in the string.Octets shall be coded
+            List of NE Types (see 3GPP TS 32.422).It shall be encoded as an octet string
+            in hexadecimal representation. Each character in the string shall take a value
+            of "0" to "9", "a" to "f" or "A" to "F" and shall represent 4 bits.
+            The most significant character representing the 4 most significant bits shall
+            Appear first in the string, and the character representing the 4 least
+            significant bit shall appear last in the string.Octets shall be coded
             according to 3GPP TS 32.422.
         eventList:
           type: string
@@ -4349,13 +4364,16 @@ components:
             Triggering events (see 3GPP TS 32.422).It shall be encoded as an octet string in
             hexadecimal representation. Each character in the string shall take a value of "0"
             to "9", "a" to "f" or "A" to "F" and shall represent 4 bits.
-            The most significant character representing the 4 most significant bits shall appear
-            first in the string, and the character representing the 4 least significant bit shall
-            appear last in the string. Octets shall be coded according to 3GPP TS 32.422.
+            The most significant character representing the 4 most significant bits shall
+            appear first in the string, and the character representing the 4 least
+            significant bit shall appear last in the string. Octets shall be coded
+            according to 3GPP TS 32.422.
         collectionEntityIpv4Addr:
           $ref: '#/components/schemas/Ipv4Addr'
         collectionEntityIpv6Addr:
           $ref: '#/components/schemas/Ipv6Addr'
+        traceReportingConsumerUri:
+          $ref: '#/components/schemas/Uri'
         interfaceList:
           type: string
           pattern: '^[A-Fa-f0-9]+$'
@@ -4741,6 +4759,9 @@ components:
     AreaSessionId:
       $ref: '#/components/schemas/Uint16'
 
+    AreaSessionPolicyId:
+      $ref: '#/components/schemas/Uint16'
+
     MbsFsaId:
       description: MBS Frequency Selection Area Identifier
       type: string
@@ -4912,6 +4933,12 @@ components:
         extMbsServiceArea:
           $ref: '#/components/schemas/ExternalMbsServiceArea'
           writeOnly: true
+        redMbsServArea:
+          $ref: '#/components/schemas/MbsServiceArea'
+          readOnly: true
+        extRedMbsServArea:
+          $ref: '#/components/schemas/ExternalMbsServiceArea'
+          readOnly: true
         dnn:
           $ref: '#/components/schemas/Dnn'
           writeOnly: true
@@ -4946,6 +4973,8 @@ components:
       anyOf:
         - required: [ mbsSessionId ]
         - required: [ tmgiAllocReq ]
+      not:
+        required: [redMbsServArea, extRedMbsServArea]
 
 
     MbsSessionSubscription:
@@ -5324,5 +5353,4 @@ components:
             $ref: '#/components/schemas/ProblemDetails'
     default:
       description: Generic Error
-
 
