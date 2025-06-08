@@ -57,6 +57,10 @@
     "name": "Data Collection and Reporting; Protocols and Formats"
   },
   {
+    "id": "TS 28.538",
+    "name": "Management and orchestration; Edge Computing Management"
+  },
+  {
     "id": "TS 28.541",
     "name": "Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3",
     "api": true

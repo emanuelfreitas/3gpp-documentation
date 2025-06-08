@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>5GMS Data Reporting data types</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.redocly.com/redoc/v2.5.0/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="6.1.18">.iRoSfe{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.iRoSfe{width:100%;padding:40px 40px;}}/*!sc*/
+.ciCSbi{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width: 75rem){.ciCSbi{width:100%;padding:0px 40px;}}/*!sc*/
+data-styled.g4[id="sc-gwsNht"]{content:"iRoSfe,ciCSbi,"}/*!sc*/
+.kDuBQd{padding:40px 0;}/*!sc*/
+.kDuBQd:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.kDuBQd>.kDuBQd:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width: 75rem){.kDuBQd{padding:0;}}/*!sc*/
+data-styled.g5[id="sc-dYOLZc"]{content:"kDuBQd,"}/*!sc*/
+.tMeMv{display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width: 75rem){.tMeMv{flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-jZhnRx"]{content:"tMeMv,"}/*!sc*/
+.dKykVD{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-hBDmJg"]{content:"dKykVD,"}/*!sc*/
+.jkwlQD{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-kThouk"]{content:"jkwlQD,"}/*!sc*/
+.jOWzfS{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.jOWzfS:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover>.jOWzfS::before,h2:hover>.jOWzfS::before,.jOWzfS:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-kieALA"]{content:"jOWzfS,"}/*!sc*/
+.kOqeZB code[class*='language-'],.kOqeZB pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.kOqeZB code[class*='language-'],.kOqeZB pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.kOqeZB pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.kOqeZB .token.comment,.kOqeZB .token.prolog,.kOqeZB .token.doctype,.kOqeZB .token.cdata{color:hsl(30, 20%, 50%);}/*!sc*/
+.kOqeZB .token.punctuation{opacity:0.7;}/*!sc*/
+.kOqeZB .namespace{opacity:0.7;}/*!sc*/
+.kOqeZB .token.property,.kOqeZB .token.tag,.kOqeZB .token.number,.kOqeZB .token.constant,.kOqeZB .token.symbol{color:#4a8bb3;}/*!sc*/
+.kOqeZB .token.boolean{color:#e64441;}/*!sc*/
+.kOqeZB .token.selector,.kOqeZB .token.attr-name,.kOqeZB .token.string,.kOqeZB .token.char,.kOqeZB .token.builtin,.kOqeZB .token.inserted{color:#a0fbaa;}/*!sc*/
+.kOqeZB .token.selector+a,.kOqeZB .token.attr-name+a,.kOqeZB .token.string+a,.kOqeZB .token.char+a,.kOqeZB .token.builtin+a,.kOqeZB .token.inserted+a,.kOqeZB .token.selector+a:visited,.kOqeZB .token.attr-name+a:visited,.kOqeZB .token.string+a:visited,.kOqeZB .token.char+a:visited,.kOqeZB .token.builtin+a:visited,.kOqeZB .token.inserted+a:visited{color:#4ed2ba;text-decoration:underline;}/*!sc*/
+.kOqeZB .token.property.string{color:white;}/*!sc*/
+.kOqeZB .token.operator,.kOqeZB .token.entity,.kOqeZB .token.url,.kOqeZB .token.variable{color:hsl(40, 90%, 60%);}/*!sc*/
+.kOqeZB .token.atrule,.kOqeZB .token.attr-value,.kOqeZB .token.keyword{color:hsl(350, 40%, 70%);}/*!sc*/
+.kOqeZB .token.regex,.kOqeZB .token.important{color:#e90;}/*!sc*/
+.kOqeZB .token.important,.kOqeZB .token.bold{font-weight:bold;}/*!sc*/
+.kOqeZB .token.italic{font-style:italic;}/*!sc*/
+.kOqeZB .token.entity{cursor:help;}/*!sc*/
+.kOqeZB .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-faJlkc"]{content:"kOqeZB,"}/*!sc*/
+.dkdAtf{position:relative;}/*!sc*/
+data-styled.g37[id="sc-epGxBs"]{content:"dkdAtf,"}/*!sc*/
+.kEOvim{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.kEOvim p:last-child{margin-bottom:0;}/*!sc*/
+.kEOvim h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.kEOvim h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.kEOvim code{color:#e53935;background-color:rgba(38, 50, 56, 0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38, 50, 56, 0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.kEOvim pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0;border:1px solid rgba(38, 50, 56, 0.1);}/*!sc*/
+.kEOvim pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.kEOvim pre code:before,.kEOvim pre code:after{content:none;}/*!sc*/
+.kEOvim blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.kEOvim img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.kEOvim ul,.kEOvim ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.kEOvim ul ul,.kEOvim ol ul,.kEOvim ul ol,.kEOvim ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.kEOvim table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.kEOvim table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.kEOvim table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.kEOvim table th,.kEOvim table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.kEOvim table th{text-align:left;font-weight:bold;}/*!sc*/
+.kEOvim .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.kEOvim .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.kEOvim h1:hover>.share-link::before,.kEOvim h2:hover>.share-link::before,.kEOvim .share-link:hover::before{visibility:visible;}/*!sc*/
+.kEOvim a{text-decoration:auto;color:#32329f;}/*!sc*/
+.kEOvim a:visited{color:#32329f;}/*!sc*/
+.kEOvim a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g42[id="sc-fdduAw"]{content:"kEOvim,"}/*!sc*/
+.kpZrEy{margin:1em 0;}/*!sc*/
+.kpZrEy a{text-decoration:auto;color:#32329f;}/*!sc*/
+.kpZrEy a:visited{color:#32329f;}/*!sc*/
+.kpZrEy a:hover{color:#6868cf;text-decoration:auto;}/*!sc*/
+data-styled.g70[id="sc-ihGpye"]{content:"kpZrEy,"}/*!sc*/
+.hLxGCH{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g92[id="sc-jxDJBN"]{content:"hLxGCH,"}/*!sc*/
+.bquqCV{margin:0;padding:0;}/*!sc*/
+.bquqCV:first-child{padding-bottom:32px;}/*!sc*/
+.sc-FhnSQ .sc-FhnSQ{font-size:0.929em;}/*!sc*/
+data-styled.g101[id="sc-FhnSQ"]{content:"bquqCV,"}/*!sc*/
+.dsPLkk{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g102[id="sc-cwcSVF"]{content:"dsPLkk,"}/*!sc*/
+.cNpcJW{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:flex;justify-content:space-between;font-family:Montserrat,sans-serif;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
+.cNpcJW:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
+.cNpcJW .sc-dibcMh{height:1.5em;width:1.5em;}/*!sc*/
+.cNpcJW .sc-dibcMh polygon{fill:#333333;}/*!sc*/
+data-styled.g103[id="sc-fuBaRS"]{content:"cNpcJW,"}/*!sc*/
+.dsZUKj{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g104[id="sc-hlwFUH"]{content:"dsZUKj,"}/*!sc*/
+.eVjdzv{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.eVjdzv a,.eVjdzv a:visited,.eVjdzv a:hover{color:#333333!important;padding:5px 0;border-top:1px solid #e1e1e1;text-decoration:none;display:flex;align-items:center;justify-content:center;}/*!sc*/
+.eVjdzv img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width: 50rem){.eVjdzv{width:100%;}}/*!sc*/
+data-styled.g105[id="sc-kXtNZI"]{content:"eVjdzv,"}/*!sc*/
+.dpoYnd{user-select:none;width:20px;height:20px;align-self:center;display:flex;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g130[id="sc-doJfcP"]{content:"dpoYnd,"}/*!sc*/
+.eMcOhX{width:260px;background-color:#fafafa;overflow:hidden;display:flex;flex-direction:column;backface-visibility:hidden;height:100vh;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width: 50rem){.eMcOhX{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.eMcOhX{display:none;}}/*!sc*/
+data-styled.g131[id="sc-fnaTjL"]{content:"eMcOhX,"}/*!sc*/
+.Flmyj{outline:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0, 0, 0, 0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width: 50rem){.Flmyj{display:flex;}}/*!sc*/
+.Flmyj svg{color:#0065FB;}/*!sc*/
+@media print{.Flmyj{display:none;}}/*!sc*/
+data-styled.g132[id="sc-jyPUfK"]{content:"Flmyj,"}/*!sc*/
+.ePGUxG{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed!important;tap-highlight-color:rgba(0, 0, 0, 0);text-size-adjust:100%;}/*!sc*/
+.ePGUxG *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255, 255, 255, 0);}/*!sc*/
+data-styled.g133[id="sc-JNBUd"]{content:"ePGUxG,"}/*!sc*/
+.bDhhVR{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width: 50rem){.bDhhVR{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-eVCCQc"]{content:"bDhhVR,"}/*!sc*/
+.haiOeP{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width: 75rem){.haiOeP{display:none;}}/*!sc*/
+data-styled.g135[id="sc-epRJRH"]{content:"haiOeP,"}/*!sc*/
+.jbjAuv{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-iBGKNG"]{content:"jbjAuv,"}/*!sc*/
+.jVkBYH{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-lcacaV"]{content:"jVkBYH,"}/*!sc*/
+.gXFsok{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.gXFsok path{fill:#333333;}/*!sc*/
+data-styled.g138[id="sc-dYttxY"]{content:"gXFsok,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+  
+      <div id="redoc"><div class="sc-JNBUd ePGUxG redoc-wrap"><div class="sc-fnaTjL eMcOhX menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-iBGKNG jbjAuv"><svg class="sc-dYttxY gXFsok search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input placeholder="Search..." aria-label="Search" type="text" class="sc-lcacaV jVkBYH search-input" value=""/></div><div class="sc-epGxBs dkdAtf scrollbar-container undefined"><ul role="menu" class="sc-FhnSQ bquqCV"><li tabindex="0" depth="1" data-item-id="tag/5GMS-Data-Reporting-data-types" role="menuitem" aria-label="5GMS Data Reporting data types" aria-expanded="false" class="sc-cwcSVF dsPLkk"><label class="sc-fuBaRS cNpcJW -depth1"><span width="calc(100% - 38px)" title="5GMS Data Reporting data types" class="sc-hlwFUH dsZUKj">5GMS Data Reporting data types</span></label></li></ul><div class="sc-kXtNZI eVjdzv"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-jyPUfK Flmyj"><div class="sc-doJfcP dpoYnd"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-eVCCQc bDhhVR api-content"><div class="sc-dYOLZc kDuBQd"><div class="sc-jZhnRx tMeMv"><div class="sc-gwsNht iRoSfe api-info"><h1 class="sc-hBDmJg sc-jxDJBN dKykVD hLxGCH">5GMS Data Reporting data types<!-- --> <span>(<!-- -->1.0.1<!-- -->)</span></h1><p>Download OpenAPI specification<!-- -->:</p><div class="sc-faJlkc sc-fdduAw kOqeZB kEOvim"></div><div data-role="redoc-summary" html="" class="sc-faJlkc sc-fdduAw kOqeZB kEOvim"></div><div data-role="redoc-description" html="&lt;p&gt;5GMS Data Reporting data types
+© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+All rights reserved.&lt;/p&gt;
+" class="sc-faJlkc sc-fdduAw kOqeZB kEOvim"><p>5GMS Data Reporting data types
+© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+All rights reserved.</p>
+</div><div class="sc-ihGpye kpZrEy"><a href="https://www.3gpp.org/ftp/Specs/archive/26_series/26.512/">TS 26.512 V18.2.0; 5G Media Streaming (5GMS); Protocols</a></div></div></div></div><div id="tag/5GMS-Data-Reporting-data-types" data-section-id="tag/5GMS-Data-Reporting-data-types" class="sc-dYOLZc kDuBQd"><div class="sc-jZhnRx tMeMv"><div class="sc-gwsNht iRoSfe"><h2 class="sc-kThouk jkwlQD"><a class="sc-kieALA jOWzfS" href="#tag/5GMS-Data-Reporting-data-types" aria-label="tag/5GMS-Data-Reporting-data-types"></a>5GMS Data Reporting data types</h2></div></div><div class="sc-gwsNht ciCSbi"><div class="sc-faJlkc sc-fdduAw kOqeZB kEOvim redoc-markdown " html="&lt;p&gt;5G Media Streaming: Data Reporting data types&lt;/p&gt;
+"><p>5G Media Streaming: Data Reporting data types</p>
+</div></div></div></div><div class="sc-epRJRH haiOeP"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.0","info":{"title":"5GMS Data Reporting data types","version":"1.0.1","description":"5GMS Data Reporting data types\n© 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\n"},"tags":[{"name":"5GMS Data Reporting data types","description":"5G Media Streaming: Data Reporting data types"}],"externalDocs":{"description":"TS 26.512 V18.2.0; 5G Media Streaming (5GMS); Protocols","url":"https://www.3gpp.org/ftp/Specs/archive/26_series/26.512/"},"paths":{},"components":{"schemas":{"ANBRNetworkAssistanceInvocationRecord":{"description":"An R2 data reporting record describing a single ANBR-based Network Assistance invocation by the Media Stream Handler.","allOf":[{"$ref":"#/components/schemas/BaseRecord"},{"$ref":"#/components/schemas/MediaStreamingBaseReportingRecord"},{"$ref":"#/components/schemas/MediaStreamingSessionIdentification"},{"$ref":"#/components/schemas/NetworkAssistanceInvocation"}]},"DateTime":{"format":"date-time","type":"string","description":"string with format 'date-time' as defined in OpenAPI."},"BaseRecord":{"description":"Abstract base data type for UE data reporting records.","type":"object","properties":{"timestamp":{"$ref":"#/components/schemas/DateTime"},"contextIds":{"type":"array","minItems":1,"items":{"type":"string"}}},"required":["timestamp","contextIds"]},"Snssai":{"type":"object","properties":{"sst":{"type":"integer","minimum":0,"maximum":255,"description":"Unsigned integer, within the range 0 to 255, representing the Slice/Service Type.  It indicates the expected Network Slice behaviour in terms of features and services. Values 0 to 127 correspond to the standardized SST range. Values 128 to 255 correspond  to the Operator-specific range. See clause 28.4.2 of 3GPP TS 23.003. Standardized values are defined in clause 5.15.2.2 of 3GPP TS 23.501. \n"},"sd":{"type":"string","pattern":"^[A-Fa-f0-9]{6}$","description":"3-octet string, representing the Slice Differentiator, in hexadecimal representation. Each character in the string shall take a value of \"0\" to \"9\", \"a\" to \"f\" or \"A\" to \"F\" and shall represent 4 bits. The most significant character representing the 4 most significant bits of the SD shall appear first in the string, and the character representing the 4 least significant bit of the SD shall appear last in the string. This is an optional parameter that complements the Slice/Service type(s) to allow to  differentiate amongst multiple Network Slices of the same Slice/Service type. This IE shall be absent if no SD value is associated with the SST.\n"}},"description":"When Snssai needs to be converted to string (e.g. when used in maps as key), the string shall be composed of one to three digits \"sst\" optionally followed by \"-\" and 6 hexadecimal digits \"sd\".\n","required":["sst"]},"Dnn":{"type":"string","description":"String representing a Data Network as defined in clause 9A of 3GPP TS 23.003;  it shall contain either a DNN Network Identifier, or a full DNN with both the Network  Identifier and Operator Identifier, as specified in 3GPP TS 23.003 clause 9.1.1 and 9.1.2. It shall be coded as string in which the labels are separated by dots  (e.g. \"Label1.Label2.Label3\").\n"},"CellIdentifierType":{"anyOf":[{"type":"string","enum":["CGI","ECGI","NCGI"]},{"type":"string","description":"This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.\n"}]},"TypedLocation":{"type":"object","required":["locationIdentifierType","location"],"properties":{"locationIdentifierType":{"$ref":"#/components/schemas/CellIdentifierType"},"location":{"type":"string"}}},"MediaStreamingBaseReportingRecord":{"type":"object","properties":{"sliceInfo":{"$ref":"#/components/schemas/Snssai"},"dataNetworkName":{"$ref":"#/components/schemas/Dnn"},"location":{"$ref":"#/components/schemas/TypedLocation"}}},"MediaDeliverySessionId":{"type":"string","description":"A unique identifier for a media delivery session."},"MediaStreamingSessionIdentification":{"type":"object","required":["sessionId"],"properties":{"sessionId":{"$ref":"#/components/schemas/MediaDeliverySessionId"}}},"ResourceId":{"type":"string","description":"String chosen by the 5GMS AF to serve as an identifier in a resource URI."},"SdfMethod":{"anyOf":[{"type":"string","enum":["5_TUPLE","2_TUPLE","TYPE_OF_SERVICE_MARKING","FLOW_LABEL","DOMAIN_NAME"]},{"type":"string","description":"This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.\n"}]},"Ipv4Addr":{"type":"string","pattern":"^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$","example":"198.51.100.1","description":"String identifying a IPv4 address formatted in the 'dotted decimal' notation as defined in RFC 1166.\n"},"Ipv6Addr":{"type":"string","allOf":[{"pattern":"^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))$"},{"pattern":"^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))$"}],"example":"2001:db8:85a3::8a2e:370:7334","description":"String identifying an IPv6 address formatted according to clause 4 of RFC5952. The mixed IPv4 IPv6 notation according to clause 5 of RFC5952 shall not be used.\n"},"Ipv6Prefix":{"type":"string","allOf":[{"pattern":"^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))(\\/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))$"},{"pattern":"^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))(\\/.+)$"}],"example":"2001:db8:abcd:12::0/64","description":"String identifying an IPv6 address prefix formatted according to clause 4 of RFC 5952. IPv6Prefix data type may contain an individual /128 IPv6 address.\n"},"IpAddr":{"description":"Contains an IP adresse.","type":"object","oneOf":[{"required":["ipv4Addr"]},{"required":["ipv6Addr"]},{"required":["ipv6Prefix"]}],"properties":{"ipv4Addr":{"$ref":"#/components/schemas/Ipv4Addr"},"ipv6Addr":{"$ref":"#/components/schemas/Ipv6Addr"},"ipv6Prefix":{"$ref":"#/components/schemas/Ipv6Prefix"}}},"Uint8":{"type":"integer","minimum":0,"maximum":256,"description":"Integer where the allowed values correspond to the value range of an unsigned 8-bit integer."},"Uint16":{"type":"integer","minimum":0,"maximum":65535,"description":"Integer where the allowed values correspond to the value range of an unsigned 16-bit integer.\n"},"Uint6":{"type":"integer","minimum":0,"maximum":32,"description":"Integer where the allowed values correspond to the value range of an unsigned 8-bit integer."},"Uint20":{"type":"integer","minimum":0,"maximum":1048575,"description":"Integer where the allowed values correspond to the value range of an unsigned 20-bit integer."},"Uint32":{"type":"integer","minimum":0,"maximum":4294967295,"description":"Integer where the allowed values correspond to the value range of an unsigned 32-bit integer.\n"},"IpPacketFilterSet":{"type":"object","required":["direction"],"properties":{"direction":{"type":"string"},"sourceAddress":{"$ref":"#/components/schemas/IpAddr"},"destinationAddress":{"$ref":"#/components/schemas/IpAddr"},"protocolNumber":{"$ref":"#/components/schemas/Uint8"},"sourcePort":{"$ref":"#/components/schemas/Uint16"},"destinationPort":{"$ref":"#/components/schemas/Uint16"},"differentiatedServicesCodePoint":{"$ref":"#/components/schemas/Uint6"},"flowLabel":{"$ref":"#/components/schemas/Uint20"},"securityParametersIndex":{"$ref":"#/components/schemas/Uint32"}}},"MediaType":{"description":"Indicates the media type of a media component.","anyOf":[{"type":"string","enum":["AUDIO","VIDEO","DATA","APPLICATION","CONTROL","TEXT","MESSAGE","OTHER"]},{"type":"string","description":"This string provides forward-compatibility with future extensions to the enumeration and is not used to encode content defined in the present version of this API.\n"}]},"MediaTransportProto":{"anyOf":[{"type":"string","enum":["RTP","SRTP"]},{"type":"string"}],"description":"The enumeration MediaTransportProto indicates the transport protocol used for a media flow.\n"},"RtpHeaderExtType":{"anyOf":[{"type":"string","enum":["PDU_SET_MARKING"]},{"type":"string"}],"description":"The enumeration indicates the type of Rtp Header Extension type \n"},"RtpHeaderExtInfo":{"description":"RTP Header Extension information","type":"object","properties":{"rtpHeaderExtType":{"$ref":"#/components/schemas/RtpHeaderExtType"},"rtpHeaderExtId":{"type":"integer","minimum":1,"maximum":255},"longFormat":{"type":"boolean"},"pduSetSizeActive":{"type":"boolean"}}},"RtpPayloadFormat":{"anyOf":[{"type":"string","enum":["H264","H265"]},{"type":"string"}],"description":"The enumeration RtpPayloadFormat indicates the RTP Payload format \n"},"RtpPayloadInfo":{"description":"RtpPayloadInfo contains Rtp payload type and format.","type":"object","properties":{"rtpPayloadTypeList":{"type":"array","items":{"type":"integer","minimum":1,"maximum":127},"minItems":1},"rtpPayloadFormat":{"$ref":"#/components/schemas/RtpPayloadFormat"}}},"ProtocolDescription":{"description":"ProtocolDescription contains information to derive PDU set information.","type":"object","properties":{"transportProto":{"$ref":"#/components/schemas/MediaTransportProto"},"rtpHeaderExtInfo":{"$ref":"#/components/schemas/RtpHeaderExtInfo"},"rtpPayloadInfoList":{"type":"array","items":{"$ref":"#/components/schemas/RtpPayloadInfo"},"minItems":1}}},"ApplicationFlowDescription":{"type":"object","required":["filterMethod"],"oneOf":[{"required":["packetFilter"]},{"required":["domainName"]}],"properties":{"filterMethod":{"$ref":"#/components/schemas/SdfMethod"},"packetFilter":{"$ref":"#/components/schemas/IpPacketFilterSet"},"domainName":{"type":"string"},"mediaType":{"$ref":"#/components/schemas/MediaType"},"mediaTransportParameters":{"$ref":"#/components/schemas/ProtocolDescription"}}},"BitRate":{"type":"string","pattern":"^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$","description":"String representing a bit rate; the prefixes follow the standard symbols from The International System of Units, and represent x1000 multipliers, with the exception that prefix \"K\" is used to represent the standard symbol \"k\".\n"},"PacketLossRate":{"type":"integer","minimum":0,"maximum":1000,"description":"Unsigned integer indicating Packet Loss Rate (see clauses 5.7.2.8 and 5.7.4 of 3GPP TS 23.501), expressed in tenth of percent.\n"},"ExtPacketDelBudget":{"type":"integer","minimum":1,"description":"Unsigned integer indicating Packet Delay Budget (see clauses 5.7.3.4 and 5.7.4 of 3GPP TS 23.501 [8])), expressed in 0.01 milliseconds.\n"},"PacketErrRate":{"type":"string","pattern":"^([0-9]E-[0-9])$","description":"String representing Packet Error Rate (see clause 5.7.3.5 and 5.7.4 of 3GPP TS 23.501, expressed as a \"scalar x 10-k\" where the scalar and the exponent k are each encoded as one decimal digit.\n"},"PduSetHandlingInfo":{"anyOf":[{"type":"string","enum":["ALL_PDUS_NEEDED","ALL_PDUS_NOT_NEEDED"]},{"type":"string","description":"This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.\n"}],"description":"Possible values are:\n- \"ALL_PDUS_NEEDED\": All PDUs of the PDU Set are needed\n- \"ALL_PDUS_NOT_NEEDED\": All PDUs of the PDU Set are not needed\n"},"PduSetQosPara":{"description":"Represents the PDU Set level QoS parameters.","type":"object","properties":{"pduSetDelayBudget":{"$ref":"#/components/schemas/ExtPacketDelBudget"},"pduSetErrRate":{"$ref":"#/components/schemas/PacketErrRate"},"pduSetHandlingInfo":{"$ref":"#/components/schemas/PduSetHandlingInfo"}},"anyOf":[{"required":["pduSetDelayBudget","pduSetErrRate"]},{"required":["pduSetHandlingInfo"]}]},"UnidirectionalQoSSpecification":{"type":"object","required":["maximumBitRate"],"properties":{"maximumBitRate":{"readOnly":true,"allOf":[{"$ref":"#/components/schemas/BitRate"}]},"maximumAuthorisedBitRate":{"$ref":"#/components/schemas/BitRate"},"minimumPacketLossRate":{"$ref":"#/components/schemas/PacketLossRate"},"pduSetQosLimits":{"$ref":"#/components/schemas/PduSetQosPara"}}},"NetworkAssistanceInvocation":{"description":"Common properties of a single Network Assistance invocation.","type":"object","properties":{"policyTemplateId":{"$ref":"#/components/schemas/ResourceId"},"applicationFlowDescriptions":{"type":"array","minItems":1,"items":{"$ref":"#/components/schemas/ApplicationFlowDescription"}},"requestedQoS":{"$ref":"#/components/schemas/UnidirectionalQoSSpecification"},"recommendedQoS":{"type":"object","description":"The network QoS parameters (if any) recommended to the Media Session Handler.","required":["maximumBitRate","minimumBitRate"],"properties":{"maximumBitRate":{"$ref":"#/components/schemas/BitRate"},"minimumBitRate":{"$ref":"#/components/schemas/BitRate"}}}}}}}}},"searchIndex":{"store":["tag/5GMS-Data-Reporting-data-types"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,0.288,1,0.251,2,0.182,3,0.182]],["description/0",[1,0.251,2,0.182,3,0.182,4,0.288,5,0.288,6,0.288]]],"invertedIndex":[["5g",{"_index":4,"title":{},"description":{"0":{}}}],["5gm",{"_index":0,"title":{"0":{}},"description":{}}],["data",{"_index":1,"title":{"0":{}},"description":{"0":{}}}],["media",{"_index":5,"title":{},"description":{"0":{}}}],["report",{"_index":2,"title":{"0":{}},"description":{"0":{}}}],["stream",{"_index":6,"title":{},"description":{"0":{}}}],["type",{"_index":3,"title":{"0":{}},"description":{"0":{}}}]],"pipeline":[]}},"options":{}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+</body>
+
+</html>

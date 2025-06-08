@@ -53,7 +53,7 @@ def getURL(url):
     return None
 
 def getAPIURL(api):
-    return "https://emanuelfreitas.github.io/3gpp-documentation/apis/" + api + ".html"
+    return "https://emanuelfreitas.github.io/3gpp-documentation/apis/html/" + api + ".html"
 
 def getDigit(val):
     if val.isdigit(): return int(val)

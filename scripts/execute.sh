@@ -1,1 +1,5 @@
-for f in ../apis/*.yaml; do npx @redocly/cli build-docs "$f" -o "${f%.yaml}.html"; done
+for f in ../apis/*.yaml; do
+  filename="${f##*/}"
+  name_no_ext="${filename%.yaml}"
+  npx @redocly/cli build-docs "$f" -o "../apis/html/${name_no_ext}.html"
+done
