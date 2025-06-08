@@ -36,12 +36,21 @@
     "name": "Policy and Charging Control Framework for the 5G System"
   },
   {
+    "id": "TS 24.558",
+    "name": "Enabling Edge Applications; Protocol specification"
+  },
+  {
     "id": "TS 26.510",
-    "name": "Media delivery; interactions and APIs for provisioning and media session handling"
+    "name": "Media delivery; interactions and APIs for provisioning and media session handling",
+    "api": true
   },
   {
     "id": "TS 26.512",
     "name": "5G Media Streaming (5GMS); Protocols"
+  },
+  {
+    "id": "TS 26.517",
+    "name": "5G Multicast-Broadcast User Services; Protocols and Formats"
   },
   {
     "id": "TS 26.532",
@@ -49,7 +58,8 @@
   },
   {
     "id": "TS 28.541",
-    "name": "Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3"
+    "name": "Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3",
+    "api": true
   },
   {
     "id": "TS 29.122",
@@ -178,6 +188,14 @@
   {
     "id": "TS 29.534",
     "name": "5G System; Access and Mobility Policy Authorization Service; Stage 3"
+  },
+  {
+    "id": "TS 29.536",
+    "name": "5G System; Network Slice Admission Control Services; Stage 3"
+  },
+  {
+    "id": "TS 29.537",
+    "name": "5G System; Multicast/Broadcast Policy Control services; Stage 3"
   },
   {
     "id": "TS 29.544",
