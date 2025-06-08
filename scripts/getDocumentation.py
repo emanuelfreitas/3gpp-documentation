@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import json
-import os
+import os, glob
 import shutil
 import re
 import urllib.request
@@ -71,24 +71,11 @@ def getAPI(getOpenAPI, regrularExpression):
         api_urls[url] = getAPIURL(url)
     print("getAPI Done")
 
-def getAPIFromGithub():
-    print("getAPIFromGithub starting")
-    fileList = getURLAsJSON("https://api.github.com/repos/jdegre/5GC_APIs/git/trees/Rel-17?recursive=1")
-
-    for entry in fileList["tree"]:
-        filename = entry["path"]
-        if not filename.endswith(".yaml"): continue
-        urlfile = 'https://raw.githubusercontent.com/jdegre/5GC_APIs/master/' + filename
-        
-        open("../apis/" + filename, 'wb').write(getURL(urlfile))
-
-        api_urls[filename.replace(".yaml", "")] = getAPIURL(filename.replace(".yaml", ""))
-    print("getAPIFromGithub end")
 
 baseGitURL = "https://github.com/emanuelfreitas/3gpp-documentation/raw/master/documentation/"
 
-shutil.rmtree("../apis")
-os.makedirs("../apis")
+for ficheiro in glob.glob("../apis/*.yaml"):
+    os.remove(ficheiro)
 
 for doc in configuration:
     directoryName = doc["id"] + " - " + doc["name"]
@@ -184,8 +171,6 @@ for doc in configuration:
     if lastRelease != 0:
         release_documents[doc["id"]] = baseGitURL + releaseDoc.replace(" ", "%20")
 
-
-##getAPIFromGithub()
 
 directory = "../documentation/" + directoryName + "/Rel-" + str(relase)
 

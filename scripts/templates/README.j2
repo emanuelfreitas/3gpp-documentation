@@ -1,3 +1,19 @@
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+</style>
+
 # 3GPP Documentation
 
 ## Table of contents
