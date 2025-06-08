@@ -1,15 +1,15 @@
 openapi: 3.0.0
 info:
   title: Eees Application Context Relocation Service
-  version: "1.0.1"
+  version: "1.1.2"
   description: |
     Eees Application Context Relocation Service.  
-    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
   description: >
-    3GPP TS 24.558 V17.5.0; Enabling Edge Applications; Protocol specification; Stage 3.
+    3GPP TS 24.558 V18.7.0; Enabling Edge Applications; Protocol specification; Stage 3.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/24.558/'
 
 servers:
@@ -177,6 +177,8 @@ components:
           type: string
         sEasEndpoint:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+        expectedLocArea:
+          $ref: '#/components/schemas/ExpectedLocationArea'
       required:
         - requestorId
         - sEasEndpoint
@@ -201,6 +203,8 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
         routeReq:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
+        simInactTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
         easNotifInd:
           type: boolean
           default: false
@@ -209,6 +213,19 @@ components:
           default: false
         eecCtxtReloc:
           $ref: '#/components/schemas/EecCtxtReloc'
+        expectedLocArea:
+          $ref: '#/components/schemas/ExpectedLocationArea'
+        acrParams:
+          $ref: '#/components/schemas/AcrParameters'
+        acrModificationParams:
+          $ref: '#/components/schemas/AcrModificationParams'
+        easBundleInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASBundleInfo'
+        tEasEndPointBundleList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+          minItems: 1
       required:
         - requestorId
         - tEasEndpoint
@@ -228,6 +245,15 @@ components:
           type: string
         tEasEndpoint:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+        expectedLocArea:
+          $ref: '#/components/schemas/ExpectedLocationArea'
+        easBundleInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASBundleInfo'
+        tEasEndPointBundleList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+          minItems: 1
         requestorId:
           description: >
             Contains the identifier of the EAS that is sending the request. It shall be
@@ -255,3 +281,33 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
       required:
         - eecCtxtId
+
+    ExpectedLocationArea:
+      description: >
+        Represents the expected location or service are of UE.
+      type: object
+      properties:
+        locInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_MonitoringEvent.yaml#/components/schemas/LocationInfo'
+        svcArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+
+    AcrParameters:
+      description: >
+        Represents ACR parameters specific to ACR request initiated for Service continuity planning.
+      type: object
+      properties:
+        predictExpTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+
+    AcrModificationParams:
+      description: >
+        Represents ACR parameters specific to ACR modification request.
+      type: object
+      properties:
+        sEasEndpoint:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+        tEasEndpoint:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+        acrParams:
+          $ref: '#/components/schemas/AcrParameters'

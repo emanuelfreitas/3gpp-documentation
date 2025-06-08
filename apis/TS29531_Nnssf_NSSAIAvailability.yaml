@@ -1,11 +1,11 @@
 openapi: 3.0.0
 
 info:
-  version: '1.2.1'
+  version: '1.3.0'
   title: 'NSSF NSSAI Availability'
   description: |
     NSSF NSSAI Availability Service.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 security:
   - {}
@@ -18,7 +18,7 @@ servers:
         default: https://example.com
         description: apiRoot as defined in clause 4.4 of 3GPP TS 29.501
 externalDocs:
-  description: 3GPP TS 29.531 V17.8.0; 5G System; Network Slice Selection Services; Stage 3
+  description: 3GPP TS 29.531 V18.7.0; 5G System; Network Slice Selection Services; Stage 3
   url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.531/
 paths:
   /nssai-availability/{nfId}:
@@ -36,12 +36,12 @@ paths:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         - name: Content-Encoding
           in: header
-          description: Content-Encoding, described in IETF RFC 7231
+          description: Content-Encoding, described in IETF RFC 9110
           schema:
             type: string
         - name: Accept-Encoding
           in: header
-          description: Accept-Encoding, described in IETF RFC 7231
+          description: Accept-Encoding, described in IETF RFC 9110
           schema:
             type: string
       requestBody:
@@ -60,11 +60,11 @@ paths:
                 $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
           headers:
             Accept-Encoding:
-              description: Accept-Encoding, described in IETF RFC 7694
+              description: Accept-Encoding, described in IETF RFC 9110
               schema:
                 type: string
             Content-Encoding:
-              description: Content-Encoding, described in IETF RFC 7231
+              description: Content-Encoding, described in IETF RFC 9110
               schema:
                 type: string
         '204':
@@ -92,6 +92,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -111,12 +113,12 @@ paths:
             type: string
         - name: Content-Encoding
           in: header
-          description: Content-Encoding, described in IETF RFC 7231
+          description: Content-Encoding, described in IETF RFC 9110
           schema:
             type: string
         - name: Accept-Encoding
           in: header
-          description: Accept-Encoding, described in IETF RFC 7231
+          description: Accept-Encoding, described in IETF RFC 9110
           schema:
             type: string
       requestBody:
@@ -136,11 +138,11 @@ paths:
                 $ref: '#/components/schemas/AuthorizedNssaiAvailabilityInfo'
           headers:
             Accept-Encoding:
-              description: Accept-Encoding, described in IETF RFC 7694
+              description: Accept-Encoding, described in IETF RFC 9110
               schema:
                 type: string
             Content-Encoding:
-              description: Content-Encoding, described in IETF RFC 7231
+              description: Content-Encoding, described in IETF RFC 9110
               schema:
                 type: string
         '204':
@@ -169,6 +171,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -199,6 +203,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
 
@@ -206,6 +212,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
@@ -222,7 +230,7 @@ paths:
       parameters:
         - name: Content-Encoding
           in: header
-          description: Content-Encoding, described in IETF RFC 7231
+          description: Content-Encoding, described in IETF RFC 9110
           schema:
             type: string
       requestBody:
@@ -234,12 +242,12 @@ paths:
               $ref: '#/components/schemas/NssfEventSubscriptionCreateData'
       callbacks:
         nssaiAvailabilityNotification:
-          '{request.body#/nfNssaiAvailabilityUri}':
+          '{$request.body#/nfNssaiAvailabilityUri}':
             post:
               parameters:
                 - name: Content-Encoding
                   in: header
-                  description: Content-Encoding, described in IETF RFC 7231
+                  description: Content-Encoding, described in IETF RFC 9110
                   schema:
                     type: string
               requestBody:  # contents of the callback message
@@ -253,7 +261,7 @@ paths:
                   description: No Content (successful notification)
                   headers:
                     Accept-Encoding:
-                      description: Accept-Encoding, described in IETF RFC 7694
+                      description: Accept-Encoding, described in IETF RFC 9110
                       schema:
                         type: string
                 '307':
@@ -262,6 +270,10 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
                 '400':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
                 '404':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
                 '411':
@@ -274,6 +286,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -291,12 +305,12 @@ paths:
             Location:
               description: >
                 Contains the URI of the newly created resource, according to the structure:
-                {apiRoot}/nnssf-nssaiavailability/v1/nssai-availability/subscriptions/{subscriptionId}
+                {apiRoot}/nnssf-nssaiavailability/<apiVersion>/nssai-availability/subscriptions/{subscriptionId}
               required: true
               schema:
                 type: string
             Content-Encoding:
-              description: Content-Encoding, described in IETF RFC 7231
+              description: Content-Encoding, described in IETF RFC 9110
               schema:
                 type: string
         '307':
@@ -311,7 +325,6 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
-
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -322,6 +335,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '501':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -343,7 +360,8 @@ paths:
 
       responses:
         '204':
-          description: No Content (Successful deletion of subscription for NSSAI Availability notification)
+          description: >
+            No Content (Successful deletion of subscription for NSSAI Availability notification)
         '307':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
@@ -352,6 +370,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
 
@@ -359,6 +379,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
@@ -379,11 +401,13 @@ paths:
             type: string
         - name: Content-Encoding
           in: header
-          description: Content-Encoding, described in IETF RFC 7231
+          description: Content-Encoding, described in IETF RFC 9110
           schema:
             type: string
       requestBody:
-        description: JSON Patch instructions to update at the NSSF, the NSSAI availability notification subscription
+        description: >
+          JSON Patch instructions to update at the NSSF,
+          the NSSAI availability notification subscription
         required: true
         content:
           application/json-patch+json::
@@ -399,7 +423,7 @@ paths:
                 $ref: '#/components/schemas/NssfEventSubscriptionCreatedData'
           headers:
             Content-Encoding:
-              description: Content-Encoding, described in IETF RFC 7231
+              description: Content-Encoding, described in IETF RFC 9110
               schema:
                 type: string
         '307':
@@ -424,6 +448,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -440,7 +466,7 @@ paths:
           description: OK
           headers:
             Accept-Encoding:
-              description: Accept-Encoding, described in IETF RFC 7694
+              description: Accept-Encoding, described in IETF RFC 9110
               schema:
                 type: string
         '307':
@@ -463,6 +489,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
         '501':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -479,6 +507,11 @@ components:
             nnssf-nssaiavailability: Access to the Nnssf_NSSAIAvailability API
 
   schemas:
+
+#
+# STRUCTURED TYPES
+#
+
     NssaiAvailabilityInfo:
       description: This contains the Nssai availability information requested by the AMF
       type: object
@@ -603,7 +636,6 @@ components:
       type: object
       required:
         - nfNssaiAvailabilityUri
-        - taiList
         - event
       properties:
         nfNssaiAvailabilityUri:
@@ -614,6 +646,11 @@ components:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
         event:
           $ref: '#/components/schemas/NssfEventType'
+        additionalEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/NssfEventType'
+          minItems: 1
         expiry:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
         amfSetId:
@@ -628,6 +665,18 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         supportedFeatures:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        allAmfSetTaiInd:
+          type: boolean
+          default: false
+        nsrpSubscribeInfo:
+          $ref: '#/components/schemas/SnssaiReplacementSubscribeInfo'
+        nsiunSubscribeInfo:
+          $ref: '#/components/schemas/NsiUnavailabilitySubscribeInfo'
+        validityTimeSubList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
 
     NssfEventSubscriptionCreatedData:
       description: This contains the information for created event subscription
@@ -652,7 +701,6 @@ components:
       type: object
       required:
         - subscriptionId
-        - authorizedNssaiAvailabilityData
       properties:
         subscriptionId:
           type: string
@@ -660,16 +708,90 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AuthorizedNssaiAvailabilityData'
+        altNssai:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SnssaiReplaceInfo'
+          minItems: 1
+          description: >
+            Indicate the impacted S-NSSAIs, the current status for each reported S-NSSAI, and 
+            if available the alternative S-NSSAI per impacted S-NSSAI for the S-NSSAIs that are 
+            reported as being not available.
+        unavailableNsiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId'
+          minItems: 1
+        nssaiValidityTimeInfo:
+          description: >
+            A map(list of key-value pairs where single Nssai serves as key)
+            of the current validity time
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+
+    SnssaiReplacementSubscribeInfo:
+      description: >
+        Present if the NF service consumer subscribes to events related to
+        Network Slice Replacement.
+      type: object
+      properties:
+        snssaiToSubscribe:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        nfType:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/NFType'
+        nfId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        plmnId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+      required:
+        - snssaiToSubscribe
+        - nfType
+        - nfId
+ 
+    NsiUnavailabilitySubscribeInfo:
+      description: >
+        Present if the NF service consumer subscribes to events related to
+        Network Slice Instance Replacement.
+      type: object
+      properties:
+        nsiToSubscribe:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29531_Nnssf_NSSelection.yaml#/components/schemas/NsiId'
+        snssaiToSubscribe:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+
+    PatchDocument:
+      description: >
+        This contains the JSON Patch instructions for updating the Nssai availability data
+        information at the NSSF
+      type: array
+      items:
+        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PatchItem'
+      minItems: 1
+#
+# SIMPLE TYPES
+#
+
+
+
+#
+# ENUMS
+#
+
     NssfEventType:
       description: This contains the event for the subscription
       anyOf:
         - type: string
           enum:
             - SNSSAI_STATUS_CHANGE_REPORT
+            - SNSSAI_REPLACEMENT_REPORT
+            - NSI_UNAVAILABILITY_REPORT
+            - SNSSAI_VALIDITY_TIME_REPORT
         - type: string
-    PatchDocument:
-      description: This contains the JSON Patch instructions for updating the Nssai availability data information at the NSSF
-      type: array
-      items:
-        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PatchItem'
-      minItems: 1
+

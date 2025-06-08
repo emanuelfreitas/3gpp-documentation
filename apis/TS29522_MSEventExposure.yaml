@@ -2,15 +2,15 @@ openapi: 3.0.0
 
 info:
   title: 3gpp-ms-event-exposure
-  version: 1.0.1
+  version: 1.1.0
   description: |
     API for Media Streaming Event Exposure.  
-    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.8.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.6.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
 
 servers:
@@ -119,7 +119,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
       callbacks:
         msEventExposureNotif:
-          '{request.body#/notifUri}':
+          '{$request.body#/notifUri}':
             post:
               requestBody:
                 required: true
@@ -162,7 +162,8 @@ paths:
     parameters:
       - name: subscriptionId
         in: path
-        description: Identifier of the Individual Media Streaming Event Exposure Subscription resource.
+        description: >
+          Identifier of the Individual Media Streaming Event Exposure Subscription resource.
         required: true
         schema:
           type: string

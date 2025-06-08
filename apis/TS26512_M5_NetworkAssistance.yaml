@@ -1,185 +1,27 @@
 openapi: 3.0.0
+
 info:
-  title: M5_NetworkAssistance
-  version: 2.2.0
+  title: M5_NetworkAssistance (deprecated)
+  version: 3.0.2
   description: |
     5GMS AF M5 Network Assistance API
-    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
+
 tags:
   - name: M5_NetworkAssistance
-    description: '5G Media Streaming: Media Session Handling (M5) APIs: Network Assistance'
+    description: '5G Media Streaming: Media Session Handling (M5) APIs: Network Assistance (deprecated)'
+
 externalDocs:
-  description: 'TS 26.512 V17.10.0; 5G Media Streaming (5GMS); Protocols'
+  description: 'TS 26.512 V18.5.0; 5G Media Streaming (5GMS); Protocols'
   url: 'https://www.3gpp.org/ftp/Specs/archive/26_series/26.512/'
-servers:
-  - url: '{apiRoot}/3gpp-m5/v2'
-    variables:
-      apiRoot:
-        default: https://example.com
-        description: apiRoot as defined in subclause 4.4.1 of 3GPP TS 29.501.
-paths:
-  /network-assistance/:
-    post:
-      operationId: createNetworkAssistanceSession
-      summary: 'Create a new Network Assistance Session.'
-      requestBody:
-        description: 'The initial parameters for the Network Assistance Session resource'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NetworkAssistanceSession'
-      responses:
-        '201':
-          description: 'Created Network Assistance Session'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NetworkAssistanceSession'
-          headers:
-            Location:
-              description: 'The URL of the newly created Network Assistance Session resource'
-              required: true
-              schema:
-                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/AbsoluteUrl'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
 
-  /network-assistance/{naSessionId}:
-    parameters:
-      - name: naSessionId
-        description: 'The resource identifier of an existing Network Assistance Session resource'
-        in: path
-        required: true
-        schema:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/ResourceId'
-    get:
-      operationId: retrieveNetworkAssistanceSession
-      summary: 'Retrieve an existing Network Assistance Session resource'
-      responses:
-        '200':
-          description: 'A JSON representation of a Network Assistance Session resource'
-          content:
-            application/json:
-              schema:
-                  $ref: '#/components/schemas/NetworkAssistanceSession'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not Found'
-    put:
-      operationId: updateNetworkAssistanceSession
-      summary: 'Update an existing Network Assistance Session resource'
-      requestBody:
-        description: 'A replacement JSON representation of a Network Assistance Session resource'
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NetworkAssistanceSession'
-      responses:
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not found'
-    patch:
-      operationId: patchNetworkAssistanceSession
-      summary: 'Patch an existing Network Assistance Session resource'
-      requestBody:
-        description: 'A JSON patch to a Network Assistance Session resource'
-        required: true
-        content:
-          application/merge-patch+json:
-            schema:
-              $ref: '#/components/schemas/NetworkAssistanceSession'
-          application/json-patch+json:
-            schema:
-              $ref: '#/components/schemas/NetworkAssistanceSession'
-      responses:
-        '200':
-          description: 'Patched Network Assistance Session'
-          content:
-            application/json:
-              schema:
-                  $ref: '#/components/schemas/NetworkAssistanceSession'
-        '204':
-          description: 'Patched Network Assistance Session'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not Found'
-    delete:
-      operationId: destroyNetworkAssistanceSession
-      summary: 'Destroy an existing Network Assistance Session resource'
-      responses:
-        '204':
-          description: 'Destroyed Network Assistance Session'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not Found'
+paths: {}
 
-  /network-assistance/{naSessionId}/recommendation:
-    get:
-      operationId: requestBitRateRecommendation
-      summary: 'Obtain a bit rate recommendation for the next recommendation window'
-      parameters:
-        - name: naSessionId
-          description: 'The resource identifier of an existing Network Assistance Session resource'
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 'Success'
-          content:
-            application/json:
-              schema:
-                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/M5QoSSpecification'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not Found'
-  /network-assistance/{naSessionId}/boost-request:
-    post:
-      operationId: requestDeliveryBoost
-      summary: 'Request a delivery boost'
-      parameters:
-        - name: naSessionId
-          description: 'The resource identifier of an existing Network Assistance Session resource'
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: 'Delivery Boost Request Processed'
-          content:
-            application/json:
-              schema:
-                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/OperationSuccessResponse'
-        '400':
-          description: 'Bad Request'
-        '401':
-          description: 'Unauthorized'
-        '404':
-          description: 'Not Found'
 components:
   schemas:
     NetworkAssistanceSession:
+      deprecated: true
       description: "A representation of a Network Assistance Session resource."
       type: object
       required: 
@@ -190,25 +32,25 @@ components:
         naSessionId:
           readOnly: true
           allOf:
-            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/ResourceId'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ResourceId'
         provisioningSessionId:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/ResourceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ResourceId'
         serviceDataFlowDescriptions:
           type: array
           items: 
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/ServiceDataFlowDescription'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ApplicationFlowDescription'
           minItems: 1
         mediaType:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/MediaType'
         policyTemplateId:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/ResourceId'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ResourceId'
         requestedQoS:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/M5QoSSpecification'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ClientQosSpecification'
         recommendedQoS:
           readOnly: true
           allOf:
-            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/M5QoSSpecification'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ClientQosSpecification'
         notficationURL:
           readOnly: true
           allOf:
-            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/AbsoluteUrl'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'

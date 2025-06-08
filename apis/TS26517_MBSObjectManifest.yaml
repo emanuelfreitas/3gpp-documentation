@@ -1,16 +1,16 @@
 openapi: 3.0.0
 info:
   title: MBS User Services Object Manifest
-  version: 1.0.0
+  version: 2.0.0
   description: |
     MBS User Services Object Manifest syntax
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 tags:
   - name: MBS User Services Object Manifest
     description: '5G Media Streaming: Common Data Types'
 externalDocs:
-  description: 'TS 26.517 V17.3.0; 5G Multicast-Broadcast User Services; Protocols and Formats'
+  description: 'TS 26.517 V18.1.0; 5G Multicast-Broadcast User Services; Protocols and Formats'
   url: 'https://www.3gpp.org/ftp/Specs/archive/26_series/26.517/'
 paths: {}
 components:
@@ -37,7 +37,7 @@ components:
           - locator
         properties:
           locator:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/AbsoluteUrl'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'
           repetitionInterval:
             type: integer
             format: int32

@@ -2,15 +2,15 @@ openapi: 3.0.0
 
 info:
   title: nmbsf-mbs-ud-ingest
-  version: 1.0.3
+  version: 1.1.2
   description: |
     API for MBS User Data Ingest Session Service.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
   description: >
-    3GPP TS 29.580 V17.3.0; 5G System; Multicast/Broadcast Service Function Services.
+    3GPP TS 29.580 V18.7.0; 5G System; Multicast/Broadcast Service Function Services.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.580/'
 
 servers:
@@ -60,6 +60,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -97,13 +99,31 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -114,6 +134,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -161,6 +183,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -198,13 +222,31 @@ paths:
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -215,6 +257,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -252,13 +296,31 @@ paths:
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may
+            be returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
         '413':
@@ -269,6 +331,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -300,6 +364,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -342,6 +408,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -396,13 +464,15 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
       callbacks:
         mbsUserDataIngestSessionStatusNotif:
-          '{request.body#/notifUri}':
+          '{$request.body#/notifUri}':
             post:
               requestBody:
                 required: true
@@ -435,6 +505,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -483,6 +555,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -538,6 +612,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -593,6 +669,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -624,6 +702,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -661,7 +741,7 @@ components:
           minProperties: 1
           nullable: true
           description: >
-            Represents one or more MBS Distribution Session(s) composing the MBS User Data Ingest
+            Represents one or more MBS Distribution Session(s) composing the MBS User Data Ingest 
             Session.
             The key of the map shall be any unique string encoded value.
         actPeriods:
@@ -669,17 +749,35 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
           minItems: 1
+        actPeriodsRepRule:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26517_MBSUserServiceAnnouncement.yaml#/components/schemas/RepetitionRule'
         mbsUserServAnmt:
           $ref: '#/components/schemas/MBSUserServAnmt'
         mbsUserServiceAnmt:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26517_MBSUserServiceAnnouncement.yaml#/components/schemas/UserServiceDescription'
         mbsUserServiceAnmtUrl:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+        failedDistSessions:
+          $ref: '#/components/schemas/MbsDistSessFailureSets'
+        redMbsServAreaInfo:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_MBSTMGI.yaml#/components/schemas/ReducedMbsServArea'
+          minProperties: 1
+          description: >
+            Contains the MBS Distribution Session(s) for which the provided MBS Service Area was
+            only partially accepted by the MB-SMF and the corresponding retained (reduced) MBS
+            Service Area.
+            The key of the map shall be a string set to the same value received from the NF
+            service consumer within "mbsDisSessInfos" attribute to enable the identification of
+            the concerned MBS Distribution session.
         suppFeat:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - mbsUserServId
         - mbsDisSessInfos
+      not:
+        required: [actPeriods, actPeriodsRepRule]
 
     MBSDistributionSessionInfo:
       description: Represents MBS Distribution Session information.
@@ -691,6 +789,10 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29581_Nmbstf_DistSession.yaml#/components/schemas/DistSessionState'
         mbsSessionId:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MbsSessionId'
+        associatedSessionId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AssociatedSessionId'
+        nrRedCapUeInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NrRedCapUeInfo'
         mbsServInfo:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MbsServiceInfo'
         maxContBitRate:
@@ -751,6 +853,14 @@ components:
         Subscription.
       type: object
       properties:
+        actPeriods:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
+          minItems: 1
+          nullable: true
+        actPeriodsRepRule:
+          $ref: '#/components/schemas/RepetitionRuleRm'
         mbsDisSessInfos:
           type: object
           additionalProperties:
@@ -761,11 +871,6 @@ components:
             Contains the requested modifications to one or more MBS Distribution Session(s) 
             composing the MBS User Data Ingest Session.
             The key of the map shall be any unique string encoded value.
-        actPeriods:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
-          minItems: 1
 
     ObjectDistrMethInfo:
       description: >
@@ -991,6 +1096,56 @@ components:
         - paramName
         - paramValue
 
+    MbsDistSessFailure:
+      description: Represents MBS Distribution Session specific failure information.
+      type: object
+      properties:
+        cause:
+          $ref: '#/components/schemas/DistSessionFailure'
+        redMbsServArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_MBSTMGI.yaml#/components/schemas/ReducedMbsServArea'
+      required:
+        - cause
+
+    MbsDistSessFailureSets:
+      description: >
+        Represents one or several set(s) of MBS Distribution Session specific failure
+        information.
+      type: object
+      properties:
+        causes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/MbsDistSessFailure'
+          minProperties: 1
+          description: >
+            Represents the causes of the failure of the MBS User Data Ingest session
+            creation/update on a per-MBS Distribution Session granularity.
+            The key of the map shall be a string set to the same value received from the NF
+            service consumer within "mbsDisSessInfos" attribute of the MBSUserDataIngSession
+            data type to enable the identification of the failed MBS Distribution session.
+      required:
+        - causes
+
+    RepetitionRuleRm:
+      description: >
+        Represents the same as the RepetitionRule data type defined in 3GPP TS 26.517 but with the
+        OpenAPI nullable property set to true.
+      type: object
+      properties:
+        startTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+        duration:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        repetitionInterval:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+      nullable: true
+      required:
+        - startTime
+        - duration
+        - repetitionInterval
+
+
 # SIMPLE DATA TYPES
 #
 
@@ -1008,6 +1163,7 @@ components:
           This string provides forward-compatibility with future extensions to the enumeration
           and is not used to encode content defined in the present version of this API.
       description: |
+        Represents the MBS Distribution method.  
         Possible values are:
         - OBJECT: Indicates the Object Distribution Method.
         - PACKET: Indicates the Packet Distribution Method.
@@ -1027,17 +1183,23 @@ components:
           - DATA_INGEST_FAILURE
           - DELIVERY_STARTED
           - SESSION_TERMINATED
+          - SESSION_STARTED
+          - SESSION_RELEASED
+          - DIST_SESS_ACTIVATED
+          - DIST_SESS_EST_FAILURE
+          - USER_SER_AD
       - type: string
         description: >
           This string provides forward-compatibility with future extensions to the enumeration
           and is not used to encode content defined in the present version of this API.
       description: |
+        Represents the MBS User Data Ingest Session Status events.  
         Possible values are:
         - USER_DATA_ING_SESS_STARTING: >
             Indicates that the MBS User Data Ingest Session is starting. This is an "MBS User Data
             Ingest Session" level event.
         - USER_DATA_ING_SESS_STARTED: >
-            Indicates that the MBS User Data Ingest Session started. This is an "MBS User Data
+            Indicates that the MBS User Data Ingest Session established. This is an "MBS User Data
             Ingest Session" level event.
         - USER_DATA_ING_SESS_TERMINATED: >
             Indicates that the MBS User Data Ingest Session is terminated. This is an "MBS User Data
@@ -1066,3 +1228,61 @@ components:
             The MBS User Data delivery is started.
         - SESSION_TERMINATED: >
             The MBS User Data Ingest Session is terminated.
+        - SESSION_STARTED: >
+            The MBS Session is started.
+        - SESSION_RELEASED: >
+            The MBS Session is released.
+        - DIST_SESS_ACTIVATED:
+            Indicates that the MBS Distribution Session is activated successfully.
+        - DIST_SESS_EST_FAILURE:
+            Indicates that the MBSF failed to successfully establish the MBS Distribution Session at
+            the MBSTF. This is an "MBS Distribution Session" level event.
+        - USER_SER_AD:
+            Indicates that the MBSF advertises the User Service Announcement information to the MBS
+            Application Provider.
+
+    DistSessionFailure:
+      anyOf:
+      - type: string
+        enum:
+          - INVALID_MBS_SERVICE_INFO
+          - MBS_SERVICE_AREA_NOT_SUPPORTED
+          - MBS_SERVICE_INFO_NOT_AUTHORIZED
+          - MBS_DIST_SESSION_ALREADY_CREATED
+          - OVERLAPPING_MBS_SERVICE_AREA
+          - UNKNOWN_MBS_SERVICE_AREA
+      - type: string
+        description: >
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
+      description: |
+        Represents the MBS Distribution Session creation/update related failure cause.  
+        Possible values are:
+        - INVALID_MBS_SERVICE_INFO: >
+            Indicates that the provided MBS Service Information is invalid (e.g. invalid QoS
+            reference), incorrect or insufficient to perform MBS policy authorization.
+        - MBS_SERVICE_AREA_NOT_SUPPORTED: >
+            Indicates that the requested MBS Service Area is not supported by the 3GPP Core
+            Network.
+        - MBS_SERVICE_INFO_NOT_AUTHORIZED: >
+            Indicates that the provided MBS Service Information is rejected.
+        - MBS_DIST_SESSION_ALREADY_CREATED: >
+            Indicates that the requested MBS Distribution Session has already been created.
+        - OVERLAPPING_MBS_SERVICE_AREA: >
+            Indicates that the provided MBS service area overlaps with the MBS service area of
+            an existing MBS Distribution Session that shares the same MBS session Identifier.
+        - UNKNOWN_MBS_SERVICE_AREA: >
+            Indicates that the requested MBS service area (e.g., identified by the Area Session
+            ID) cannot be found.
+
+#
+# Data types describing alternative data types or combinations of data types
+#
+
+    ProblemDetailsMBS:
+      description: >
+        Represents an extension to the ProblemDetails data structure with potentially additional
+        error information related to MBS.
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/ProblemDetails'
+        - $ref: '#/components/schemas/MbsDistSessFailureSets'

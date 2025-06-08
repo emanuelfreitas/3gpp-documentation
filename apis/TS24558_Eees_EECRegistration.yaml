@@ -1,14 +1,16 @@
 openapi: 3.0.0
+
 info:
   title: Eees_EECRegistration
-  version: "1.0.2"
+  version: "1.1.0"
   description: |
-    API for EEC registration.
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    API for EEC registration.  
+    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
+
 externalDocs:
   description: >
-    3GPP TS 24.558 V17.4.0 Enabling Edge Applications; Protocol specification.
+    3GPP TS 24.558 V18.5.1 Enabling Edge Applications; Protocol specification.
   url: 'https://www.3gpp.org/ftp/Specs/archive/24_series/24.558/'
 
 security:
@@ -20,11 +22,15 @@ servers:
     variables:
       apiRoot:
         default: https://example.com
-        description: apiRoot as defined in clause 6.1 of 3GPP TS 24.558
+        description: apiRoot as defined in clause 7.5 of 3GPP TS 29.558.
 
 paths:
+
   /registrations:
     post:
+      operationId: CreateEECReg
+      tags:
+        - EEC Registrations (Collection)
       description: Create a new EEC registration at the EES.
       requestBody:
         required: true
@@ -65,18 +71,22 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
   /registrations/{registrationId}:
     put:
+      operationId: UpdateIndEECReg
+      tags:
+        - Individual EEC registration (Document)
       description: Update an existing EEC registration a the EES.
       parameters:
         - name: registrationId
           in: path
-          description: Identifies an individual EEC registration
+          description: Identifies an individual EEC registration.
           required: true
           schema:
             type: string
       requestBody:
-        description: Parameters to replace the existing registration
+        description: Parameters to replace the existing registration.
         required: true
         content:
           application/json:
@@ -120,11 +130,14 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
     delete:
-      description: Remove an existing ECC registration at EES.
+      operationId: DeleteIndEECReg
+      tags:
+        - Individual EEC registration (Document)
+      description: Remove an existing EEC registration at EES.
       parameters:
         - name: registrationId
           in: path
-          description: Identifies an individual EEC registration
+          description: Identifies an individual EEC registration.
           required: true
           schema:
             type: string
@@ -152,17 +165,21 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
     patch:
-      description: partially update an existing EEC registration a the EES.
+      operationId: ModifyIndEECReg
+      tags:
+        - Individual EEC registration (Document)
+      description: Partially update an existing EEC registration a the EES.
       parameters:
         - name: registrationId
           in: path
-          description: Identifies an individual EEC registration
+          description: Identifies an individual EEC registration.
           required: true
           schema:
             type: string
       requestBody:
-        description: Parameters to replace the existing registration
+        description: Parameters to replace the existing registration.
         required: true
         content:
           application/merge-patch+json:
@@ -206,6 +223,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
 components:
+
   securitySchemes:
     oAuth2ClientCredentials:
       type: oauth2
@@ -215,6 +233,7 @@ components:
           scopes: {}
 
   schemas:
+
     EECRegistration:
       description: Describes the parameters to perform EEC Registration related operations.
       type: object
@@ -234,7 +253,7 @@ components:
         eecSvcContSupp:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario' 
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
           description: Profiles of ACs for which the EEC provides edge enabling services.
         eecCntxId:
           type: string
@@ -243,7 +262,26 @@ components:
           type: string
           description: Identifier of the EES that provided EEC context ID.
         endPt:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint' 
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
+        ueMobilityReq:
+          type: boolean
+          description: >
+            Set to true to indicate that UE Mobility support is required.
+            Set to false to indicate that UE mobility support is not required.
+            The default value when omitted is false.
+        easSelReqInd:
+          type: boolean
+          description: >
+            Set to true to indicate the EES support for EAS selection.
+            Set to false to indicate the EES shall not select the EAS.
+            The default value when omitted is false.
+        ueType:
+          $ref: '#/components/schemas/DeviceType'
+        discoveredEas:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS24558_Eees_EASDiscovery.yaml#/components/schemas/DiscoveredEas'
+          minItems: 1
         unfulfillAcProfs:
           type: array
           items:
@@ -258,8 +296,9 @@ components:
         required: [ unfulfilledAcProfs, unfulfillAcProfs ]
       required:
         - eecId
+
     ACProfile:
-      description: ECS service provisioning response information.
+      description: AC information indicating required services and service characteristics.
       type: object
       properties:
         acId:
@@ -280,33 +319,44 @@ components:
         acSvcContSupp:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario' 
-          description: Profiles of ACs for which the EEC provides edge enabling services.
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
+          description: The ACR scenarios supported by the AC for service continuity.
+        simInactTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
         eass:
           type: array
           items:
             $ref: '#/components/schemas/EasDetail'
           minItems: 1
           description: List of EAS information.
+        easBundleInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASBundleInfo'
+          minItems: 1
+          description: >
+            List of EAS bundles to which the EAS (identified via the "easId" attribute) belongs.
       required:
         - acId
-    EasDetail:    
+
+    EasDetail:
       description: EAS details.
       type: object
-      properties:  
+      properties:
         easId:
           type: string
-          description: Application identifier of the EAS.          
-        expectedSvcKPIs:  
+          description: Application identifier of the EAS.
+        expectedSvcKPIs:
           $ref: '#/components/schemas/ACServiceKPIs'
-        minimumReqSvcKPIs:  
+        minimumReqSvcKPIs:
           $ref: '#/components/schemas/ACServiceKPIs'
       required:
         - easId
-    ACServiceKPIs:       
-      description: EAS details.
+
+    ACServiceKPIs:
+      description: Describes the KPIs required by the AC in order to receive required services.
       type: object
-      properties:  
+      properties:
         connBand:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
         reqRate:
@@ -327,6 +377,7 @@ components:
         reqStrg:
           type: string
           description: The storage resources required by the AC.
+
     EECRegistrationPatch:
       description: Describes the parameters to perform EEC Registration update.
       type: object
@@ -338,8 +389,17 @@ components:
           description: Profiles of ACs for which the EEC provides edge enabling services.
         expTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+        ueMobilityReq:
+          type: boolean
+          description: Indicates whether UE requires mobility support or not.
+        easSelReqInd:
+          type: boolean
+          description: Indicates whether EES support for EAS selection is required or not.
+        ueType:
+          $ref: '#/components/schemas/DeviceType'
+
     UnfulfilledAcProfile:
-      description: Desrcibes AC Profile ID and reason sent by EES in EEC Register response.
+      description: Describes AC Profile ID and reason sent by EES in EEC Register response.
       type: object
       properties:
         acId:
@@ -347,10 +407,37 @@ components:
           description: The AC ID of a AC profile.
         reason:
           $ref: '#/components/schemas/UnfulfillACProfRsn'
+
     UnfulfillACProfRsn:
       anyOf:
         - type: string
           enum:
             - EAS_NOT_AVAILABLE
             - REQ_UNFULFILLED
-      description: represents reason for unfulfilled AC profile requirements.
+        - type: string
+          description: >
+            This string provides forward-compatibility with future extensions to the
+            enumeration and is not used to encode content defined in the present version
+            of this API.
+      description: |
+        Represents reason for unfulfilled AC profile requirements.
+        Possible values are:
+        - EAS_NOT_AVAILABLE: EAS is not available.
+        - REQ_UNFULFILLED: Requirements cannot be fulfilled.
+
+    DeviceType:
+      anyOf:
+      - type: string
+        enum:
+          - CONSTRAINED_UE
+          - NORMAL_UE
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration and is not used to encode
+          content defined in the present version of this API.
+      description: >
+        Represents the UE type.
+        Possible values are:
+        - CONSTRAINED_UE: Indicates UE is constrained with resources like power, processor etc.
+        - NORMAL_UE: Indicates UE is not constrained with resources.

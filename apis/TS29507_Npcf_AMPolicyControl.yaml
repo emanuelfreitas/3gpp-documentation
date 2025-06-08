@@ -1,24 +1,29 @@
 openapi: 3.0.0
+
 info:
-  version: 1.2.2
+  version: 1.3.1
   title: Npcf_AMPolicyControl
   description: |
     Access and Mobility Policy Control Service.  
     © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
+
 externalDocs:
-  description: 3GPP TS 29.507 V17.11.0; 5G System; Access and Mobility Policy Control Service.
+  description: 3GPP TS 29.507 V18.8.0; 5G System; Access and Mobility Policy Control Service.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.507/'
+
 servers:
   - url: '{apiRoot}/npcf-am-policy-control/v1'
     variables:
       apiRoot:
         default: https://example.com
         description: apiRoot as defined in clause 4.4 of 3GPP TS 29.501
+
 security:
   - {}
   - oAuth2ClientCredentials:
     - npcf-am-policy-control
+
 paths:
   /policies:
     post:
@@ -65,6 +70,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -112,6 +119,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -150,6 +159,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -192,6 +203,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -227,6 +240,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -281,10 +296,13 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+
 components:
   securitySchemes:
     oAuth2ClientCredentials:
@@ -294,6 +312,7 @@ components:
           tokenUrl: '{nrfApiRoot}/oauth2/token'
           scopes:
             npcf-am-policy-control: Access to the Npcf_AMPolicyControl API
+
   schemas:
     PolicyAssociation:
       description: Represents an individual AM Policy Association resource.
@@ -313,6 +332,8 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WirelineServiceAreaRestriction'
         rfsp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RfspIndex'
+        rfspValTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
         targetRfsp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RfspIndex'
         smfSelInfo:
@@ -325,8 +346,8 @@ components:
             $ref: '#/components/schemas/UeSliceMbr'
           minItems: 1
           description: >
-            One or more UE-Slice-MBR(s) for S-NSSAI(s) of serving PLMN as part of the AMF Access and
-            Mobility Policy as determined by the PCF.
+            One or more UE-Slice-MBR(s) for S-NSSAI(s) of serving PLMN as part of the
+            AMF Access and Mobility Policy as determined by the PCF.
         pras:
           type: object
           additionalProperties:
@@ -335,19 +356,34 @@ components:
           description: >
             Contains the presence reporting area(s) for which reporting was requested.
             The praId attribute within the PresenceInfo data type is the key of the map.
-        suppFeat:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         pcfUeInfo:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PcfUeCallbackInfo'
         matchPdus:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionInfo'
+          description: >
+            Indicates the matched PDU session(s) for which the PCF for the UE information apply.
           nullable: true
         asTimeDisParam:
           $ref: '#/components/schemas/AsTimeDistributionParam'
+        sliceUsgCtrlInfoSets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SliceUsgCtrlInfo'
+          minProperties: 1
+          description: >
+            Represents the network slice usage control information.
+            The key of the map shall be set to the on-demand S-NSSAI (within the "snssai" attribute
+            of the corresponding map entry encoded using the SliceUsgCtrlInfo data structure) to
+            which the network slice usage control information is related.
+        chfInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/ChargingInformation'
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - suppFeat
+
     PolicyAssociationRequest: 
       description: >
         Information which the NF service consumer provides when requesting the creation of a policy
@@ -428,6 +464,35 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
+        partAllowedNssai:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PartiallyAllowedSnssai'
+          minProperties: 1
+          description: >
+            Represents the Partially Allowed NSSAI.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the PartiallyAllowedSnssai data
+            structure).
+        snssaisPartRejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SnssaiPartRejected'
+          minProperties: 1
+          description: >
+            Represents the set of S-NSSAI(s) rejected partially in the RA.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the SnssaiPartRejected data structure).
+        rejectedSnssais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+        pendingNssai:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
         targetSnssais:
           description: array of target S-NSSAIs. 
           type: array
@@ -464,6 +529,7 @@ components:
         - notificationUri
         - suppFeat
         - supi
+
     PolicyAssociationUpdateRequest:
       description: >
         Represents information that the NF service consumer provides when requesting the update of
@@ -531,6 +597,35 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
+        partAllowedNssai:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PartiallyAllowedSnssai'
+          minProperties: 1
+          description: >
+            Represents the Partially Allowed NSSAI.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the PartiallyAllowedSnssai data
+            structure).
+        snssaisPartRejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SnssaiPartRejected'
+          minProperties: 1
+          description: >
+            Represents the set of S-NSSAI(s) rejected partially in the RA.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the SnssaiPartRejected data structure).
+        rejectedSnssais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+        pendingNssai:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
         targetSnssais:
           description: array of target S-NSSAIs. 
           type: array
@@ -544,6 +639,15 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29531_Nnssf_NSSelection.yaml#/components/schemas/MappingOfSnssai'
           minItems: 1
+        snssaiReplInfos:
+          description: >
+            Change or removal of Mapping of (replaced) S-NSSAI(s) with Alternative S-NSSAI(s) 
+            for one or more S-NSSAI(s) of the UE's Allowed NSSAI and/or Partially Allowed NSSAI. 
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SnssaiReplaceInfo'
+          minItems: 1
+          nullable: true
         accessTypes:
           type: array
           items:
@@ -560,6 +664,14 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
           minItems: 1
+        unavailSnssais:
+          description: >
+            Represents the unavailable S-NSSAI(s) from the UE's Allowed NSSAI and/or
+            Partially Allowed NSSAI that require network slice replacement.
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
         traceReq:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/TraceData'
         guami:
@@ -570,6 +682,9 @@ components:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/NwdafData'
           minItems: 1
           nullable: true
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+
     PolicyUpdate:
       description: >
         Represents updated policies that the PCF provides in a notification or in a reply to an
@@ -591,6 +706,8 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WirelineServiceAreaRestriction'
         rfsp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RfspIndex'
+        rfspValTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
         targetRfsp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RfspIndex'
         smfSelInfo:
@@ -620,11 +737,37 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionInfo'
+          description: >
+            Indicates the matched PDU session(s) for which the PCF for the UE information apply.
           nullable: true
         asTimeDisParam:
           $ref: '#/components/schemas/AsTimeDistributionParam'
+        snssaiReplInfos:
+          nullable: true
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SnssaiReplaceInfo'
+          minProperties: 1
+          description: >
+            Contains the network slice replacement information.
+            The key of the map shall be set to the concerned unavailable S-NSSAI provided within the
+            "snssai" attribute of the corresponding map entry (encoded using the SnssaiReplaceInfo
+            data structure) to which the network slice replacement information is related.
+        sliceUsgCtrlInfoSets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SliceUsgCtrlInfo'
+          minProperties: 1
+          description: >
+            Represents the updated network slice usage control information.
+            The key of the map shall be set to the on-demand S-NSSAI (within the "snssai" attribute
+            of the corresponding map entry encoded using the SliceUsgCtrlInfo data structure) to
+            which the network slice usage control information is related.
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - resourceUri
+
     TerminationNotification:
       description: >
         Represents a request to terminate a policy Association that the PCF provides in a
@@ -638,6 +781,7 @@ components:
       required:
         - resourceUri
         - cause
+
     SmfSelectionData:
       description: Represents the SMF Selection information that may be replaced by the PCF.
       type: object
@@ -660,6 +804,7 @@ components:
         dnn:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
       nullable: true
+
     CandidateForReplacement:
       description: Represents a list of candidate DNNs for replacement for an S-NSSAI.
       type: object
@@ -675,6 +820,7 @@ components:
       required:
         - snssai
       nullable: true
+
     AmRequestedValueRep:
       description: >
         Represents the current applicable values corresponding to the policy control request
@@ -696,10 +842,14 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
           minItems: 1
+          description: >
+            The Access Types where the served UE is camping.
         ratTypes:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RatType'
+          description: >
+            The 3GPP RAT Type and non-3GPP RAT Type where the served UE is camping.
         allowedSnssais:
           description: array of allowed S-NSSAIs for the 3GPP access. 
           type: array
@@ -710,15 +860,53 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        partAllowedNssai:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PartiallyAllowedSnssai'
+          minProperties: 1
+          description: >
+            Represents the Partially Allowed NSSAI.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the PartiallyAllowedSnssai data
+            structure).
+        snssaisPartRejected:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SnssaiPartRejected'
+          minProperties: 1
+          description: >
+            Represents the set of S-NSSAI(s) rejected partially in the RA.
+            The key of the map shall be set to the value of the "snssai" attribute of the
+            corresponding map entry (encoded using the SnssaiPartRejected data structure).
+        rejectedSnssais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+        pendingNssai:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
+
     AsTimeDistributionParam:
       description: Contains the 5G acess stratum time distribution parameters.
       type: object
       properties:
         asTimeDistInd:
           type: boolean
+          description: >
+            Indicates the access stratum time distribution via Uu reference point is
+            Activated or not.
         uuErrorBudget:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/UintegerRm'
+        clkQltDetLvl:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityDetailLevelRm'
+        clkQltAcptCri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityAcceptanceCriterionRm'
       nullable: true
+
     UeSliceMbr:
       description: Contains a UE-Slice-MBR and the related information.
       type: object
@@ -738,6 +926,39 @@ components:
         - servingSnssai
       nullable: true
 
+    SliceUsgCtrlInfo:
+      description: Represents network slice usage control information.
+      type: object
+      properties:
+        snssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        deregInactivTimer:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSecRm'
+      required:
+        - snssai
+
+    SnssaiPartRejected:
+      description: Represents the list of the S-NSSAI(s) rejected partially in the RA.
+      type: object
+      properties:
+        snssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        allowedTaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        rejectedTaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+      required:
+        - snssai
+      oneOf:
+        - required: [ allowedTaiList ]
+        - required: [ rejectedTaiList ]
+
     RequestTrigger:
       anyOf:
       - type: string
@@ -753,12 +974,20 @@ components:
           - ACCESS_TYPE_CH
           - NWDAF_DATA_CH
           - TARGET_NSSAI
+          - SLICE_REPLACE_MGMT
+          - FEAT_RENEG
+          - PARTIALLY_ALLOWED_NSSAI_CH
+          - SNSSAIS_PARTIALLY_REJECTED_CH
+          - REJECTED_SNSSAIS_CH
+          - PENDING_NSSAI_CH
+          - RAT_TYPE_CH
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the possible request triggers.  
         Possible values are:
         - LOC_CH: Location change (tracking area). The tracking area of the UE has changed.
         - PRA_CH: Change of UE presence in PRA. The AMF reports the current presence status
@@ -776,8 +1005,7 @@ components:
           DNN or UE requested for a DNN within the list of DNN candidates for replacement per
           S-NSSAI.
         - ACCESS_TYPE_CH: Access Type change. The AMF notifies that the access type and the RAT
-          type combinations available in the AMF for a UE with simultaneous 3GPP and non-3GPP
-          connectivity has changed. 
+          type for a UE has changed. 
         - UE_SLICE_MBR_CH: UE-Slice-MBR change. The NF service consumer notifies any changes 
           in the subscribed UE-Slice-MBR for each subscribed S-NSSAI of the home PLMN mapping 
           to a S-NSSAI of the serving PLMN.
@@ -786,6 +1014,23 @@ components:
           have changed.
         - TARGET_NSSAI: Generation of Target NSSAI. The NF service consumer notifies that the
           Target NSSAI was generated.
+        - SLICE_REPLACE_MGMT: Indicates that slice replacement is needed for one or more S-NSSAI(s) 
+          of the UE's Allowed NSSAI and/or Partially Allowed NSSAI and the AMF cannot determine the
+          Alternative S-NSSAI(s) for these S-NSSAI(s).
+        - FEAT_RENEG: The NF service consumer notifies that the target AMF is requesting feature
+          re-negotiation.
+        - PARTIALLY_ALLOWED_NSSAI_CH: Partially Allowed NSSAI change. The NF service consumer
+          notifies that the set of Partially Allowed S-NSSAI(s) of the UE has changed.
+        - SNSSAIS_PARTIALLY_REJECTED_CH: Change of the S-NSSAI(s) rejected partially in the RA. The
+          NF service consumer notifies that the set of S-NSSAI(s) rejected partially in the RA for
+          the UE has changed.
+        - REJECTED_SNSSAIS_CH: Change of the Rejected S-NSSAI(s) in the RA. The NF service consumer
+          notifies that the set of the Rejected S-NSSAI(s) in the RA for the UE has changed.
+        - PENDING_NSSAI_CH: Pending NSSAI change. The NF service consumer notifies that the set of
+          Pending S-NSSAI(s) of the UE has changed.
+        - RAT_TYPE_CH: RAT Type change. The AMF notifies that the RAT type within same Access type 
+          has changed for the UE.
+
     PolicyAssociationReleaseCause:
       anyOf:
       - type: string
@@ -799,6 +1044,7 @@ components:
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the cause why the PCF requests the termination of the policy association.  
         Possible values are:
         - UNSPECIFIED: This value is used for unspecified reasons.
         - UE_SUBSCRIPTION: This value is used to indicate that the session needs to be

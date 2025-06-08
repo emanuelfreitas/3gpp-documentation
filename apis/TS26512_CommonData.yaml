@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: 5GMS Common Data Types
-  version: 2.1.0
+  version: 3.1.0
   description: |
     5GMS Common Data Types
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -10,7 +10,7 @@ tags:
   - name: 5GMS Common Data Types
     description: '5G Media Streaming: Common Data Types'
 externalDocs:
-  description: 'TS 26.512 V17.10.0; 5G Media Streaming (5GMS); Protocols'
+  description: 'TS 26.512 V18.2.0; 5G Media Streaming (5GMS); Protocols'
   url: 'https://www.3gpp.org/ftp/Specs/archive/26_series/26.512/'
 paths: {}
 components:
@@ -18,232 +18,140 @@ components:
     #################################
     # Clause 6.4.2: Simple data types
     #################################
-    ResourceId:
-      type: string
-      description: String chosen by the 5GMS AF to serve as an identifier in a resource URI.
-    Percentage:
-      type: number
-      minimum: 0.0
-      maximum: 100.0
-    #DurationSec is defined in TS29571_CommonData
-    #DateTime is defined in TS29571_CommonData
-    #Uri is defined in TS29571_CommonData
-    Url:
-      type: string
-      format: uri-reference
-      description: 'Uniform Resource Locator, conforming with the "URI-reference" production specified in IETF RFC 3986, section 4.1.'
-    RelativeUrl:
-      type: string
-      format: uri-reference
-      description: 'Relative Uniform Resource Locator, conforming with the "relative-ref" production specified in IETF RFC 3986, section 4.2. Note that both "query" and "fragment" suffixes are permitted by this production.'
-    AbsoluteUrl:
-      type: string
-      format: uri
-      description: 'Absolute Uniform Resource Locator, conforming with the "absolute-URI" production specified in IETF RFC 3986, section 4.3 in which the scheme part is "http" or "https". Note that the "query" suffix is permitted by this production but the "fragment" suffix is not.'
 
     #####################################
     # Clause 6.4.3: Structured data types
     #####################################
-    IpPacketFilterSet:
-      type: object
-      required:
-        - direction
-      properties:
-        srcIp:
-          type: string
-        dstIp:
-          type: string
-        protocol:
-          type: integer
-        srcPort:
-          type: integer
-        dstPort:
-          type: integer
-        toSTc:
-          type: string
-        flowLabel:
-          type: integer
-        spi:
-          type: integer
-        direction:
-          type: string
-
-    ServiceDataFlowDescription:
+    MediaStreamingBaseReportingRecord:
       type: object
       properties:
-        flowDescription:
-          $ref: '#/components/schemas/IpPacketFilterSet'
-        domainName:
-          type: string
-
-    M5QoSSpecification:
-      type: object
-      required:
-        - marBwDlBitRate
-        - marBwUlBitRate
-        - mirBwDlBitRate
-        - mirBwUlBitRate
-      properties:
-        marBwDlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        marBwUlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        minDesBwDlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        minDesBwUlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        mirBwDlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        mirBwUlBitRate:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        desLatency:
-          type: integer
-          minimum: 0
-        desLoss:
-          type: integer
-          minimum: 0
-
-    M1QoSSpecification:
-      type: object
-      properties:
-        qosReference:
-          type: string
-        maxBtrUl:
-          readOnly: true
-          allOf:
-            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        maxBtrDl:
-          readOnly: true
-          allOf:
-            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        maxAuthBtrUl:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        maxAuthBtrDl:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
-        defPacketLossRateDl:
-          type: integer
-          minimum: 0
-        defPacketLossRateUl:
-          type: integer
-          minimum: 0
-
-    ChargingSpecification:
-      type: object
-      properties:
-        sponId:
-          type: string
-        sponStatus:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/SponsoringStatus'
-        gpsi:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Gpsi'
-
-    TypedLocation:
-      type: object
-      required:
-        - locationIdentifierType
-        - location
-      properties:
-        locationIdentifierType:
-          $ref: '#/components/schemas/CellIdentifierType'
+        sliceInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        dataNetworkName:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
         location:
-          type: string
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/TypedLocation'
 
-    OperationSuccessResponse:
+    MediaStreamingSessionIdentification:
       type: object
       required:
-        - success
+        - sessionId
       properties:
-        success:
-          type: boolean
-        reason:
-          type: string
+        sessionId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/MediaDeliverySessionId'
 
-    EndpointAddress:
+    MediaStreamingAccess:
       type: object
+      description: Common properties of a single media access by the Media Stream Handler.
       required:
-        - portNumber
+        - mediaStreamHandlerEndpointAddress
+        - applicationServerEndpointAddress
+        - requestMessage
+        - responseMessage
+        - processingLatency
       properties:
-        hostname:
-          type: string
-        ipv4Addr:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
-        ipv6Addr:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Addr'
-        portNumber:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uint16'
+        mediaStreamHandlerEndpointAddress:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/EndpointAddress'
+        applicationServerEndpointAddress:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/EndpointAddress'
+        requestMessage:
+          type: object
+          required:
+            - method
+            - url
+            - protocolVersion
+            - size
+            - bodySize
+          properties:
+            method:
+              type: string
+            url:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'
+            protocolVersion:
+              type: string
+            range:
+              type: string
+            size:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+            bodySize:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+            contentType:
+              type: string
+            userAgent:
+              type: string
+            userIdentity:
+              type: string
+            referer:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'
+        cacheStatus:
+          $ref: '#/components/schemas/CacheStatus'
+        responseMessage:
+          type: object
+          required:
+            - responseCode
+            - size
+            - bodySize
+          properties:
+            responseCode:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+            size:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+            bodySize:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+            contentType:
+              type: string
+        processingLatency:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Float'
+        connectionMetrics:
+          type: object
+          required:
+            - meanNetworkRoundTripTime
+            - networkRoundTripTimeVariation
+            - congestionWindowSize
+          properties:
+            meanNetworkRoundTripTime:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Float'
+            networkRoundTripTimeVariation:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Float'
+            congestionWindowSize:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
 
-    EdgeProcessingEligibilityCriteria:
+    NetworkAssistanceInvocation:
+      description: Common properties of a single Network Assistance invocation.
       type: object
-      required:
-        - serviceDataFlowDescriptions
-        - ueLocations
-        - timeWindows
-        - appRequest
       properties:
-        serviceDataFlowDescriptions:
+        policyTemplateId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ResourceId'
+        applicationFlowDescriptions:
           type: array
+          minItems: 1
           items:
-            $ref: '#/components/schemas/ServiceDataFlowDescription'
-        ueLocations:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
-        timeWindows:
-          type: array
-          items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
-        appRequest:
-          type: boolean
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/ApplicationFlowDescription'
+        requestedQoS:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/UnidirectionalQoSSpecification'
+        # The network QoS parameters (if any) requested by the Media Session Handler.
+        recommendedQoS:
+          type: object
+          description: The network QoS parameters (if any) recommended to the Media Session Handler.
+          required:
+            - maximumBitRate
+            - minimumBitRate
+          properties:
+            maximumBitRate:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
+            minimumBitRate:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
 
     #####################################
     # Clause 6.4.4: Enumerated data types
     #####################################
-    CellIdentifierType:
-      anyOf:
-        - type: string
-          enum: [CGI, ECGI, NCGI]
-        - type: string
-          description: >
-            This string provides forward-compatibility with future
-            extensions to the enumeration but is not used to encode
-            content defined in the present version of this API.
-
-    SdfMethod:
-      anyOf:
-        - type: string
-          enum: [5_TUPLE, 2_TUPLE, TYPE_OF_SERVICE_MARKING, FLOW_LABEL, DOMAIN_NAME]
-        - type: string
-          description: >
-            This string provides forward-compatibility with future
-            extensions to the enumeration but is not used to encode
-            content defined in the present version of this API.
-
-    ProvisioningSessionType:
-      anyOf:
-        - type: string
-          enum: [DOWNLINK, UPLINK]
-        - type: string
-          description: >
-            This string provides forward-compatibility with future
-            extensions to the enumeration but is not used to encode
-            content defined in the present version of this API.
-
     CacheStatus:
       anyOf:
         - type: string
-          enum: [HIT, MISS, EXPIRED]
-        - type: string
-          description: >
-            This string provides forward-compatibility with future
-            extensions to the enumeration but is not used to encode
-            content defined in the present version of this API.
-
-    EASRelocationTolerance:
-      anyOf:
-        - type: string
-          enum: [RELOCATION_UNAWARE, RELOCATION_TOLERANT, RELOCATION_INTOLERANT]
+          enum:
+            - HIT
+            - MISS
+            - EXPIRED
         - type: string
           description: >
             This string provides forward-compatibility with future

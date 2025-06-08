@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  version: 1.0.3
+  version: 1.1.1
   title: Nadrf_DataManagement
   description: |
     ADRF Data Management Service.  
     © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 externalDocs:
-  description: 3GPP TS 29.575 V17.4.0; 5G System; Analytics Data Repository Services; Stage 3.
+  description: 3GPP TS 29.575 V18.8.0; 5G System; Analytics Data Repository Services; Stage 3.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.575/'
 #
 servers:
@@ -69,15 +69,71 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+      callbacks:
+        storageAlertNotification:
+          '{$request.body#/delNotifUri}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/NadrfAlertNotification'
+              responses:
+                '200':
+                  description: The alert receipt is acknowledged and a planned action is provided.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/NadrfAlertNotificationResponse'
+                '204':
+                  description: The alert receipt is acknowledged.
+                '307':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+                '308':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+                '400':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+                '411':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+                '503':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+                default:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
     get:
       summary: Retrieves existing Individual ADRF Data Store Records.
       operationId: GetAdrfDataStoreRecords
       tags:
         - ADRF Data Store Records (Collection)
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       parameters:
         - name: store-trans-id
           description: A storage transaction identifier of a data store record in ADRF.
@@ -96,6 +152,12 @@ paths:
             items:
               type: string
             minItems: 1
+        - name: data-set-id
+          description: The data set identifier.
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Data store records are returned.
@@ -105,6 +167,10 @@ paths:
                 $ref: '#/components/schemas/NadrfDataStoreRecord'
         '204':
           description: No matching ADRF data were found.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -119,6 +185,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -129,6 +197,13 @@ paths:
       operationId: DeleteADRFDataStoreRecord
       tags:
         - Individual ADRF Data Store Record (Document)
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       parameters:
         - name: storeTransId
           in: path
@@ -157,6 +232,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -167,6 +244,13 @@ paths:
       operationId: CreateADRFDataRetrievalSubscription
       tags:
         - ADRF Data Retrieval Subscriptions (Collection)
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       requestBody:
         content:
           application/json:
@@ -207,6 +291,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -246,6 +332,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -256,6 +344,13 @@ paths:
       operationId: DeleteADRFDataRetrievalSubscription
       tags:
         - Individual ADRF Data Retrieval Subscription (Document)
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       parameters:
         - name: subscriptionId
           in: path
@@ -286,6 +381,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -296,6 +393,13 @@ paths:
       operationId: CreateADRFStorageSubscription
       tags:
         - ADRF Storage Subscriptions
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       requestBody:
         content:
           application/json:
@@ -310,6 +414,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NadrfDataStoreSubscriptionRef'
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -328,16 +436,72 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+      callbacks:
+        storageSubAlertNotification:
+          '{$request.body#/delNotifUri}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/NadrfAlertNotification'
+              responses:
+                '200':
+                  description: The alert receipt is acknowledged and a planned action is provided.
+                  content:
+                    application/json:
+                      schema:
+                        $ref: '#/components/schemas/NadrfAlertNotificationResponse'
+                '204':
+                  description: The alert receipt is acknowledged.
+                '307':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+                '308':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+                '400':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+                '411':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+                '503':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+                default:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
   /request-storage-sub-removal:
     post:
       summary: Triggers the removal of ADRF storage subscription.
       operationId: DeleteADRFStorageSubscription
       tags:
         - ADRF Storage Subscriptions
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       requestBody:
         content:
           application/json:
@@ -348,6 +512,10 @@ paths:
         '204':
           description: >
             No Content. The ADRF Storage Subscription matching the provided reference was deleted.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -366,6 +534,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -376,6 +546,13 @@ paths:
       operationId: DeleteADRFData
       tags:
         - ADRF Stored Data
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+        - oAuth2ClientCredentials:
+          - nadrf-datamanagement
+          - nadrf-datamanagement:storage-read-delete-subs
       requestBody:
         content:
           application/json:
@@ -385,6 +562,10 @@ paths:
       responses:
         '204':
           description: No Content. The ADRF data matching the provided specification is deleted.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
         '401':
@@ -403,6 +584,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -417,6 +600,13 @@ components:
           tokenUrl: '{nrfApiRoot}/oauth2/token'
           scopes:
             nadrf-datamanagement: Access to the nadrf-datamanagement API
+            nadrf-datamanagement:storage-read-delete-subs: >
+              Access to service operations applying to
+              Nadrf_DataManagement_StorageRequest Nadrf_DataManagement_StorageSubscriptionRequest,
+              Nadrf_DataManagement_StorageSubscriptionRemoval,
+              Nadrf_DataManagement_RetrievalRequest,
+              Nadrf_DataManagement_RetrievalSubscribe, Nadrf_DataManagement_RetrievalUnsubscribe,
+              Nadrf_DataManagement_RetrievalNotify, Nadrf_DataManagement_Delete service operations
 #
   schemas:
 #
@@ -453,6 +643,15 @@ components:
           minItems: 1
           description: >
             Represents the subscription information of the corresponding data notification.
+        storeHandl:
+          $ref: '#/components/schemas/StorageHandlingInfo'
+        dataSetTag:
+          $ref: '#/components/schemas/DataSetTag'
+        dsc:
+          type: string
+          description: Data synthesis and compression information.
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 #
     NadrfDataStoreSubscription:
       description: >
@@ -468,6 +667,8 @@ components:
       properties:
         anaSub:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NnwdafEventsSubscription'
+        dataSetTag:
+          $ref: '#/components/schemas/DataSetTag'
         dataSub:
           $ref: '#/components/schemas/DataSubscription'
         targetNfId:
@@ -478,6 +679,16 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29574_Ndccf_DataManagement.yaml#/components/schemas/FormattingInstruction'
         procInstruct:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29574_Ndccf_DataManagement.yaml#/components/schemas/ProcessingInstruction'
+        multiProcInstructs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29574_Ndccf_DataManagement.yaml#/components/schemas/ProcessingInstruction'
+          minItems: 1
+          description: Processing instructions to be used for sending event notifications.
+        storeHandl:
+          $ref: '#/components/schemas/StorageHandlingInfo'
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 #
     NadrfDataRetrievalSubscription:
       description: Represents an Individual ADRF Data Retrieval Subscription.
@@ -489,9 +700,13 @@ components:
       oneOf:
         - required: [anaSub]
         - required: [dataSub]
+        - required: [dataSetId]
       properties:
         anaSub:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NnwdafEventsSubscription'
+        dataSetId:
+          type: string
+          description: data set identifier of the data or analytics that are subscribed.
         dataSub:
           $ref: '#/components/schemas/DataSubscription'
         notificationURI:
@@ -501,6 +716,14 @@ components:
         notifCorrId:
           type: string
           description: Notification correlation identifier.
+        consTrigNotif:
+          type: boolean
+          description: >
+            It indicates that notifications shall be buffered (sending only fetch instructions
+            to the NF service consumer) until the NF service consumer requests their delivery
+            using Nadrf_DataManagement Service.
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 #
     NadrfDataRetrievalNotification:
       description: >
@@ -533,18 +756,25 @@ components:
           description: >
             It indicates the termination of the data management subscription that requested by the
             ADRF.
+        dsc:
+          type: string
+          description: Data synthesis and compression information.
         timeStamp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
 #
     NadrfDataStoreSubscriptionRef:
       description: Contains a reference to a request for a Data or Analytics subscription.
       type: object
-      required:
-       - transRefId
+      oneOf:
+        - required: [transRefId]
+        - required: [dataSetId]
       properties:
         transRefId:
           type: string
           description: Transaction reference identifier.
+        dataSetId:
+          type: string
+          description: data set identifier of data or analytics.
 #
     NadrfStoredDataSpec:
       description: Contains information about Data or Analytics specification.
@@ -554,6 +784,7 @@ components:
       oneOf:
         - required: [dataSpec]
         - required: [anaSpec]
+        - required: [dataSetId]
       properties:
         dataSpec:
           $ref: '#/components/schemas/DataSubscription'
@@ -561,6 +792,9 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NnwdafEventsSubscription'
         timePeriod:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
+        dataSetId:
+          type: string
+          description: Data set identifier of stored data or analytics records.
 #
     DataSubscription:
       description: Contains a data specification.
@@ -573,6 +807,8 @@ components:
         - required: [afDataSub]
         - required: [nrfDataSub]
         - required: [nsacfDataSub]
+        - required: [upfDataSub]
+        - required: [gmlcDataSub]
       properties:
         amfDataSub:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_EventExposure.yaml#/components/schemas/AmfEventSubscription'
@@ -588,6 +824,10 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29510_Nnrf_NFManagement.yaml#/components/schemas/SubscriptionData'
         nsacfDataSub:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29536_Nnsacf_SliceEventExposure.yaml#/components/schemas/SACEventSubscription'
+        upfDataSub:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29564_Nupf_EventExposure.yaml#/components/schemas/UpfEventSubscription'
+        gmlcDataSub:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/InputData'
 #
     DataNotification:
       description: Represents a Data Subscription Notification.
@@ -600,6 +840,8 @@ components:
         - required: [afEventNotifs]
         - required: [nrfEventNotifs]
         - required: [nsacfEventNotifs]
+        - required: [upfEventNotifs]
+        - required: [gmlcEventNotifs]
       properties:
         amfEventNotifs:
           type: array
@@ -643,8 +885,73 @@ components:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29536_Nnsacf_SliceEventExposure.yaml#/components/schemas/SACEventReport'
           minItems: 1
           description: List of notifications of NSACF events.
+        upfEventNotifs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29564_Nupf_EventExposure.yaml#/components/schemas/NotificationData'
+          minItems: 1
+          description: List of notifications of UPF events.
+        gmlcEventNotifs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/EventNotifyData'
+          minItems: 1
+          description: List of notifications of GMLC events.
         timeStamp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
 
 #
-
+    StorageHandlingInfo:
+      description: Contains storage handling information about data or analytics.
+      type: object
+      properties:
+        lifetime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        delNotifUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+        delNotifCorrId:
+          type: string
+          description: Notification correlation identifier for deletion alerts.
+#
+    NadrfAlertNotification:
+      description: Contains information about data or analytics that are about to be deleted.
+      type: object
+      properties:
+        alertStorTransId:
+          type: string
+          description: >
+            Storage transaction identifier that can be used to retrieve data or analytics.
+        delNotifCorrId:
+          type: string
+          description: Notification correlation identifier.
+      required:
+       - alertStorTransId
+       - delNotifCorrId
+#
+    NadrfAlertNotificationResponse:
+      description: >
+        Contains information about planned actions related to data or analytics
+        that are about to be deleted.
+      type: object
+      properties:
+        retrievalInd:
+          type: boolean
+          description: >
+            Indicates if the NF service consumer has determined to retrieve the data
+            or analytics that are about to be deleted.
+      required:
+       - retrievalInd
+#
+    DataSetTag:
+      description: Contains an identifier and a description of associated records.
+      type: object
+      required:
+       - dataSetId
+      properties:
+        dataSetId:
+          type: string
+          description: Data set identifier of data or analytics records.
+        dataSetDesc:
+          type: string
+          description: Data set description of data or analytics records.
+#

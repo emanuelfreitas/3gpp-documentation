@@ -105,7 +105,7 @@ for doc in configuration:
     lastRelease = 0
     releaseDoc = None
     
-    releasesList = list(range(6, 18))
+    releasesList = list(range(6, 19))
     releasesList.sort(reverse=True)
 
     for relase in releasesList:
@@ -153,7 +153,6 @@ for doc in configuration:
                     myzip.extract(line, '../apis')
                     filedata = None
                     with open('../apis/'+str(line), 'r') as file :
-                        print("going to replace")
                         filedata = file.read()
                         filedata = filedata.replace('$ref: \'TS', '$ref: \'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS')
                     with open('../apis/'+str(line), 'w') as file:

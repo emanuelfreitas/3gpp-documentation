@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: 3GPP 5GC NRM
-  version: 17.16.0
+  version: 18.10.0
   description: >-
     OAS 3.0.1 specification of the 5GC NRM
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -106,7 +106,7 @@ components:
             $ref: '#/components/schemas/IpEndPoint'
         apiPrefix:
           type: string
-        allowedPlmns:
+        allowedPlMNs:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
@@ -114,7 +114,7 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NFType'
-        allowedNssais:
+        allowedNSSAIs:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/Snssai'
@@ -131,28 +131,50 @@ components:
     CNSIId:
       type: string
       description: CNSI Id is defined in TS 29.531, only for Core Network
+    EnergySavingControl:
+      type: string
+      description: any of enumerated value
+      enum:
+        - TO_BE_ENERGYSAVING
+        - TO_BE_NOT_ENERGYSAVING
+    EnergySavingState:
+      type: string
+      description: any of enumerated value
+      enum:
+        - IS_NOT_ENERGYSAVING
+        - IS_ENERGYSAVING
     TACList:
       type: array
       items:
         $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Tac'
     WeightFactor:
       type: integer
-    UdmInfo:
-      type: object
-      properties:
-        nFSrvGroupId:
-          type: string
+    VendorId:
+      type: string
+      description: Vendor ID of the NF Service instance (Private Enterprise Number assigned by IANA)
+      pattern: '^[0-9]{6}$'
     AusfInfo:
       type: object
       properties:
         nFSrvGroupId:
           type: string
-    UpfInfo:
-      type: object
-      properties:
-        smfServingAreas:
-          type: string
-    SupportedDataSetId:
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        routingIndicators:
+          type: array
+          items:
+            type: string
+            pattern: '^[0-9]{1,4}$'
+          minItems: 1
+        suciInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuciInfo'
+          minItems: 1
+    SupportedDataSet:
       type: string
       description: any of enumerated value
       enum:
@@ -160,21 +182,18 @@ components:
         - POLICY
         - EXPOSURE
         - APPLICATION
-    Udrinfo:
-      type: object
-      properties:
-        supportedDataSetIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/SupportedDataSetId'
-        nFSrvGroupId:
-          type: string
-    NFInfo:
-      oneOf:
-        - $ref: '#/components/schemas/UdmInfo'
-        - $ref: '#/components/schemas/AusfInfo'
-        - $ref: '#/components/schemas/UpfInfo'
-        - $ref: '#/components/schemas/Udrinfo'
+        - A_PFD
+        - A_AFTI
+        - A_IPTV
+        - A_BDT
+        - A_SPD
+        - A_EASD
+        - A_AMI
+        - P_UE
+        - P_SCD
+        - P_BDT
+        - P_PLMNUE
+        - P_NSSCD
     NotificationType:      
       type: string
       enum:
@@ -204,7 +223,7 @@ components:
     ManagedNFProfile:
       type: object
       properties:
-        nfInstanceID:
+        nfInstanceId:
           type: string
         interPlmnFqdn:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
@@ -242,8 +261,6 @@ components:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/Snssai'
         locality:
           type: string
-        nFInfo:
-          $ref: '#/components/schemas/NFInfo'
         capacity:
           type: integer
         nfSetIdList:
@@ -254,6 +271,10 @@ components:
           type: array
           items:
             type: string
+        lcHSupportInd:
+          type: boolean
+        olcHSupportInd:
+          type: boolean
         nfSetRecoveryTimeList:
           type: array
           items:
@@ -279,7 +300,7 @@ components:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DateTime'
           minItems: 1
         vendorId:
-          type: string
+          $ref: '#/components/schemas/VendorId'
     SEPPType:
       type: string
       description: any of enumerated value
@@ -601,9 +622,22 @@ components:
         dnaiList:
           type: array
           items:
-            type: string
-    
-    SNssaiSmfInfoItem:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+
+    dnaiSatelliteMapping:
+      type: object
+      properties:
+        dnaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        geoSatelliteId:
+          type: string
+          pattern: '^[0-9]{5}$'
+
+    SnssaiSmfInfoItem:
       type: object
       properties:
         sNSSAI:
@@ -656,107 +690,2337 @@ components:
       type: array
       items:
         $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Tai' 
+    SupiRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    IdentityRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    ProseCapability:
+      type: object
+      properties:
+        proseDirectDiscovery:
+          type: boolean
+        proseDirectCommunication:
+          type: boolean
+        proseL2UetoNetworkRelay:
+          type: boolean
+        proseL3UetoNetworkRelay:
+          type: boolean
+        proseL2RemoteUe:
+          type: boolean
+        proseL3RemoteUe:
+          type: boolean
+    V2xCapability:
+      type: object
+      properties:
+        lteV2x:
+          type: boolean
+        nrV2x:
+          type: boolean
+    InternalGroupIdRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        pattern:
+          type: string
+    SuciInfo:
+      type: object
+      properties:
+        routingInds: 
+          type: array
+          items:
+            type: string
+        hNwPubKeyIds:
+          type: array
+          items:
+            type: integer
+    SuciInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SuciInfo' 
+    SharedDataIdRange:
+      type: object
+      properties:
+        pattern:
+          type: string
+    SupiRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SupiRange'
+    IdentityRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityRange'
+    InternalGroupIdRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/InternalGroupIdRange'
+    SupportedDataSetList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SupportedDataSet'
+    SharedDataIdRangeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/SharedDataIdRange'
+    InterfaceUpfInfoItem:
+      type: object
+      properties:
+        interfaceType:
+          type: string
+          enum:
+            - N3
+            - N6
+            - N9
+            - DATA_FORWARDING
+            - N3MB
+            - N6MB
+            - N19MB
+            - NMB9
+        ipv4EndpointAddresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        ipv6EndpointAddresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+        fqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+        networkInstance:
+          type: string
+
+    AtsssCapability:
+      type: object
+      properties:
+        atsssLL:
+          type: boolean
+        mptcp:
+          type: boolean
+        rttWithoutPmf:
+          type: boolean
+
+    IpInterface:
+      type: object
+      properties:
+        ipv4EndpointAddresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        ipv6EndpointAddresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+        fqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+
+    Ipv4AddressRange:
+      description: Range of IPv4 addresses
+      type: object
+      properties:
+        start:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+        end:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+    Ipv6PrefixRange:
+      description: Range of IPv6 prefixes
+      type: object
+      properties:
+        start:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+        end:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+    Nid:
+      type: string
+      pattern: '^[A-Fa-f0-9]{11}$'
+    PlmnIdNid:
+      type: object
+      properties:
+        mcc:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Mcc'
+        mnc:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Mnc'
+        nid:
+          $ref: '#/components/schemas/Nid'
+    ScpCapability:
+      type: string
+      enum: 
+        - INDIRECT_COM_WITH_DELEG_DISC
+    IpReachability:
+      description: Indicates the type(s) of IP addresses reachable via an SCP
+      anyOf:
+        - type: string
+          enum:
+            - IPV4
+            - IPV6
+            - IPV4V6
+        - type: string
+
+    ScpDomainInfo:
+      description: SCP Domain specific information
+      type: object
+      properties:
+        scpFqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+        scpIpEndPoints:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/IpEndPoint'
+          minItems: 1
+        scpPrefix:
+          type: string
+        scpPorts:
+          description: >
+            Port numbers for HTTP and HTTPS. The key of the map shall be "http" or "https".
+          type: object
+          additionalProperties:
+            type: integer
+            minimum: 0
+            maximum: 65535
+          minProperties: 1
+
+    SeppInfo:
+      description: Information of a SEPP Instance
+      type: object
+      properties:
+        seppPrefix:
+          type: string
+        seppPorts:
+          description: >
+            Port numbers for HTTP and HTTPS. The key of the map shall be "http" or "https".
+          type: object
+          additionalProperties:
+            type: integer
+            minimum: 0
+            maximum: 65535
+          minProperties: 1
+        remotePlmnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
+          minItems: 1
+        remoteSnpnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+          minItems: 1
+
+    UdsfInfo:
+      description: Information related to UDSF
+      type: object
+      properties:
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        storageIdRanges:
+          description: >
+            A map (list of key-value pairs) where realmId serves as key and each value in the map
+            is an array of IdentityRanges. Each IdentityRange is a range of storageIds.
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/IdentityRange'
+            minItems: 1
+          minProperties: 1
+
+    NsacfCapability:
+      description: >
+        NSACF service capabilities (e.g. to monitor and control the number of registered UEs
+        or established PDU sessions per network slice)
+      type: object
+      properties:
+        supportUeSAC:
+          description: |
+            Indicates the service capability of the NSACF to monitor and control the number of
+            registered UEs per network slice for the network slice that is subject to NSAC
+            true: Supported
+            false (default): Not Supported
+          type: boolean
+          default: false
+        supportPduSAC:
+          description: |
+            Indicates the service capability of the NSACF to monitor and control the number of
+            established PDU sessions per network slice for the network slice that is subject to NSAC
+            true: Supported
+            false (default): Not Supported
+          type: boolean
+          default: false
+
+    NsacfInfo:
+      description: Information of a NSACF NF Instance
+      type: object
+      required:
+        - nsacfCapability
+      properties:
+        nsacfCapability:
+          $ref: '#/components/schemas/NsacfCapability'
+        taiList:
+          $ref: '#/components/schemas/TaiList'
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+
+    NwdafCapability:
+      description: Indicates the capability supported by the NWDAF
+      type: object
+      properties:
+        analyticsAggregation:
+          type: boolean
+          default: false
+        analyticsMetadataProvisioning:
+          type: boolean
+          default: false
+    MlAnalyticsInfo:
+      description: ML Analytics Filter information supported by the Nnwdaf_MLModelProvision service
+      type: object
+      properties:
+        mlAnalyticsIds:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          minItems: 1
+        snssaiList:
+          $ref: '#/components/schemas/SnssaiList'
+        trackingAreaList:
+          $ref: '#/components/schemas/TaiList'          
+        mlModelInterInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorId' 
+          minItems: 0
+        flCapabilityType:
+          type: string
+          enum:
+            - FL_SERVER
+            - FL_CLIENT
+            - FL_SERVER_AND_CLIENT
+        flTimeInterval:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/TimeWindow'
+          minItems: 1
+    NwdafInfo:
+      description: Information of a NWDAF NF Instance
+      type: object
+      properties:
+        eventIds:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/EventId'
+          minItems: 1          
+        nwdafEvents:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NwdafEvent'
+          minItems: 1
+        taiList:
+          $ref: '#/components/schemas/TaiList'
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        nwdafCapability:
+          $ref: '#/components/schemas/NwdafCapability'
+        analyticsDelay:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        servingNfSetIdList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          minItems: 1
+        servingNfTypeList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NFType'
+          minItems: 1
+        mlAnalyticsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/MlAnalyticsInfo'
+          minItems: 1
+
+    ScpInfo:
+      description: Information of an SCP Instance
+      type: object
+      properties:
+        scpDomainInfoList:
+          description: >
+            A map (list of key-value pairs) where the key of the map shall be the string
+            identifying an SCP domain
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ScpDomainInfo'
+          minProperties: 1
+        scpPrefix:
+          type: string
+        scpPorts:
+          description: >
+            Port numbers for HTTP and HTTPS. The key of the map shall be "http" or "https".
+          type: object
+          additionalProperties:
+            type: integer
+            minimum: 0
+            maximum: 65535
+          minProperties: 1
+        addressDomains:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        ipv4Addresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
+          minItems: 1
+        ipv6Prefixes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv6Prefix'
+          minItems: 1
+        ipv4AddrRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv4AddressRange'
+          minItems: 1
+        ipv6PrefixRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv6PrefixRange'
+          minItems: 1
+        servedNfSetIdList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          minItems: 1
+        remotePlmnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+          minItems: 1
+        remoteSnpnList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlmnIdNid'
+          minItems: 1
+        ipReachability:
+          $ref: '#/components/schemas/IpReachability'
+        scpCapabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScpCapability'
+
+    PfdData:
+      description: List of Application IDs and/or AF IDs managed by a given NEF Instance
+      type: object
+      properties:
+        appIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        afIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+    AfEvent:
+      description: Represents Application Events.
+      anyOf:
+      - type: string
+        enum:
+          - SVC_EXPERIENCE
+          - UE_MOBILITY
+          - UE_COMM
+          - EXCEPTIONS
+          - USER_DATA_CONGESTION
+          - PERF_DATA
+          - DISPERSION
+          - COLLECTIVE_BEHAVIOUR
+          - MS_QOE_METRICS
+          - MS_CONSUMPTION
+          - MS_NET_ASSIST_INVOCATION
+          - MS_DYN_POLICY_INVOCATION
+          - MS_ACCESS_ACTIVITY
+      - type: string
+        description: >
+          This string provides forward-compatibility with future extensions to the enumeration but
+          is not used to encode content defined in the present version of this API.
+    AfEventExposureData:
+      description: AF Event Exposure data managed by a given NEF Instance
+      type: object
+      required:
+        - afEvents
+      properties:
+        afEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfEvent'
+          minItems: 1
+        afIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        appIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+    UnTrustAfInfo:
+      description: Information of a untrusted AF Instance
+      type: object
+      required:
+        - afId
+      properties:
+        afId:
+          type: string
+        sNssaiInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiInfoItem'
+          minItems: 1
+        mappingInd:
+          type: boolean
+          default: false
+    SnssaiInfoItem:
+      description: >
+        Parameters supported by an NF for a given S-NSSAI Set of parameters supported by NF
+        for a given S-NSSAI
+      type: object
+      required:
+        - sNssai
+        - dnnInfoList
+      properties:
+        sNssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+        dnnInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnInfoItem'
+          minItems: 1
+    DnnInfoItem:
+      description: Set of parameters supported by NF for a given DNN
+      type: object
+      required:
+        - dnn
+      properties:
+        dnn:
+          anyOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+    EasdfInfo:
+      description: Information of an EASDF NF Instance
+      type: object
+      properties:
+        sNssaiEasdfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiEasdfInfoItem'
+          minItems: 1
+        easdfN6IpAddressList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
+          minItems: 1
+        upfN6IpAddressList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
+          minItems: 1
+
+    SnssaiEasdfInfoItem:
+      description: Set of parameters supported by EASDF for a given S-NSSAI
+      type: object
+      required:
+        - sNssai
+        - dnnEasdfInfoList
+      properties:
+        sNssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+        dnnEasdfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnEasdfInfoItem'
+          minItems: 1
+          
+    DnnEasdfInfoItem:
+      description: Set of parameters supported by EASDF for a given DNN
+      type: object
+      required:
+        - dnn
+      properties:
+        dnn:
+          anyOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+        dnaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+    NssaafInfo:
+      description: Information of a NSSAAF Instance
+      type: object
+      properties:
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        internalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalGroupIdRange'
+          minItems: 1
+    TrustAfInfo:
+      description: Information of a trusted AF Instance
+      type: object
+      properties:
+        sNssaiInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiInfoItem'
+          minItems: 1
+        afEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfEvent'
+          minItems: 1
+        appIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        internalGroupId:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/GroupId'
+          minItems: 1
+        mappingInd:
+          type: boolean
+          default: False
+    ExternalClientType:
+      description: Indicates types of External Clients.
+      anyOf:
+        - type: string
+          enum:
+            - EMERGENCY_SERVICES
+            - VALUE_ADDED_SERVICES
+            - PLMN_OPERATOR_SERVICES
+            - LAWFUL_INTERCEPT_SERVICES
+            - PLMN_OPERATOR_BROADCAST_SERVICES
+            - PLMN_OPERATOR_OM
+            - PLMN_OPERATOR_ANONYMOUS_STATISTICS
+            - PLMN_OPERATOR_TARGET_MS_SERVICE_SUPPORT
+        - type: string
+    SupportedGADShapes:
+      description: Indicates supported GAD shapes.
+      anyOf:
+        - type: string
+          enum:
+            - POINT
+            - POINT_UNCERTAINTY_CIRCLE
+            - POINT_UNCERTAINTY_ELLIPSE
+            - POLYGON
+            - POINT_ALTITUDE
+            - POINT_ALTITUDE_UNCERTAINTY
+            - ELLIPSOID_ARC
+            - LOCAL_2D_POINT_UNCERTAINTY_ELLIPSE
+            - LOCAL_3D_POINT_UNCERTAINTY_ELLIPSOID
+        - type: string
+    AnNodeType:
+      description: Access Network Node Type (gNB, ng-eNB...)
+      anyOf:
+        - type: string
+          enum:
+            - GNB
+            - NG_ENB
+        - type: string
+
+    TrpMappingInfo:
+      type: object
+      properties:
+        satelliteId:
+          type: string
+          pattern: '^[0-9]{5}$'
+        trpIds:
+          type: array
+          items:
+            type: integer
+            minimum: 1
+            maximum: 65535
+
+    TrpInfo:
+      description: The mapping relationship between TRP IDs, gNB ID and Satellite ID.
+      type: object
+      properties:
+        gNBId:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        trpMappingInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrpMappingInfo'
+          minItems: 1
+
+    TrpInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrpInfo'
+
+    LmfInfo:
+      description: Information of an LMF NF Instance
+      type: object
+      properties:
+        servingClientTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalClientType'
+          minItems: 1
+        lmfId:
+          type: string
+        servingAccessTypes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          minItems: 1
+        servingAnNodeTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnNodeType'
+          minItems: 1
+        servingRatTypes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RatType'
+          minItems: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        supportedGADShapes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportedGADShapes'
+          minItems: 1
+    UdrInfo:
+      description: Information of an UDR NF Instance
+      type: object
+      properties:
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        externalGroupIdentifiersRanges:
+          $ref: '#/components/schemas/IdentityRangeList'
+        supportedDataSets:
+          $ref: '#/components/schemas/SupportedDataSetList'
+        sharedDataIdRanges:
+          $ref: '#/components/schemas/SharedDataIdRangeList'
+    UdmInfo:
+      description: Information of an UDM NF Instance
+      type: object
+      properties:
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        externalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        routingIndicators:
+          type: array
+          items:
+            type: string
+            pattern: '^[0-9]{1,4}$'
+          minItems: 1
+        internalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalGroupIdRange'
+          minItems: 1
+        suciInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuciInfo'
+          minItems: 1
+    PlmnRange:
+      description: Range of PLMN IDs
+      type: object
+      oneOf:
+        - required: [ start, end ]
+        - required: [ pattern ]
+      properties:
+        start:
+          type: string
+          pattern: '^[0-9]{3}[0-9]{2,3}$'
+        end:
+          type: string
+          pattern: '^[0-9]{3}[0-9]{2,3}$'
+        pattern:
+          type: string
+
+    SmsfInfo:
+      description: Specific Data for SMSF
+      type: object
+      properties:
+        roamingUeInd:
+          type: boolean
+        remotePlmnRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlmnRange'
+          minItems: 1
+
+    DccfInfo:
+      description: Specific Data for DCCF
+      type: object
+      properties:
+        servingNfTypeList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NFType'
+          minItems: 1
+        servingNfSetIdList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
+          minItems: 1
+        taiList:
+          $ref: '#/components/schemas/TaiList'
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+
+    MfafInfo:
+      description: Information of a MFAF NF Instance
+      type: object
+      properties:
+        servingNfTypeList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NFType'
+        servingNfSetIdList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfSetId'
+        taiList:
+          $ref: '#/components/schemas/TaiList'
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+
+    ChfInfo:
+      description: Information of a CHF NF Instance
+      type: object
+      not:
+        required: [ primaryChfInstance, secondaryChfInstance ]
+      properties:
+        supiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 0
+        gpsiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 0
+        plmnRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlmnRange'
+          minItems: 0
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        primaryChfInstance:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        secondaryChfInstance:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+
+    N2InterfaceAmfInfo:
+      description: AMF N2 interface information
+      type: object
+      anyOf:
+        - required: [ ipv4EndpointAddress ]
+        - required: [ ipv6EndpointAddress ]
+      properties:
+        ipv4EndpointAddress:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+          minItems: 1
+        ipv6EndpointAddress:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+          minItems: 1
+        amfName:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+
+    AmfInfo:
+      description: Information of an AMF NF Instance
+      type: object
+      required:
+        - aMFSetId
+        - aMFRegionId
+        - guamiList
+      properties:
+        aMFSetId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfSetId'
+        aMFRegionId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AmfRegionId'
+        guamiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
+          minItems: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        backupInfoAmfFailure:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
+          minItems: 1
+        backupInfoAmfRemoval:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Guami'
+          minItems: 1
+        n2InterfaceAmfInfo:
+          $ref: '#/components/schemas/N2InterfaceAmfInfo'
+        amfOnboardingCapability:
+          type: boolean
+          default: false
+        highLatencyCom:
+          type: boolean
+
+    SmfInfo:
+      description: Information of an SMF NF Instance
+      type: object
+      required:
+        - sNssaiSmfInfoList
+      properties:
+        sNssaiSmfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiSmfInfoItem'
+          minItems: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        pgwFqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
+        pgwIpAddrList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
+          minItems: 1
+        accessType:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          minItems: 1
+        priority:
+          type: integer
+          minimum: 0
+          maximum: 65535
+        vsmfSupportInd:
+          type: boolean
+        pgwFqdnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
+          minItems: 1
+        smfOnboardingCapability:
+          type: boolean
+          default: false
+          deprecated: true
+        ismfSupportInd:
+          type: boolean
+        smfUPRPCapability:
+          type: boolean
+          default: false
+
+    UpfInfo:
+      description: Information of an UPF NF Instance
+      type: object
+      required:
+        - sNssaiUpfInfoList
+      properties:
+        sNssaiUpfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiUpfInfoItem'
+          minItems: 1
+        smfServingArea:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        interfaceUpfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterfaceUpfInfoItem'
+          minItems: 1
+        iwkEpsInd:
+          type: boolean
+          default: false
+        sxaInd:
+          type: boolean
+        pduSessionTypes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+          minItems: 1
+        atsssCapability:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AtsssCapability'
+        ueIpAddrInd:
+          type: boolean
+          default: false
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        wAgfInfo:
+          # $ref: '#/components/schemas/WAgfInfo'
+          $ref: '#/components/schemas/IpInterface'
+        tngfInfo:
+          # $ref: '#/components/schemas/TngfInfo'
+          $ref: '#/components/schemas/IpInterface'
+        twifInfo:
+          # $ref: '#/components/schemas/TwifInfo'
+          $ref: '#/components/schemas/IpInterface'
+        priority:
+          type: integer
+          minimum: 0
+          maximum: 65535
+        redundantGtpu:
+          type: boolean
+          default: false
+        ipups:
+          type: boolean
+          default: false
+        dataForwarding:
+          type: boolean
+          default: false
+        supportedPfcpFeatures:
+          type: string
+        # upfEvents:
+          # type: array
+          # items:
+            # $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29564_Nupf_EventExposure.yaml#/components/schemas/EventType'
+          # minItems: 1
+
+    PcfInfo:
+      description: Information of a PCF NF Instance
+      type: object
+      properties:
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        dnnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+          minItems: 1
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 1
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        rxDiamHost:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        rxDiamRealm:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        v2xSupportInd:
+          type: boolean
+          default: false
+        proseSupportInd:
+          type: boolean
+          default: false
+        proseCapability:
+          $ref: '#/components/schemas/ProseCapability'
+        v2xCapability:
+          $ref: '#/components/schemas/V2xCapability'
+        a2xSupportInd:
+          type: boolean
+          default: false
+        a2xCapability:
+          $ref: '#/components/schemas/A2xCapability'          
+        rangingSlPosSupportInd:
+          type: boolean
+          default: false                    
+
+    A2xCapability:
+      description: Information of the supported A2X Capability by the PCF
+      type: object
+      properties:
+        lteA2x:
+          type: boolean
+          default: false
+        nrA2x:
+          type: boolean
+          default: false
+
+    NefInfo:
+      description: Information of an NEF NF Instance
+      type: object
+      properties:
+        nefId:
+          # $ref: '#/components/schemas/NefId'
+          type: string
+        pfdData:
+          $ref: '#/components/schemas/PfdData'
+        afEeData:
+          $ref: '#/components/schemas/AfEventExposureData'
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        externalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        servedFqdnList:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        taiList:
+          $ref: '#/components/schemas/TaiList'
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        dnaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        unTrustAfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnTrustAfInfo'
+          minItems: 1
+        uasNfFunctionalityInd:
+          type: boolean
+          default: false
+        multiMemAfSessQosInd:
+          type: boolean
+          default: false
+        memberUESelAssistInd:
+          type: boolean
+          default: false          
+
+    NrfInfo:
+      description: Information of an NRF NF Instance, used in hierarchical NRF deployments
+      type: object
+      properties:
+        servedUdrInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/UdrInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedUdrInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/UdrInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedUdmInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/UdmInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedUdmInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/UdmInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedAusfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/AusfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedAusfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/AusfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedAmfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/AmfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedAmfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/AmfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedSmfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/SmfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedSmfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/SmfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedUpfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/UpfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedUpfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/UpfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedPcfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/PcfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedPcfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/PcfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedBsfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/BsfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedBsfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/BsfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedChfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/ChfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedChfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/ChfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedNefInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/NefInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedNwdafInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/NwdafInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedNwdafInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            type: object
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            additionalProperties:
+              $ref: '#/components/schemas/NwdafInfo'
+            minProperties: 1
+          minProperties: 1
+        servedPcscfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/PcscfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedGmlcInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/GmlcInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedLmfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/LmfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedNfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/NfInfo'
+          minProperties: 1
+        servedHssInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/HssInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedUdsfInfo:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/UdsfInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedUdsfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/UdsfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedScpInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/ScpInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedSeppInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            anyOf:
+              - $ref: '#/components/schemas/SeppInfo'
+              - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+          minProperties: 1
+        servedAanfInfoList:
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/AanfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+        served5gDdnmfInfo:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/5GDdnmfInfo'
+          minProperties: 1
+        servedMfafInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/MfafInfo'
+          minProperties: 1
+        servedEasdfInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            type: object
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            additionalProperties:
+              $ref: '#/components/schemas/EasdfInfo'
+            minProperties: 1
+        servedDccfInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/DccfInfo'
+          minProperties: 1
+        servedMbSmfInfoList:
+          description: A map (list of key-value pairs) where nfInstanceId serves as key
+          type: object
+          additionalProperties:
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            type: object
+            additionalProperties:
+              anyOf:
+                - $ref: '#/components/schemas/MbSmfInfo'
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EmptyObject'
+            minProperties: 1
+          minProperties: 1
+        servedTsctsfInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            type: object
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            additionalProperties:
+              $ref: '#/components/schemas/TsctsfInfo'
+            minProperties: 1
+          minProperties: 1
+        servedMbUpfInfoList:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            type: object
+            description: A map (list of key-value pairs) where a valid JSON string serves as key
+            additionalProperties:
+              $ref: '#/components/schemas/MbUpfInfo'
+            minProperties: 1
+          minProperties: 1
+        servedTrustAfInfo:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/TrustAfInfo'
+          minProperties: 1
+        servedNssaafInfo:
+          type: object
+          description: A map (list of key-value pairs) where NF Instance Id serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/NssaafInfo'
+          minProperties: 1
+    SatelliteBackhaulInfo:
+      description: defines the list of satellite backhaul information
+      type: object
+      properties:
+        globalRanNodeID:
+          $ref: '#/components/schemas/GlobalRanNodeID'
+        SatelliteBackhaulCategory:
+          anyOf:
+          - type: string
+            enum:
+              - GEO
+              - MEO
+              - LEO
+              - OTHER_SAT
+              - DYNAMIC_GEO
+              - DYNAMIC_MEO
+              - DYNAMIC_LEO
+              - DYNAMIC_OTHER_SAT
+              - NON_SATELLITE
+          - type: string
+        geoSatelliteId:
+          type: string
+          pattern: '^[0-9]{5}$'
+    GlobalRanNodeID:
+      description:  globally identification of an NG-RAN node
+      type: object
+      oneOf:
+        - required: [ pLMNId, n3IwfId]
+        - required: [ plMNId, gNbId]
+        - required: [ pLMNId, ngeNbId]
+        - required: [ plMNId, wagfId]
+        - required: [ pLMNId, tngfId]
+        - required: [ plMNId, twifId]
+      properties:
+        pLMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
+        n3IwfId:
+          type: string
+          pattern: '^[A-Fa-f0-9]+$'
+        gNbId:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        ngeNbId:
+          type: string
+          pattern: '^(MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$'
+        wagfId:
+          type: string
+          pattern: '^[A-Fa-f0-9]+$'
+        tngfId:
+          type: string
+          pattern: '^[A-Fa-f0-9]+$'
+        twifId:
+          type: string
+    NTNPLMNRestrictionsList:
+      description: NTNPLMNRestrictionsInfoList that relates to non-terrestrial network access
+      type: array
+      items:
+        $ref: '#/components/schemas/NTNPLMNRestrictionsInfo'
+    NTNPLMNRestrictionsInfo:
+      description: restrictions per PLMN that relates to non-terrestrial network access
+      type: object
+      properties:
+        pLMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
+        blockedLocationInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockedLocationInfo'
+    BlockedLocationInfo:
+      description: location for which the PLMN access restrictions are to be applied in case of NTN
+      type: object
+      properties:
+        blockedLocation:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
+        blockedDurWindow:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/TimeWindow'
+        blockedSlice:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/Snssai'
+    5GDdnmfInfo:
+      description: Information of an 5G DDNMF NF Instance
+      type: object
+      required:
+        - plMNId
+      properties:
+        plMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+    ImsiRange:
+      description: >
+        A range of IMSIs (subscriber identities), either based on a numeric range,
+        or based on regular-expression matching
+      type: object
+      oneOf:
+        - required: [ start, end ]
+        - required: [ pattern ]
+      properties:
+        start:
+          type: string
+          pattern: '^[0-9]+$'
+        end:
+          type: string
+          pattern: '^[0-9]+$'
+        pattern:
+          type: string
+    NetworkNodeDiameterAddress:
+      description: >
+        This data type is a part of smsfDiameterAddress and it should be present
+        whenever smsf supports Diameter protocol.
+      type: object
+      required:
+        - name
+        - realm
+      properties:
+        name:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        realm:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+    HssInfo:
+      description: Information of an HSS NF Instance
+      type: object
+      properties:
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        imsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImsiRange'
+          minItems: 1
+        imsPrivateIdentityRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        imsPublicIdentityRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        msisdnRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        externalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+        hssDiameterAddress:
+          $ref: '#/components/schemas/NetworkNodeDiameterAddress'
+        additionalDiamAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetworkNodeDiameterAddress'
+          minItems: 1
+    GmlcInfo:
+      description: Information of a GMLC NF Instance
+      type: object
+      properties:
+        servingClientTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalClientType'
+        gmlcNumbers:
+          type: array
+          items:
+            type: string
+            pattern: '^[0-9]{5,15}$'
+
+    SnssaiTsctsfInfoItem:
+      description: Set of parameters supported by TSCTSF for a given S-NSSAI
+      type: object
+      required:
+        - sNssai
+        - dnnInfoList
+      properties:
+        sNssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+        dnnInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnTsctsfInfoItem'
+          minItems: 1
+    DnnTsctsfInfoItem:
+      description: Parameters supported by an TSCTSF for a given DNN
+      type: object
+      required:
+        - dnn
+      properties:
+        dnn:
+          anyOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+    TsctsfInfo:
+      description: Information of a TSCTSF NF Instance
+      type: object
+      properties:
+        sNssaiInfoList:
+          description: A map (list of key-value pairs) where a valid JSON string serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/SnssaiTsctsfInfoItem'
+          minProperties: 0
+        externalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+        internalGroupIdentifiersRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalGroupIdRange'
+
+    BsfInfo:
+      description: Information of a BSF NF Instance
+      type: object
+      properties:
+        dnnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+          minItems: 0
+        ipDomainList:
+          type: array
+          items:
+            type: string
+          minItems: 0
+        ipv4AddressRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv4AddressRange'
+          minItems: 0
+        ipv6PrefixRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv6PrefixRange'
+          minItems: 0
+        rxDiamHost:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        rxDiamRealm:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DiameterIdentity'
+        groupId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfGroupId'
+        supiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupiRange'
+          minItems: 0
+        gpsiRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 0            
+
+    MbSmfInfo:
+      description: Information of an MB-SMF NF Instance
+      type: object
+      properties:
+        sNssaiInfoList:
+          description: A map (list of key-value pairs) where a valid JSON string serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/SnssaiMbSmfInfoItem'
+          minProperties: 1
+        tmgiRangeList:
+          description: A map (list of key-value pairs) where a valid JSON string serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/TmgiRange'
+          minProperties: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        mbsSessionList:
+          description: A map (list of key-value pairs) where a valid JSON string serves as key
+          additionalProperties:
+            $ref: '#/components/schemas/MbsSession'
+          minProperties: 1
+
+    TmgiRange:
+      description: Range of TMGIs
+      type: object
+      required:
+        - mbsServiceIdStart
+        - mbsServiceIdEnd
+        - plmnId
+      properties:
+        mbsServiceIdStart:
+          type: string
+          pattern: '^[A-Fa-f0-9]{6}$'
+        mbsServiceIdEnd:
+          type: string
+          pattern: '^[A-Fa-f0-9]{6}$'
+        plMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+        nid:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Nid'
+
+    MbsSession:
+      description: MBS Session currently served by an MB-SMF
+      type: object
+      required:
+        - mbsSessionId
+      properties:
+        mbsSessionId:
+          $ref: '#/components/schemas/MbsSessionId'
+        mbsAreaSessions:
+          description: A map (list of key-value pairs) where the key identifies an areaSessionId
+          additionalProperties:
+            $ref: '#/components/schemas/MbsServiceAreaInfo'
+          minProperties: 1
+          
+    MbsServiceAreaInfo:
+      description: MBS Service Area Information for location dependent MBS session
+      type: object
+      properties:
+        areaSessionId:
+          type: integer
+          minimum: 0
+          maximum: 65535
+        mbsServiceArea:
+          $ref: '#/components/schemas/MbsServiceArea'
+      required:
+        - areaSessionId
+        - mbsServiceArea
+        
+    MbsSessionId:
+      description: MBS Session Identifier
+      type: object
+      properties:
+        tmgi:
+          $ref: '#/components/schemas/Tmgi'
+        ssm:
+          $ref: '#/components/schemas/Ssm'
+        nid:
+          $ref: '#/components/schemas/Nid'
+      anyOf:
+        - required: [ tmgi ]
+        - required: [ ssm ]
+
+    Tmgi:
+      description: Temporary Mobile Group Identity
+      type: object
+      properties:
+        mbsServiceId:
+          type: string
+          pattern: '^[A-Fa-f0-9]{6}$'
+          description: MBS Service ID
+        plMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+      required:
+        - mbsServiceId
+        - plmnId
+
+    Ssm:
+      description: Source specific IP multicast address
+      type: object
+      properties:
+        sourceIpAddr:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
+        destIpAddr:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
+      required:
+        - sourceIpAddr
+        - destIpAddr
+
+    MbsServiceArea:
+      description: MBS Service Area
+      type: object
+      properties:
+        ncgiList:
+          type: array
+          items:
+            $ref: '#/components/schemas/NcgiTai'
+          minItems: 1
+          description: List of NR cell Ids
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+          description: List of tracking area Ids
+      anyOf:
+        - required: [ ncgiList ]
+        - required: [ taiList ]
+
+    NcgiTai:
+      description: List of NR cell ids, with their pertaining TAIs
+      type: object
+      properties:
+        tai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+        cellList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ncgi'
+          minItems: 1
+          description: List of List of NR cell ids
+      required:
+        - tai
+        - cellList
+
+    Ncgi:
+      description: Contains the NCGI (NR Cell Global Identity), as described in 3GPP 23.003
+      type: object
+      properties:
+        plMNId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnId'
+        nrCellId:
+          type: string
+          pattern: '^[A-Fa-f0-9]{9}$'
+          # $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NrCellId'
+        nid:
+          $ref: '#/components/schemas/Nid'
+      required:
+        - plmnId
+        - nrCellId
+        
+    SnssaiMbSmfInfoItem:
+      description: Parameters supported by an MB-SMF for a given S-NSSAI
+      type: object
+      required:
+        - sNssai
+        - dnnInfoList
+      properties:
+        sNssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+        dnnInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnMbSmfInfoItem'
+          minItems: 1
+
+    DnnMbSmfInfoItem:
+      description: Parameters supported by an MB-SMF for a given DNN
+      type: object
+      required:
+        - dnn
+      properties:
+        dnn:
+          anyOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/WildcardDnn'
+
+    AanfInfo:
+      description: Represents the information relative to an AAnF NF Instance.
+      type: object
+      properties:
+        routingIndicators:
+          type: array
+          items:
+            type: string
+            pattern: '^[0-9]{1,4}$'
+
+    MbUpfInfo:
+      description: Information of an MB-UPF NF Instance
+      type: object
+      required:
+        - sNssaiMbUpfInfoList
+      properties:
+        sNssaiMbUpfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SnssaiUpfInfoItem'
+          minItems: 1
+        mbSmfServingArea:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        interfaceMbUpfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterfaceUpfInfoItem'
+          minItems: 1
+        taiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Tai'
+          minItems: 1
+        taiRangeList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaiRange'
+          minItems: 1
+        priority:
+          type: integer
+          minimum: 0
+          maximum: 65535
+        supportedPfcpFeatures:
+          type: string
+    SnssaiUpfInfoItem:
+      description: Set of parameters supported by UPF for a given S-NSSAI
+      type: object
+      required:
+        - sNssai
+        - dnnUpfInfoList
+      properties:
+        sNssai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ExtSnssai'
+        dnnUpfInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DnnUpfInfoItem'
+          minItems: 1
+        redundantTransport:
+          type: boolean
+          default: false
+    IpIndex:
+      description: Represents the IP Index to be sent from UDM to the SMF (its value can be either an integer or a string)
+      anyOf:
+        - type: integer
+        - type: string
+    DnnUpfInfoItem:
+      description: Set of parameters supported by UPF for a given DNN
+      type: object
+      required:
+        - dnn
+      properties:
+        dnn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+        dnaiList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        pduSessionTypes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+          minItems: 1
+        ipv4AddressRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv4AddressRange'
+          minItems: 1
+        ipv6PrefixRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv6PrefixRange'
+          minItems: 1
+        natedIpv4AddressRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv4AddressRange'
+          minItems: 1
+        natedIpv6PrefixRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv6PrefixRange'
+          minItems: 1
+        ipv4IndexList:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpIndex'
+          minItems: 1
+        ipv6IndexList:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpIndex'
+          minItems: 1
+        networkInstance:
+          description: >
+            The N6 Network Instance associated with the S-NSSAI and DNN.
+          type: string
+        dnaiNwInstanceList:
+          description: >
+            Map of network instance per DNAI for the DNN, where the key of the map is the DNAI.
+            When present, the value of each entry of the map shall contain a N6 network instance
+            that is configured for the DNAI indicated by the key.
+          type: object
+          additionalProperties:
+            type: string
+          minProperties: 1
+      not:
+        required: [ networkInstance, dnaiNwInstanceList ]
+    MnpfInfo:
+      description: Information of an MNPF Instance
+      type: object
+      properties:
+        msisdnRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityRange'
+          minItems: 1
+      required:
+        - msisdnRanges
+    SliceExpiryInfo :
+      description: Slice validity
+      type: object
+      properties:
+        pLMNInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfo'
+        expiryTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DateTime'        
+    PcscfInfo:
+      description: Information of a P-CSCF NF Instance
+      type: object
+      properties:
+        accessType:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          minItems: 1
+        dnnList:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+          minItems: 1
+        gmFqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+        gmIpv4Addresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+          minItems: 1
+        gmIpv6Addresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+          minItems: 1
+        mwFqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+        mwIpv4Addresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+          minItems: 1
+        mwIpv6Addresses:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+          minItems: 1
+        servedIpv4AddressRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv4AddressRange'
+          minItems: 1
+        servedIpv6PrefixRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ipv6PrefixRange'
+          minItems: 1
+    NfInfo:
+      description: Information of a generic NF Instance
+      type: object
+      properties:
+        nfType:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NFType'
+
+#-------- Definition of types for name-containments ------
+    SubNetwork-ncO-5GcNrm:
+      type: object
+      properties:
+        ExternalAmfFunction:
+          $ref: '#/components/schemas/ExternalAmfFunction-Multiple'
+        ExternalNrfFunction:
+          $ref: '#/components/schemas/ExternalNrfFunction-Multiple'
+        ExternalNssfFunction:
+          $ref: '#/components/schemas/ExternalNssfFunction-Multiple'
+        AmfSet:
+          $ref: '#/components/schemas/AmfSet-Multiple'
+        AmfRegion:
+          $ref: '#/components/schemas/AmfRegion-Multiple'
+        Configurable5QISet:
+          $ref: '#/components/schemas/Configurable5QISet-Multiple'
+        Dynamic5QISet:
+          $ref: '#/components/schemas/Dynamic5QISet-Multiple'
+        EcmConnectionInfo:
+          $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
+
+    ManagedElement-ncO-5GcNrm:
+      type: object
+      properties:
+        AmfFunction:
+          $ref: '#/components/schemas/AmfFunction-Multiple'
+        SmfFunction:
+          $ref: '#/components/schemas/SmfFunction-Multiple'
+        UpfFunction:
+          $ref: '#/components/schemas/UpfFunction-Multiple'
+        N3iwfFunction:   
+          $ref: '#/components/schemas/N3iwfFunction-Multiple'
+        PcfFunction:
+          $ref: '#/components/schemas/PcfFunction-Multiple'
+        AusfFunction:
+          $ref: '#/components/schemas/AusfFunction-Multiple'
+        UdmFunction:
+          $ref: '#/components/schemas/UdmFunction-Multiple'
+        UdrFunction:
+          $ref: '#/components/schemas/UdrFunction-Multiple'
+        UdsfFunction:
+          $ref: '#/components/schemas/UdsfFunction-Multiple'
+        NrfFunction:
+          $ref: '#/components/schemas/NrfFunction-Multiple'
+        NssfFunction:
+          $ref: '#/components/schemas/NssfFunction-Multiple'
+        SmsfFunction:
+          $ref: '#/components/schemas/SmsfFunction-Multiple'
+        LmfFunction:
+          $ref: '#/components/schemas/LmfFunction-Multiple'
+        NgeirFunction:
+          $ref: '#/components/schemas/NgeirFunction-Multiple'
+        SeppFunction:
+          $ref: '#/components/schemas/SeppFunction-Multiple'
+        NwdafFunction:
+          $ref: '#/components/schemas/NwdafFunction-Multiple'
+        ScpFunction:
+          $ref: '#/components/schemas/ScpFunction-Multiple'
+        NefFunction:
+          $ref: '#/components/schemas/NefFunction-Multiple'
+        Configurable5QISet:
+          $ref: '#/components/schemas/Configurable5QISet-Multiple'
+        Dynamic5QISet:
+          $ref: '#/components/schemas/Dynamic5QISet-Multiple'
+        EcmConnectionInfo:
+          $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
+        EASDFFunction:
+          $ref: '#/components/schemas/EASDFFunction-Multiple'
+        NSSAAFFunction:
+          $ref: '#/components/schemas/NssaafFunction-Multiple'
+        AFFunction:
+          $ref: '#/components/schemas/AfFunction-Multiple'
+        DCCFFunction:
+          $ref: '#/components/schemas/DccfFunction-Multiple'
+        ChfFunction:
+          $ref: '#/components/schemas/ChfFunction-Multiple'
+        MFAFFunction:
+          $ref: '#/components/schemas/MfafFunction-Multiple'
+        GMLCFunction:
+          $ref: '#/components/schemas/GmlcFunction-Multiple'
+        TSCTSFFunction:
+          $ref: '#/components/schemas/TsctsfFunction-Multiple'
+        AANFFunction:
+          $ref: '#/components/schemas/AanfFunction-Multiple'
+        BSFFunction:
+          $ref: '#/components/schemas/BsfFunction-Multiple'
+        MBSMFFunction:
+          $ref: '#/components/schemas/MbSmfFunction-Multiple'
+        MBUPFFunction:
+          $ref: '#/components/schemas/MbUpfFunction-Multiple'
+        MNPFFunction:
+          $ref: '#/components/schemas/MnpfFunction-Multiple'
 
 #-------- Definition of concrete IOCs --------------------------------------------
-    ProvMnS:
-      oneOf:
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-        - type: object
-          properties:
-            ManagedElement:
-              $ref: '#/components/schemas/ManagedElement-Multiple'
-
-    SubNetwork-Single:
-      allOf:
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
-        - type: object
-          properties:
-            attributes:
-              allOf:
-                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-            ManagedElement:
-              $ref: '#/components/schemas/ManagedElement-Multiple'
-            ExternalAmfFunction:
-              $ref: '#/components/schemas/ExternalAmfFunction-Multiple'
-            ExternalNrfFunction:
-              $ref: '#/components/schemas/ExternalNrfFunction-Multiple'
-            ExternalNssfFunction:
-                $ref: '#/components/schemas/ExternalNssfFunction-Multiple'
-            AmfSet:
-              $ref: '#/components/schemas/AmfSet-Multiple'
-            AmfRegion:
-              $ref: '#/components/schemas/AmfRegion-Multiple'
-            Configurable5QISet:
-              $ref: '#/components/schemas/Configurable5QISet-Multiple'
-            Dynamic5QISet:
-              $ref: '#/components/schemas/Dynamic5QISet-Multiple'
-            EcmConnectionInfo:
-              $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
-
-    ManagedElement-Single:
-      allOf:
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
-        - type: object
-          properties:
-            attributes:
-              allOf:
-                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-ncO'
-        - type: object
-          properties:
-            AmfFunction:
-              $ref: '#/components/schemas/AmfFunction-Multiple'
-            SmfFunction:
-              $ref: '#/components/schemas/SmfFunction-Multiple'
-            UpfFunction:
-              $ref: '#/components/schemas/UpfFunction-Multiple'
-            N3iwfFunction:   
-              $ref: '#/components/schemas/N3iwfFunction-Multiple'
-            PcfFunction:
-              $ref: '#/components/schemas/PcfFunction-Multiple'
-            AusfFunction:
-              $ref: '#/components/schemas/AusfFunction-Multiple'
-            UdmFunction:
-              $ref: '#/components/schemas/UdmFunction-Multiple'
-            UdrFunction:
-              $ref: '#/components/schemas/UdrFunction-Multiple'
-            UdsfFunction:
-              $ref: '#/components/schemas/UdsfFunction-Multiple'
-            NrfFunction:
-              $ref: '#/components/schemas/NrfFunction-Multiple'
-            NssfFunction:
-              $ref: '#/components/schemas/NssfFunction-Multiple'
-            SmsfFunction:
-              $ref: '#/components/schemas/SmsfFunction-Multiple'
-            LmfFunction:
-              $ref: '#/components/schemas/LmfFunction-Multiple'
-            NgeirFunction:
-              $ref: '#/components/schemas/NgeirFunction-Multiple'
-            SeppFunction:
-              $ref: '#/components/schemas/SeppFunction-Multiple'
-            NwdafFunction:
-              $ref: '#/components/schemas/NwdafFunction-Multiple'
-            ScpFunction:
-              $ref: '#/components/schemas/ScpFunction-Multiple'
-            NefFunction:
-              $ref: '#/components/schemas/NefFunction-Multiple'
-            Configurable5QISet:
-              $ref: '#/components/schemas/Configurable5QISet-Multiple'
-            Dynamic5QISet:
-              $ref: '#/components/schemas/Dynamic5QISet-Multiple'
-            EcmConnectionInfo:
-              $ref: '#/components/schemas/EcmConnectionInfo-Multiple'
-            EASDFFunction:
-              $ref: '#/components/schemas/EASDFFunction-Multiple'
-
     AmfFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -773,34 +3037,28 @@ components:
                       $ref: '#/components/schemas/AmfIdentifier'
                     sBIFqdn:
                       type: string
-                    taiList:
-                      $ref: '#/components/schemas/TaiList'
-                    taiRangeList:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TaiRange'
                     weightFactor:
                       $ref: '#/components/schemas/WeightFactor'
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
-                    gUAMIdList:
-                      type: array
-                      items: 
-                        $ref: '#/components/schemas/GUAMInfo'
-                    backupInfoAmfFailure:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/GUAMInfo'
-                    backupInfoAmfRemoval:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/GUAMInfo'
                     amfSetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    nTNPLMNRestrictionsList:
+                      $ref: '#/components/schemas/NTNPLMNRestrictionsList'
+                    amfInfo:
+                      $ref: '#/components/schemas/AmfInfo'
+                    sliceExpiryInfo:
+                      $ref: '#/components/schemas/SliceExpiryInfo'
+                    SatelliteBackhaulInfoList:
+                      $ref: '#/components/schemas/SatelliteBackhaulInfo'
+                    mappedCellIdInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/MappedCellIdInfoList'
+                    mdtUserConsentReqList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/MdtUserConsentReqList'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -828,6 +3086,16 @@ components:
               $ref: '#/components/schemas/EP_NL1-Multiple'
             EP_NL2:
               $ref: '#/components/schemas/EP_NL2-Multiple'
+            EP_N58:
+              $ref: '#/components/schemas/EP_N58-Multiple'
+            EP_N41:
+              $ref: '#/components/schemas/EP_N41-Multiple'
+            EP_N42:
+              $ref: '#/components/schemas/EP_N42-Multiple'
+            EP_N89:
+              $ref: '#/components/schemas/EP_N89-Multiple'
+            EP_N11mb:
+              $ref: '#/components/schemas/EP_N11mb-Multiple'
     AmfSet-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -888,43 +3156,22 @@ components:
                       $ref: '#/components/schemas/TACList'
                     sBIFqdn:
                       type: string
-                    sNssaiSmfInfoList:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/SNssaiSmfInfoItem'
-                    taiList:
-                      $ref: '#/components/schemas/TaiList'
-                    taiRangeList:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TaiRange'
-                    pwgFqdn:
-                      type: string
-                    pgwAddrList:
-                      type: array
-                      items:
-                        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/IpAddr'
-                    accessType:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
-                    priority:
-                      type: integer
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
-                    vsmfSupportInd:
-                      type: boolean
-                    pwgFqdnList:    
-                      type: array
-                      items: 
-                        type: string
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    SmfInfo:
+                      $ref: '#/components/schemas/SmfInfo'  
                     configurable5QISetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
-
+                    dnaiSatelliteMappingList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/dnaiSatelliteMapping'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -940,6 +3187,12 @@ components:
               $ref: '#/components/schemas/EP_N16-Multiple'
             EP_S5C:
               $ref: '#/components/schemas/EP_S5C-Multiple'
+            EP_N40:
+              $ref: '#/components/schemas/EP_N40-Multiple'
+            EP_N88:
+              $ref: '#/components/schemas/EP_N88-Multiple'
+            EP_N16mb:
+              $ref: '#/components/schemas/EP_N16mb-Multiple'
             FiveQiDscpMappingSet:
               $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
             GtpUPathQoSMonitoringControl:
@@ -959,16 +3212,22 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     nRTACList:
                       $ref: '#/components/schemas/TACList'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    energySavingControl:
+                      $ref: '#/components/schemas/EnergySavingControl'
+                    energySavingState:
+                      $ref: '#/components/schemas/EnergySavingState'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     supportedBMOList:
                       $ref: '#/components/schemas/SupportedBMOList'
+                    upfInfo:
+                      $ref: '#/components/schemas/UpfInfo'        
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1013,24 +3272,24 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    supportedBMOList:
+                      $ref: '#/components/schemas/SupportedBMOList'
+                    PcfInfo:
+                      $ref: '#/components/schemas/PcfInfo' 
                     configurable5QISetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
-                    supportedBMOList:
-                      $ref: '#/components/schemas/SupportedBMOList'
                     predefinedPccRuleSetRefs:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'              
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'  
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1042,8 +3301,12 @@ components:
               $ref: '#/components/schemas/EP_N15-Multiple'
             EP_N16:
               $ref: '#/components/schemas/EP_N16-Multiple'
+            EP_N28:
+              $ref: '#/components/schemas/EP_N28-Multiple'
             EP_Rx:
               $ref: '#/components/schemas/EP_Rx-Multiple'
+            EP_N84:
+              $ref: '#/components/schemas/EP_N84-Multiple'
 
     AusfFunction-Single:
       allOf:
@@ -1055,16 +3318,16 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    plmnInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    ausfInfo:
+                      $ref: '#/components/schemas/AusfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1072,6 +3335,8 @@ components:
               $ref: '#/components/schemas/EP_N12-Multiple'
             EP_N13:
               $ref: '#/components/schemas/EP_N13-Multiple'
+            EP_N61:
+              $ref: '#/components/schemas/EP_N61-Multiple'
     UdmFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1082,18 +3347,18 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
                     eCSAddrConfigInfo:
                       $ref: '#/components/schemas/ECSAddrConfigInfo'
+                    udmInfo:
+                      $ref: '#/components/schemas/UdmInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1103,6 +3368,12 @@ components:
               $ref: '#/components/schemas/EP_N10-Multiple'
             EP_N13:
               $ref: '#/components/schemas/EP_N13-Multiple'
+            EP_N59:
+              $ref: '#/components/schemas/EP_N13-Multiple'
+            EP_NL6:
+              $ref: '#/components/schemas/EP_NL6-Multiple'
+            EP_N87:
+              $ref: '#/components/schemas/EP_N87-Multiple'
     UdrFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1113,14 +3384,14 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
+                    udrInfo:
+                      $ref: '#/components/schemas/UdrInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     UdsfFunction-Single:
       allOf:
@@ -1132,14 +3403,14 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    plmnInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
+                    udsfInfo:
+                      $ref: '#/components/schemas/UdsfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
     NrfFunction-Single:
       allOf:
@@ -1151,21 +3422,25 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    plmnInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
                     nFProfileList:
                       $ref: '#/components/schemas/NFProfileList'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
+                    nrfInfo:
+                      $ref: '#/components/schemas/NrfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             EP_N27:
               $ref: '#/components/schemas/EP_N27-Multiple'
+            EP_N96:
+              $ref: '#/components/schemas/EP_N96-Multiple'
+            EP_SM14:
+              $ref: '#/components/schemas/EP_SM14-Multiple'
     NssfFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1176,16 +3451,14 @@ components:
                 - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
                 - type: object
                   properties:
-                    plmnIdList:
-                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
                     sBIFqdn:
                       type: string
                     cNSIIdList:
                       $ref: '#/components/schemas/CNSIIdList'
                     managedNFProfile:
                       $ref: '#/components/schemas/ManagedNFProfile'
-                    snssaiList:
-                      $ref: '#/components/schemas/SnssaiList'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
@@ -1215,6 +3488,8 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    smsfInfo:
+                      $ref: '#/components/schemas/SmsfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1240,6 +3515,14 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     commModelList:
                       $ref: '#/components/schemas/CommModelList'
+                    lmfInfo:
+                      $ref: '#/components/schemas/LmfInfo'
+                    ephemerisInfos:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/EphemerisInfos'
+                    trpInfoList:
+                      $ref: '#/components/schemas/TrpInfoList'
+                    mappedCellIdInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/MappedCellIdInfoList'                      
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1288,6 +3571,8 @@ components:
                       type: integer
                     fqdn:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Fqdn'
+                    seppInfo:
+                      $ref: '#/components/schemas/SeppInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1315,11 +3600,26 @@ components:
                       $ref: '#/components/schemas/CommModelList'
                     networkSliceInfoList:
                       $ref: '#/components/schemas/NetworkSliceInfoList'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+                    administrativeState:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
+                    nwdafInfo:
+                      $ref: '#/components/schemas/NwdafInfo'
+                    nwdafLogicalFuncSupported:
+                      type: string
+                      enum:
+                        - NWDAF_WITH_ANLF
+                        - NWDAF_WITH_MTLF
+                        - NWDAF_WITH_ANLF_MTLF
         - type: object
           properties:
+            EP_NL3:
+              $ref: '#/components/schemas/EP_NL3-Multiple'
             EP_N34:
-              $ref: '#/components/schemas/EP_N34-Multiple'                      
+              $ref: '#/components/schemas/EP_N34-Multiple'
+            AnLFFunction:
+              $ref: '#/components/schemas/AnLFFunction-Single'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
     ScpFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1334,7 +3634,13 @@ components:
                       $ref: '#/components/schemas/SupportedFuncList'
                     address:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/HostAddr'
+                    scpInfo:
+                      $ref: '#/components/schemas/ScpInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_SM13:
+              $ref: '#/components/schemas/EP_SM13-Multiple'
     NefFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1355,20 +3661,22 @@ components:
                       $ref: '#/components/schemas/CapabilityList'
                     isCAPIFSup:
                       type: boolean
-                    taiList:
-                      $ref: '#/components/schemas/TaiList'
-                    taiRangeList:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/TaiRange'
-                    dnai:
-                      type: string
-
+                    nefInfo:
+                       $ref: '#/components/schemas/NefInfo' 
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
             EP_N33:
               $ref: '#/components/schemas/EP_N33-Multiple'
+            EP_NL5:
+              $ref: '#/components/schemas/EP_NL5-Multiple'
+            EP_N85:
+              $ref: '#/components/schemas/EP_N85-Multiple'
+            EP_N62:
+              $ref: '#/components/schemas/EP_N62-Multiple'
+            EP_N63:
+              $ref: '#/components/schemas/EP_N63-Multiple'
+
     NsacfFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1385,8 +3693,8 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/NsacfInfoSnssai'
-                    taiList:
-                      $ref: '#/components/schemas/TaiList'
+                    nsacfInfo:
+                      $ref: '#/components/schemas/NsacfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1441,6 +3749,8 @@ components:
                       $ref: '#/components/schemas/ManagedNFProfile'
                     serverAddr:
                       type: string
+                    easdfInfo:
+                      $ref: '#/components/schemas/EasdfInfo'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -1878,7 +4188,7 @@ components:
                       type: string
                     withIPX:
                       type: boolean
-    EP_N34-Single:
+    EP_N33-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -1892,7 +4202,7 @@ components:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
                     remoteAddress:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
-    EP_N33-Single:
+    EP_N34-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -1977,6 +4287,62 @@ components:
                     remoteAddress:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
     EP_NL2-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_NL3-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_NL5-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_NL6-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_NL9-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
         - type: object
@@ -2086,7 +4452,7 @@ components:
               allOf:
                 - type: object
                   properties:
-                    FiveQiDscpMappingList:
+                    fiveQiDscpMappingList:
                       type: array
                       items:
                         $ref: '#/components/schemas/FiveQiDscpMapping'
@@ -2215,6 +4581,19 @@ components:
                       type: integer
                     qFMeasurementPeriod:
                       type: integer
+                    qFMonitoredSatelliteBackhaulCategories:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SatelliteBackhaulCategories'
+
+    SatelliteBackhaulCategories:
+      type: string
+      description: any of enumerated value
+      enum:
+        - DYNAMIC_GEO
+        - DYNAMIC_MEO
+        - DYNAMIC_LEO
+        - DYNAMIC_OTHER_SAT
 
     PredefinedPccRuleSet-Single:
       allOf:
@@ -2229,17 +4608,724 @@ components:
                       type: array
                       items:
                         $ref: '#/components/schemas/PccRule'                           
+                          
+    AfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    plmnIdList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    trustAfInfo:
+                      $ref: '#/components/schemas/TrustAfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N5:
+              $ref: '#/components/schemas/EP_N5-Multiple'
+            EP_N86:
+              $ref: '#/components/schemas/EP_N86-Multiple'
+            EP_N63:
+              $ref: '#/components/schemas/EP_N63-Multiple'
+            EP_N62:
+              $ref: '#/components/schemas/EP_N62-Multiple'
+
+    NssaafFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    nssafInfo:
+                      $ref: '#/components/schemas/NssaafInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+    EP_N58-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+    EP_N59-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+    DccfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    dccfInfo:
+                      $ref: '#/components/schemas/DccfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
+    MfafFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    mfafInfo:
+                      $ref: '#/components/schemas/MfafInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
+    ChfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    chfInfo:
+                      $ref: '#/components/schemas/ChfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N28:
+              $ref: '#/components/schemas/EP_N28-Multiple'
+            EP_N40:
+              $ref: '#/components/schemas/EP_N40-Multiple'
+            EP_N41:
+              $ref: '#/components/schemas/EP_N41-Multiple'
+            EP_N42:
+              $ref: '#/components/schemas/EP_N42-Multiple'
+
+    EP_N28-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N40-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N41-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N42-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+    AanfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    aanfInfo:
+                      $ref: '#/components/schemas/AanfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N61:
+              $ref: '#/components/schemas/EP_N61-Multiple'
+            EP_N62:
+              $ref: '#/components/schemas/EP_N62-Multiple'
+            EP_N63:
+              $ref: '#/components/schemas/EP_N63-Multiple'
+    EP_N61-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N62-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N63-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+
+    GmlcFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    gmlcInfo:
+                      $ref: '#/components/schemas/GmlcInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_NL2:
+              $ref: '#/components/schemas/EP_NL2-Multiple'
+            EP_NL3:
+              $ref: '#/components/schemas/EP_NL3-Multiple'
+            EP_NL5:
+              $ref: '#/components/schemas/EP_NL5-Multiple'
+            EP_NL6:
+              $ref: '#/components/schemas/EP_NL6-Multiple'
+            EP_NL9:
+              $ref: '#/components/schemas/EP_NL9-Multiple'
+    TsctsfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    tsctsfInfo:
+                      $ref: '#/components/schemas/TsctsfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N84:
+              $ref: '#/components/schemas/EP_N84-Multiple'
+            EP_N85:
+              $ref: '#/components/schemas/EP_N85-Multiple'
+            EP_N86:
+              $ref: '#/components/schemas/EP_N86-Multiple'
+            EP_N87:
+              $ref: '#/components/schemas/EP_N87-Multiple'
+            EP_N89:
+              $ref: '#/components/schemas/EP_N89-Multiple'
+            EP_N96:
+              $ref: '#/components/schemas/EP_N96-Multiple'
+
+    EP_N84-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'    
+    EP_N85-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N86-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N87-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N89-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N96-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+    BsfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    sBIFqdn:
+                      type: string
+                    cNSIIdList:
+                      $ref: '#/components/schemas/CNSIIdList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    bsfInfo:
+                      $ref: '#/components/schemas/BsfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+
+    MbSmfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    plmnIdList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    mbSmfInfo:
+                      $ref: '#/components/schemas/MbSmfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N11mb:
+              $ref: '#/components/schemas/EP_N11mb-Multiple'
+            EP_N16mb:
+              $ref: '#/components/schemas/EP_N16mb-Multiple'
+            EP_Nmb1:
+              $ref: '#/components/schemas/EP_Nmb1-Multiple'
+            EP_N4mb:
+              $ref: '#/components/schemas/EP_N4mb-Multiple'
+              
+    EP_N11mb-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N16mb-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_Nmb1-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+
+    MbUpfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    plmnIdList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnIdList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    mbUpfInfo:
+                      $ref: '#/components/schemas/MbUpfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_N3mb:
+              $ref: '#/components/schemas/EP_N3mb-Multiple'
+            EP_N4mb:
+              $ref: '#/components/schemas/EP_N4mb-Multiple'
+            EP_N19mb:
+              $ref: '#/components/schemas/EP_N19mb-Multiple'
+            EP_Nmb9:
+              $ref: '#/components/schemas/EP_Nmb9-Multiple'
+
+    MnpfFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-Attr'
+                - type: object
+                  properties:
+                    pLMNInfoList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
+                    managedNFProfile:
+                      $ref: '#/components/schemas/ManagedNFProfile'
+                    commModelList:
+                      $ref: '#/components/schemas/CommModelList'
+                    mnpfInfo:
+                      $ref: '#/components/schemas/MnpfInfo'
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
+        - type: object
+          properties:
+            EP_SM12:
+              $ref: '#/components/schemas/EP_SM12-Multiple'
+            EP_SM13:
+              $ref: '#/components/schemas/EP_SM13-Multiple'
+            EP_SM14:
+              $ref: '#/components/schemas/EP_SM14-Multiple'
+              
+    EP_N3mb-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N4mb-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_N19mb-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_Nmb9-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    AnLFFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    activationStatus:
+                      type: string
+                      enum:
+                        - ACTIVATED
+                        - DEACTIVATED
+                    mLModelRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    aIMLInferenceFunctionRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+    EP_SM12-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_SM13-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
+    EP_SM14-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/EP_RP-Attr'
+                - type: object
+                  properties:
+                    localAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/LocalAddress'
+                    remoteAddress:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/RemoteAddress'
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
-    SubNetwork-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/SubNetwork-Single'
-    ManagedElement-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/ManagedElement-Single'
     AmfFunction-Multiple:
       type: array
       items:
@@ -2348,7 +5434,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EASDFFunction-Single'
-
+  
     EP_N2-Multiple:
       type: array
       items:
@@ -2435,6 +5521,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_N27-Single'
+    EP_N28-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N28-Single'
 
     EP_N31-Multiple:
       type: array
@@ -2451,7 +5541,20 @@ components:
     EP_N34-Multiple:
       type: array
       items:
-        $ref: '#/components/schemas/EP_N34-Single'        
+        $ref: '#/components/schemas/EP_N34-Single'
+    EP_N40-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N40-Single'
+    EP_N41-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N41-Single'
+    EP_N42-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N42-Single'
+
     EP_S5C-Multiple:
       type: array
       items:
@@ -2476,10 +5579,38 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_NL2-Single'
+    EP_NL3-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_NL3-Single'
+    EP_NL5-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_NL5-Single'
+    EP_NL6-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_NL6-Single'
+    EP_NL9-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_NL9-Single'
     EP_N60-Multiple:
       type: array
       items:
         $ref: '#/components/schemas/EP_N60-Single'
+    EP_N61-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N61-Single'
+    EP_N62-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N62-Single'
+    EP_N63-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N63-Single' 
     EP_Npc4-Multiple:
       type: array
       items:
@@ -2496,10 +5627,74 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_Npc8-Single'
+    EP_N84-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N84-Single'
+    EP_N85-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N85-Single'
+    EP_N86-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N86-Single'
+    EP_N87-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N87-Single'
     EP_N88-Multiple:
       type: array
       items:
         $ref: '#/components/schemas/EP_N88-Single'
+    EP_N89-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N89-Single'
+    EP_N96-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N96-Single'
+    EP_N11mb-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N11mb-Single'
+    EP_N16mb-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N16mb-Single'
+    EP_Nmb1-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Nmb1-Single'
+    EP_N3mb-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N3mb-Single'
+    EP_N4mb-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N4mb-Single'
+    EP_N19mb-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N19mb-Single'
+    EP_Nmb9-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_Nmb9-Single'
+    EP_SM12-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_SM12-Single'
+    EP_SM13-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_SM13-Single'
+    EP_SM14-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_SM14-Single'
     Configurable5QISet-Multiple:
       type: array
       items:
@@ -2512,17 +5707,67 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EcmConnectionInfo-Single'
-
-
-
+    NssaafFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NssaafFunction-Single'
+    EP_N58-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N58-Single'
+    EP_N59-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EP_N59-Single'
+    AfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AfFunction-Single'
+    DccfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/DccfFunction-Single'
+    ChfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChfFunction-Single'
+    MfafFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/MfafFunction-Single'
+    GmlcFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/GmlcFunction-Single'
+    TsctsfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/TsctsfFunction-Single'
+    AanfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/AanfFunction-Single'
+    BsfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/BsfFunction-Single'
+    MbSmfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/MbSmfFunction-Single'
+    MbUpfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/MbUpfFunction-Single'
+    MnpfFunction-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/MnpfFunction-Single'
 
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-5gcNrm:
       oneOf:
-       - $ref: '#/components/schemas/ProvMnS'
-       - $ref: '#/components/schemas/SubNetwork-Single'
-       - $ref: '#/components/schemas/ManagedElement-Single'
        - $ref: '#/components/schemas/AmfFunction-Single'
        - $ref: '#/components/schemas/SmfFunction-Single'
        - $ref: '#/components/schemas/UpfFunction-Single'
@@ -2577,18 +5822,39 @@ components:
 
        - $ref: '#/components/schemas/EP_N26-Single'
        - $ref: '#/components/schemas/EP_N27-Single'
+       - $ref: '#/components/schemas/EP_N28-Single'
 
        - $ref: '#/components/schemas/EP_N31-Single'
        - $ref: '#/components/schemas/EP_N32-Single'
-       - $ref: '#/components/schemas/EP_N33-Single'       
+       - $ref: '#/components/schemas/EP_N33-Single'
        - $ref: '#/components/schemas/EP_N34-Single'
+       - $ref: '#/components/schemas/EP_N40-Single'
+       - $ref: '#/components/schemas/EP_N41-Single'
+       - $ref: '#/components/schemas/EP_N42-Single'
+
+       - $ref: '#/components/schemas/EP_N58-Single'
+       - $ref: '#/components/schemas/EP_N59-Single'              
        - $ref: '#/components/schemas/EP_N60-Single'
+       - $ref: '#/components/schemas/EP_N61-Single'
+       - $ref: '#/components/schemas/EP_N62-Single'
+       - $ref: '#/components/schemas/EP_N63-Single'
+       - $ref: '#/components/schemas/EP_N84-Single'
+       - $ref: '#/components/schemas/EP_N85-Single'
+       - $ref: '#/components/schemas/EP_N86-Single'
+       - $ref: '#/components/schemas/EP_N87-Single'
        - $ref: '#/components/schemas/EP_N88-Single'
+       - $ref: '#/components/schemas/EP_N89-Single'
+       - $ref: '#/components/schemas/EP_N96-Single'
 
        - $ref: '#/components/schemas/EP_Npc4-Single'
        - $ref: '#/components/schemas/EP_Npc6-Single'
        - $ref: '#/components/schemas/EP_Npc7-Single'
        - $ref: '#/components/schemas/EP_Npc8-Single'
+
+       - $ref: '#/components/schemas/EP_N3mb-Single'
+       - $ref: '#/components/schemas/EP_N4mb-Single'
+       - $ref: '#/components/schemas/EP_N19mb-Single'
+       - $ref: '#/components/schemas/EP_Nmb9-Single'
 
        - $ref: '#/components/schemas/EP_S5C-Single'
        - $ref: '#/components/schemas/EP_S5U-Single'
@@ -2596,10 +5862,33 @@ components:
        - $ref: '#/components/schemas/EP_MAP_SMSC-Single'
        - $ref: '#/components/schemas/EP_NL1-Single'
        - $ref: '#/components/schemas/EP_NL2-Single'
+       - $ref: '#/components/schemas/EP_NL3-Single'
+       - $ref: '#/components/schemas/EP_NL5-Single'
+       - $ref: '#/components/schemas/EP_NL6-Single'
+       - $ref: '#/components/schemas/EP_NL9-Single'
+       - $ref: '#/components/schemas/EP_N11mb-Single'
+       - $ref: '#/components/schemas/EP_N16mb-Single'
+       - $ref: '#/components/schemas/EP_Nmb1-Single'       
+
+       - $ref: '#/components/schemas/EP_SM12-Single'
+       - $ref: '#/components/schemas/EP_SM13-Single'
+       - $ref: '#/components/schemas/EP_SM14-Single'
+
        - $ref: '#/components/schemas/Configurable5QISet-Single'
        - $ref: '#/components/schemas/FiveQiDscpMappingSet-Single'
        - $ref: '#/components/schemas/PredefinedPccRuleSet-Single'
        - $ref: '#/components/schemas/Dynamic5QISet-Single'
        - $ref: '#/components/schemas/EASDFFunction-Single'
        - $ref: '#/components/schemas/EcmConnectionInfo-Single'
-
+       - $ref: '#/components/schemas/NssaafFunction-Single'
+       - $ref: '#/components/schemas/AfFunction-Single'
+       - $ref: '#/components/schemas/DccfFunction-Single'
+       - $ref: '#/components/schemas/ChfFunction-Single'
+       - $ref: '#/components/schemas/MfafFunction-Single'
+       - $ref: '#/components/schemas/GmlcFunction-Single'
+       - $ref: '#/components/schemas/TsctsfFunction-Single'
+       - $ref: '#/components/schemas/AanfFunction-Single'
+       - $ref: '#/components/schemas/BsfFunction-Single'
+       - $ref: '#/components/schemas/MbSmfFunction-Single'
+       - $ref: '#/components/schemas/MbUpfFunction-Single'
+       - $ref: '#/components/schemas/MnpfFunction-Single'

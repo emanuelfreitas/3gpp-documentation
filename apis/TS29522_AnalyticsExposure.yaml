@@ -1,24 +1,29 @@
 openapi: 3.0.0
+
 info:
   title: 3gpp-analyticsexposure
-  version: 1.1.2
+  version: 1.2.2
   description: |
     API for Analytics Exposure.  
-    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
+
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.8.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.8.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
+
 security:
   - {}
   - oAuth2ClientCredentials: []
+
 servers:
   - url: '{apiRoot}/3gpp-analyticsexposure/v1'
     variables:
       apiRoot:
         default: https://example.com
         description: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122.
+
 paths:
   /{afId}/subscriptions:
     get:
@@ -93,7 +98,7 @@ paths:
               $ref: '#/components/schemas/AnalyticsExposureSubsc'
       callbacks:
         notification:
-          '{request.body#/notifUri}':
+          '{$request.body#/notifUri}':
             post:
               requestBody:  # contents of the callback message
                 required: true
@@ -399,6 +404,7 @@ components:
         clientCredentials:
           tokenUrl: '{tokenUrl}'
           scopes: {}
+
   schemas: 
     AnalyticsExposureSubsc:
       description: Represents an analytics exposure subscription.
@@ -412,7 +418,7 @@ components:
         analyRepInfo:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation'
         notifUri:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
         notifId:
           type: string
         eventNotifis:
@@ -440,6 +446,7 @@ components:
         - analyEventsSubs
         - notifUri
         - notifId
+
     AnalyticsEventNotification:
       description: Represents an analytics event(s) notification.
       type: object
@@ -451,9 +458,12 @@ components:
           items:
             $ref: '#/components/schemas/AnalyticsEventNotif'
           minItems: 1
+        termCause:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/TermCause'
       required:
         - notifId
         - analyEventNotifs
+
     AnalyticsEventNotif:
       description: Represents an analytics event to be reported.
       type: object
@@ -461,7 +471,7 @@ components:
         analyEvent:
           $ref: '#/components/schemas/AnalyticsEvent'
         expiry:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         timeStamp:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         failNotifyCode:
@@ -488,6 +498,11 @@ components:
           items:
             $ref: '#/components/schemas/CongestInfo'
           minItems: 1
+        dataVlTrnsTmIfs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/E2eDataVolTransTimeInfo'
+          minItems: 1
         nwPerfInfos:
           type: array
           items:
@@ -513,13 +528,55 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/ServiceExperienceInfo'
           minItems: 1
+        movBehavInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/MovBehavInfo'
+          minItems: 1
+        wlanInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/WlanPerformInfo'
+          minItems: 1
+        relProxInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/RelProxInfo'
+          minItems: 1
         start:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         timeStampGen:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+        locArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        pauseInd:
+          type: boolean
+          description: >
+            Pause analytics consumption indication. Set to "true" to indicate the consumer to stop
+            the consumption of the analytics. Default value is "false" if omitted.
+        resumeInd:
+          type: boolean
+          description: >
+            Resume analytics consumption indication. Set to "true" to indicate the consumer to
+            resume the consumption of the analytics. Default value is "false" if omitted.
+        accuInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AccuracyInfo'
+        cancelAccuInd:
+          type: boolean
+          description: >
+            Indicates cancelled subscription of the analytics accuracy information.
+            Set to "true" indicates the NWDAF cancelled subscription of analytics accuracy
+            information as the NWDAF does not support the accuracy checking capability.
+            Otherwise set to "false". Default value is "false" if omitted.
+        nsiLoadLevelData:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NsiLoadLevelInfo'
+          minItems: 1
       required:
         - analyEvent
         - timeStamp
+
     AnalyticsEventSubsc:
       description: Represents a subscribed analytics event.
       type: object
@@ -532,6 +589,7 @@ components:
           $ref: '#/components/schemas/TargetUeId'
       required:
         - analyEvent
+
     AnalyticsEventFilterSubsc:
       description: Represents an analytics event filter.
       type: object
@@ -543,6 +601,18 @@ components:
           minItems: 1
         locArea:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        fineGranAreas:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_AMPolicyAuthorization.yaml#/components/schemas/GeographicalArea'
+          minItems: 1
+          description: Indicates the fine granularity areas to which the subscription applies.
+        temporalGranSize:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        spatialGranSizeTa:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        spatialGranSizeCell:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         appIds:
           type: array
           items:
@@ -550,10 +620,20 @@ components:
           minItems: 1
         dnn:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+        dnns:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+          minItems: 1
         dnais:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        dataVlTrnsTmRqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/E2eDataVolTransTimeReq'
           minItems: 1
         excepRequs:
           type: array
@@ -573,6 +653,11 @@ components:
           minItems: 1
         snssai:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        snssais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
         nsiIdInfos:
           type: array
           items:
@@ -620,6 +705,11 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AddrFqdn'
           minItems: 1
+        wlanReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/WlanPerformanceReq'
+          minItems: 1
         extraReportReq:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/EventReportingRequirement'
         maxNumOfTopAppUl:
@@ -631,6 +721,57 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
           minItems: 1
+        pduSesInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/PduSessionInfo'
+          minItems: 1
+        ueCommReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/UeCommReq'
+          minItems: 1
+        userDataConOrderCri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/UserDataConOrderCrit'
+        locGranularity:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/LocInfoGranularity'
+        locOrientation:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/LocationOrientation'
+        ueMobilityReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/UeMobilityReq'
+          minItems: 1
+        movBehavReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/MovBehavReq'
+          minItems: 1
+        relProxReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/RelProxReq'
+          minItems: 1
+        useCaseCxt:
+          type: string
+          description: >
+            Indicates the context of usage of the analytics. The value and format of this parameter
+            are not standardized.
+        pauseFlg:
+          type: boolean
+          description: >
+            Pause analytics consumption flag. Set to "true" to indicate the NWDAF to stop sending
+            the notifications of analytics. Default value is "false" if omitted.
+        resumeFlg:
+          type: boolean
+          description: >
+            Resume analytics consumption flag. Set to "true" to indicate the NWDAF to resume sending
+            the notifications of analytics. Default value is "false" if omitted.
+        accuReq:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AccuracyReq'
+        feedback:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AnalyticsFeedbackInfo'
+
     TargetUeId:
       description: Represents the target UE(s) information.
       type: object
@@ -641,6 +782,7 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Gpsi'
         exterGroupId:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/ExternalGroupId'
+
     UeMobilityExposure:
       description: Represents a UE mobility information.
       type: object
@@ -658,21 +800,35 @@ components:
           items:
             $ref: '#/components/schemas/UeLocationInfo'
           minItems: 1
+        directionInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/DirectionInfo'
+          minItems: 1
       required:
         - duration
         - locInfo
+
     UeLocationInfo:
       description: Represents a UE location information.
       type: object
       properties:
         loc:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        geoLoc:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_AMPolicyAuthorization.yaml#/components/schemas/GeographicalArea'
         ratio:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SamplingRatio'
         confidence:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        geoDistrInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/GeoDistributionInfo'
+          minItems: 1
       required:
         - loc
+
     AnalyticsRequest:
       description: Represents the parameters to request to retrieve analytics information.
       type: object
@@ -690,14 +846,32 @@ components:
       required:
         - analyEvent
         - suppFeat
+
     AnalyticsEventFilter:
       description: Represents analytics event filter information.
       type: object
       properties:
         locArea:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        fineGranAreas:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_AMPolicyAuthorization.yaml#/components/schemas/GeographicalArea'
+          minItems: 1
+          description: Indicates the fine granularity areas to which the request applies.
+        temporalGranSize:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        spatialGranSizeTa:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        spatialGranSizeCell:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         dnn:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+        dnns:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
+          minItems: 1
         dnais:
           type: array
           items:
@@ -724,6 +898,11 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_SDM.yaml#/components/schemas/ExpectedUeBehaviourData'
         snssai:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        snssais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+          minItems: 1
         nsiIdInfos:
           type: array
           items:
@@ -741,6 +920,11 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/DnPerformanceReq'
           minItems: 1
+        dataVlTrnsTmReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/E2eDataVolTransTimeReq'
+          minItems: 1
         bwRequs:
           type: array
           items:
@@ -756,6 +940,11 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AddrFqdn'
           minItems: 1
+        wlanReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/WlanPerformanceReq'
+          minItems: 1
         maxNumOfTopAppUl:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         maxNumOfTopAppDl:
@@ -765,16 +954,55 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
           minItems: 1
+        pduSesInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/PduSessionInfo'
+          minItems: 1
+        ueCommReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/UeCommReq'
+          minItems: 1
+        userDataConReq:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_AnalyticsInfo.yaml#/components/schemas/UserDataCongestReq'
+        locGranularity:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/LocInfoGranularity'
+        locOrientation:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/LocationOrientation'
+        ueMobilityReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/UeMobilityReq'
+          minItems: 1
+        movBehavReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/MovBehavReq'
+          minItems: 1
+        useCaseCxt:
+          type: string
+          description: >
+            Indicates the context of usage of the analytics. The value and format of this parameter
+            are not standardized.
+        accuReq:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AccuracyReq'
+        relProxReqs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/RelProxReq'
+          minItems: 1
+
     AnalyticsData:
       description: Represents analytics data.
       type: object
       properties: 
         start:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         expiry:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         timeStampGen:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         ueMobilityInfos:
           type: array
           items:
@@ -799,6 +1027,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CongestInfo'
+          minItems: 1
+        dataVlTrnsTmInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/E2eDataVolTransTimeInfo'
           minItems: 1
         qosSustainInfos:
           type: array
@@ -825,27 +1058,57 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/DispersionRequirement'
           minItems: 1
+        movBehavInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/MovBehavInfo'
+          minItems: 1
+        wlanInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/WlanPerformInfo'
+          minItems: 1
+        accuInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AccuracyInfo'
+        cancelAccuInd:
+          type: boolean
+          description: >
+            Indicates cancelled request of the analytics accuracy information.
+            Set to "true" indicates the NWDAF cancelled request of analytics accuracy
+            information as the NWDAF does not support the accuracy checking capability.
+            Otherwise set to "false". Default value is "false" if omitted.
+        relProxInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/RelProxInfo'
+          minItems: 1
         suppFeat:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - suppFeat
+
     NetworkPerfExposure:
       description: Represents network performance information.
       type: object
       properties:
         locArea:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        anaPeriod:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
         nwPerfType:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/NetworkPerfType'
         relativeRatio:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SamplingRatio'
         absoluteNum:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        rscUsgReq:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/ResourceUsageRequirement'
         confidence:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
       required:
         - locArea
         - nwPerfType
+
     AbnormalExposure:
       description: Represents a user's abnormal behavior information.
       type: object
@@ -871,6 +1134,7 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/AdditionalMeasurement'
       required:
         - excep
+
     CongestInfo:
       description: Represents a UE's user data congestion information.
       type: object
@@ -885,6 +1149,7 @@ components:
       required:
         - locArea
         - cngAnas
+
     CongestionAnalytics:
       description: >
         Represents data congestion analytics for transfer over the user plane,
@@ -913,12 +1178,19 @@ components:
         - cngType
         - tmWdw
         - nsi
+
     QosSustainabilityExposure:
       description: Represents a QoS sustainability information.
       type: object
       properties:
         locArea:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        fineAreaInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_AMPolicyAuthorization.yaml#/components/schemas/GeographicalArea'
+          minItems: 1
+          description: This attribute contains the geographical locations in a fine granularity.
         startTs:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         endTs:
@@ -935,6 +1207,29 @@ components:
         - locArea
         - startTs
         - endTs
+
+    WlanPerformInfo:
+      description: The WLAN performance related information.
+      type: object
+      properties:
+        locArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        wlanPerSsidInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/WlanPerSsIdPerformanceInfo'
+          minItems: 1
+        wlanPerUeIdInfos:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29520_Nnwdaf_EventsSubscription.yaml#/components/schemas/WlanPerUeIdPerformanceInfo'
+          minItems: 1
+          description: >
+            WLAN performance information for UE Id(s) of WLAN access points deployed in the Area
+            of Interest.
+      required:
+        - wlanPerSsidInfos
+
     AnalyticsFailureEventInfo:
       description: >
         Represents an event for which the subscription request was not successful
@@ -948,6 +1243,7 @@ components:
       required:
         - event
         - failureCode
+
     AnalyticsEvent:
       anyOf:
       - type: string
@@ -961,22 +1257,46 @@ components:
           - DISPERSION
           - DN_PERFORMANCE
           - SERVICE_EXPERIENCE
+          - E2E_DATA_VOL_TRANS_TIME
+          - MOVEMENT_BEHAVIOUR
+          - RELATIVE_PROXIMITY
+          - WLAN_PERFORMANCE
+          - NS_LOAD_LEVEL
       - type: string
         description: >
           This string provides forward-compatibility with future
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the analytics event that is subscribed or notified.  
         Possible values are:
         - UE_MOBILITY: The AF requests to be notified about analytics information of UE mobility.
         - UE_COMM: The AF requests to be notified about analytics information of UE communication.
-        - ABNORMAL_BEHAVIOR: The AF requests to be notified about analytics information of UE's abnormal behavior.
-        - CONGESTION: The AF requests to be notified about analytics information of user data congestion information. 
-        - NETWORK_PERFORMANCE: The AF requests to be notified about analytics information of network performance. 
-        - QOS_SUSTAINABILITY: The AF requests to be notified about analytics information of QoS sustainability.
-        - DISPERSION: The AF requests to be notified about analytics information of Dispersion analytics.
-        - DN_PERFORMANCE: The AF requests to be notified about analytics information of DN performance.
-        - SERVICE_EXPERIENCE: The AF requests to be notified about analytics information of service experience.
+        - ABNORMAL_BEHAVIOR: The AF requests to be notified about analytics information of UE's
+          abnormal behavior.
+        - CONGESTION: The AF requests to be notified about analytics information of user data
+          congestion information. 
+        - NETWORK_PERFORMANCE: The AF requests to be notified about analytics information
+          of network performance. 
+        - QOS_SUSTAINABILITY: The AF requests to be notified about analytics information
+          of QoS sustainability.
+        - DISPERSION: The AF requests to be notified about analytics information of Dispersion
+          analytics.
+        - DN_PERFORMANCE: The AF requests to be notified about analytics information of DN
+          performance.
+        - SERVICE_EXPERIENCE: The AF requests to be notified about analytics information of service
+          experience.
+        - E2E_DATA_VOL_TRANS_TIME: The AF requests to be notified about analytics information of
+          E2E data volume transfer time.
+        - MOVEMENT_BEHAVIOUR: The AF requests to be notified about analytics information of
+          Movement Behaviour.
+        - RELATIVE_PROXIMITY: The AF requests to be notified about analytics information of
+          Relative Proximity.
+        - WLAN_PERFORMANCE: Indicates that the event subscribed is the Wlan Performance
+          information.
+        - NS_LOAD_LEVEL: Indicates that the event subscribed is load level information of Network
+          Slice.
+
     AnalyticsFailureCode:
       anyOf:
       - type: string
@@ -984,6 +1304,7 @@ components:
           - UNAVAILABLE_DATA
           - BOTH_STAT_PRED_NOT_ALLOWED
           - UNSATISFIED_REQUESTED_ANALYTICS_TIME
+          - NO_ROAMING_SUPPORT
           - OTHER
       - type: string
         description: >
@@ -991,8 +1312,17 @@ components:
           extensions to the enumeration but is not used to encode
           content defined in the present version of this API.
       description: |
+        Identifies the failure reason.  
         Possible values are:
-        - UNAVAILABLE_DATA: The event is rejected since necessary data to perform the service is unavailable.
-        - BOTH_STAT_PRED_NOT_ALLOWED: The event is rejected since the start time is in the past and the end time is in the future, which means the NF service consumer requested both statistics and prediction for the analytics.
-        - UNSATISFIED_REQUESTED_ANALYTICS_TIME: Indicates that the requested event is rejected since the analytics information is not ready when the time indicated by the timeAnaNeeded attribute (as provided during the creation or modification of subscription) is reached.
+        - UNAVAILABLE_DATA: The event is rejected since necessary data to perform the service
+          is unavailable.
+        - BOTH_STAT_PRED_NOT_ALLOWED: The event is rejected since the start time is in the past
+          and the end time is in the future, which means the NF service consumer requested both
+          statistics and prediction for the analytics.
+        - UNSATISFIED_REQUESTED_ANALYTICS_TIME: Indicates that the requested event is rejected
+          since the analytics information is not ready when the time indicated by the timeAnaNeeded
+          attribute (as provided during the creation or modification of subscription) is reached.
+        - NO_ROAMING_SUPPORT: Indicates that the request shall be rejected because roaming analytics
+          or data are required and the NWDAF that was invoked by the NEF neither supported roaming
+          exchange capabilitiy nor could it forward the request to another NWDAF.
         - OTHER: The event is rejected due to other reasons.

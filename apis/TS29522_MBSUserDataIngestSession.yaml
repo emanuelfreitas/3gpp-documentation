@@ -2,15 +2,15 @@ openapi: 3.0.0
 
 info:
   title: 3gpp-mbs-ud-ingest
-  version: 1.0.3
+  version: 1.1.1
   description: |
     API for MBS User Data Ingest Session.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.11.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.9.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
 
 servers:
@@ -97,13 +97,31 @@ paths:
               schema:
                 type: string
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
         '413':
@@ -198,13 +216,31 @@ paths:
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
         '413':
@@ -252,13 +288,31 @@ paths:
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
         '400':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '401':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
         '403':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '404':
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+          description: >
+            The request is rejected by the NEF and more details (along with ProblemDetails) may be
+            returned.
+          content:
+            application/problem+json:
+              schema:
+                $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29580_Nmbsf_MBSUserDataIngestSession.yaml#/components/schemas/ProblemDetailsMBS'
         '411':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
         '413':
@@ -400,7 +454,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
       callbacks:
         mbsUserDataIngestSessionStatusNotif:
-          '{request.body#/notifUri}':
+          '{$request.body#/notifUri}':
             post:
               requestBody:
                 required: true

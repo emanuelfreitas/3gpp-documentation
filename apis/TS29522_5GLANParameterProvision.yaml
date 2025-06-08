@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: 3gpp-5glan-pp
-  version: 1.1.2
+  version: 1.2.1
   description: |
     API for 5G LAN Parameter Provision.  
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
@@ -10,7 +10,7 @@ info:
 
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.14.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.7.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
 
 security:
@@ -125,6 +125,45 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+      callbacks:
+        5GLANParamProvNotif:
+          '{$request.body#/notifUri}':
+            post:
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/5GLanParamProvNotif'
+              responses:
+                '204':
+                  description: No Content. Successful reception of the notification.
+                '307':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
+                '308':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
+                '400':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+                '411':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+                '503':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+                default:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
   /{afId}/subscriptions/{subscriptionId}:
     get:
@@ -341,6 +380,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
 components:
   securitySchemes:
     oAuth2ClientCredentials:
@@ -349,6 +389,7 @@ components:
         clientCredentials:
           tokenUrl: '{tokenUrl}'
           scopes: {}
+
   schemas: 
     5GLanParametersProvision:
       description: Represents an individual 5G LAN parameters provision subscription resource.
@@ -400,6 +441,10 @@ components:
           items:
             $ref: '#/components/schemas/AaaUsage'
           minItems: 1
+          description: >
+            This attribute shall contain at most 2 array elements. It is however kept
+            defined as it is (i.e. with a cardinality of "1..N") for backward
+            compatibility considerations.
         mtcProviderId:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation'
         snssai:
@@ -417,7 +462,34 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/AppDescriptor'
           minProperties: 1
-          description: Describes the operation systems and the corresponding applications for each operation systems. The key of map is osId.
+          description: >
+            Describes the operation systems and the corresponding applications for each
+            operation systems. The key of map is osId.
+        vnGroupCommInd:
+          type: boolean
+          description: >
+            Indicates whether the 5G VN group is associated with 5G VN group communication when
+            When set to "true", it indicates that the 5G VN group is associated with 5G VN group
+            communication. When set to "false", it indicates that the 5G VN group is not
+            associated with 5G VN group communication. The default value when omitted is "false".
+        vnGroupCommType:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_PP.yaml#/components/schemas/5GVnGroupCommunicationType'
+        maxGrpDataRateInfo:
+          $ref: '#/components/schemas/MaxGrpDataRateInfo'
+        cpParams:
+          $ref: '#/components/schemas/CpParams'
+        npConfigParams:
+          $ref: '#/components/schemas/NpConfigParams'
+        lpiParams:
+          $ref: '#/components/schemas/LpiParams'
+        acsParams:
+          $ref: '#/components/schemas/AcsParams'
+        ecsAddrParams:
+          $ref: '#/components/schemas/ECSAddrParams'
+        dnnSnssaiParams:
+          $ref: '#/components/schemas/DnnSnssaiParams'
+        notifUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Link'
       required:
         - exterGroupId
         - gpsis
@@ -447,6 +519,20 @@ components:
           description: >
             Describes the operation systems and the corresponding applications for
             each operation systems. The key of map is osId.
+        cpParams:
+          $ref: '#/components/schemas/CpParams'
+        npConfigParams:
+          $ref: '#/components/schemas/NpConfigParams'
+        lpiParams:
+          $ref: '#/components/schemas/LpiParams'
+        acsParams:
+          $ref: '#/components/schemas/AcsParams'
+        ecsAddrParams:
+          $ref: '#/components/schemas/ECSAddrParams'
+        dnnSnssaiParams:
+          $ref: '#/components/schemas/DnnSnssaiParams'
+        notifUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Link'
 
     AppDescriptor:
       description: Represents an operation system and the corresponding applications.
@@ -481,6 +567,134 @@ components:
             Identifies applications that are running on the UE's operating system.
             Any string value can be used as a key of the map.
 
+    MaxGrpDataRateInfo:
+      description: >
+        Represents the Maximum Group Data Rate related information.
+      type: object
+      properties:
+        maxGrpDataRateUl:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
+        maxGrpDataRateDl:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
+      anyOf:
+        - required: [maxGrpDataRateUl]
+        - required: [maxGrpDataRateDl]
+
+    CpParams:
+      description: Represents Communication Pattern parameters.
+      type: object
+      properties:
+        cpParameterSets:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CpProvisioning.yaml#/components/schemas/CpParameterSet'
+          minProperties: 1
+          description: >
+            Contains one or more set(s) of CP parameters information for the 5G VN group.
+            Any string value may be used as a key of the map.
+        cpReports:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CpProvisioning.yaml#/components/schemas/CpReport'
+          minProperties: 1
+          description: >
+            Contains the identifier(s) of the set(s) of CP parameters for which the provided CP
+            parameters are not added or modified successfully with the corresponding failure reason.
+            Each element provides the related information for one or more CP set identifier(s).
+            The key of the map is a string representing the failure identifier.
+          readOnly: true
+      required:
+        - cpParameterSets
+
+    NpConfigParams:
+      description: Represents Network Parameters Configuration information.
+      type: object
+      properties:
+        maximumLatency:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
+        maximumResponseTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
+        suggestedNumberOfDlPackets:
+          type: integer
+          minimum: 0
+          description: >
+            Contains the number of packets that the serving gateway shall buffer in case the UE is
+            not reachable.
+        groupReportingGuardTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
+        validityTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+
+    LpiParams:
+      description: Represents Location Privacy Indication parameters.
+      type: object
+      properties:
+        lpi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_SDM.yaml#/components/schemas/Lpi'
+      required:
+        - lpi
+
+    AcsParams:
+      description: Represents ACS configuration parameters.
+      type: object
+      properties:
+        acsInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AcsInfo'
+      required:
+        - acsInfo
+
+    ECSAddrParams:
+      description: Represents ECS address configuration parameters.
+      type: object
+      properties:
+        ecsServerAddr:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EcsServerAddr'
+        spatialValidityCond:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SpatialValidityCond'
+        ecsAuthMethods:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_PP.yaml#/components/schemas/EcsAuthMethod'
+          minItems: 1
+        supportedPlmns:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_PP.yaml#/components/schemas/SupportedPlmn'
+          minItems: 1
+      required:
+        - ecsServerAddr
+
+    DnnSnssaiParams:
+      description: Represents DNN and S-NSSAI specific Group Parameters.
+      type: object
+      properties:
+        defQos:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_GroupParametersProvisioning.yaml#/components/schemas/AfReqDefaultQoS'
+        ladnServArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_GroupParametersProvisioning.yaml#/components/schemas/LadnServArea'
+      anyOf:
+        - required: [ defQos ]
+        - required: [ ladnServArea ]
+
+    5GLanParamProvNotif:
+      description: Represents a 5G LAN Parameter Provisioning Event Notification.
+      type: object
+      properties:
+        npConfigNotif:
+          $ref: '#/components/schemas/NpConfigNotif'
+
+    NpConfigNotif:
+      description: Represents a Network Parameters Configuration related notification.
+      type: object
+      properties:
+        configResults:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/ConfigResult'
+          minItems: 1
+        appliedParam:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_MonitoringEvent.yaml#/components/schemas/AppliedParameterConfiguration'
+
     AaaUsage:
       anyOf:
       - type: string
@@ -489,9 +703,10 @@ components:
           - IP_ALLOC
       - type: string
         description: >
-          This string identifies the usage of secondary authentication/authorization,
-          and/or UE IP address allocation from the DN-AAA server.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Represents the usage of the DN-AAA server.  
         Possible values are:
         - AUTH: secondary authentication/authorization needed from DN-AAA server.
         - IP_ALLOC: UE IP address allocation needed from DN-AAA server.

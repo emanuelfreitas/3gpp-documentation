@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  version: 1.2.3
+  version: 1.3.0
   title: AUSF API
   description: |
     AUSF UE Authentication Service.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.509 V17.9.0; 5G System; 3GPP TS Authentication Server services.
+  description: 3GPP TS 29.509 V18.5.0; 5G System; 3GPP TS Authentication Server services.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.509'
 
 servers:
@@ -26,6 +26,13 @@ security:
 paths:
   /ue-authentications:
     post:
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       requestBody:
         content:
           application/json:
@@ -41,7 +48,9 @@ paths:
                 $ref: '#/components/schemas/UEAuthenticationCtx'
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource according to the structure: {apiRoot}/nausf-auth/v1/ue-authentications/{authCtxId}'
+              description: >
+                'Contains the URI of the newly created resource according to the structure:
+                {apiRoot}/nausf-auth/<apiVersion>/ue-authentications/{authCtxId}'
               required: true
               schema:
                 type: string
@@ -55,6 +64,8 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
           description: Forbidden due to serving network not authorized
           content:
@@ -67,6 +78,14 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           description: Internal Server Error
           content:
@@ -79,9 +98,20 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
   /ue-authentications/deregister:
     post:
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       requestBody:
         content:
           application/json:
@@ -95,11 +125,38 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
   /ue-authentications/{authCtxId}/5g-aka-confirmation:
     put:
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -128,17 +185,43 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+
     delete:
       summary: Deletes the authentication result in the UDM
       operationId: Delete5gAkaAuthenticationResult
       tags:
         - Authentication Result Deletion
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -154,10 +237,18 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -166,6 +257,13 @@ paths:
   /ue-authentications/{authCtxId}/eap-session:
     post:
       operationId: EapAuthMethod
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -193,7 +291,8 @@ paths:
                     $ref: '#/components/schemas/EapPayload'
                   _links:
                     type: object
-                    description: 'URI : /{eapSessionUri}, a map(list of key-value pairs) where member serves as key'
+                    description: >
+                      A map (list of key-value pairs) where the key is set to "eap-session"
                     additionalProperties:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
                     minProperties: 1
@@ -210,18 +309,43 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
     delete:
       summary: Deletes the authentication result in the UDM
       operationId: DeleteEapAuthenticationResult
       tags:
         - Authentication Result Deletion
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:ue-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -237,10 +361,18 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -248,6 +380,13 @@ paths:
 
   /rg-authentications:
     post:
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:rg-authentications
       requestBody:
         content:
           application/json:
@@ -263,7 +402,9 @@ paths:
                 $ref: '#/components/schemas/RgAuthCtx'
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource according to the structure: {apiRoot}/nausf-auth/v1/rg-authentications/{authCtxId}'
+              description: >
+                'Contains the URI of the newly created resource according to the structure:
+                {apiRoot}/nausf-auth/<apiVersion>/rg-authentications/{authCtxId}'
               required: true
               schema:
                 type: string
@@ -271,14 +412,16 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
         '308':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
-        '403':
-          description: The UE is not allowed to be authenticated
+        '400':
+          description: Bad Request from the AMF
           content:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
-        '400':
-          description: Bad Request from the AMF
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          description: The UE is not allowed to be authenticated
           content:
             application/problem+json:
               schema:
@@ -289,9 +432,31 @@ paths:
             application/problem+json:
               schema:
                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ProblemDetails'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+
 
   /prose-authentications:
     post:
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:prose-authentications
       requestBody:
         content:
           application/json:
@@ -313,7 +478,9 @@ paths:
                 $ref: '#/components/schemas/ProSeAuthenticationCtx'
           headers:
             Location:
-              description: 'Contains the URI of the newly created resource according to the structure: {apiRoot}/nausf-auth/v1/prose-authentications/{authCtxId}'
+              description: >
+                'Contains the URI of the newly created resource according to the structure:
+                {apiRoot}/nausf-auth/<apiVersion>/prose-authentications/{authCtxId}'
               required: true
               schema:
                 type: string
@@ -323,16 +490,37 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
         '403':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
   /prose-authentications/{authCtxId}/prose-auth:
     post:
       operationId: proseAuth
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:prose-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -346,7 +534,8 @@ paths:
               $ref: '#/components/schemas/ProSeEapSession'
       responses:
         '200':
-          description: Use to handle or close the EAP session for 5G ProSe Remote UE
+          description: >
+            Use to handle or close the EAP session for 5G ProSe Remote UE or a 5G ProSe End UE
           content:
             application/json:
               schema:
@@ -359,7 +548,9 @@ paths:
                     $ref: '#/components/schemas/EapPayload'
                   _links:
                     type: object
-                    description: 'URI : /{eapSessionUri}, a map(list of key-value pairs) where member serves as key'
+                    description: >
+                      A map (list of key-value pairs) where the key is set to
+                      "prose-auth"
                     additionalProperties:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
                     minProperties: 1
@@ -372,14 +563,39 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
 
     delete:
       summary: Deletes the authentication result in the UDM
       operationId: DeleteProSeAuthenticationResult
       tags:
         - Authentication Result Deletion
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nausf-auth
+        - oAuth2ClientCredentials:
+          - nausf-auth
+          - nausf-auth:prose-authentications
       parameters:
         - name: authCtxId
           in: path
@@ -395,10 +611,18 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
         '400':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
         '404':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -414,6 +638,15 @@ components:
           tokenUrl: '{nrfApiRoot}/oauth2/token'
           scopes:
             nausf-auth: Access to Nausf_UEAuthentication API
+            nausf-auth:ue-authentications: >
+              Access to service operations applying to the collection of the ue-authentication
+              resources and the subresources, i.e. 5g-aka-confirmation and eap-session
+            nausf-auth:rg-authentications: >
+              Access to service operations applying to the collection of the rg-authentication
+              resources
+            nausf-auth:prose-authentications: >
+              Access to service operations applying to the collection of the prose-authentication
+              resources and the subresources, i.e. prose-auth.
 
   schemas:
     AuthenticationInfo:
@@ -454,12 +687,18 @@ components:
         onboardingInd:
           type: boolean
           default: false
+        aun3Ind:
+          type: boolean
+          default: false
       required:
         - supiOrSuci
         - servingNetworkName
 
     UEAuthenticationCtx:
-      description: Contains the information related to the resource generated to handle the UE authentication. It contains at least the UE id, Serving Network, the Authentication Method and related EAP information or related 5G-AKA information.
+      description: >
+        Contains the information related to the resource generated to handle
+        the UE authentication. It contains at least the UE id, Serving Network,
+        the Authentication Method and related EAP information or related 5G-AKA information.
       type: object
       properties:
         authType:
@@ -470,7 +709,8 @@ components:
             - $ref: '#/components/schemas/EapPayload'
         _links:
           type: object
-          description: A map(list of key-value pairs) where member serves as key
+          description: >
+            A map(list of key-value pairs) where the key is set to "eap-session" or "5g-aka"
           additionalProperties:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         servingNetworkName:
@@ -534,7 +774,7 @@ components:
           $ref: '#/components/schemas/Kseaf'
         _links:
           type: object
-          description: A map(list of key-value pairs) where member serves as key
+          description: A map(list of key-value pairs) where the key is set to "eap-session"
           additionalProperties:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         authResult:
@@ -646,7 +886,7 @@ components:
 
     ProSeAuthenticationInfo:
       description: >
-        Contains the UE id (i.e. SUCI) or CP-PRUK ID (in 5gPrukId IE), Relay Service Code and Nonce_1.
+        Contains the UE id (i.e. SUCI) or CP-PRUK ID, Relay Service Code and Nonce_1.
       type: object
       properties:
         supiOrSuci:
@@ -667,14 +907,16 @@ components:
         - servingNetworkName
 
     ProSeAuthenticationCtx:
-      description: Contains the information related to the resource generated to handle the ProSe authentication.
+      description: >
+        Contains the information related to the resource generated to handle
+        the ProSe authentication.
       type: object
       properties:
         authType:
           $ref: '#/components/schemas/AuthType'
         _links:
           type: object
-          description: A map(list of key-value pairs) where member serves as key
+          description: A map(list of key-value pairs) where the key is set to "prose-auth"
           additionalProperties:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         proSeAuthData:
@@ -687,7 +929,9 @@ components:
         - proSeAuthData
 
     ProSeEapSession:
-      description: Contains information related to the EAP session. If present the 5gPrukId IE shall carry the CP-PRUK ID.
+      description: >
+        Contains information related to the EAP session. If present the 5gPrukId IE shall
+        carry the CP-PRUK ID.
       type: object
       properties:
         eapPayload:
@@ -696,7 +940,7 @@ components:
           $ref: '#/components/schemas/KnrProSe'
         _links:
           type: object
-          description: A map(list of key-value pairs) where member serves as key
+          description: A map(list of key-value pairs) where the key is set to "prose-auth"
           additionalProperties:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/LinksValueSchema'
         authResult:
@@ -711,8 +955,7 @@ components:
         - eapPayload
 
     ProSeAuthData:
-      oneOf:
-        - $ref: '#/components/schemas/EapPayload'
+      $ref: '#/components/schemas/EapPayload'
 
     ProSeAuthenticationResult:
       description: Successful authentication for CP-PRUK ID.

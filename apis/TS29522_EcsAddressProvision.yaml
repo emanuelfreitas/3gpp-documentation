@@ -1,24 +1,29 @@
 openapi: 3.0.0
+
 info:
   title: 3gpp-ecs-address-provision
-  version: 1.0.1
+  version: 1.1.1
   description: |
     API for ECS Address Provisioning.  
-    © 2022, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
+
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.7.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.7.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
+
 security:
   - {}
   - oAuth2ClientCredentials: []
+
 servers:
   - url: '{apiRoot}/3gpp-ecs-address-provision/v1'
     variables:
       apiRoot:
         default: https://example.com
         description: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122.
+
 paths:
   /{afId}/configurations:
     get:
@@ -274,6 +279,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
 components:
   securitySchemes:
     oAuth2ClientCredentials:
@@ -282,6 +288,7 @@ components:
         clientCredentials:
           tokenUrl: '{tokenUrl}'
           scopes: {}
+
   schemas: 
     EcsAddressProvision:
       description: Represents ECS address provision configuration.
@@ -291,13 +298,26 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Link'
         ecsServerAddr:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/EcsServerAddr'
+        mtcProviderId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MtcProviderInformation'
         spatialValidityCond:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SpatialValidityCond'
         tgtUe:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_AnalyticsExposure.yaml#/components/schemas/TargetUeId'
+        plmnId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+        ecsAuthMethods:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_PP.yaml#/components/schemas/EcsAuthMethod'
+          minItems: 1
+        supportedPlmns:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29503_Nudm_PP.yaml#/components/schemas/SupportedPlmn'
+          minItems: 1
         suppFeat:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
       required:
         - ecsServerAddr
         - suppFeat
-

@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: Ntsctsf_TimeSynchronization Service API
-  version: 1.0.5
+  version: 1.1.2
   description: |
     TSCTSF Time Synchronization Service.  
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
@@ -10,7 +10,7 @@ info:
 
 externalDocs:
   description: >
-    3GPP TS 29.565 V17.9.0; 5G System; Time Sensitive Communication and Time Synchronization Function 
+    3GPP TS 29.565 V18.8.0; 5G System; Time Sensitive Communication and Time Synchronization Function 
     Services; Stage 3.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.565/'
 servers:
@@ -51,7 +51,7 @@ paths:
               description: >
                 Contains the URI of the created individual time synchronization exposure
                 subscription resource, according to the structure
-                {apiRoot}/ntsctsf-time-sync/{apiVersion}/subscriptions/{subscriptionId}
+                {apiRoot}/ntsctsf-time-sync/<apiVersion>/subscriptions/{subscriptionId}
               required: true
               schema:
                 type: string
@@ -73,6 +73,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -113,6 +115,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -156,6 +160,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -209,6 +215,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -244,6 +252,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -251,7 +261,7 @@ paths:
 
   /subscriptions/{subscriptionId}/configurations:
     post:
-      summary: "Craete a new Individual Time Synchronization Exposure Configuration"
+      summary: "Create a new Individual Time Synchronization Exposure Configuration"
       operationId: CreateIndividualTimeSynchronizationExposureConfiguration
       tags:
         - Individual Time Synchronization Exposure Configuration (Document)
@@ -281,7 +291,7 @@ paths:
               description: >
                 Contains the URI of the created individual time synchronization exposure
                 configuration resource, according to the structure
-                {apiRoot}/ntsctsf-time-sync/{apiVersion}/subscriptions/{subscriptionId}
+                {apiRoot}/ntsctsf-time-sync/<apiVersion>/subscriptions/{subscriptionId}
                 /configurations/{configurationId}
               required: true
               schema:
@@ -308,6 +318,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -348,6 +360,8 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
@@ -397,6 +411,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -456,6 +472,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -497,6 +515,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -537,8 +557,8 @@ components:
         anyUeInd:
           type: boolean
           description: >
-            Identifies whether the request applies to any UE. This attribute shall set to "true" if 
-            applicable for any UE, otherwise, set to "false".
+            Identifies whether the request applies to any UE. This attribute shall set to true if 
+            applicable for any UE, otherwise, set to false.
         notifMethod:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29508_Nsmf_EventExposure.yaml#/components/schemas/NotificationMethod'
         dnn:
@@ -655,7 +675,7 @@ components:
         ptpCaps:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_TimeSyncExposure.yaml#/components/schemas/EventFilter'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_TimeSyncExposure.yaml#/components/schemas/ReportedCapability'
           minItems: 1
       required:
         - ptpCaps
@@ -677,18 +697,26 @@ components:
         - stateOfConfig
 
     StateOfConfiguration:
-      description: Contains the state of the time synchronization configuration.
+      description: >
+        Contains the state of the time synchronization configuration and the clock quality
+        acceptance criteria result.
       type: object
       properties:
         stateNwtt:
           type: boolean
           description: >
-            When the PTP port state is Leader, Follower or Passive, it is included and set to true
-            to indicate the state of configuration for NW-TT port is active; when PTP port state is
-            in any other case, it is included and set to false to indicate the state of
-            configuration for NW-TT port is inactive. Default value is false.
+            When any of the PTP port state(s)in NW-TT is Leader, Follower or Passive, it is
+            included and set to trueto indicate the current state of the time synchronization
+            configuration for the NW-TT port(s) of the PTP instance is active; when
+            PTP port state isin any other case, it is included and set to false to indicate
+            the state ofconfiguration for the NW-TT port(s) of the PTP instance
+            is inactive. Default value is false.
+        clkQltIndOfNwtt:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_TimeSyncExposure.yaml#/components/schemas/AcceptanceCriteriaResultIndication'
         stateOfDstts:
-          description: Contains the PTP port states of the DS-TT(s).
+          description: >
+            Contains the PTP port states and the clock quality acceptance criteria result of the
+            DS-TT(s).
           type: array
           items:
             $ref: '#/components/schemas/StateOfDstt'
@@ -709,6 +737,8 @@ components:
             to indicate the state of configuration for DS-TT port is active; when PTP port state is
             in any other case, it is included and set to false to indicate the state of
             configuration for DS-TT port is inactive. Default value is false.
+        clkQltIndOfDstt:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29522_TimeSyncExposure.yaml#/components/schemas/AcceptanceCriteriaResultIndication'
       required:
         - state
       oneOf:
@@ -741,6 +771,18 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         tempValidity:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TemporalValidity'
+        covReq:
+          type: array
+          description: >
+            Identifies a list of Tracking Areas per serving network where time
+            synchronization service configuration is allowed.
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29534_Npcf_AMPolicyAuthorization.yaml#/components/schemas/ServiceAreaCoverageInfo'
+          minItems: 1
+        clkQltDetLvl:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityDetailLevel'
+        clkQltAcptCri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityAcceptanceCriterion'
       required: 
         - upNodeId
         - reqPtpIns

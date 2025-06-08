@@ -1,24 +1,29 @@
 openapi: 3.0.0
+
 info:
   title: 3gpp-time-sync-exposure
-  version: 1.0.2
+  version: 1.1.1
   description: |
     API for time synchronization exposure.  
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
+
 externalDocs:
   description: >
-    3GPP TS 29.522 V17.16.0; 5G System; Network Exposure Function Northbound APIs.
+    3GPP TS 29.522 V18.8.0; 5G System; Network Exposure Function Northbound APIs.
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.522/'
+
 security:
   - {}
   - oAuth2ClientCredentials: []
+
 servers:
   - url: '{apiRoot}/3gpp-time-sync/v1'
     variables:
       apiRoot:
         default: https://example.com
         description: apiRoot as defined in clause 5.2.4 of 3GPP TS 29.122.
+
 paths:
   /{afId}/subscriptions:
     get:
@@ -329,7 +334,9 @@ paths:
           schema:
             type: string
         - name: subscriptionId
-          description: String identifying the individual synchronization Exposure Subscription resource in the NEF
+          description: >
+            String identifying the individual synchronization Exposure Subscription resource
+            in the NEF
           in: path
           required: true
           schema:
@@ -642,7 +649,6 @@ paths:
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
-
 components:
   securitySchemes:
     oAuth2ClientCredentials:
@@ -651,6 +657,7 @@ components:
         clientCredentials:
           tokenUrl: '{tokenUrl}'
           scopes: {}
+
   schemas: 
     TimeSyncExposureSubsc:
       description: >
@@ -683,7 +690,7 @@ components:
           type: string
           description: Notification Correlation ID assigned by the NF service consumer.
         subsNotifUri:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
         subscribedEvents:
           type: array
           items:
@@ -703,7 +710,7 @@ components:
         maxReportNbr:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
         expiry:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         repPeriod:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
         requestTestNotification:
@@ -718,6 +725,11 @@ components:
       required:
         - subsNotifUri
         - subsNotifId
+      oneOf:
+        - required: [gpsis]
+        - required: [anyUeInd]
+        - required: [exterGroupId]
+
     TimeSyncCapability:
       description: Contains time synchronization capability.
       type: object
@@ -728,6 +740,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GmCapable'
+          description: >
+            Indicates whether user plane node supports acting as a gPTP and/or PTP grandmaster.
         asTimeRes:
           $ref: '#/components/schemas/AsTimeResource'
         ptpCapForUes:
@@ -767,10 +781,16 @@ components:
           type: string
           description: Notification Correlation ID assigned by the NF service consumer.
         configNotifUri:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
         tempValidity:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/TemporalValidity'
-      required: 
+        coverageArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SpatialValidityCond'
+        clkQltDetLvl:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityDetailLevel'
+        clkQltAcptCri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ClockQualityAcceptanceCriterion'
+      required:
         - upNodeId
         - reqPtpIns
         - timeDom
@@ -789,6 +809,8 @@ components:
           items:
             $ref: '#/components/schemas/SubsEventNotification'
           minItems: 1
+          description: >
+            Notifications about subscribed Individual Events.
       required:
         - subsNotifId
         - eventNotifs
@@ -804,6 +826,8 @@ components:
           items:
             $ref: '#/components/schemas/TimeSyncCapability'
           minItems: 1
+          description: >
+            Contains a list of time synchronization capabilities for the UE(s).
       required:
         - event
 
@@ -819,6 +843,7 @@ components:
       required:
         - configNotifId
         - stateOfConfig
+
     PtpCapabilitiesPerUe:
       description: Contains the supported PTP capabilities per UE.
       type: object
@@ -828,11 +853,14 @@ components:
         ptpCaps:
           type: array
           items:
-            $ref: '#/components/schemas/EventFilter'
+            $ref: '#/components/schemas/ReportedCapability'
           minItems: 1
+          description: >
+            Contains the reported PTP capabilities for the UE.
       required:
         - gpsi
         - ptpCaps
+
     EventFilter:
       description: >
         Contains the filter conditions to match for notifying the event(s) of time
@@ -844,16 +872,23 @@ components:
           items:
             $ref: '#/components/schemas/InstanceType'
           minItems: 1
+          description: >
+            Indicates the PTP instance type(s).
         transProtocols:
           type: array
           items:
             $ref: '#/components/schemas/Protocol'
           minItems: 1
+          description: >
+            Indicates the transport protocol type(s).
         ptpProfiles:
           type: array
           items:
             type: string
           minItems: 1
+          description: >
+            Identifies the supported PTP profiles.
+
     PtpInstance:
       description: Contains PTP instance configuration and activation requested by the AF.
       type: object
@@ -863,12 +898,15 @@ components:
         protocol:
           $ref: '#/components/schemas/Protocol'
         ptpProfile:
-            type: string
+          type: string
+          description: Identifies the PTP profile.
         portConfigs:
           type: array
           items:
             $ref: '#/components/schemas/ConfigForPort'
           minItems: 1
+          description: >
+            Contains the configurations for the PTP port(s) in the PTP instance.
       required:
         - instanceType
         - protocol
@@ -886,14 +924,34 @@ components:
             - true
         ptpEnable:
           type: boolean
+          description: >
+            This is used to set the portDS.portEnable. If omitted, the default value as described
+            in the PTP Profile is used.
         logSyncInter:
           type: integer
+          description: >
+            Specifies the mean time interval between successive Sync messages.
         logSyncInterInd:
           type: boolean
+          description: >
+            When set to "false", the value of "logSyncInter" attribute is used to set the
+            initialLogSyncInterval as described in IEEE Std 802.1AS [46]. When set to "true",
+            the value of "logSyncInter" attribute is used to set the mgtSettableLogSyncInterval
+            as described in IEEE Std 802.1AS [46].
         logAnnouInter:
           type: integer
+          description: >
+            Specifies the mean time interval between successive Announce messages.
         logAnnouInterInd:
           type: boolean
+          description: >
+            When set to "false", the value of "logAnnouInter" attribute is used to set the
+            initialLogAnnounceInterval as described in IEEE 802.1AS [46]. When set to "true",
+            the value of "logAnnouInter" attribute is used to set the 
+            mgtSettableLogAnnounceInterval as described in IEEE Std 802.1AS [46].
+      oneOf:
+        - required: [gpsi]
+        - required: [n6Ind]
 
     StateOfConfiguration:
       description: Contains the state of the time synchronization configuration.
@@ -906,6 +964,8 @@ components:
             to indicate the state of configuration for NW-TT port is active; when PTP port state is
             in any other case, it is included and set to false to indicate the state of
             configuration for NW-TT port is inactive. Default value is false.
+        clkQltIndOfNwtt:
+            $ref: '#/components/schemas/AcceptanceCriteriaResultIndication'
         stateOfDstts:
           description: >
             Contains the PTP port states of the DS-TT(s).
@@ -913,6 +973,7 @@ components:
           items:
             $ref: '#/components/schemas/StateOfDstt'
           minItems: 1
+
     StateOfDstt:
       description: Contains the PTP port state of a DS-TT.
       type: object
@@ -926,9 +987,18 @@ components:
             to indicate the state of configuration for DS-TT port is active; when PTP port state is
             in any other case, it is included and set to false to indicate the state of 
             configuration for DS port is inactive. Default value is false.
+        clkQltIndOfDstt:
+          $ref: '#/components/schemas/AcceptanceCriteriaResultIndication'
       required:
         - gpsi
         - state
+
+    AvailReport:
+      description: Contains the availability status for a UE/DS-TT.
+      type: object
+      properties:
+        avStatus:
+          $ref: '#/components/schemas/AvailStatus'
 
     Protocol:
       anyOf:
@@ -939,8 +1009,10 @@ components:
           - IPV6
       - type: string
         description: >
-          This string identifies supported protocol.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Identifies the supported protocol.  
         Possible values are:
         - ETH: Indicates Ethernet as defined in IEEE Std 1588 [45] Annex E is supported.
         - IPV4: Indicates IPv4 as defined in IEEE Std 1588 [45] Annex C is supported.
@@ -954,11 +1026,14 @@ components:
           - PTP
       - type: string
         description: >
-          This string identifies supported grandmaster.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Identifies the supported grandmaster.  
         Possible values are:
         - GPTP: gPTP grandmaster is supported.
         - PTP: PTP grandmaste is supported.
+
     InstanceType:
       anyOf:
       - type: string
@@ -969,8 +1044,10 @@ components:
           - P2P_RELAY_INSTANCE
       - type: string
         description: >
-          This string identifies supported PTP instance type.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Identifies the supported PTP instance type.  
         Possible values are:
         - BOUNDARY_CLOCK: Indicates Boundary Clock as defined in IEEE Std 1588.
         - E2E_TRANS_CLOCK: Indicates End-to-End Transparent Clock as defined in IEEE Std 1588.
@@ -984,10 +1061,13 @@ components:
           - AVAILABILITY_FOR_TIME_SYNC_SERVICE
       - type: string
         description: >
-          This string identifies supported event.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Identifies the supported event.  
         Possible values are:
-        - AVAILABILITY_FOR_TIME_SYNC_SERVICE: The UE is availability for time synchronization service.
+        - AVAILABILITY_FOR_TIME_SYNC_SERVICE: 5GS and/or UE availability and capability for time synchronization
+          service.
 
     AsTimeResource:
       anyOf:
@@ -1004,8 +1084,10 @@ components:
           - OTHER
       - type: string
         description: >
-          This string identifies the supported 5G clock quality.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
       description: |
+        Identifies the supported 5G clock quality.  
         Possible values are:
         - ATOMIC_CLOCK: Indicates atomic clock is supported.
         - GNSS: Indicates Global Navigation Satellite System is supported.
@@ -1016,3 +1098,43 @@ components:
         - HAND_SET: Indicates hand set is supported.
         - INTERNAL_OSCILLATOR: Indicates internal oscillator is supported.
         - OTHER: Indicates other source of time is supported.
+
+    AcceptanceCriteriaResultIndication:
+      anyOf:
+      - type: string
+        enum:
+          - ACCEPTABLE
+          - NON_ACCEPTABLE
+      - type: string
+        description: >
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
+      description: |
+        Identifies the supported acceptable / not acceptable indication.  
+        Possible values are:
+        - ACCEPTABLE: PTP port in (g)PTP service meets the clock quality acceptance criteria.
+        - NON_ACCEPTABLE: PTP port in (g)PTP service does not meet the clock quality acceptance
+          criteria.
+
+    AvailStatus:
+      anyOf:
+      - type: string
+        enum:
+          - PDU_SESSION_TERMINATION
+      - type: string
+        description: >
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
+      description: |
+        Identifies the availability status.  
+        Possible values are:
+        - PDU_SESSION_TERMINATION: The UE is not available for (g)PTP services because the PDU
+          session is terminated.
+
+    ReportedCapability:
+      allOf:
+        - $ref: '#/components/schemas/EventFilter'
+        - $ref: '#/components/schemas/AvailReport'
+      description: >
+        Extends the EventFilter data type to indicate the availability status of the
+        UE/DS-TT.

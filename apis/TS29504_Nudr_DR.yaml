@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: 2.2.8
+  version: 2.3.3
   title: 'Nudr_DataRepository API OpenAPI file'
   description: |
     Unified Data Repository Service.  
@@ -9,7 +9,7 @@ info:
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.504 V17.17.0; 5G System; Unified Data Repository Services; Stage 3
+  description: 3GPP TS 29.504 V18.9.0; 5G System; Unified Data Repository Services; Stage 3
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.504/'
 
 servers:
@@ -83,6 +83,8 @@ paths:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-privacy-data'
   /subscription-data/{ueId}/lcs-mo-data:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-mo-data'
+  /subscription-data/{ueId}/lcs-subscription-data:
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1lcs-subscription-data'
   /subscription-data/{ueId}/pp-data:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1pp-data'
   /subscription-data/{ueId}/context-data/ee-subscriptions:
@@ -169,6 +171,14 @@ paths:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~15mbs-data'
   /subscription-data/{ueId}/uc-data:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1uc-data'
+  /subscription-data/{ueId}/time-sync-data:
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1time-sync-data'
+  /subscription-data/{ueId}/ranging-slpos-data:
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1ranging-slpos-data'
+  /subscription-data/{ueId}/a2x-data:
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1a2x-data'
+  /subscription-data/{ueId}/rangingsl-privacy-data:
+    $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29505_Subscription_Data.yaml#/paths/~1subscription-data~1%7BueId%7D~1rangingsl-privacy-data'
   /policy-data/ues/{ueId}:
     $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29519_Policy_Data.yaml#/paths/~1policy-data~1ues~1%7BueId%7D'
   /policy-data/ues/{ueId}/am-data:
@@ -323,6 +333,7 @@ components:
             nudr-dr:policy-data:bdt-data:read: Access to read the BDT data resource
             nudr-dr:policy-data:bdt-data:create: Access to create the BDT data resource
             nudr-dr:policy-data:bdt-data:modify: Access to update the BDT data resource
+            nudr-dr:policy-data:subs-to-notify:read: Access to read Subscription to Notification
             nudr-dr:policy-data:subs-to-notify:create: Access to create Subscriptions resources
             nudr-dr:policy-data:subs-to-notify:modify: Access to update Subscriptions resources
             nudr-dr:policy-data:ues:operator-specific-data:read: Access to read the UEs operator specific policy data
@@ -332,6 +343,11 @@ components:
             nudr-dr:policy-data:slice-control-data:read: Access to read Slice specific Policy Control Data
             nudr-dr:policy-data:slice-control-data:modify: Access to update Slice specific Policy Control Data
             nudr-dr:policy-data:mbs-session-pol-data:read: Access to read MBS Session Policy Data
+            nudr-dr:policy-data:group-control-data:read: Access to read Group Control Data
+            nudr-dr:policy-data:group-control-data:modify: Access to update Group Control Data
+            nudr-dr:policy-data:pdtq-data:read: Access to read PDTQ Data
+            nudr-dr:policy-data:pdtq-data:create: Access to create PDTQ Data
+            nudr-dr:policy-data:pdtq-data:modify: Access to update PDTQ Data
             nudr-dr:exposure-data: Access to the ExposureData data set
             nudr-dr:exposure-data:access-and-mobility-data:create: Access to create ExposureData
             nudr-dr:exposure-data:access-and-mobility-data:read: Access to read ExposureData
@@ -369,6 +385,16 @@ components:
             nudr-dr:application-data:eas-deploy-data:read: Access to read EAS Deployment Information Data
             nudr-dr:application-data:eas-deploy-data:create: Access to create EAS Deployment Information Data
             nudr-dr:application-data:eas-deploy-data:modify: Access to update EAS Deployment Information Data
+            nudr-dr:application-data:ecs-address-roaming:read: Access to read ECS Address Roaming Data
+            nudr-dr:application-data:ecs-address-roaming:create: Access to create ECS Address Roaming Data
+            nudr-dr:application-data:ecs-address-roaming:modify: Access to update ECS Address Roaming Data
+            nudr-dr:application-data:dnai-eas:read: Access to read DNAI-EAS Mapping Data
+            nudr-dr:application-data:af-qos-data-sets:read: Access to read AF Qos Data Sets
+            nudr-dr:application-data:af-qos-data-sets:create: Access to create AF Qos Data Sets
+            nudr-dr:application-data:af-qos-data-sets:modify: Access to update AF Qos Data Sets
+            nudr-dr:application-data:ueid-mappings:read: Access to read UE Id Mappings
+            nudr-dr:application-data:ueid-mappings:create: Access to create UE Id Mappings
+            nudr-dr:application-data:ueid-mappings:delete: Access to delete UE Id Mappings
 
   schemas:
     DataRestorationNotification:

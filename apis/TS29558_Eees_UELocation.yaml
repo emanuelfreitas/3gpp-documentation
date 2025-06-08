@@ -3,12 +3,12 @@ info:
   title: EES UE Location Information_API
   description: |
     API for EES UE Location Information.  
-    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
-  version: 1.0.1
+  version: 1.1.1
 externalDocs:
   description: >
-    3GPP TS 29.558 V17.7.0 Enabling Edge Applications;
+    3GPP TS 29.558 V18.9.0 Enabling Edge Applications;
     Application Programming Interface (API) specification; Stage 3
   url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.558/
 security:
@@ -69,6 +69,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
   /subscriptions:
     post:
+      summary: Creates a new Individual Location Information Subscription resource
+      operationId: CreateLocationInfoSubscription
+      tags:
+        - Location Information Subscriptions (Collection)
       description: >
         Create a Subscription resource for continious reporting of UE location
         information to the EAS.
@@ -117,7 +121,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
       callbacks:
         LocationInformationNotification:
-          '{request.body#/notificationDestination}':
+          '{$request.body#/notificationDestination}':
             post:
               requestBody:  # contents of the callback message
                 required: true
@@ -155,7 +159,7 @@ paths:
                 default:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
         UserConsentRevocationNotif:
-          '{request.body#/revocationNotifUri}':
+          '{$request.body#/revocationNotifUri}':
             post:
               requestBody:
                 required: true
@@ -195,6 +199,10 @@ paths:
 
   /subscriptions/{subscriptionId}:
     get:
+      summary: Read an Individual Location Information Subscription resource
+      operationId: ReadIndLocationInfoSubscription
+      tags:
+        - Individual Location Information Subscription (Document)
       description: Retrieve an Individual location information subscription information.
       parameters:
         - name: subscriptionId
@@ -233,6 +241,10 @@ paths:
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
     put:
+      summary: Update an Individual Location Information Subscription resource
+      operationId: UpdateIndLocationInfoSubscription
+      tags:
+        - Individual Location Information Subscription (Document)
       description: Fully replace an existing Individual location information Subscription.
       parameters:
         - name: subscriptionId
@@ -283,6 +295,10 @@ paths:
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
     patch:
+      summary: Modify an Individual Location Information Subscription resource
+      operationId: ModifyIndLocationInfoSubscription
+      tags:
+        - Individual Location Information Subscription (Document)
       description: Partially update an existing Individual location information Subscription.
       parameters:
         - name: subscriptionId
@@ -337,6 +353,10 @@ paths:
         default:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
     delete:
+      summary: Delete an Individual Location Information Subscription resource
+      operationId: DeleteIndLocationInfoSubscription
+      tags:
+        - Individual Location Information Subscription (Document)
       description: Delete an existing Individual location information Subscription.
       parameters:
         - name: subscriptionId
@@ -508,6 +528,8 @@ components:
       properties:
         subscriptionId:
           type: string
+          description: >
+            Contains the identifier of the subscription to which the notification is related.
         consentsRevoked:
           type: array
           items:

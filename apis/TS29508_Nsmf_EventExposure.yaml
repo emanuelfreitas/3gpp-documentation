@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: 1.2.4
+  version: 1.3.2
   title: Nsmf_EventExposure
   description: |
     Session Management Event Exposure Service.  
@@ -9,7 +9,7 @@ info:
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.508 V17.15.0; 5G System; Session Management Event Exposure Service.
+  description: 3GPP TS 29.508 V18.9.0; 5G System; Session Management Event Exposure Service.
   url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.508/
 
 servers:
@@ -70,6 +70,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -109,13 +111,15 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 default:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
               callbacks:
                 afAcknowledgement:
-                  '{request.body#/ackUri}':
+                  '{$request.body#/ackUri}':
                     post:
                       requestBody:  # contents of the callback message
                         required: true
@@ -148,6 +152,8 @@ paths:
                           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                         '500':
                           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                        '502':
+                          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                         '503':
                           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                         default:
@@ -191,6 +197,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -244,6 +252,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -279,6 +289,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         default:
@@ -320,6 +332,19 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnn'
         snssai:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Snssai'
+        dnai:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+        ssId:
+          type: string
+          description: SSID that the PDU session is related to.
+        bssId:
+          type: string
+          description: BSSID that the PDU session is related to.
+        upfId:
+          type: string
+          description: UPF identity.
+        nfId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
         subId:
           $ref: '#/components/schemas/SubId'
         notifId:
@@ -384,6 +409,23 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
         notifFlag:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NotificationFlag'
+        notifFlagInstruct:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MutingExceptionInstructions'
+        mutingSetting:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/MutingNotificationsSettings'
+        defQosSupp:
+          type: boolean
+          description: >
+            Indicates whether the NF service consumer requests to receive QoS Flow performance
+            information for the QoS Flow associated with the default QoS rule if there are no
+            measurements available for the provided Application Identifier included in the appIds
+            attribute.
+        qosMonPending:
+          type: boolean
+          description: >
+            Indicates that the reporting will be activated when the measurements are enabled by a
+            PCC rule. It shall always be set to true when present. It may only be provided in the
+            response.
       required:
         - notifId
         - notifUri
@@ -431,6 +473,8 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ApplicationId'
           minItems: 1
+        networkArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29554_Npcf_BDTPolicyControl.yaml#/components/schemas/NetworkAreaInfo'
         targetPeriod:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
         transacDispInd:
@@ -446,6 +490,12 @@ components:
           minItems: 1
         ueIpAddr:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/IpAddr'
+        upfEvents:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29564_Nupf_EventExposure.yaml#/components/schemas/UpfEvent'
+          description: Indicates UPF event exposure information.
+          minItems: 1
       required:
         - event
 
@@ -475,6 +525,27 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
         dnaiChgType:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DnaiChangeType'
+        candidateDnais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+          description: The candidate DNAI(s) for the PDU Session.
+        candDnaisPrioInd:
+          type: boolean
+          description: >
+            If provided and set to true, it indicates that the candidate DNAIs provided
+            in the candidateDnais attribute are in descending priority order, i.e.,
+            the lower the array index the higher the priority of the respective DNAI.
+            If omitted, the default value is false.
+        easRediscoverInd:
+          type: boolean
+          description: >
+            Indication of EAS re-discovery. If present and set to "true", it indicates the EAS
+            re-discovery is performed, e.g. due to change of common EAS. Default value is "false" if
+            omitted.
+        trafCorreInfo:
+          $ref: '#/components/schemas/TrafficCorrelationNotification'
         sourceUeIpv4Addr:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ipv4Addr'
         sourceUeIpv6Prefix:
@@ -501,6 +572,11 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
         accType:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
+        pduAccTypes:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/AccessType'
+          minItems: 1
         pduSeId:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionId'
         ratType:
@@ -527,6 +603,8 @@ components:
           minItems: 1
         pduSessType:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PduSessionType'
+        sscMode:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SscMode'
         qfi:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Qfi'
         appId:
@@ -584,9 +662,14 @@ components:
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
           minItems: 1
-        pdmf:
-          type: boolean
-          description: Represents the packet delay measurement failure indicator.
+        ulCongInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        dlCongInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        ulDataRate:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
+        dlDataRate:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
         timeWindow:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/TimeWindow'
         smNasFromUe:
@@ -614,9 +697,23 @@ components:
           minItems: 1
         upfInfo:
           $ref: '#/components/schemas/UpfInformation'
+        pdmf:
+          type: boolean
+          description: Represents the packet delay measurement failure indicator.
+        satBackhaulCat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SatelliteBackhaulCategory'
+        supportedFeatures:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        targetAfId:
+          type: string
+          description: Identifier of the Application Function responsible for the target DNAI.
+        5qi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/5Qi'
       required:
         - event
         - timeStamp
+      not:
+        required: [ipv6Prefixes,ipv6Addrs]
 
     SubId:
       type: string
@@ -727,6 +824,38 @@ components:
         upfAddr:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29517_Naf_EventExposure.yaml#/components/schemas/AddrFqdn'
 
+    TrafficCorrelationNotification:
+      description: Represents notifications for 5GC determined Traffic Correlation Information.
+      type: object
+      properties:
+        smfId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NfInstanceId'
+        tfcCorrId:
+          type: string
+          description: >
+            Identification of a set of UEs accessing the application identified by the 
+            Application Identifier or traffic filtering information.
+        dnais:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+          minItems: 1
+        easFqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
+        easIpAddr:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/IpAddr'
+        pduSessionNbr:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+      required:
+        - smfId
+        - pduSessionNbr
+        - tfcCorrId
+      anyOf:
+        - required: [dnais]
+        - oneOf:
+          - required: [easFqdn]
+          - required: [easIpAddr]
+
     SmfEvent:
       anyOf:
       - type: string
@@ -748,31 +877,39 @@ components:
           - WLAN_INFO
           - UPF_INFO
           - UP_STATUS_INFO
+          - UPF_EVENT
+          - SATB_CH
+          - TRAFFIC_CORRELATION
       - type: string
         description: >
           This string provides forward-compatibility with future
-          extensions to the enumeration but is not used to encode
+          extensions to the enumeration and is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the types of events that can be subscribed.  
         Possible values are:
-        - AC_TY_CH: Access Type Change
-        - UP_PATH_CH: UP Path Change
-        - PDU_SES_REL: PDU Session Release
-        - PLMN_CH: PLMN Change
-        - UE_IP_CH: UE IP address change
-        - RAT_TY_CH: RAT Type Change
-        - DDDS: Downlink data delivery status
-        - COMM_FAIL: Communication Failure
-        - PDU_SES_EST: PDU Session Establishment
-        - QFI_ALLOC: QFI allocation
-        - QOS_MON: QoS Monitoring
-        - SMCC_EXP: SM congestion control experience for PDU Session
-        - DISPERSION: Session Management transaction dispersion
-        - RED_TRANS_EXP: Redundant transmission experience for PDU Session
+        - AC_TY_CH: Access Type Change.
+        - UP_PATH_CH: UP Path Change.
+        - PDU_SES_REL: PDU Session Release.
+        - PLMN_CH: PLMN Change.
+        - UE_IP_CH: UE IP address change.
+        - RAT_TY_CH: RAT Type Change.
+        - DDDS: Downlink data delivery status.
+        - COMM_FAIL: Communication Failure.
+        - PDU_SES_EST: PDU Session Establishment.
+        - QFI_ALLOC: QFI allocation.
+        - QOS_MON: QoS Monitoring.
+        - SMCC_EXP: SM congestion control experience for PDU Session.
+        - DISPERSION: Session Management transaction dispersion.
+        - RED_TRANS_EXP: Redundant transmission experience for PDU Session.
         - WLAN_INFO: WLAN information on PDU session for which Access Type is NON_3GPP_ACCESS and
-          RAT Type is TRUSTED_WLAN
+          RAT Type is TRUSTED_WLAN.
         - UPF_INFO: The UPF information, including the UPF ID/address/FQDN information.
         - UP_STATUS_INFO: The User Plane status information.
+        - UPF_EVENT: UPF event subscribed via SMF.
+        - SATB_CH: Satellite backhaul category change.
+        - TRAFFIC_CORRELATION: Indicates that the SMF provides 5GC determined traffic correlation
+          information for a set of UEs identified by Traffic Correlation ID.
 
     NotificationMethod:
       anyOf:
@@ -784,9 +921,10 @@ components:
       - type: string
         description: >
           This string provides forward-compatibility with future
-          extensions to the enumeration but is not used to encode
+          extensions to the enumeration and is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the notification methods that can be subscribed.  
         Possible values are:
         - PERIODIC
         - ONE_TIME
@@ -803,9 +941,10 @@ components:
       - type: string
         description: >
           This string provides forward-compatibility with future
-          extensions to the enumeration but is not used to encode
+          extensions to the enumeration and is not used to encode
           content defined in the present version of this API.
       description: |
+        Represents the type of applied SM congestion control.  
         Possible values are:
         - DNN_CC: Indicates the DNN based congestion control.
         - SNSSAI_CC: Indicates the S-NSSAI based congestion control.
@@ -820,8 +959,11 @@ components:
           - PDU_SES_REL
       - type: string
         description: >
-          This string Indicates Session Management Transaction metrics.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
+          
       description: |
+        Represents the metric on UE Session Management transactions.  
         Possible values are:
         - PDU_SES_EST: PDU Session Establishment
         - PDU_SES_AUTH: PDU Session Authentication
@@ -836,8 +978,11 @@ components:
           - DEACTIVATED
       - type: string
         description: >
-          This string Indicates the status of the PDU Session.
+          This string provides forward-compatibility with future extensions to the enumeration
+          and is not used to encode content defined in the present version of this API.
+          
       description: |
+        Represents the status of the PDU Session.  
         Possible values are:
         - ACTIVATED: PDU Session status is activated.
         - DEACTIVATED: PDU Session status is deactivated.

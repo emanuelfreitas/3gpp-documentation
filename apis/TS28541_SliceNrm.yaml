@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Slice NRM
-  version: 17.15.0
+  version: 18.10.0
   description: >-
     OAS 3.0.1 specification of the Slice NRM
     @ 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -40,7 +40,6 @@ components:
           - OTDOA
           - RF_FINGERPRINTING
           - AECID
-
           - HYBRID_POSITIONING
           - NET_RTK
     PredictionFrequency:
@@ -104,6 +103,13 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         support:
           $ref: '#/components/schemas/Support'
+    NonIPSupport:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        support:
+          $ref: '#/components/schemas/Support'
     DeterministicComm:
       type: object
       properties:
@@ -137,6 +143,15 @@ components:
         servAttrCom:
           $ref: '#/components/schemas/ServAttrCom'
         nOofPDUSessions:
+          type: integer
+    MaxNumberofUEs:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        3GPPNoOfUEs:
+          type: integer
+        non3GPPNoOfUEs:
           type: integer
     KPIMonitoring:
       type: object
@@ -190,7 +205,7 @@ components:
           $ref: '#/components/schemas/ServAttrCom'
         support:
           $ref: '#/components/schemas/Support'
-    V2XCommMode:
+    V2XCommModels:
       type: object
       properties:
         servAttrCom:
@@ -282,12 +297,74 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SecFunc'
+    DataNetwork:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        dnnList:
+          type: array
+          items: 
+            type: string
+    DataAccess:
+      type: object
+      properties:
+        dataNetworkName:
+          type: string
+        dataAccessUsed:
+          type: string
+          enum:
+            - DIRECT_INTERNET_ACCESS
+            - TERM_PVT_NETWORK
+            - LOCAL_TRAFFIC
+    TunnellingMechanism:
+      type: object
+      properties:
+        dataNetworkName:
+          type: string
+        tunellingMechanismUsed:
+          type: string
+          enum:
+            - L2TP_TUNNEL
+            - GRE_TUNNEL
+            - VPN_TUNNEL
+            - LABEL_BASED_ROUTING
+            - 802.1Q_VLAN
+            - SRV6
+            - OTHER
+    LboAllowed:
+      type: object
+      properties:
+        dataNetworkName:
+          type: string
+        localBreakoutAllowed:
+          type: string
+          enum:
+            - YES
+            - NO
+    DataNetworkAccess:
+      type: object
+      properties:
+        servAttrCom:
+          $ref: '#/components/schemas/ServAttrCom'
+        dataAccessList:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataAccess'
+        tunnellingMechanismList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TunnellingMechanism'
+        localBreakoutAllowedList:
+          type: array
+          items:
+            $ref: '#/components/schemas/LboAllowed'
 
     CNSliceSubnetProfile:
       type: object
       properties:
         maxNumberofUEs:
-          type: integer
+          $ref: '#/components/schemas/MaxNumberofUEs'
         dLLatency:
           type: number
         uLLatency:
@@ -314,7 +391,9 @@ components:
           $ref: '#/components/schemas/DelayTolerance'
         sliceSimultaneousUse:
           $ref: '#/components/schemas/SliceSimultaneousUse'
-        reliability:
+        dLReliability:
+          type: number
+        uLReliability:
           type: number
         energyEfficiency:
           type: number 
@@ -327,7 +406,28 @@ components:
         nssaaSupport:
           $ref: '#/components/schemas/NSSAASupport'
         n6Protection:
-          $ref: '#/components/schemas/N6Protection'    
+          $ref: '#/components/schemas/N6Protection'
+        nonIPSupport:
+          $ref: '#/components/schemas/NonIPSupport'
+        availability:
+          type: number
+        maxDLDataVolume:
+          type: number
+        maxULDataVolume:
+          type: number
+        supportedDataNetworks:
+          $ref: '#/components/schemas/DataNetwork'
+        dataNetworkAccess:
+          $ref: '#/components/schemas/DataNetworkAccess'
+        dLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+        uLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+        sliceSubnetAvailability:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SchedulingTime'
+
     RANSliceSubnetProfile:
       type: object
       properties:
@@ -342,7 +442,7 @@ components:
         resourceSharingLevel:
           $ref: '#/components/schemas/SharingLevel'
         maxNumberofUEs:
-          type: integer
+          $ref: '#/components/schemas/MaxNumberofUEs'
         activityFactor:
           type: integer
         dLThptPerSliceSubnet:
@@ -355,7 +455,9 @@ components:
           $ref: '#/components/schemas/XLThpt'
         uESpeed:
           type: integer
-        reliability:
+        dLReliability:
+          type: number
+        uLReliability:
           type: number
         dLMaxPktSize:
           type: integer
@@ -383,6 +485,21 @@ components:
           $ref: '#/components/schemas/DeterministicComm'
         uLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
+        nonIPSupport:
+          $ref: '#/components/schemas/NonIPSupport'
+        availability:
+          type: number
+        maxDLDataVolume:
+          type: number
+        maxULDataVolume:
+          type: number
+        kPIMonitoring:
+          $ref: '#/components/schemas/KPIMonitoring'
+        dLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+        uLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+
     TopSliceSubnetProfile:
       type: object
       properties:
@@ -391,7 +508,7 @@ components:
         uLLatency:
           type: integer
         maxNumberofUEs:
-          type: integer
+          $ref: '#/components/schemas/MaxNumberofUEs'
         dLThptPerSliceSubnet:
           $ref: '#/components/schemas/XLThpt'
         dLThptPerUE:
@@ -432,7 +549,9 @@ components:
           $ref: '#/components/schemas/MobilityLevel'
         uESpeed:
           type: integer
-        reliability:
+        dLReliability:
+          type: number
+        uLReliability:
           type: number
         dLDeterministicComm:
           $ref: '#/components/schemas/DeterministicComm'
@@ -444,6 +563,28 @@ components:
           $ref: '#/components/schemas/NSSAASupport'
         n6Protection:
           $ref: '#/components/schemas/N6Protection'
+        nonIPSupport:
+          $ref: '#/components/schemas/NonIPSupport'
+        availability:
+          type: number
+        maxDLDataVolume:
+          type: number
+        maxULDataVolume:
+          type: number
+        kPIMonitoring:
+          $ref: '#/components/schemas/KPIMonitoring'
+        supportedDataNetworks:
+          $ref: '#/components/schemas/DataNetwork'
+        dataNetworkAccess:
+          $ref: '#/components/schemas/DataNetworkAccess'
+        dLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+        uLPktDelayVariation:
+          $ref: '#/components/schemas/Float'
+        sliceSubnetAvailability:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SchedulingTime'
 
     ServiceProfile:
       type: object
@@ -453,7 +594,7 @@ components:
           plmnInfoList:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_NrNrm.yaml#/components/schemas/PlmnInfoList'
           maxNumberofUEs:
-            type: number
+            $ref: '#/components/schemas/MaxNumberofUEs'
           dLLatency:
             type: number
           uLLatency:
@@ -498,8 +639,8 @@ components:
             $ref: '#/components/schemas/Positioning'
           userMgmtOpen:
             $ref: '#/components/schemas/UserMgmtOpen'
-          v2XCommMode:
-            $ref: '#/components/schemas/V2XCommMode'
+          v2XCommModels:
+            $ref: '#/components/schemas/V2XCommModels'
           coverageArea:
             type: array
             items:
@@ -510,11 +651,11 @@ components:
             $ref: '#/components/schemas/Float'
           uESpeed:
             type: integer
-          jitter:
-            type: integer
           survivalTime:
             type: number
-          reliability:
+          dLReliability:
+            type: number
+          uLReliability:
             type: number
           maxDLDataVolume:
             type: number
@@ -528,6 +669,21 @@ components:
             $ref: '#/components/schemas/NSSAASupport'
           n6Protection:
             $ref: '#/components/schemas/N6Protection'
+          nonIPSupport:
+            $ref: '#/components/schemas/NonIPSupport'
+          supportedDataNetworks:
+            $ref: '#/components/schemas/DataNetwork'
+          dataNetworkAccess:
+            $ref: '#/components/schemas/DataNetworkAccess'
+          dLPktDelayVariation:
+            $ref: '#/components/schemas/Float'
+          uLPktDelayVariation:
+            $ref: '#/components/schemas/Float'
+          sliceAvailability:
+            type: array
+            items:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SchedulingTime'
+
     SliceProfile:
       type: object
       properties:
@@ -558,6 +714,36 @@ components:
             - SEGMENT
          logicalInterfaceId:
            type: string
+         systemName:
+           type: string
+         portName:
+           type: string
+         routingProtocol:
+           type: string
+           enum: 
+            - RIP
+            - IGMP
+            - OSPF
+            - EGP
+            - EIGRP
+            - BGP
+            - IS_IS
+            - STATIC
+
+    ConnectionPointInfo:
+      type: object
+      properties:
+         connectionPointId:
+           type: string
+         connectionPointIdType:
+           type: string
+           enum: 
+            - VLAN
+            - MPLS
+            - SEGMENT
+            - IPV4
+            - IPV6
+            - ATTACHMENT_CIRCUIT
 
     ServiceProfileList:
        type: array
@@ -579,6 +765,10 @@ components:
       description: >-
         An attribute that specifies the additional reason information if the feasibility check result is infeasible.The detailed ENUM value is FFS. 
       type: string
+    RecommendationRequest:
+      description: >-
+        An attribute represents MnS consumer's request for recommended network slice related requirements.
+      type: boolean    
     RecommendedRequirements:
       description: >-
         An attribute that specifies the recommended network slicing related requirements (i.e. ServiceProfile and SliceProfile information) which can be supported by the MnS producer.. 
@@ -608,45 +798,48 @@ components:
         An attribute that specifies the additional reason information if the reservation is failed. 
       type: string
 
+    ResourceIsolationRule:
+      type: object
+      properties:
+        resourceType:
+          type: string
+          enum:
+            - MANAGED_FUNCTION
+            - NETWORK_SERVICE
+        isolationRule:
+          type: string
+          enum:
+            - DEDICATED
+            - SHARED
 
+    NetworkSlicingApplicability:
+      type: string
+      enum:
+        - NETWORKSLICE
+        - NETWORKSLICESUBNET
+
+#-------- Definition of types for name-containments ------
+    SubNetwork-ncO-SliceNrm:
+      type: object
+      properties:
+        NetworkSlice:
+          $ref: '#/components/schemas/NetworkSlice-Multiple'
+        NetworkSliceSubnet:
+          $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
+        EP_Transport:
+          $ref: '#/components/schemas/EP_Transport-Multiple'
+        NetworkSliceSubnetProviderCapabilities:
+          $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
+        FeasibilityCheckAndReservationJob:
+          $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Multiple'
+        NetworkSliceController:
+          $ref: '#/components/schemas/NetworkSliceController-Multiple'
+        NetworkSliceSubnetController:
+          $ref: '#/components/schemas/NetworkSliceSubnetController-Multiple'
+        IsolationProfile:
+          $ref: '#/components/schemas/IsolationProfile-Multiple'
 
 #------------ Definition of concrete IOCs ----------------------------------------
-
-    MnS:
-      oneOf:
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-#        - type: object
-#          properties:
-#            ManagedElement:
-#              $ref: '#/components/schemas/ManagedElement-Multiple'
-
-    SubNetwork-Single:
-      allOf:
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
-        - type: object
-          properties:
-            attributes:
-              allOf:
-                - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-            NetworkSlice:
-              $ref: '#/components/schemas/NetworkSlice-Multiple'
-            NetworkSliceSubnet:
-              $ref: '#/components/schemas/NetworkSliceSubnet-Multiple'
-            EP_Transport:
-              $ref: '#/components/schemas/EP_Transport-Multiple'
-            NetworkSliceSubnetProviderCapabilities:
-              $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Multiple'
-            FeasibilityCheckAndReservationJob:
-              $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Multiple'
-
 
     NetworkSlice-Single:
       allOf:
@@ -665,6 +858,10 @@ components:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
                     serviceProfileList:
                       $ref: '#/components/schemas/ServiceProfileList'
+                    networkSliceControllerRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    isolationProfileRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     NetworkSliceSubnet-Single:
       allOf:
@@ -697,6 +894,10 @@ components:
                         - TOP_SLICESUBNET
                         - RAN_SLICESUBNET
                         - CN_SLICESUBNET
+                    networkSliceSubnetControllerRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    isolationProfileRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
 
     EP_Transport-Single:
       allOf:
@@ -708,15 +909,17 @@ components:
               properties:
                 ipAddress:
                   $ref: '#/components/schemas/IpAddress'
-                logicalInterfaceInfo:
+                localLogicalInterfaceInfo:
                   $ref: '#/components/schemas/LogicalInterfaceInfo'
-                nextHopInfo:
-                  type: string 
                 qosProfile:
                   type: string 
                 epApplicationRefs:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
-    
+                externalEndPointRefList:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ConnectionPointInfo'
+   
     NetworkSliceSubnetProviderCapabilities-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -748,9 +951,13 @@ components:
                     - $ref: '#/components/schemas/SliceProfile'
                     - $ref: '#/components/schemas/ServiceProfile'
                 resourceReservation:
-                  $ref: '#/components/schemas/ResourceReservation'              
+                  $ref: '#/components/schemas/ResourceReservation'
+                recommendationRequest:
+                  $ref: '#/components/schemas/RecommendationRequest'
                 requestedReservationExpiration:
                   $ref: '#/components/schemas/RequestedReservationExpiration'
+                feasibilityTimeWindow:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/TimeWindow'                  
                 processMonitor:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
                 feasibilityResult:
@@ -767,11 +974,73 @@ components:
                 recommendedRequirements:
                   $ref: '#/components/schemas/RecommendedRequirements'
 
+    NetworkSliceController-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties: 
+            attributes:
+              type: object
+              properties:
+                inputServiceProfile:
+                  $ref: '#/components/schemas/ServiceProfile'
+                serviceProfileId: 
+                  type: string
+                operationalState:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/OperationalState'
+                administrativeState:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
+                availabilityStatus:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus'
+                processMonitor:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
+                networkSliceRef:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+
+    NetworkSliceSubnetController-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties: 
+            attributes:
+              type: object
+              properties:
+                inputSliceProfile:
+                  $ref: '#/components/schemas/SliceProfile'
+                sliceProfileId: 
+                  type: string
+                operationalState:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/OperationalState'
+                administrativeState:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AdministrativeState'
+                availabilityStatus:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/AvailabilityStatus'
+                processMonitor:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ProcessMonitor'
+                networkSliceSubnetRef:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+
+    IsolationProfile-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    networkSlicingApplicability:
+                      $ref: '#/components/schemas/NetworkSlicingApplicability'
+                    resourceIsolationRuleList:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ResourceIsolationRule'
+                    networkSliceRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    networkSliceSubnetRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
-    SubNetwork-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/SubNetwork-Single'
 
     NetworkSlice-Multiple:
       type: array
@@ -796,16 +1065,32 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'   
-        
+
+    NetworkSliceController-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceController-Single'   
+
+    NetworkSliceSubnetController-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NetworkSliceSubnetController-Single'
+
+    IsolationProfile-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/IsolationProfile-Single'
+
 #------------ Definitions in TS 28.541 for TS 28.532 -----------------------------
 
     resources-sliceNrm:
-      oneOf:
-       - $ref: '#/components/schemas/MnS'
-               
-       - $ref: '#/components/schemas/SubNetwork-Single'
+      oneOf:             
        - $ref: '#/components/schemas/NetworkSlice-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnet-Single'
        - $ref: '#/components/schemas/EP_Transport-Single'
        - $ref: '#/components/schemas/NetworkSliceSubnetProviderCapabilities-Single'
-       - $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'       
+       - $ref: '#/components/schemas/FeasibilityCheckAndReservationJob-Single'
+       - $ref: '#/components/schemas/NetworkSliceController-Single'
+       - $ref: '#/components/schemas/NetworkSliceSubnetController-Single'
+       - $ref: '#/components/schemas/IsolationProfile-Single'
+    

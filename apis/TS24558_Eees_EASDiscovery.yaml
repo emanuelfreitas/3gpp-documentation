@@ -1,14 +1,16 @@
 openapi: 3.0.0
+
 info:
   title: Eees_EASDiscovery
   description: |
     API for EAS Discovery.  
-    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
-  version: "1.0.3"
+  version: "1.1.1"
+
 externalDocs:
   description: >
-    3GPP TS 24.558 V17.4.0 Enabling Edge Applications; Protocol specification.
+    3GPP TS 24.558 V18.7.0 Enabling Edge Applications; Protocol specification.
   url: https://www.3gpp.org/ftp/Specs/archive/24_series/24.558/
 
 security:
@@ -20,14 +22,16 @@ servers:
     variables:
       apiRoot:
         default: https://example.com
-        description: apiRoot as defined in clause 6.1 of 3GPP TS 24.558
+        description: apiRoot as defined in clause 7.5 of 3GPP TS 29.558.
 
 paths:
+
   /subscriptions:
     post:
       description: Creates a new individual EAS discovery subscription.
+      operationId: CreateEASDiscSub
       tags:
-        - EAS Discovery Subscriptions
+        - EAS Discovery Subscriptions (Collection)
       requestBody:
         required: true
         content:
@@ -37,7 +41,7 @@ paths:
       responses:
         '201':
           description: >
-            Created. A new Individual EAS Discovery Subscription resource was successfully 
+            Created. A new Individual EAS Discovery Subscription resource was successfully
             created.
           content:
             application/json:
@@ -83,7 +87,7 @@ paths:
                       $ref: '#/components/schemas/EasDiscoveryNotification'
               responses:
                 '204':
-                  description: No Content (The receipt of the Notification is acknowledged)
+                  description: No Content (The receipt of the Notification is acknowledged).
                 '307':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
                 '308':
@@ -115,17 +119,18 @@ paths:
     put:
       description: >
         Updates an existing individual EAS discovery subscription identified by the subscriptionId.
+      operationId: UpdateIndEASDiscSub
       tags:
-        - Individual EAS Discovery Subscription
+        - Individual EAS Discovery Subscription (Document)
       parameters:
         - name: subscriptionId
           in: path
-          description: Identifies an individual EAS discovery subscription resource 
+          description: Identifies an individual EAS discovery subscription resource.
           required: true
           schema:
             type: string
       requestBody:
-        description: Parameters to replace the existing subscription
+        description: Parameters to replace the existing subscription.
         required: true
         content:
           application/json:
@@ -167,12 +172,13 @@ paths:
     delete:
       description: >
         Deletes an existing individual EAS discovery subscription identified by the subscriptionId.
+      operationId: DeleteIndEASDiscSub
       tags:
-        - Individual EAS Discovery Subscription
+        - Individual EAS Discovery Subscription (Document)
       parameters:
         - name: subscriptionId
           in: path
-          description: Identifies an individual EAS discovery subscription resource
+          description: Identifies an individual EAS discovery subscription resource.
           required: true
           schema:
             type: string
@@ -205,17 +211,18 @@ paths:
       description: >
         Partial update an existing EAS Discovery Subscription resource identified by a
         subscriptionId.
+      operationId: ModifyIndEASDiscSub
       tags:
-        - Individual EAS Discovery Subscription
+        - Individual EAS Discovery Subscription (Document)
       parameters:
         - name: subscriptionId
           in: path
-          description: Identifies an individual EAS discovery subscription resource 
+          description: Identifies an individual EAS discovery subscription resource.
           required: true
           schema:
             type: string
       requestBody:
-        description: Parameters to replace the existing subscription
+        description: Parameters to replace the existing subscription.
         required: true
         content:
           application/merge-patch+json:
@@ -224,7 +231,7 @@ paths:
       responses:
         '200':
           description: >
-            OK (An individual EAS discovery subscription resource updated successfully)
+            OK (An individual EAS discovery subscription resource updated successfully).
           content:
             application/json:
               schema:
@@ -256,9 +263,11 @@ paths:
 
   /eas-profiles/request-discovery:
     post:
-      description: Provides EAS information requested by the service consumer (i.e. EEC, EAS or EES).
+      description: >
+        Provides EAS information requested by the service consumer (i.e. EEC, EAS or EES).
+      operationId: GetEASDiscInfo
       tags:
-        - EAS Profiles
+        - EAS Profiles (Collection)
       requestBody:
         required: true
         content:
@@ -297,6 +306,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
 components:
+
   securitySchemes:
     oAuth2ClientCredentials:
       type: oauth2
@@ -304,9 +314,11 @@ components:
         clientCredentials:
           tokenUrl: '{tokenUrl}'
           scopes: {}
+
   schemas:
+
     EasDiscoveryReq:
-      description: ECS service provisioning request information.
+      description: EAS discovery request information.
       type: object
       properties:
         requestorId:
@@ -319,25 +331,58 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EEC supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EEC.
         eesSvcContinuity:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EES supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EES.
         easSvcContinuity:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EAS supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EAS.
         locInf:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_MonitoringEvent.yaml#/components/schemas/LocationInfo'
         easTDnai:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Dnai'
+        easSelSupInd:
+          type: boolean
+          description: >
+            Indicates if the EEC requires the EAS selection support from the EES (e.g., for
+            constrained device). The default value false indicates the EAS selection is not
+            required from the EES.
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        easIntTrigSup:
+          type: boolean
+          description: >
+            Indicates to the EES whether the EAS instantiation triggering should be performed for
+            the current request. The default value false indicates the EAS instantiation triggering
+            should not be performed. The true value indicate the EAS instantiation triggering should
+            be performed.
+        predictExpTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+        servingPLMNInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/PlmnIdNid'
+        svcContinuityPlanInd:
+          type: boolean
+          description: >
+            Indicates to the EES whether the EAS discovery request is triggered as part of service
+            continuity planning. The default value false indicates this request is not part of
+            service continuity planning. The true value indicate this request is part of
+            service continuity planning.
       required:
         - requestorId
+
     EasDiscoveryResp:
-      description: ECS discovery response.
+      description: EAS discovery response.
       type: object
       properties:
         discoveredEas:
@@ -345,8 +390,26 @@ components:
           items:
             $ref: '#/components/schemas/DiscoveredEas'
           description: List of EAS discovery information.
+        easInstInfos:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/EASInstantiationInfo'
+          minProperties: 1
+          description: >
+            Contains the EAS instantiation information for each discovered EAS returned within
+            the discoveredEas attribute.
+        edgeLoadAnalytics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EdgeLoadAnalytic'
+          minProperties: 1
+          description: >
+            Contains the statistical analytics data and predictive analytics data for each
+            discovered application server. The key of the map shall be the EAS ID to which
+            the provided analytics data within the map value relates.
       required:
         - discoveredEas
+
     EasDiscoverySubscription:
       description: Represents an Individual EAS Discovery Subscription resource.
       type: object
@@ -366,28 +429,47 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EEC supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EEC.
         expTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         notificationDestination:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
         requestTestNotification:
           type: boolean
-          description: Set to true by Subscriber to request the ECS to send a test notification. Set to false or omitted otherwise.
+          description: >
+            Set to true by Subscriber to request the EES to send a test notification. Set to false
+            or omitted otherwise.
         websockNotifConfig:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig'
         suppFeat:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        easIntTrigSup:
+          type: boolean
+          description: >
+            Indicates to the EES whether the EAS instantiation triggering should be performed for
+            the current request. The default value false indicates the EAS instantiation triggering
+            should not be performed. The true value indicate the EAS instantiation triggering should
+            be performed.
+        eecTriggerRequest:
+          type: boolean
+          description: >
+            Indicates to the EES whether the application triggering is required by the EEC.
+            Default value false indicates the application triggering is not required.
       required:
         - eecId
         - easEventType
+
     EasDiscoveryNotification:
       description: Notification of EAS discovery information.
       type: object
       properties:
         subId:
           type: string
-          description: Identifier of the individual service provisioning subscription for which the service provisioning notification is delivered.
+          description: >
+            Identifier of the individual service provisioning subscription for which the service
+            provisioning notification is delivered.
         eventType:
           $ref: '#/components/schemas/EASDiscEventIDs'
         discoveredEas:
@@ -396,10 +478,28 @@ components:
             $ref: '#/components/schemas/DiscoveredEas'
           minItems: 1
           description: List of EAS discovery information.
+        easInstInfos:
+          type: object
+          additionalProperties:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/EASInstantiationInfo'
+          minProperties: 1
+          description: >
+            Contains the EAS instantiation information for each discovered EAS returned within
+            the "discoveredEas" attribute.
+        edgeLoadAnalytics:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/EdgeLoadAnalytic'
+          minProperties: 1
+          description: >
+            Contains the statistical analytics data and predictive analytics data for each
+            discovered application server. The key of the map shall be the EAS ID to which
+            the provided analytics data within the map value relates.
       required:
         - subId
         - eventType
         - discoveredEas
+
     EasDiscoveryFilter:
       description: Represents the EAS characteristics.
       type: object
@@ -410,12 +510,15 @@ components:
             $ref: '#/components/schemas/ACCharacteristics'
           minItems: 1
           description: AC description for which an EAS is needed.
+        appGroupProfile:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS24558_Eecs_ServiceProvisioning.yaml#/components/schemas/AppGroupProfile'
         easChars:
           type: array
           items:
             $ref: '#/components/schemas/EasCharacteristics'
           minItems: 1
           description: Required EAS chararcteristics.
+
     EasCharacteristics:
       description: Represents the EAS chararcteristics.
       type: object
@@ -423,6 +526,16 @@ components:
         easId:
           type: string
           description: EAS application identifier.
+        appGrpId:
+          type: string
+          description: >
+            Application group identifier, identifying a group of UEs using the same
+            application service.
+        easSyncInd:
+          type: boolean
+          description: >
+            Indicates whether the synchronization between the EASs is required. The
+            default value false indicates the EAS synchronization is not required.
         easProvId:
           type: string
           description: EAS provider identifier.
@@ -439,7 +552,9 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EEC supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EEC.
         svcPermLevel:
           type: string
           description: Service permissions level.
@@ -449,6 +564,8 @@ components:
             type: string
           minItems: 1
           description: Service features.
+        easBundleInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASBundleInfo'
       not:
         required: [stdEasType, easType]
 
@@ -458,10 +575,13 @@ components:
       properties:
         eas:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASProfile'
+        eesEndPt:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
         lifeTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
       required:
         - eas
+
     EasDynamicInfoFilter:
       description: Represents EAS dynamic information changes filter.
       type: object
@@ -474,13 +594,14 @@ components:
           description: List of EAS dynamic information required by the EEC per EAS.
       required:
         - dynInfoFilter
+
     EasDynamicInfoFilterData:
       description: Represents an EAS dynamic information.
       type: object
       properties:
         eecId:
           type: string
-          description: Represents a unique identifier of the EEC.
+          description: The application identifier of the EAS, e.g. FQDN, URI.
         easStatus:
           type: boolean
           description: Notify if EAS status changed.
@@ -493,9 +614,11 @@ components:
         easPt:
           type: boolean
           description: Notify if EAS endpoint changed.
+        easEndPoint:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EndPoint'
         easFeature:
           type: boolean
-          description: NotiNotify if EAS feature changed.
+          description: Notify if EAS feature changed.
         easSchedule:
           type: boolean
           description: Notify if EAS schedule changed.
@@ -510,6 +633,7 @@ components:
           description: Notify if EAS supported ACR changed.
       required:
         - eecId
+
     ACCharacteristics:
       description: Represents EAS dynamic information changes filter.
       type: object
@@ -518,6 +642,7 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS24558_Eees_EECRegistration.yaml#/components/schemas/ACProfile'
       required:
         - acProf
+
     EASDiscEventIDs:
       anyOf:
       - type: string
@@ -533,6 +658,7 @@ components:
         Possible values are
         - EAS_AVAILABILITY_CHANGE: Represents the EAS availability change event.
         - EAS_DYNAMIC_INFO_CHANGE: Represents the EAS dynamic information change event.
+
     EasDiscoverySubscriptionPatch:
       description: Represents an Individual EAS Discovery Subscription resource.
       type: object
@@ -545,24 +671,68 @@ components:
           type: array
           items:
             $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
-          description: Indicates if the EEC supports service continuity or not, also indicates which ACR scenarios are supported by the EEC.
+          description: >
+            Indicates if the EEC supports service continuity or not, also indicates which ACR
+            scenarios are supported by the EEC.
         expTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
         easEventType:
           $ref: '#/components/schemas/EASDiscEventIDs'
+
     RequestorId:
       description: Represents identifier of the requestor.
       type: object
       properties:
         eesId:
           type: string
+          description: The identifier of the EES (e.g. S-EES).
         easId:
           type: string
+          description: The application identifier of the EAS (e.g. S-EAS), e.g. FQDN, URI.
         eecId:
           type: string
+          description: The identifier of the EEC.
       oneOf:
         - required: [eesId]
         - required: [easId]
         - required: [eecId]
 
+    EdgeLoadAnalytic:
+      description: >
+        Contains the statistical analytics data and predictive analytics data for each
+        discovered application server.
+      type: object
+      properties:
+        easId:
+          type: string
+          description: The application identifier of the EAS, e.g. FQDN, URI.
+        predictData:
+          $ref: '#/components/schemas/PredictiveData'
+        statisticData:
+          $ref: '#/components/schemas/StatisticalData'
+      required:
+        - easId
 
+    PredictiveData:
+      description: >
+        Contains the predictive analytics data for each discovered EAS service status
+         (e.g. EAS schedule, EAS status) change.
+      type: object
+      properties:
+        scheds:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CpProvisioning.yaml#/components/schemas/ScheduledCommunicationTime'
+          minItems: 1
+        status:
+          type: string
+          description: Indicates the EAS status (e.g. Enabled, Disabled etc.).
+
+    StatisticalData:
+      description: >
+        Contains the statistical analytics data (e.g. number of times the client received
+        expected performance from the EAS).
+      type: object
+      properties:
+        numRecPerf:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'

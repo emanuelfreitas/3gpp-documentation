@@ -5,10 +5,10 @@ info:
     API for EES Application Client Information.  
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
-  version: 1.0.2
+  version: 1.1.1
 externalDocs:
   description: >
-    3GPP TS 29.558 V17.8.0 Enabling Edge Applications;
+    3GPP TS 29.558 V18.8.0 Enabling Edge Applications;
     Application Programming Interface (API) specification; Stage 3
   url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.558/
 security:
@@ -24,6 +24,10 @@ servers:
 paths:
   /subscriptions:
     post:
+      summary: Creates a new Individual Application Client Information Subscriptions resource
+      operationId: CreateAppClientInfoSubscription
+      tags:
+        - Application Client Information Subscriptions (Collection)
       description: Create a Subscription resource for reporting of AC information to the EAS.
       requestBody:
         required: true
@@ -69,7 +73,7 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
       callbacks:
         ACInformationNotification:
-          '{request.body#/notificationDestination}':
+          '{$request.body#/notificationDestination}':
             post:
               requestBody: # contents of the callback message
                 required: true
@@ -109,6 +113,10 @@ paths:
 
   /subscriptions/{subscriptionId}:
     get:
+      summary: Read an Individual Application Client Information Subscriptions resource
+      operationId: ReadIndAppClientInfoSubscription
+      tags:
+        - Individual Application Client Information Subscription (Document)
       description: Retrieve an Individual AC information subscription information.
       parameters:
         - name: subscriptionId
@@ -148,6 +156,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
     put:
+      summary: Update an Individual Application Client Information Subscriptions resource
+      operationId: UpdateIndAppClientInfoSubscription
+      tags:
+        - Individual Application Client Information Subscription (Document)
       description: Fully replace an existing Individual AC information Subscription.
       parameters:
         - name: subscriptionId
@@ -195,6 +207,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
     patch:
+      summary: Modify an Individual Application Client Information Subscriptions resource
+      operationId: ModifyIndAppClientInfoSubscription
+      tags:
+        - Individual Application Client Information Subscription (Document)
       description: Partially update an existing Individual AC information Subscription.
       parameters:
         - name: subscriptionId
@@ -250,6 +266,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
 
     delete:
+      summary: Delete an Individual Application Client Information Subscriptions resource
+      operationId: DeleteIndAppClientInfoSubscription
+      tags:
+        - Individual Application Client Information Subscription (Document)
       description: Delete an existing Individual AC information Subscription.
       parameters:
         - name: subscriptionId
@@ -322,6 +342,13 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/WebsockNotifConfig'
         suppFeat:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        trigCondParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrigCondParams'
+          minItems: 1
+          description: >
+            Represents the notification triggering conditions of the AC information subscription.
       required:
         - easId
 
@@ -341,6 +368,13 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29523_Npcf_EventExposure.yaml#/components/schemas/ReportingInformation'
         notificationDestination:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
+        trigCondParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrigCondParams'
+          minItems: 1
+          description: >
+            Represents the notification triggering conditions of the AC information subscription.
 
     ACFilters:
       type: object
@@ -381,6 +415,8 @@ components:
           description: List of UE identifiers hosting the AC.
         locInfs:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
+        easBundInd:
+          $ref: '#/components/schemas/EASBdlInd'
 
     ACInfoNotification:
       type: object
@@ -420,3 +456,52 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/LocationArea5G'
       required:
         - acProfs
+
+    EASBdlInd:
+      type: object
+      description: Represents the EAS bundle indication information.
+      properties:
+        bdlType:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/BdlType'
+        bdlId:
+          type: string
+          description: Indicates a bundle ID.
+        easBdlReqs:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eees_EASRegistration.yaml#/components/schemas/EASBdlReqs'
+        parBundDet:
+          type: boolean
+          default: false
+          description: >
+            Set to true to indicate that the partial bundle determination is requested.
+            Set to false to indicate that the partial bundle determination is not requested.
+            Set to false or omitted otherwise.
+      anyOf:
+        - required: [bdlType]
+        - required: [bdlId]
+        - required: [easBdlReqs]
+        - required: [parBundDet]
+
+
+    TrigCondParams:
+      anyOf:
+      - type: string
+        enum:
+          - ANALYTICS_INFO
+          - EEC_REGISTRATION
+          - EAS_DISCOVERY
+          - UNSPECIFIED
+      - type: string
+        description: >
+            This string provides forward-compatibility with future
+            extensions to the enumeration but is not used to encode
+            content defined in the present version of this API.
+      description: |
+        Represents the trigger condition parameter.  
+        Possible values are:
+        - ANALYTICS_INFO: Indicates that the notification triggering condition is the analytics
+          information.
+        - EEC_REGISTRATION: Indicates that the notification triggering condition is the EEC
+          registration.
+        - EAS_DISCOVERY: Indicates that the notification triggering condition is the EAS 
+          discovery.
+        - UNSPECIFIED: Indicates that the triggering conditions are unspecified.

@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: NR NRM
-  version: 17.17.0
+  version: 18.10.0
   description: >-
     OAS 3.0.1 specification of the NR NRM
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
@@ -59,38 +59,16 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
         snssai:
           $ref: '#/components/schemas/Snssai'
+        sliceExpiryTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DateTime'          
     PlmnInfoList:
       type: array
       items:
-        $ref: '#/components/schemas/PlmnInfo'
-    cagId:
-      type: string
-    nid:
-      type: string
-    NpnIdentity:
-      type: object
-      oneOf:
-        - required: [ plmnId, cagidList ]
-        - required: [ plmnId, nidList ]
-      properties:
-        plmnId:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
-        cagidList:
-          type: array
-          items:
-            $ref: '#/components/schemas/cagId'
-          minItems: 1
-          maxItems: 12
-        nidList:
-          type: array
-          items:
-            $ref: '#/components/schemas/nid'
-          minItems: 1
-          maxItems: 12
+        $ref: '#/components/schemas/PlmnInfo'            
     NpnIdentityList:
       type: array
       items:
-        $ref: '#/components/schemas/NpnIdentity'
+        $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/NpnId-Type'
     GGnbId:
         type: string
         pattern: '^[0-9]{3}[0-9]{2,3}-(22|23|24|25|26|27|28|29|30|31|32)-[0-9]{1,10}'
@@ -127,11 +105,11 @@ components:
         gnbId:
           $ref: '#/components/schemas/GnbId'
         tai:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Tai'
+          $ref: "TS28623_GenericNrm.yaml#/components/schemas/Tai"
     MappingSetIDBackhaulAddress:
       type: object
       properties:
-        setID:
+        setId:
           type: integer
         backhaulAddress:
           $ref: '#/components/schemas/BackhaulAddress'
@@ -439,7 +417,7 @@ components:
          type: integer
          minimum: 0
          maximum: 3279165
-         
+
         rimRSStartingFrequencyOffsetIdList:
           type: array
           items:
@@ -565,7 +543,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RimRSReportInfo'
-    TceMappingInfo:
+    TceIDMappingInfo:
       type: object
       properties:
         TceIPAddress:
@@ -576,10 +554,10 @@ components:
           type: integer
         PlmnTarget:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
-    TceMappingInfoList:
+    TceIDMappingInfoList:
       type: array
       items:
-        $ref: '#/components/schemas/TceMappingInfo'
+        $ref: '#/components/schemas/TceIDMappingInfo'
     ResourceType:
       type: string
       enum:
@@ -595,6 +573,201 @@ components:
             type: integer
           minValue:
             type: integer
+
+    NTNTAClist:
+      type: array
+      items:
+        $ref: '#/components/schemas/NrTac'
+    
+    Ephemeris:
+      type: object
+      oneOf:
+        - required: [ positionVelocity ]
+        - required: [ orbital ]
+      required:
+        - satelliteId
+        - epochTime
+      properties:
+        satelliteId:
+          type: string
+          pattern: '^[0-9]{5}$'
+        epochTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DateTime'
+        positionVelocity:
+          $ref: '#/components/schemas/PositionVelocity'
+        orbital:
+          $ref: '#/components/schemas/Orbital'
+
+    EphemerisInfos:
+      type: array
+      items:
+        $ref: '#/components/schemas/Ephemeris'
+
+    PositionVelocity:
+      type: object
+      properties:
+        positionX:
+          type: integer
+          minimum: 0
+          maximum: 604800
+        positionY:
+          type: integer
+          minimum: 0
+          maximum: 604800
+        positionZ:
+          type: integer
+          minimum: 0
+          maximum: 604800
+        velocityVX:
+          type: integer
+          minimum: -131072
+          maximum: 131071         
+        velocityVY:
+          type: integer
+          minimum: -131072
+          maximum: 131071           
+        velocityVZ:
+          type: integer
+          minimum: -131072
+          maximum: 131071
+
+    Orbital:
+      type: object
+      properties:
+          semiMajorAxis:
+            type: integer
+            minimum: 0
+            maximum: 8589934591 
+          eccentricity:
+            type: integer
+            minimum: -524288
+            maximum: 524287
+          periapsis:
+            type: integer
+            minimum: 0
+            maximum: 16777215
+          longitude:
+            type: integer
+            minimum: 0
+            maximum: 2097151
+          inclination:
+            type: integer
+            minimum: -524288
+            maximum: 524287
+          meanAnomaly:
+            type: integer
+            minimum: 0
+            maximum: 16777215
+
+    MappedCellIdInfo:
+      type: object
+      properties:
+        ntnGeoArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/GeoArea'
+        mappedCellId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Ncgi'
+    MappedCellIdInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/MappedCellIdInfo'
+    QceIdMappingInfo:
+      type: object
+      properties:
+        qoECollectionEntityAddress:
+          oneOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv4Addr'
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Ipv6Addr'
+        qoECollectionEntityIdentity:
+          type: string
+        pLMNTarget:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/PlmnId'
+    QceIdMappingInfoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/QceIdMappingInfo'       
+    MdtUserConsentReqList:
+      type: array
+      items:
+        type: string
+        enum:
+          - M1
+          - M2
+          - M3
+          - M4
+          - M5
+          - M6
+          - M7
+          - M8
+          - M9
+          - MDT_UE_LOCATION
+
+#-------- Definition of types for name-containments ------
+    SubNetwork-ncO-NrNrm:
+      type: object
+      properties:
+        NRFrequency:
+          $ref: '#/components/schemas/NRFrequency-Multiple'
+        ExternalGnbCuCpFunction:
+          $ref: '#/components/schemas/ExternalGnbCuCpFunction-Multiple'
+        ExternalGnbCuUpFunction:
+          $ref: '#/components/schemas/ExternalGnbCuUpFunction-Multiple'
+        ExternalGnbDuFunction:
+          $ref: '#/components/schemas/ExternalGnbDuFunction-Multiple'
+        ExternalENBFunction:
+          $ref: '#/components/schemas/ExternalENBFunction-Multiple'
+        EUtranFrequency:
+          $ref: '#/components/schemas/EUtranFrequency-Multiple'
+        DESManagementFunction:
+          $ref: '#/components/schemas/DESManagementFunction-Single'
+        DRACHOptimizationFunction:
+          $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+        DMROFunction:
+          $ref: '#/components/schemas/DMROFunction-Single'
+        DLBOFunction:
+          $ref: '#/components/schemas/DLBOFunction-Single'
+        DPCIConfigurationFunction:
+          $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
+        CPCIConfigurationFunction:
+          $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
+        CESManagementFunction:
+          $ref: '#/components/schemas/CESManagementFunction-Single'
+        Configurable5QISet:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+        RimRSGlobal:
+          $ref: '#/components/schemas/RimRSGlobal-Single'
+        Dynamic5QISet:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
+        CCOFunction:
+          $ref: '#/components/schemas/CCOFunction-Single'
+
+    ManagedElement-ncO-NrNrm:
+      type: object
+      properties:
+        GnbDuFunction:
+          $ref: '#/components/schemas/GnbDuFunction-Multiple'
+        GnbCuUpFunction:
+          $ref: '#/components/schemas/GnbCuUpFunction-Multiple'
+        GnbCuCpFunction:
+          $ref: '#/components/schemas/GnbCuCpFunction-Multiple'
+        DESManagementFunction:
+          $ref: '#/components/schemas/DESManagementFunction-Single'
+        DRACHOptimizationFunction:
+          $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
+        DMROFunction:
+          $ref: '#/components/schemas/DMROFunction-Single'
+        DLBOFunction:
+          $ref: '#/components/schemas/DLBOFunction-Single'
+        DPCIConfigurationFunction:
+          $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
+        CPCIConfigurationFunction:
+          $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
+        CESManagementFunction:
+          $ref: '#/components/schemas/CESManagementFunction-Single'
+        Configurable5QISet:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+        Dynamic5QISet:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
+
 #-------- Definition of abstract IOCs --------------------------------------------
 
     RrmPolicy_-Attr:
@@ -605,98 +778,7 @@ components:
         rRMPolicyMemberList:
           $ref: '#/components/schemas/RrmPolicyMemberList'
 
-
 #-------- Definition of concrete IOCs --------------------------------------------
-
-    MnS:
-      oneOf:
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-        - type: object
-          properties:
-            ManagedElement:
-              $ref: '#/components/schemas/ManagedElement-Multiple'
-
-    SubNetwork-Single:
-      allOf:
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
-        - type: object
-          properties:
-            attributes:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-Attr'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/SubNetwork-ncO'
-        - type: object
-          properties:
-            SubNetwork:
-              $ref: '#/components/schemas/SubNetwork-Multiple'
-            ManagedElement:
-              $ref: '#/components/schemas/ManagedElement-Multiple'
-            NRFrequency:
-              $ref: '#/components/schemas/NRFrequency-Multiple'
-            ExternalGnbCuCpFunction:
-              $ref: '#/components/schemas/ExternalGnbCuCpFunction-Multiple'
-            ExternalENBFunction:
-              $ref: '#/components/schemas/ExternalENBFunction-Multiple'
-            EUtranFrequency:
-              $ref: '#/components/schemas/EUtranFrequency-Multiple'
-            DESManagementFunction:
-              $ref: '#/components/schemas/DESManagementFunction-Single'
-            DRACHOptimizationFunction:
-              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
-            DMROFunction:
-              $ref: '#/components/schemas/DMROFunction-Single'
-            DLBOFunction:
-              $ref: '#/components/schemas/DLBOFunction-Single'
-            DPCIConfigurationFunction:
-              $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
-            CPCIConfigurationFunction:
-              $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
-            CESManagementFunction:
-              $ref: '#/components/schemas/CESManagementFunction-Single'
-            Configurable5QISet:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
-            RimRSGlobal:
-              $ref: '#/components/schemas/RimRSGlobal-Single'
-            Dynamic5QISet:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
-            CCOFunction:
-              $ref: '#/components/schemas/CCOFunction-Single'
-    ManagedElement-Single:
-      allOf:
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
-        - type: object
-          properties:
-            attributes:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-Attr'
-        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedElement-ncO'
-        - type: object
-          properties:
-            GnbDuFunction:
-              $ref: '#/components/schemas/GnbDuFunction-Multiple'
-            GnbCuUpFunction:
-              $ref: '#/components/schemas/GnbCuUpFunction-Multiple'
-            GnbCuCpFunction:
-              $ref: '#/components/schemas/GnbCuCpFunction-Multiple'
-            DESManagementFunction:
-              $ref: '#/components/schemas/DESManagementFunction-Single'
-            DRACHOptimizationFunction:
-              $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
-            DMROFunction:
-              $ref: '#/components/schemas/DMROFunction-Single'
-            DLBOFunction:
-              $ref: '#/components/schemas/DLBOFunction-Single'
-            DPCIConfigurationFunction:
-              $ref: '#/components/schemas/DPCIConfigurationFunction-Single'
-            CPCIConfigurationFunction:
-              $ref: '#/components/schemas/CPCIConfigurationFunction-Single'
-            CESManagementFunction:
-              $ref: '#/components/schemas/CESManagementFunction-Single'
-            Configurable5QISet:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
-            Dynamic5QISet:
-              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
 
     GnbDuFunction-Single:
       allOf:
@@ -718,6 +800,10 @@ components:
                       $ref: '#/components/schemas/GnbIdLength'
                     rimRSReportConf:
                       $ref: '#/components/schemas/RimRSReportConf'
+                    configurable5QISetRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    dynamic5QISetRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -737,6 +823,12 @@ components:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
             OperatorDU:
               $ref: '#/components/schemas/OperatorDu-Multiple'   
+            BWPSet:
+              $ref: '#/components/schemas/BWPSet-Multiple'   
+            Configurable5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+            Dynamic5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
 
     OperatorDu-Single:
       allOf:
@@ -753,9 +845,14 @@ components:
               $ref: '#/components/schemas/EP_F1C-Single'
             EP_F1U:
               $ref: '#/components/schemas/EP_F1U-Multiple'
+            configurable5QISetRef:
+              description: This attribute is condition optional. The condition is NG-RAN Multi-Operator Core Network (NG-RAN MOCN) network sharing with operator specific 5QI is supported.
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+            dynamic5QISetRef:
+              description: This attribute is condition optional. The condition is NG-RAN Multi-Operator Core Network (NG-RAN MOCN) network sharing with operator specific 5QI is supported.            
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
             NrOperatorCellDu:
               $ref: '#/components/schemas/NrOperatorCellDu-Multiple'              
-
     GnbCuUpFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -795,6 +892,11 @@ components:
               $ref: '#/components/schemas/EP_X2U-Multiple'
             EP_S1U:
               $ref: '#/components/schemas/EP_S1U-Multiple'
+            Configurable5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+            Dynamic5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
+
     GnbCuCpFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -821,22 +923,34 @@ components:
                       $ref: '#/components/schemas/GGnbIdList'
                     xnAllowList:
                       $ref: '#/components/schemas/GGnbIdList'
-                    x2HOBlackList:
+                    x2HOBlockList:
                       $ref: '#/components/schemas/GEnbIdList'
                     xnHOBlackList:
                       $ref: '#/components/schemas/GGnbIdList'
                     mappingSetIDBackhaulAddress:
-                      $ref: '#/components/schemas/MappingSetIDBackhaulAddress'
-                    tceMappingInfoList:
-                      $ref: '#/components/schemas/TceMappingInfoList'
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/MappingSetIDBackhaulAddress'
+                    tceIDMappingInfoList:
+                      $ref: '#/components/schemas/TceIDMappingInfoList'
                     configurable5QISetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     dynamic5QISetRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    ephemerisInfoSetRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     dCHOControl:
                       type: boolean
                     dDAPSHOControl:
                       type: boolean
+                    mappedCellIdInfoList:
+                      $ref: '#/components/schemas/MappedCellIdInfoList'
+                    qceIdMappingInfoList:
+                      $ref: '#/components/schemas/QceIdMappingInfoList'
+                    mdtUserConsentReqList:
+                      $ref: '#/components/schemas/MdtUserConsentReqList'
+                    nRECMappingRuleRef:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/ManagedFunction-ncO'
         - type: object
           properties:
@@ -862,10 +976,15 @@ components:
               $ref: '#/components/schemas/DMROFunction-Single'
             DLBOFunction:
               $ref: '#/components/schemas/DLBOFunction-Single'
+            Configurable5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Configurable5QISet-Multiple'
+            Dynamic5QISet:
+              $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28541_5GcNrm.yaml#/components/schemas/Dynamic5QISet-Multiple'
             NRNetwork:
               $ref: '#/components/schemas/NRNetwork-Single'
             EUtranNetwork:  
               $ref: '#/components/schemas/EUtraNetwork-Single'
+
     NrCellCu-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -963,9 +1082,13 @@ components:
                       items:
                         $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     bwpRef:
+                      description: "Condition is BWP sets are not supported"                      
                       type: array
                       items:
                         $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+                    bwpSetRef:
+                      description: "Condition is BWP sets are supported"
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'                    
                     rimRSMonitoringStartTime:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DateTime'
                     rimRSMonitoringStopTime:
@@ -996,6 +1119,18 @@ components:
             DRACHOptimizationFunction:
               $ref: '#/components/schemas/DRACHOptimizationFunction-Single'
 
+    BWPSet-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            bWPlist:
+              type: array
+              items:
+                 $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
+              maxItems: 12      
+
+
     NrOperatorCellDu-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1022,7 +1157,7 @@ components:
                     type: integer
                     minimum: 0
                     maximum: 3279165
-                  ssbSubCarrierSpacing:
+                  sSBSubCarrierSpacing:
                     $ref: '#/components/schemas/SsbSubCarrierSpacing'
                   multiFrequencyBandListNR:
                     type: integer
@@ -1188,7 +1323,7 @@ components:
                       items:
                         $ref: '#/components/schemas/QOffsetRange'
                       minItems: 6
-                      maxItems: 6
+                      maxItems: 6  
                     adjacentNRCellRef:
                       $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/Dn'
                     nRFreqRelationRef:
@@ -1229,15 +1364,19 @@ components:
                       items:
                         $ref: '#/components/schemas/QOffsetRange'
                       minItems: 6
-                      maxItems: 6
+                      maxItems: 6 
                     blockListEntry:
                       type: array
                       items:
                         type: integer
                         minimum: 0
-                        maximum: 1007
+                        maximum: 503
                     blockListEntryIdleMode:
-                      type: integer
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 0
+                        maximum: 1007
                     cellReselectionPriority:
                       type: integer
                     cellReselectionSubPriority:
@@ -1296,15 +1435,19 @@ components:
                       items:
                         $ref: '#/components/schemas/QOffsetRange'
                       minItems: 6
-                      maxItems: 6
-                    blackListEntry:
+                      maxItems: 6  
+                    blockListEntry:
+                      type: array
+                      items:
+                        type: integer
+                        minimum: 0
+                        maximum: 503
+                    blockListEntryIdleMode:
                       type: array
                       items:
                         type: integer
                         minimum: 0
                         maximum: 1007
-                    blackListEntryIdleMode:
-                      type: integer
                     cellReselectionPriority:
                       type: integer
                     cellReselectionSubPriority:
@@ -1397,7 +1540,10 @@ components:
                       enum:
                          - IS_NOT_ENERGY_SAVING
                          - IS_ENERGY_SAVING
-
+                    mLModelRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    aIMLInferenceFunctionRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'                        
     DRACHOptimizationFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1431,6 +1577,10 @@ components:
                       $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
                     tstoreUEcntxt:
                       $ref: '#/components/schemas/TstoreUEcntxt'
+                    mLModelRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    aIMLInferenceFunctionRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'                       
     DLBOFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1445,7 +1595,10 @@ components:
                           $ref: '#/components/schemas/MaximumDeviationHoTrigger'
                     minimumTimeBetweenHoTriggerChange:
                           $ref: '#/components/schemas/MinimumTimeBetweenHoTriggerChange'
-
+                    mLModelRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'
+                    aIMLInferenceFunctionRefList:
+                      $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_ComDefs.yaml#/components/schemas/DnList'                        
     DPCIConfigurationFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1569,6 +1722,10 @@ components:
               $ref: '#/components/schemas/NRFrequency-Multiple'
             ExternalGnbCuCpFunction:
               $ref: '#/components/schemas/ExternalGnbCuCpFunction-Multiple'
+            ExternalGnbCuUpFunction:
+              $ref: '#/components/schemas/ExternalGnbCuUpFunction-Multiple'
+            ExternalGnbDuFunction:
+              $ref: '#/components/schemas/ExternalGnbDuFunction-Multiple'                            
     ExternalGnbCuUpFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1591,7 +1748,7 @@ components:
             EP_F1U:
               $ref: '#/components/schemas/EP_F1U-Multiple'
             EP_XnU:
-              $ref: '#/components/schemas/EP_XnU-Multiple'   
+              $ref: '#/components/schemas/EP_XnU-Multiple'
     ExternalGnbCuCpFunction-Single:
       allOf:
         - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
@@ -1876,17 +2033,52 @@ components:
       allOf:
         - $ref: '#/components/schemas/CCOParameters-Attr'
         - type: object
+    
+    NTNFunction-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              type: object
+              properties:
+                nTNpLMNInfoList:
+                  $ref: '#/components/schemas/PlmnInfoList'
+                nTNTAClist:
+                  $ref: '#/components/schemas/NrTacList'
+            ephemerisInfoSet:
+              $ref: '#/components/schemas/EphemerisInfoSet-Multiple'
+
+    EphemerisInfoSet-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    ephemerisInfos:
+                      $ref: '#/components/schemas/EphemerisInfos'
+
+    NRECMappingRule-Single:
+      allOf:
+        - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS28623_GenericNrm.yaml#/components/schemas/Top'
+        - type: object
+          properties:
+            attributes:
+              allOf:
+                - type: object
+                  properties:
+                    ecMRInputMinimumValue:
+                      type: integer
+                    ecMRInputMaximumValue:
+                      type: integer
+                    ecTimeInterval:
+                      type: integer
 
 #-------- Definition of JSON arrays for name-contained IOCs ----------------------
 
-    SubNetwork-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/SubNetwork-Single'
-    ManagedElement-Multiple:
-      type: array
-      items:
-        $ref: '#/components/schemas/ManagedElement-Single'
     GnbDuFunction-Multiple:
       type: array
       items:
@@ -1903,6 +2095,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/GnbCuCpFunction-Single'
+    BWPSet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/BWPSet-Single'
 
     NrCellDu-Multiple:
       type: array
@@ -2035,16 +2231,19 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EP_S1U-Single'
+    EphemerisInfoSet-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/EphemerisInfoSet-Single'
+    NRECMappingRule-Multiple:
+      type: array
+      items:
+        $ref: '#/components/schemas/NRECMappingRule-Single'
 
 #-------- Definitions in TS 28.541 for TS 28.532 ---------------------------------
 
     resources-nrNrm:
       oneOf:
-        - $ref: '#/components/schemas/MnS'
-        
-        - $ref: '#/components/schemas/SubNetwork-Single'
-        - $ref: '#/components/schemas/ManagedElement-Single'
-
         - $ref: '#/components/schemas/GnbDuFunction-Single'
         - $ref: '#/components/schemas/GnbCuUpFunction-Single'
         - $ref: '#/components/schemas/GnbCuCpFunction-Single'
@@ -2057,12 +2256,12 @@ components:
         - $ref: '#/components/schemas/NRNetwork-Single'
         - $ref: '#/components/schemas/EUtraNetwork-Single'
 
-
         - $ref: '#/components/schemas/NRFrequency-Single'
         - $ref: '#/components/schemas/EUtranFrequency-Single'
 
         - $ref: '#/components/schemas/NrSectorCarrier-Single'
         - $ref: '#/components/schemas/Bwp-Single'
+        - $ref: '#/components/schemas/BWPSet-Single'        
         - $ref: '#/components/schemas/CommonBeamformingFunction-Single'
         - $ref: '#/components/schemas/Beam-Single'
         - $ref: '#/components/schemas/RRMPolicyRatio-Single'
@@ -2105,3 +2304,7 @@ components:
         - $ref: '#/components/schemas/CCOWeakCoverageParameters-Single'
         - $ref: '#/components/schemas/CCOPilotPollutionParameters-Single'
         - $ref: '#/components/schemas/CCOOvershootCoverageParameters-Single'
+        - $ref: '#/components/schemas/NTNFunction-Single'
+        - $ref: '#/components/schemas/EphemerisInfoSet-Single'
+        - $ref: '#/components/schemas/NRECMappingRule-Single'
+

@@ -2,14 +2,14 @@ openapi: 3.0.0
 
 info:
   title: 'MBS User Service Announcement'
-  version: 1.4.1
+  version: 2.1.0
   description: |
     MBS User Service Announcement Element units.
     © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 26.517 V17.7.0; 5G Multicast-Broadcast User Services; Protocols and Formats
+  description: 3GPP TS 26.517 V18.3.0; 5G Multicast-Broadcast User Services; Protocols and Formats
   url: http://www.3gpp.org/ftp/Specs/archive/26_series/26.517/
 paths:
   /user-service-descriptions:
@@ -21,7 +21,7 @@ paths:
         - in: query
           name: service-class
           schema:
-            type: string
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
           required: true
           description: 'Filter for User Service Descriptions tagged with the supplied service class term identifier expressed as a fully-qualified URI string from a controlled vocabulary'
       responses:
@@ -223,6 +223,8 @@ components:
           items:
             $ref: '#/components/schemas/NrParameterSet'
           minItems: 1
+        nrRedCapUEInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/NrRedCapUeInfo'
 
     NrParameterSet:
       type: object
@@ -243,7 +245,8 @@ components:
         objectDistributionBaseLocator:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         objectRepairBaseLocator:
-          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/AbsoluteUrl'
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'
+
     BackOffParameters:
       type: object
       properties:
@@ -267,11 +270,28 @@ components:
            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
          stop:
            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+         repetitionRule:
+           $ref: '#/components/schemas/RepetitionRule'
       required:
         - id
         - version
-        - start
-        - stop
+      oneOf:
+        - required: [start, stop]
+        - required: [repetitionRule]
+
+    RepetitionRule:
+      type: object
+      properties:
+        startTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+        duration:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        repetitionInterval:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+      required:
+        - startTime
+        - duration
+        - repetitionInterval
 
     SecurityDescription:
       type: object
@@ -279,7 +299,7 @@ components:
         mBSSFAddresses:
           type: array
           items:
-            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26512_CommonData.yaml#/components/schemas/AbsoluteUrl'
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS26510_CommonData.yaml#/components/schemas/AbsoluteUrl'
           minItems: 1
         mBSServiceKeyInfo:
           type: object

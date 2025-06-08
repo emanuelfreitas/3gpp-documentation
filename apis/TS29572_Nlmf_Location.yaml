@@ -1,15 +1,15 @@
 openapi: 3.0.0
 
 info:
-  version: '1.2.6'
+  version: '1.3.2'
   title: 'LMF Location'
   description: |
     LMF Location Service.  
-    © 2024, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    © 2025, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
     All rights reserved.
 
 externalDocs:
-  description: 3GPP TS 29.572 V17.11.0; 5G System; Location Management Services; Stage 3
+  description: 3GPP TS 29.572 V18.8.0; 5G System; Location Management Services; Stage 3
   url: 'https://www.3gpp.org/ftp/Specs/archive/29_series/29.572/'
 
 servers:
@@ -31,6 +31,13 @@ paths:
       operationId: DetermineLocation
       tags:
         - Determine Location
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:determine-location:invoke
       requestBody:
         content:
           application/json:
@@ -73,7 +80,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LocationData'
+                $ref: '#/components/schemas/LocationDataExt'
         '204':
           description: Expected response for MO-LR requesting location assistance data.
         '307':
@@ -98,6 +105,10 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '501':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         '504':
@@ -113,7 +124,7 @@ paths:
                 content:
                   application/json:
                     schema:
-                      $ref: '#/components/schemas/EventNotifyData'
+                      $ref: '#/components/schemas/EventNotifyDataExt'
               responses:
                 '204':
                   description: Expected response to a valid notification
@@ -139,18 +150,180 @@ paths:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
                 '500':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
                 '503':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
                 '504':
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/504'
                 default:
                   $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+  /up-subscriptions:
+    post:
+      summary: subscribe about status of a secure LCS-UP connection for a target UE
+      operationId: UpSubscriptions
+      tags:
+        - UP Subscribe
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:up-subscription:invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpSubscription'
+        required: true
+      responses:
+        '201':
+          description: Expected response to successful UP Subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpSubscription'
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+        '504':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/504'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+      callbacks:
+        UPNotify:
+          '{$request.body#/upNotifyCallBackUri}':
+            post:
+              requestBody:
+                description: UP Connection Status Notification
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/UpNotifyData'
+              responses:
+                '204':
+                  description: Expected response to a valid notification
+                '307':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+                '308':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+                '400':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+                '401':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+                '403':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+                '404':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+                '411':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+                '413':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+                '415':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+                '429':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+                '500':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+                '502':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+                '503':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+                '504':
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/504'
+                default:
+                  $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+
+  /up-subscriptions/{subscriptionId}:
+    delete:
+      summary: Deletes a subscription
+      operationId: DeleteSubscription
+      tags:
+        - UP Unsubscribe
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:up-subscriptions:invoke
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          description: Unique subscription Id
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Expected response to a successful subscription removal
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '501':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/501'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+
+
   /cancel-location:
     post:
       summary: request cancellation of periodic or triggered location
       operationId: CancelLocation
       tags:
         - Cancel Location
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:cancel-location:invoke
       requestBody:
         content:
           application/json:
@@ -182,6 +355,8 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         '504':
@@ -194,6 +369,13 @@ paths:
       operationId: LocationContextTransfer
       tags:
         - Location Context Transfer
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:location-context-transfer:invoke
       requestBody:
         content:
           application/json:
@@ -225,6 +407,118 @@ paths:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
         '500':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+        '504':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/504'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+  /measure-location:
+    post:
+      summary: PRU location measurement
+      operationId: LocationMeasure
+      tags:
+        - Location Measure
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:measure-location:invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocMeasurementReq'
+        required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocMeasurementResp'
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
+        '504':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/504'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/default'
+
+  /configure-up:
+    post:
+      summary: set up, modify or terminate a secure LCS-UP connection for a target UE
+      operationId: UpConfig
+      tags:
+        - UP Configure
+      security:
+        - {}
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+        - oAuth2ClientCredentials:
+          - nlmf-loc
+          - nlmf-loc:configure-up:invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpConfig'
+        required: true
+      responses:
+        '204':
+          description: >
+            Expected response to successful set up, modify or terminate LCS-UP connection.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/500'
+        '502':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/502'
         '503':
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/responses/503'
         '504':
@@ -241,6 +535,13 @@ components:
           tokenUrl: '{nrfApiRoot}/oauth2/token'
           scopes:
             nlmf-loc: Access to the Nlmf_Location API
+            nlmf-loc:determine-location:invoke: Access to invoke Determine Location
+            nlmf-loc:cancel-location:invoke: Access to invoke Cancel Location
+            nlmf-loc:location-context-transfer:invoke: Access to invoke Location Context
+            nlmf-loc:measure-location:invoke: Access to invoke Location Measurement
+            nlmf-loc:up-subscriptions:invoke: Access to invoke UP Subscription
+            nlmf-loc:configure-up:invoke: Access to invoke UP Config
+
   schemas:
 #
 # COMPLEX TYPES
@@ -270,6 +571,16 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Pei'
         gpsi:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Gpsi'
+        requestedRangingSlResult:
+          type: array
+          items:
+            $ref: '#/components/schemas/RangingSlResult'
+          minItems: 1
+        relatedUes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedUe'
+          minItems: 1
         ecgi:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
         ecgiOnSecondNode:
@@ -290,10 +601,14 @@ components:
           $ref: '#/components/schemas/LdrType'
         hgmlcCallBackURI:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+        lirGmlcCallBackUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         vgmlcAddress:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         ldrReference:
           $ref: '#/components/schemas/LdrReference'
+        lirReference:
+          $ref: '#/components/schemas/LirReference'
         periodicEventInfo:
           $ref: '#/components/schemas/PeriodicEventInfo'
         areaEventInfo:
@@ -334,8 +649,54 @@ components:
         reliableLocReq:
           type: boolean
           default: false
+        evtRptAllowedAreas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportingArea'
+          minItems: 1
+          maxItems: 250
+        ueUnawareInd:
+          type: boolean
+          enum:
+            - true
+        intermediateLocationInd:
+          type: boolean
+          default: false
+        maxRespTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DurationSec'
+        lpHapType:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29518_Namf_Location.yaml#/components/schemas/LpHapType'
+        ueUpPosCaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/UeUpPositioningCapabilities'
+          minItems: 1
+        reportingInd:
+          allOf:
+            - $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/ReportingInd'
+          default: INSIDE_REPORTING
+        mbsrInfo:
+          $ref: '#/components/schemas/MbsrInfo'
         integrityRequirements:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/IntegrityRequirements'
+        upLocRepAddrAf:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_MonitoringEvent.yaml#/components/schemas/UpLocRepAddrAfRm'
+        upCumEvtRptCriteria:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/UpCumEvtRptCriteria'
+        mappedQoSEps:
+          $ref: '#/components/schemas/MappedLocationQoSEps'
+        additionalUeInfo:
+          $ref: '#/components/schemas/AdditionalUeInfo'
+        coordinateID:
+          type: integer
+        rangingSlCapability:
+          $ref: '#/components/schemas/RangingSlCapability'
+
+    LocationDataExt:
+      description: Extended Location Data for UEs
+      allOf:
+        - $ref: '#/components/schemas/LocationData'
+        - $ref: '#/components/schemas/AddLocationDatas'
 
     LocationData:
       description: Information within Determine Location Response.
@@ -371,6 +732,10 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
         ncgi:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ncgi'
+        remoteUeInd:
+          type: boolean
+          enum:
+            - true
         altitude:
           $ref: '#/components/schemas/Altitude'
         barometricPressure:
@@ -385,12 +750,32 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
         achievedQos:
           $ref: '#/components/schemas/MinorLocationQoS'
+        directReportInd:
+          type: boolean
+          default: false
+        indoorOutdoorInd:
+          $ref: '#/components/schemas/IndoorOutdoorInd'
         acceptedPeriodicEventInfo:
           $ref: '#/components/schemas/PeriodicEventInfo'
         haGnssMetrics:
           $ref: '#/components/schemas/HighAccuracyGnssMetrics'
+        losNlosMeasureInd:
+          $ref: '#/components/schemas/LosNlosMeasureInd'
+        relatedApplicationlayerId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ApplicationlayerId'
+        distanceDirection:
+          $ref: '#/components/schemas/RangeDirection'
+        2dRelativeLocation:
+          $ref: '#/components/schemas/2DRelativeLocation'
+        3dRelativeLocation:
+          $ref: '#/components/schemas/3DRelativeLocation'
+        relativeVelocity:
+          $ref: '#/components/schemas/VelocityEstimate'
+        rangingSlCapability:
+          $ref: '#/components/schemas/RangingSlCapability'
         integrityResult:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/IntegrityResult'
+
 
     GeographicArea:
       description: Geographic area specified by different shape.
@@ -545,11 +930,17 @@ components:
     LocalOrigin:
       description: Indicates a Local origin in a reference system
       type: object
+      required:
+        - coordinateId
       properties:
         coordinateId:
           type: string
         point:
           $ref: '#/components/schemas/GeographicalCoordinates'
+        area:
+          $ref: '#/components/schemas/GeographicArea'
+        horizAxesOrientation:
+          $ref: '#/components/schemas/HorizAxesOrientation'
 
     RelativeCartesianLocation:
       description: Relative Cartesian Location
@@ -573,7 +964,8 @@ components:
         - $ref: '#/components/schemas/Local3dPointUncertaintyEllipsoid'
 
     UeAreaIndication:
-      description: Indicates area (country, area in a country or international area) where UE is located
+      description: >
+        Indicates area (country, area in a country or international area) where UE is located
       type: object
       oneOf:
         - required:
@@ -585,7 +977,8 @@ components:
           description: Indicates country or area in a country where UE is located
           type: string
         internationalAreaInd:
-          description: Indicates international area indication if UE is located in international area
+          description: >
+            Indicates international area indication if UE is located in international area
           type: boolean
           default: false
 
@@ -731,7 +1124,8 @@ components:
           maximum: 31
 
     GnssPositioningMethodAndUsage:
-      description: Indicates the usage of a Global Navigation Satellite System (GNSS) positioning method.
+      description: >
+        Indicates the usage of a Global Navigation Satellite System (GNSS) positioning method.
       type: object
       required:
         - mode
@@ -825,6 +1219,7 @@ components:
         - $ref: '#/components/schemas/HorizontalWithVerticalVelocity'
         - $ref: '#/components/schemas/HorizontalVelocityWithUncertainty'
         - $ref: '#/components/schemas/HorizontalWithVerticalVelocityAndUncertainty'
+        - $ref: '#/components/schemas/RelativeVelocityWithUncertainty'
 
     HorizontalVelocity:
       description: Horizontal velocity.
@@ -998,6 +1393,8 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         ldrReference:
           $ref: '#/components/schemas/LdrReference'
+        lcsCorrelationID:
+          $ref: '#/components/schemas/CorrelationID'
         supportedFeatures:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
 
@@ -1057,6 +1454,12 @@ components:
           $ref: '#/components/schemas/UePositioningCapabilities'
         scheduledLocTime:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+        indoorOutdoorInd:
+          $ref: '#/components/schemas/IndoorOutdoorInd'
+        losNlosMeasureInd:
+          $ref: '#/components/schemas/LosNlosMeasureInd'
+        upCumEvtRptCriteria:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/UpCumEvtRptCriteria'
 
     EventReportMessage:
       description: Indicates an event report message.
@@ -1096,6 +1499,12 @@ components:
         timestampOfVelocityEstimate:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
 
+    EventNotifyDataExt:
+      description: Extended Event Notify Data for UEs
+      allOf:
+        - $ref: '#/components/schemas/EventNotifyData'
+        - $ref: '#/components/schemas/AddEventNotifyDatas'
+
     EventNotifyData:
       description: Information within Event Notify Request.
       type: object
@@ -1113,6 +1522,8 @@ components:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
         ldrReference:
           $ref: '#/components/schemas/LdrReference'
+        lirReference:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29572_Nlmf_Location.yaml#/components/schemas/LirReference'
         locationEstimate:
           $ref: '#/components/schemas/GeographicArea'
         ageOfLocationEstimate:
@@ -1145,8 +1556,24 @@ components:
           $ref: '#/components/schemas/MinorLocationQoS'
         supportedFeatures:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+        indoorOutdoorInd:
+          $ref: '#/components/schemas/IndoorOutdoorInd'
         haGnssMetrics:
           $ref: '#/components/schemas/HighAccuracyGnssMetrics'
+        losNlosMeasureInd:
+          $ref: '#/components/schemas/LosNlosMeasureInd'
+        upLocRepStatAf:
+          type: integer
+        relatedApplicationlayerId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ApplicationlayerId'
+        distanceDirection:
+          $ref: '#/components/schemas/RangeDirection'
+        2dRelativeLocation:
+          $ref: '#/components/schemas/2DRelativeLocation'
+        3dRelativeLocation:
+          $ref: '#/components/schemas/3DRelativeLocation'
+        relativeVelocity:
+          $ref: '#/components/schemas/VelocityEstimate'
         integrityResult:
           $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29515_Ngmlc_Location.yaml#/components/schemas/IntegrityResult'
 
@@ -1171,6 +1598,55 @@ components:
         vAccuracy:
           $ref: '#/components/schemas/Accuracy'
 
+    MbsrInfo:
+      description: MBSR Information
+      type: object
+      properties:
+        ncgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ncgi'
+        ecgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
+
+
+    LocMeasurementReq:
+      description: Location Measurement Request.
+      type: object
+      properties:
+        ncgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ncgi'
+        ecgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
+        preCalcuLocEstimate:
+          $ref: '#/components/schemas/GeographicArea'
+        timestampOfPreCalcuLocEstimate:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTime'
+        timeWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeWindow'
+          minItems: 1
+        timeWindowsNrppa:
+          $ref: '#/components/schemas/TimeWindowsNrppa'
+
+    LocMeasurementResp:
+      description: Location Measurement Response.
+      type: object
+      required:
+        - locMeasurements
+      properties:
+        locMeasurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocMeasurements'
+          minItems: 1
+
+    LocMeasurements:
+      description: PRU Location Measurements.
+      type: object
+      properties:
+        locInfo:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Bytes'
+
     HighAccuracyGnssMetrics:
       description: High Accuracy GNSS Positioning Metrics.
       type: object
@@ -1193,6 +1669,205 @@ components:
           maximum: 99
         fixType:
           $ref: '#/components/schemas/FixType'
+
+    UpNotifyData:
+      description: UP Subscription
+      type: object
+      required:
+        - notifCorrelationId
+        - upConnectionStatus
+      properties:
+        notifCorrelationId:
+          $ref: '#/components/schemas/CorrelationID'
+        upConnectionStatus:
+          $ref: '#/components/schemas/UpConnectionStatus'
+        targetLMFId:
+          $ref: '#/components/schemas/LMFIdentification'
+
+    UpSubscription:
+      description: UP Subscription
+      type: object
+      required:
+        - upNotifyCallBackUri
+        - notifCorrelationId
+        - supi
+      properties:
+        upNotifyCallBackUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+        notifCorrelationId:
+          $ref: '#/components/schemas/CorrelationID'
+        supi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
+        gpsi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Gpsi'
+
+    RelatedUe:
+      description: Related UE Information
+      type: object
+      required:
+        - applicationlayerId
+        - relatedUeType
+      properties:
+        applicationlayerId:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/ApplicationlayerId'
+        relatedUeType:
+          $ref: '#/components/schemas/RelatedUeType'
+
+    UpConfig:
+      description: UP Config
+      type: object
+      required:
+        - upNotifyCallBackUri
+        - notifCorrelationId
+      anyOf:
+        - required: [supi]
+        - required: [gpsi]
+      properties:
+        upNotifyCallBackUri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uri'
+        notifCorrelationId:
+          $ref: '#/components/schemas/CorrelationID'
+        supi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Supi'
+        gpsi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Gpsi'
+        amfReallocationInd:
+          type: boolean
+          default: false
+        lcsUpConnectionInd:
+          $ref: '#/components/schemas/LcsUpConnectionInd'
+        targetLMFId:
+          $ref: '#/components/schemas/LMFIdentification'
+
+    RangeDirection:
+      description: Represents a distance and direction from a point A to a point B.
+      type: object
+      properties:
+        distance:
+          type: number
+        azimuthDirection:
+          $ref: '#/components/schemas/Angle'
+        elevationDirection:
+          $ref: '#/components/schemas/Angle'
+
+    2DRelativeLocation:
+      description: Represents a relative 2D location with uncertainty ellipse.
+      type: object
+      properties:
+        semiMinor:
+          $ref: '#/components/schemas/Uncertainty'
+        semiMajor:
+          $ref: '#/components/schemas/Uncertainty'
+        orientationAngle:
+          $ref: '#/components/schemas/Angle'
+
+    3DRelativeLocation:
+      description: Represents a relative 3D location with uncertainty ellipsoid.
+      type: object
+      properties:
+        semiMinor:
+          $ref: '#/components/schemas/Uncertainty'
+        semiMajor:
+          $ref: '#/components/schemas/Uncertainty'
+        verticalUncertainty:
+          $ref: '#/components/schemas/Uncertainty'
+        orientationAngle:
+          $ref: '#/components/schemas/Angle'
+
+    AddLocationDatas:
+      description: Additional Location Data.
+      type: object
+      properties:
+        addLocationDatas:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationData'
+          minItems: 1
+
+    AddEventNotifyDatas:
+      description: Additional Event Notify Data.
+      type: object
+      properties:
+        addEventNotifyDatas:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventNotifyData'
+          minItems: 1
+
+    MappedLocationQoSEps:
+      description: Mapped Location QoS for EPS.
+      type: object
+      required:
+        - hAccuracy
+      properties:
+        hAccuracy:
+          $ref: '#/components/schemas/Accuracy'
+        vAccuracy:
+          $ref: '#/components/schemas/Accuracy'
+
+    AdditionalUeInfo:
+      description: MBSR UE Information
+      type: object
+      properties:
+        ncgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ncgi'
+        ecgi:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Ecgi'
+
+
+    TimeWindowsNrppa:
+      description: Time windows when network assisted positioning is used.
+      type: object
+      properties:
+        measurementList:
+          $ref: '#/components/schemas/TimeWindowInfoMeasurementList'
+        srsList:
+          $ref: '#/components/schemas/TimeWindowInfoSrsList'
+      anyOf:
+        - required: [measurementList]
+        - required: [srsList]
+
+    RelativeVelocityWithUncertainty:
+      description: Relative velocity with radial velocity and transverse velocity.
+      type: object
+      properties:
+        rVelocity:
+          $ref: '#/components/schemas/RadialVelocity'
+        aTransverseVelocity:
+          $ref: '#/components/schemas/AngularVelocity'
+        eTransverseVelocity:
+          $ref: '#/components/schemas/AngularVelocity'
+
+    RadialVelocity:
+      description: Rate of change of a range.
+      type: object
+      required:
+        - unitsRadialVelocity
+        - radialVelocity
+        - rVelocityUncertainty
+      properties:
+        unitsRadialVelocity:
+          $ref: '#/components/schemas/UnitsLinearVelocity'
+        radialVelocity:
+          $ref: '#/components/schemas/RadialVelocityValue'
+        rVelocityUncertainty:
+          $ref: '#/components/schemas/RadialVelocityUncertainty'
+
+
+    AngularVelocity:
+      description: Rate of change of an angle.
+      type: object
+      required:
+        - unitsAngularVelocity
+        - angularVelocity
+        - aVelocityUncertainty
+      properties:
+        unitsAngularVelocity:
+          $ref: '#/components/schemas/UnitsAngularVelocity'
+        angularVelocity:
+          $ref: '#/components/schemas/AngularVelocityValue'
+        aVelocityUncertainty:
+          $ref: '#/components/schemas/AngularVelocityUncertainty'
 
 #
 #
@@ -1222,6 +1897,12 @@ components:
       type: integer
       minimum: 0
       maximum: 180
+
+    HorizAxesOrientation:
+      description: Horizontal axes orientation angle clockwise from northing in 0.1 degrees.
+      type: integer
+      minimum: 0
+      maximum: 3600
 
     Confidence:
       description: Indicates value of confidence.
@@ -1293,6 +1974,12 @@ components:
       minLength: 2
       maxLength: 510
 
+    LirReference:
+      description: LIR Reference.
+      type: string
+      minLength: 2
+      maxLength: 510
+
     ReportingAmount:
       description: Number of required periodic event reports.
       type: integer
@@ -1358,9 +2045,58 @@ components:
       maximum: 8640000
 
     UePositioningCapabilities:
-      description: Positioning capabilities supported by the UE. A string encoding the "ProvideCapabilities-r9-IEs" IE as specified in clause 6.3 of 3GPP TS 37.355 (start from octet 1).
+      description: >
+        Positioning capabilities supported by the UE. A string encoding the
+        "ProvideCapabilities-r9-IEs" IE as specified in clause 6.3 of 3GPP
+        TS 37.355 (start from octet 1).
       type: string
       format: byte
+
+    TimeWindow:
+      description: Time Window when UE assisted positioning is used.
+      type: string
+      format: byte
+
+    TimeWindowInfoMeasurementList:
+      description: Contains the Time Window Information Measurement List.
+      type: string
+      format: byte
+
+    TimeWindowInfoSrsList:
+      description: Contains the Time Window Information SRS List.
+      type: string
+      format: byte
+
+    RangingSlCapability:
+      description: Ranging/Sidelink Positioning Positioning capabilities supported by the UE.
+      type: string
+      format: byte
+
+    RadialVelocityValue:
+      description: Indicates value of rate of change of a range between the device A and device B.
+      type: integer
+      minimum: -2048
+      maximum: 2047
+
+
+    AngularVelocityValue:
+      description: Indicates rate of change of an angle.
+      type: integer
+      minimum: -1024
+      maximum: 1023
+
+
+    AngularVelocityUncertainty:
+      description: Indicates uncertainty for rate of change of an angle.
+      type: integer
+      minimum: 0
+      maximum: 255
+
+    RadialVelocityUncertainty:
+      description: Indicates uncertainty for rate of change of an range.
+      type: integer
+      minimum: 0
+      maximum: 255
 
 #
 # ENUMS
@@ -1378,6 +2114,7 @@ components:
             - PLMN_OPERATOR_OM
             - PLMN_OPERATOR_ANONYMOUS_STATISTICS
             - PLMN_OPERATOR_TARGET_MS_SERVICE_SUPPORT
+            - SL_POS
         - type: string
 
     SupportedGADShapes:
@@ -1394,6 +2131,9 @@ components:
             - ELLIPSOID_ARC
             - LOCAL_2D_POINT_UNCERTAINTY_ELLIPSE
             - LOCAL_3D_POINT_UNCERTAINTY_ELLIPSOID
+            - DISTANCE_DIRECTION
+            - RELATIVE_2D_LOCATION_UNCERTAINTY_ELLIPSE
+            - RELATIVE_3D_LOCATION_UNCERTAINTY_ELLIPSOID
         - type: string
 
     ResponseTime:
@@ -1426,6 +2166,10 @@ components:
             - UL_TDOA
             - UL_AOA
             - NETWORK_SPECIFIC
+            - SL_TDOA
+            - SL_TOA
+            - SL_AoA
+            - SL_RT
         - type: string
 
     PositioningMode:
@@ -1544,6 +2288,7 @@ components:
             - NR_MEO
             - NR_GEO
             - NR_OTHER_SAT
+            - EUTRA_CONNECTED_TO_EPC
         - type: string
 
     EventClass:
@@ -1566,6 +2311,9 @@ components:
             - MOTION_EVENT
             - MAXIMUM_INTERVAL_EXPIRATION_EVENT
             - LOCATION_CANCELLATION_EVENT
+            - INTERMEDIATE_EVENT
+            - DIRECT_REPORT_EVENT
+            - CUMULATIVE_EVENT_REPORT
         - type: string
 
     TerminationCause:
@@ -1597,6 +2345,15 @@ components:
             - LOCATION_ASSISTANCE_DATA
         - type: string
 
+    IndoorOutdoorInd:
+      description: Specifies UE location indoor or outdoor.
+      anyOf:
+        - type: string
+          enum:
+            - INDOOR
+            - OUTDOOR
+        - type: string
+
     FixType:
       description: Specifies the positioning fix type.
       anyOf:
@@ -1604,4 +2361,82 @@ components:
           enum:
             - CARRIER_PHASE_FLOAT
             - CARRIER_PHASE_FIX
+        - type: string
+
+    LosNlosMeasureInd:
+      description: Specifies LOS measurement or NLOS measurement.
+      anyOf:
+        - type: string
+          enum:
+            - LOS
+            - NLOS
+        - type: string
+
+    UpConnectionStatus:
+      description: UP Connection Status.
+      anyOf:
+        - type: string
+          enum:
+            - ESTABLISHED
+            - RELEASED
+            - MOVE
+        - type: string
+
+    RangingSlResult:
+      description: Specifies the type of result requested for ranging and sidelink positioning.
+      anyOf:
+        - type: string
+          enum:
+            - ABSOLUTE_LOCATION
+            - RELATIVE_LOCATION
+            - RANGING_DIRECTION
+            - RANGING
+            - DIRECTION
+            - VELOCITY
+            - RELATIVE_VELOCITY
+        - type: string
+
+    RelatedUeType:
+      description: Specifies the different roles of UE for ranging and sidelink positioning service.
+      anyOf:
+        - type: string
+          enum:
+            - LOCATED_UE
+            - REFERENCE_UE
+        - type: string
+
+    LcsUpConnectionInd:
+      description: LCS UP Connection Indication.
+      anyOf:
+        - type: string
+          enum:
+            - TERMINATION
+            - SETUP
+        - type: string
+
+    UeUpPositioningCapabilities:
+      description: User plane positioning capabilities supported by the UE.
+      anyOf:
+        - type: string
+          enum:
+            - LCS_UPP
+            - SUPL
+        - type: string
+
+    UnitsLinearVelocity:
+      description: The the units of linear velocity.
+      anyOf:
+        - type: string
+          enum:
+            - MPERS
+            - CMPERS
+        - type: string
+
+    UnitsAngularVelocity:
+      description: The units of angular velocity.
+      anyOf:
+        - type: string
+          enum:
+            - DEGPERSEC1
+            - DEGPERSEC01
         - type: string

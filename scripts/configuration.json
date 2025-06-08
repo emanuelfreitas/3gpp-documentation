@@ -62,6 +62,11 @@
     "api": true
   },
   {
+    "id": "TS 28.623",
+    "name": "Telecommunication management; Generic Network Resource Model (NRM) Integration Reference Point (IRP); Solution Set (SS) definitions",
+    "api": true
+  },
+  {
     "id": "TS 29.122",
     "name": "T8 reference point for Northbound APIs"
   },
@@ -240,6 +245,10 @@
   {
     "id": "TS 29.575",
     "name": "5G System; Analytics Data Repository Services; Stage 3"
+  },
+  {
+    "id": "TS 29.576",
+    "name": "5G System; Messaging Framework Adaptor Services; Stage 3"
   },
   {
     "id": "TS 29.580",
