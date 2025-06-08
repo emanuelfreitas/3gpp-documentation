@@ -36,6 +36,18 @@
     "name": "Policy and Charging Control Framework for the 5G System"
   },
   {
+    "id": "TS 26.512",
+    "name": "5G Media Streaming (5GMS); Protocols"
+  },
+  {
+    "id": "TS 26.532",
+    "name": "Data Collection and Reporting; Protocols and Formats"
+  },
+  {
+    "id": "TS 28.541",
+    "name": "Management and orchestration; 5G Network Resource Model (NRM); Stage 2 and stage 3"
+  },
+  {
     "id": "TS 29.122",
     "name": "T8 reference point for Northbound APIs"
   },
@@ -63,7 +75,10 @@
     "id": "TS 29.244",
     "name": "Interface between the Control Plane and the User Plane nodes"
   },
-
+  {
+    "id": "TS 29.309",
+    "name": "Bootstrapping Server Function (GBA BSF) Services"
+  },
   {
     "id": "TS 29.501",
     "name": "Principles and Guidelines for Services Definition"
@@ -169,8 +184,16 @@
     "name": "Background Data Transfer Policy Control Service"
   },
   {
+    "id": "TS 29.555",
+    "name": "5G System; 5G Direct Discovery Name Management Services; Stage 3"
+  },
+  {
     "id": "TS 29.562",
     "name": "5G System; Home Subscriber Server (HSS) services; Stage 3"
+  },
+  {
+    "id": "TS 29.565",
+    "name": "5G System; Time Sensitive Communication and Time Synchronization Function Services; Stage 3"
   },
   {
     "id": "TS 29.571",
@@ -181,10 +204,21 @@
     "name": "5G System; Location Management Services; Stage 3"
   },
   {
+    "id": "TS 29.574",
+    "name": "5G System; Data Collection Coordination Services; Stage 3"
+  },
+  {
+    "id": "TS 29.575",
+    "name": "5G System; Analytics Data Repository Services; Stage 3"
+  },
+  {
+    "id": "TS 29.580",
+    "name": "5G System; Multicast/Broadcast Service Function services; Stage 3"
+  },
+  {
     "id": "TS 29.594",
     "name": "Spending Limit Control Service"
   },
-
   {
     "id": "TS 32.240",
     "name": "Charging architecture and principles"
