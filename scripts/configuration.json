@@ -36,6 +36,10 @@
     "name": "Policy and Charging Control Framework for the 5G System"
   },
   {
+    "id": "TS 26.510",
+    "name": "Media delivery; interactions and APIs for provisioning and media session handling"
+  },
+  {
     "id": "TS 26.512",
     "name": "5G Media Streaming (5GMS); Protocols"
   },
@@ -168,6 +172,10 @@
     "name": "5G System; Network Slice Selection Services; Stage 3"
   },
   {
+    "id": "TS 29.532",
+    "name": "5G System; 5G Multicast-Broadcast Session Management Services; Stage 3"
+  },
+  {
     "id": "TS 29.534",
     "name": "5G System; Access and Mobility Policy Authorization Service; Stage 3"
   },
@@ -186,6 +194,10 @@
   {
     "id": "TS 29.555",
     "name": "5G System; 5G Direct Discovery Name Management Services; Stage 3"
+  },
+  {
+    "id": "TS 29.558",
+    "name": "Enabling Edge Applications; Application Programming Interface (API) specification; Stage 3"
   },
   {
     "id": "TS 29.562",
@@ -214,6 +226,14 @@
   {
     "id": "TS 29.580",
     "name": "5G System; Multicast/Broadcast Service Function services; Stage 3"
+  },
+  {
+    "id": "TS 29.581",
+    "name": "5G System; Multicast/Broadcast Service Transport Services; Stage 3"
+  },
+  {
+    "id": "TS 29.591",
+    "name": "5G System; Network Exposure Function Southbound Services; Stage 3"
   },
   {
     "id": "TS 29.594",

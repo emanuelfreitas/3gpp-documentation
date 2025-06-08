@@ -1,0 +1,431 @@
+openapi: 3.0.0
+info:
+  title: EES EAS Registration_API
+  description: |
+    API for EAS Registration.  
+    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  
+    All rights reserved.
+  version: 1.0.1
+externalDocs:
+  description: >
+    3GPP TS 29.558 V17.3.0 Enabling Edge Applications;
+    Application Programming Interface (API) specification; Stage 3
+  url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.558/
+servers:
+  - url: '{apiRoot}/eees-easregistration/v1'
+    variables:
+      apiRoot:
+        default: https://example.com
+        description: apiRoot as defined in clause 7.5 of 3GPP TS 29.558.
+security:
+  - {}
+  - oAuth2ClientCredentials: []
+paths:
+  /registrations:
+    post:
+      description: Registers a new EAS at an EES.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EASRegistration'
+      responses:
+        '201':
+          description: EAS information is registered successfully at EES.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EASRegistration'
+          headers:
+            Location:
+              description: 'Contains the URI of the newly created resource'
+              required: true
+              schema:
+                type: string
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
+  /registrations/{registrationId}:
+    get:
+      description: Retrieve an Individual EAS registration resource.
+      parameters:
+        - name: registrationId
+          in: path
+          description: Registration Id.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK (The EAS registration information at the EES).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EASRegistration'
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+        '406':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/406'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
+    put:
+      description: Fully replace an existing EAS Registration resource.
+      parameters:
+        - name: registrationId
+          in: path
+          description: EAS registration Id.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EASRegistration'
+      responses:
+        '200':
+          description: OK (The EAS registration information is updated successfully).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EASRegistration'
+        '204':
+          description: >
+            No Content. The individual EAS registration information is updated successfully.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
+    patch:
+      description: Partially update an existing EAS Registration resource.
+      parameters:
+        - name: registrationId
+          in: path
+          description: EAS registration Id.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Partial update of an existing EAS registration resource.
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/EASRegistrationPatch'
+      responses:
+        '200':
+          description: >
+            The Individual EAS registration is successfully modified and the updated
+            registration information is returned in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EASRegistration'
+        '204':
+          description: No Content. The individual EAS registration information is updated successfully.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+        '411':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/411'
+        '413':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/413'
+        '415':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/415'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
+    delete:
+      description: Delete an existing EAS registration at EES.
+      parameters:
+        - name: registrationId
+          in: path
+          description: EAS registration Id.
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: The individual EAS registration is deleted.
+        '307':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/307'
+        '308':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/308'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/400'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/401'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/403'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/404'
+        '429':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/429'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/500'
+        '503':
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/503'
+        default:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/responses/default'
+
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: '{tokenUrl}'
+          scopes: {}
+
+  schemas:
+    EASRegistration:
+      type: object
+      description: Represents an EAS registration information.
+      properties:
+        easProf:
+          $ref: '#/components/schemas/EASProfile'
+        expTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DateTime'
+        suppFeat:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/SupportedFeatures'
+      required:
+        - easProf
+
+    EASProfile:
+      type: object
+      description: Represents the EAS profile information.
+      properties:
+        easId:
+          type: string
+          description: Identifier of the EAS.
+        endPt:
+          $ref: '#/components/schemas/EndPoint'
+        acIds:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          description: Identities of application clients that are served by the EAS.
+        provId:
+          type: string
+          description: Identifier of the ASP that provides the EAS.
+        type:
+          $ref: '#/components/schemas/EASCategory'
+        flexEasType:
+          type: string
+          description: The EAS type with flexible value set.
+        scheds:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CpProvisioning.yaml#/components/schemas/ScheduledCommunicationTime'
+          minItems: 1
+          description: The availability schedule of the EAS.
+        svcArea:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ServiceArea'
+        svcKpi:
+          $ref: '#/components/schemas/EASServiceKPI'
+        permLvl:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionLevel'
+          minItems: 1
+          description: level of service permissions supported by the EAS.
+        easFeats:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          description: Service specific features supported by EAS.
+        appLocs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/RouteToLocation'
+          minItems: 1
+          description: List of DNAI(s) and the N6 traffic information associated with the EAS.
+        svcContSupp:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29558_Eecs_EESRegistration.yaml#/components/schemas/ACRScenario'
+          minItems: 1
+          description: The ACR scenarios supported by the EAS for service continuity.
+        avlRep:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/DurationSec'
+        status:
+          type: string
+          description: EAS status information.
+      required:
+        - easId
+        - endPt
+      not:
+        required: [type, flexEasType]
+
+    EASRegistrationPatch:
+      type: object
+      description: Represents partial update request of individual EAS registration information.
+      properties:
+        easProf:
+          $ref: '#/components/schemas/EASProfile'
+        expTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/DateTimeRm'
+
+    EASServiceKPI:
+      type: object
+      description: Represents the EAS service KPI information.
+      properties:
+        maxReqRate:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        maxRespTime:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        avail:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        avlComp:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        avlGraComp:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        avlMem:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        avlStrg:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Uinteger'
+        connBand:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/BitRate'
+
+    EndPoint:
+      type: object
+      description: The end point information to reach EAS.
+      properties:
+        fqdn:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29571_CommonData.yaml#/components/schemas/Fqdn'
+        ipv4Addrs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Ipv4Addr'
+          minItems: 1
+          description: IPv4 addresses of the edge server.
+        ipv6Addrs:
+          type: array
+          items:
+            $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Ipv6Addr'
+          minItems: 1
+          description: IPv6 addresses of the edge server.
+        uri:
+          $ref: 'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS29122_CommonData.yaml#/components/schemas/Uri'
+      oneOf:
+        - required: [uri]
+        - required: [fqdn]
+        - required: [ipv4Addrs]
+        - required: [ipv6Addrs]
+
+    PermissionLevel:
+      anyOf:
+      - type: string
+        enum:
+          - TRIAL
+          - GOLD
+          - SILVER
+          - OTHER
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: |
+        Possible values are:
+        - TRIAL: Level of service permission supported is TRIAL.
+        - GOLD: Level of service permission supported is GOLD.
+        - SILVER: Level of service permission supported is SILVER.
+        - OTHER: Any other level of service permissions supported.
+
+    EASCategory:
+      anyOf:
+      - type: string
+        enum:
+          - UAS
+          - V2X
+          - OTHER
+      - type: string
+        description: >
+          This string provides forward-compatibility with future
+          extensions to the enumeration but is not used to encode
+          content defined in the present version of this API.
+      description: |
+        Possible values are:
+        - UAS: Category of EAS is for Uncrewed Aerial Services.
+        - V2X: Category of EAS is for V2X Services.
+        - OTHER: Any other type of EAS category.
