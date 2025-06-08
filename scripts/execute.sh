@@ -1,0 +1,1 @@
+for f in ../apis/*.yaml; do npx @redocly/cli build-docs "$f" -o "${f%.yaml}.html"; done

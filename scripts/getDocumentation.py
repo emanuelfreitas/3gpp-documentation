@@ -123,19 +123,28 @@ for doc in configuration:
         if(len(idArray) == 0): 
             os.rmdir(directory)
             continue
-        idArray.sort()
-        id = idArray[len(idArray)-1]
+        idArray.sort(reverse=True)
 
-        getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/" + str(relase).zfill(2) + "." + str(id) + "/"
-        pdfFile = re.findall(r"\/(\w+).pdf", getURLAsString(getSeriesURL))
-        zipFile = re.findall(r"\/(\w+).zip", getURLAsString(getSeriesURL))
-        if(len(pdfFile) == 0):
+        id = 0
+        pdf = None
+        zipF = None
+        for index in idArray:
+            id = index
+            getSeriesURL = "https://www.etsi.org/deliver/etsi_ts/1" +str(serie) + str(docgroup) + "00_1" +str(serie) + str(docgroup) + "99/1" +str(serie) + str(docId) +"/" + str(relase).zfill(2) + "." + str(id) + "/"
+            pdfFile = re.search(r"\/(\w+).pdf", getURLAsString(getSeriesURL))
+            zipFile = re.search(r"\/(\w+).zip", getURLAsString(getSeriesURL))
+            if not pdfFile or (not zipFile and requiredAPI):
+                continue
+            else:
+                pdf = pdfFile.group(1)
+                zipF = zipFile.group(1) if zipFile else None
+                break
+
+        if not pdf or (not zipF and requiredAPI):
             os.rmdir(directory)
             continue
-        pdf = pdfFile[0]
-        if(len(zipFile) == 0 and requiredAPI): continue
-        if(len(zipFile) > 0):
-            zipF = zipFile[0]
+
+        if zipF:
             zipURL = getSeriesURL + "/" + str(zipF) + ".zip"
             resp = urllib.request.urlopen(zipURL)
             myzip = zipfile.ZipFile(io.BytesIO(resp.read()))
@@ -174,6 +183,14 @@ for doc in configuration:
 
 ##getAPIFromGithub()
 
+directory = "../documentation/" + directoryName + "/Rel-" + str(relase)
+
+for raiz, subdirs, _ in os.walk("../documentation/", topdown=False):
+    for subdir in subdirs:
+        caminho = os.path.join(raiz, subdir)
+        if not os.listdir(caminho):
+            os.rmdir(caminho)
+            
 readme_template = env.get_template('README.j2')
 output = readme_template.render(release_documents=release_documents,api_urls=api_urls)
 
