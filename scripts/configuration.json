@@ -113,6 +113,14 @@
     "name": "Policy Authorization Service"
   },
   {
+    "id": "TS 29.515",
+    "name": "5G System; Gateway Mobile Location Services; Stage 3"
+  },
+  {
+    "id": "TS 29.517",
+    "name": "5G System; Application Function Event Exposure Service; Stage 3"
+  },
+  {
     "id": "TS 29.518",
     "name": "5G System; Access and Mobility Management Services; Stage 3"
   },
@@ -129,6 +137,10 @@
     "name": "Binding Support Management Service"
   },
   {
+    "id": "TS 29.522",
+    "name": "5G System; Network Exposure Function Northbound APIs; Stage 3"
+  },
+  {
     "id": "TS 29.523",
     "name": "Policy Control Event Exposure Service"
   },
@@ -137,12 +149,28 @@
     "name": "UE Policy Control Service"
   },
   {
+    "id": "TS 29.531",
+    "name": "5G System; Network Slice Selection Services; Stage 3"
+  },
+  {
+    "id": "TS 29.534",
+    "name": "5G System; Access and Mobility Policy Authorization Service; Stage 3"
+  },
+  {
+    "id": "TS 29.544",
+    "name": "5G System; Secured Packet Application Function (SP-AF) services; Stage 3"
+  },
+  {
     "id": "TS 29.551",
     "name": "5G System; Packet Flow Description Management Service; Stage 3"
   },
   {
     "id": "TS 29.554",
     "name": "Background Data Transfer Policy Control Service"
+  },
+  {
+    "id": "TS 29.562",
+    "name": "5G System; Home Subscriber Server (HSS) services; Stage 3"
   },
   {
     "id": "TS 29.571",
