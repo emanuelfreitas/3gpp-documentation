@@ -149,16 +149,21 @@ for doc in configuration:
             resp = urllib.request.urlopen(zipURL)
             myzip = zipfile.ZipFile(io.BytesIO(resp.read()))
             for line in myzip.namelist():
-                if line.startswith('TS') and line.endswith('yaml'):
-                    myzip.extract(line, '../apis')
+                if 'TS' in line and line.endswith('yaml'):
+                    ficheiroResultado = re.sub(r'^.*?TS', 'TS', line)
+
+                    temp_path = myzip.extract(line)
+                    # Mover e renomear o ficheiro
+                    shutil.move(temp_path, '../apis/' + ficheiroResultado)
+
                     filedata = None
-                    with open('../apis/'+str(line), 'r') as file :
+                    with open('../apis/'+str(ficheiroResultado), 'r') as file :
                         filedata = file.read()
                         filedata = filedata.replace('$ref: \'TS', '$ref: \'https://raw.githubusercontent.com/emanuelfreitas/3gpp-documentation/master/apis/TS')
-                    with open('../apis/'+str(line), 'w') as file:
+                    with open('../apis/'+str(ficheiroResultado), 'w') as file:
                         file.write(filedata)
 
-                    api_urls[line.replace(".yaml", "")] = getAPIURL(line.replace(".yaml", ""))
+                    api_urls[ficheiroResultado.replace(".yaml", "")] = getAPIURL(ficheiroResultado.replace(".yaml", ""))
 
         if str(pdf)+".pdf" in filesInDir:
             filesInDir.remove(str(pdf)+".pdf")

@@ -203,6 +203,10 @@
     "name": "5G System; Multicast/Broadcast Policy Control services; Stage 3"
   },
   {
+    "id": "TS 29.543",
+    "name": "5G System; Data Transfer Policy Control Services; Stage 3"
+  },
+  {
     "id": "TS 29.544",
     "name": "5G System; Secured Packet Application Function (SP-AF) services; Stage 3"
   },
@@ -225,6 +229,11 @@
   {
     "id": "TS 29.562",
     "name": "5G System; Home Subscriber Server (HSS) services; Stage 3"
+  },
+
+  {
+    "id": "TS 29.564",
+    "name": "5G System; User Plane Function Services; Stage 3"
   },
   {
     "id": "TS 29.565",
